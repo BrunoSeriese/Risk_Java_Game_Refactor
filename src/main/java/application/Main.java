@@ -16,9 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Button btn = new Button("CLICK ME");
-        btn.setStyle("-fx-background-image: url('../images/left.png')");
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
         primaryStage.setTitle("Risk Game");
         primaryStage.setScene(new Scene(root,1400, 860));
         primaryStage.show();
