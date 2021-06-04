@@ -18,7 +18,8 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
         primaryStage.setTitle("Risk Game");
-        primaryStage.setScene(new Scene(root,1400, 860));
+        primaryStage.setScene(new Scene(root,1280, 720));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
 
