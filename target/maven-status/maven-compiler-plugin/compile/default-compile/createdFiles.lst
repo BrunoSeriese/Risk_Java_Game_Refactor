@@ -1,5 +1,6 @@
 application\Main.class
 controllers\PreLobby.class
 views\MenuView.class
+views\LobbyView.class
 controllers\LobbyController.class
 controllers\MenuController.class
