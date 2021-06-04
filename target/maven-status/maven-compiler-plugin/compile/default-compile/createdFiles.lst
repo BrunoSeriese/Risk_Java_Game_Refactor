@@ -1,2 +1,3 @@
 application\Main.class
+views\MenuView.class
 controllers\MenuController.class
