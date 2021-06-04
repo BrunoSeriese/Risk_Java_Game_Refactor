@@ -10,20 +10,27 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuController">
    <children>
-   
-            <ImageView>
+
+      <ImageView>
          <Image url="@../images/bg.jpg" />
       </ImageView>
-   
-         <ImageView cache="true" fitHeight="159.0" fitWidth="222.0" layoutX="251.0" layoutY="80.0" preserveRatio="true">
-         <Image url="@../images/PlayButton_1.png" />
+      <ImageView fitHeight="136.0" fitWidth="285.0" layoutX="100.0" layoutY="100.0">
+         <image>
+            <Image url="@../images/button_play.png" />
+         </image>
       </ImageView>
-   
-         <ImageView fitHeight="165.0" fitWidth="222.0" layoutX="125.0" layoutY="196.0" preserveRatio="true">
-         <Image url="@../images/QuitButton.png" />
+      <ImageView fitHeight="136.0" fitWidth="285.0" layoutX="100.0" layoutY="250.0">
+         <image>
+            <Image url="@../images/rules_button.png" />
+         </image>
       </ImageView>
-   
-         <Button fx:id="playGame" alignment="CENTER" layoutX="296.0" layoutY="109.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="80.0" prefWidth="135.0" text="Play" textAlignment="CENTER">
+      <ImageView fitHeight="136.0" fitWidth="285.0" layoutX="100.0" layoutY="400.0">
+         <image>
+            <Image url="@../images/button_quit.png" />
+         </image>
+      </ImageView>
+
+      <Button fx:id="playGame" alignment="CENTER" layoutX="125.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Play" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
@@ -31,8 +38,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-   
-         <Button fx:id="endGame" alignment="CENTER" layoutX="165.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="84.0" prefWidth="140.0" text="Quit" textAlignment="CENTER">
+
+      <Button fx:id="showRules" alignment="CENTER" layoutX="125.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Rules" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Shadow />
+         </effect>
+      </Button>
+      <Button fx:id="quitGame" alignment="CENTER" layoutX="125.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Quit" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

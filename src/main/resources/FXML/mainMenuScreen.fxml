@@ -10,8 +10,8 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuController">
    <children>
-   
-            <ImageView>
+
+      <ImageView>
          <Image url="@../images/bg.jpg" />
       </ImageView>
       <ImageView fitHeight="136.0" fitWidth="285.0" layoutX="100.0" layoutY="100.0">
@@ -29,8 +29,8 @@
             <Image url="@../images/button_quit.png" />
          </image>
       </ImageView>
-   
-         <Button fx:id="playGame" alignment="CENTER" layoutX="125.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Play" textAlignment="CENTER">
+
+      <Button fx:id="playGame" alignment="CENTER" layoutX="125.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Play" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
@@ -38,8 +38,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-   
-         <Button fx:id="showRules" alignment="CENTER" layoutX="125.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Rules" textAlignment="CENTER">
+
+      <Button fx:id="showRules" alignment="CENTER" layoutX="125.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Rules" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

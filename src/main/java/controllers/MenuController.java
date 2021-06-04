@@ -17,7 +17,14 @@ public class MenuController {
     void handleClick(ActionEvent event){
         Button sourceButton = (Button) event.getSource();
 
-       System.out.println("CHECK");
+        if (sourceButton.getId().equals("playGame")){
+            System.out.println("volgende Scherm");
+        }
+
+       System.out.println(sourceButton.getId());
+        System.out.println("playGame");
+
+
 
     }
 }
