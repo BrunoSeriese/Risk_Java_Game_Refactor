@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Database {
 
-    private static final String PRIVATEKEYLOCATION = "/Users/Jansen/Documents/Informatica/iipsene-56729-firebase-private.json";
+    private static final String PRIVATEKEYLOCATION = "/Users/Jansen/Documents/Informatica/Risk_Java_Game/src/main/resources/json/iipsene-56729-firebase-private.json";
     private static final String DATABASEURL = "iipsene-56729.iam.gserviceaccount.com";
     private Firestore db;
 
