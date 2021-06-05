@@ -45,7 +45,7 @@
             <Font name="Rockwell" size="38.0" />
          </font>
       </Text>
-      <Button fx:id="playGame" alignment="CENTER" layoutX="168.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchToLobby" opacity="0.01" prefHeight="79.0" prefWidth="204.0" text="Create" textAlignment="CENTER">
+      <Button fx:id="playGame" alignment="CENTER" layoutX="168.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchToCreatedLobby" opacity="0.01" prefHeight="79.0" prefWidth="204.0" text="Create" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
@@ -53,7 +53,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="playGame1" alignment="CENTER" layoutX="168.0" layoutY="414.0" mnemonicParsing="false" onAction="#switchToLobby" opacity="0.01" prefHeight="79.0" prefWidth="204.0" text="Join" textAlignment="CENTER">
+      <Button fx:id="playGame1" alignment="CENTER" layoutX="168.0" layoutY="414.0" mnemonicParsing="false"  onAction="#switchToCreatedLobby" opacity="0.01" prefHeight="79.0" prefWidth="204.0" text="Join" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
