@@ -22,24 +22,6 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-
-
-
-
-//        Button btn = new Button();
-//
-//        btn.setText("Find Lobby");
-//        btn.setOnAction(event -> System.out.println("Find Lobby"));
-//
-//        StackPane root = new StackPane();
-//        root.getChildren().add(btn);
-//
-//        Scene scene = new Scene(root, 1400, 860);
-//
-//
-//        primaryStage.setTitle("Hello World!");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
     }
 
     public static void main(String[] args) {

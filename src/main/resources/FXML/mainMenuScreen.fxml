@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuController">
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SceneController">
    <children>
 
       <ImageView>
@@ -30,7 +30,7 @@
          </image>
       </ImageView>
 
-      <Button fx:id="playGame" alignment="CENTER" layoutX="125.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Play" textAlignment="CENTER">
+      <Button fx:id="playGame" alignment="CENTER" layoutX="125.0" layoutY="116.0" mnemonicParsing="false" onAction="#switchToLobby" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Play" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
@@ -39,7 +39,7 @@
          </cursor>
       </Button>
 
-      <Button fx:id="showRules" alignment="CENTER" layoutX="125.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Rules" textAlignment="CENTER">
+      <Button fx:id="showRules" alignment="CENTER" layoutX="125.0" layoutY="265.0" mnemonicParsing="false"  opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Rules" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -47,7 +47,7 @@
             <Shadow />
          </effect>
       </Button>
-      <Button fx:id="quitGame" alignment="CENTER" layoutX="125.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Quit" textAlignment="CENTER">
+      <Button fx:id="quitGame" alignment="CENTER" layoutX="125.0" layoutY="416.0" mnemonicParsing="false"  opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Quit" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
