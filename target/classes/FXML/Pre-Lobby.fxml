@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SceneController">
    <children>
@@ -31,7 +32,7 @@
             <Image url="@../images/button_create.png" />
          </image>
       </ImageView>
-      <TextField alignment="CENTER" layoutX="150.0" layoutY="228.0" prefHeight="39.0" prefWidth="232.0" promptText="Username...">
+      <TextField alignment="CENTER" layoutX="168.0" layoutY="229.0" prefHeight="39.0" prefWidth="204.0" promptText="Username...">
          <font>
             <Font name="Rockwell" size="24.0" />
          </font>
@@ -44,5 +45,21 @@
             <Font name="Rockwell" size="38.0" />
          </font>
       </Text>
+      <Button fx:id="playGame" alignment="CENTER" layoutX="168.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchToCreatedLobby" opacity="0.01" prefHeight="79.0" prefWidth="204.0" text="Create" textAlignment="CENTER">
+         <effect>
+            <Shadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="playGame1" alignment="CENTER" layoutX="168.0" layoutY="414.0" mnemonicParsing="false"  onAction="#switchToCreatedLobby" opacity="0.01" prefHeight="79.0" prefWidth="204.0" text="Join" textAlignment="CENTER">
+         <effect>
+            <Shadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

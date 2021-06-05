@@ -22,11 +22,11 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToSpelbord(ActionEvent event){
-//        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/Lobby.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
+    public void switchToCreatedLobby(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/Lobby.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

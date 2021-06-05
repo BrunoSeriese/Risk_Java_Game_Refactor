@@ -1,5 +1,7 @@
 application\Main.class
+controllers\CreateLobbyController.class
 views\MenuView.class
 views\LobbyView.class
+controllers\JoinLobbyController.class
 controllers\LobbyController.class
 controllers\SceneController.class
