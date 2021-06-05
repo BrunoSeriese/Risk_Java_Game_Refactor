@@ -1,5 +1,10 @@
-D:\HS Leiden\Java Projects\Risk_Java_Game\src\main\java\controllers\LobbyController.java
-D:\HS Leiden\Java Projects\Risk_Java_Game\src\main\java\views\LobbyView.java
-D:\HS Leiden\Java Projects\Risk_Java_Game\src\main\java\views\MenuView.java
-D:\HS Leiden\Java Projects\Risk_Java_Game\src\main\java\controllers\SceneController.java
-D:\HS Leiden\Java Projects\Risk_Java_Game\src\main\java\application\Main.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\controllers\LoginController.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\configuration\Database.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\controllers\CreateLobbyController.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\views\MenuView.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\application\State.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\controllers\JoinLobbyController.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\views\LobbyView.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\controllers\SceneController.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\application\Main.java
+C:\Users\Jansen\Documents\Informatica\Risk_Java_Game\src\main\java\controllers\LobbyController.java
