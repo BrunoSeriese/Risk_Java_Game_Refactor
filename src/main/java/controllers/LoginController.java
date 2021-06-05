@@ -111,7 +111,7 @@ public class LoginController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
-                System.out.println("Lobby not found");;
+                System.out.println("Lobby not found");
             }
             System.out.println("de lobbycode is " + code);
         }
