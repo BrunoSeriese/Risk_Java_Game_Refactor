@@ -15,7 +15,7 @@
       </ImageView>
       <ImageView fitHeight="720.0" fitWidth="593.0" layoutX="-31.0" layoutY="-33.0">
          <image>
-            <Image url="@../images/rules.png" />
+            <Image url="@../images/note.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="97.0" fitWidth="398.0" layoutX="90.0" layoutY="110.0">
