@@ -3,4 +3,3 @@ views\MenuView.class
 views\LobbyView.class
 controllers\LobbyController.class
 controllers\SceneController.class
-controllers\MenuController.class
