@@ -66,7 +66,7 @@
             <Image url="@../images/left.png" />
          </image>
       </ImageView>
-      <Button fx:id="playGame" alignment="CENTER" layoutX="102.0" layoutY="560.0" mnemonicParsing="false" onAction="#switchToLobby" opacity="0.01" prefHeight="58.0" prefWidth="81.0" text="rules_previous" textAlignment="CENTER">
+      <Button fx:id="playGame" alignment="CENTER" layoutX="102.0" layoutY="560.0" mnemonicParsing="false" onAction="#openRuleSet2" opacity="0.01" prefHeight="58.0" prefWidth="81.0" text="rules_previous" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
@@ -74,7 +74,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="playGame1" alignment="CENTER" layoutX="353.0" layoutY="560.0" mnemonicParsing="false" onAction="#switchToLobby" opacity="0.01" prefHeight="58.0" prefWidth="73.0" text="rules_next" textAlignment="CENTER">
+      <Button fx:id="playGame1" alignment="CENTER" layoutX="353.0" layoutY="560.0" mnemonicParsing="false"  onAction="#openRuleSet" opacity="0.01" prefHeight="58.0" prefWidth="73.0" text="rules_next" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
@@ -82,7 +82,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="playGame11" alignment="CENTER" layoutX="203.0" layoutY="566.0" mnemonicParsing="false" onAction="#switchToLobby" opacity="0.01" prefHeight="47.0" prefWidth="132.0" text="rules_back" textAlignment="CENTER">
+      <Button fx:id="playGame11" alignment="CENTER" layoutX="203.0" layoutY="566.0" mnemonicParsing="false"  onAction="#switchToLobby" opacity="0.01" prefHeight="47.0" prefWidth="132.0" text="rules_back" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>

@@ -1,4 +1,5 @@
 application\Main.class
 views\MenuView.class
 views\LobbyView.class
+controllers\SpelbordController.class
 controllers\LobbyController.class
