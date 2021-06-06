@@ -39,7 +39,7 @@
          </cursor>
       </Button>
 
-      <Button fx:id="showRules" alignment="CENTER" layoutX="125.0" layoutY="265.0" mnemonicParsing="false"  opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Rules" textAlignment="CENTER">
+      <Button fx:id="showRules" alignment="CENTER" layoutX="125.0" layoutY="265.0" mnemonicParsing="false" onAction="#openRuleSet"  opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Rules" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

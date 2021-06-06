@@ -3,7 +3,7 @@ package controllers;
 public class SpelbordController {
 
 
-    public static void main(String[] args) {
+
 
 
         // start spel hier met oproepen van een functie
@@ -19,5 +19,5 @@ public class SpelbordController {
 
 
         // print winnaar en laat zien op scherm
-    }
+
 }
