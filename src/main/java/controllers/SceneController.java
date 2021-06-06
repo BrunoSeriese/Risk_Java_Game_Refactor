@@ -38,4 +38,13 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
+    public void switchToJoinedLobby(ActionEvent event) throws IOException {
+        loginController.testMessage(usernameField.getText());
+        loginController.checkCreate(usernameField.getText());
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/JoinLobby.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

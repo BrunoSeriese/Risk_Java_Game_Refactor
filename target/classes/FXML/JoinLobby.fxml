@@ -27,7 +27,7 @@
             <Image url="@../images/button_join.png" />
          </image>
       </ImageView>
-      <TextField fx:id="usernameField" alignment="CENTER" layoutX="168.0" layoutY="229.0" prefHeight="39.0" prefWidth="204.0" promptText="Username...">
+      <TextField fx:id="usernameField" alignment="CENTER" layoutX="168.0" layoutY="290.0" prefHeight="39.0" prefWidth="204.0" promptText="Code...">
          <font>
             <Font name="Rockwell" size="24.0" />
          </font>
@@ -35,12 +35,12 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Text layoutX="159.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME:">
+      <Text layoutX="88.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ENTER LOBBY CODE:">
          <font>
             <Font name="Rockwell" size="38.0" />
          </font>
       </Text>
-      <Button fx:id="playGame1" alignment="CENTER" layoutX="168.0" layoutY="414.0" mnemonicParsing="false" onAction="#switchToCreatedLobby" opacity="0.01" prefHeight="79.0" prefWidth="204.0" text="Join" textAlignment="CENTER">
+      <Button fx:id="playGame1" alignment="CENTER" layoutX="168.0" layoutY="414.0" mnemonicParsing="false" onAction="#switchToCreatedLobby" opacity="0.01" prefHeight="79.0" prefWidth="204.0" text="JoinLobby" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
