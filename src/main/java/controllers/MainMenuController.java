@@ -16,10 +16,6 @@ public class MainMenuController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    LoginController loginController = new LoginController();
-
-    @FXML
-    TextField usernameField;
 
     public void switchToLobby(ActionEvent event) throws IOException {
 
