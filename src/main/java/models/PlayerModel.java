@@ -2,29 +2,32 @@ package models;
 
 import java.util.ArrayList;
 
-public class SpelerModel {
-    private String name;
+public class PlayerModel {
+    private String username;
     private Boolean turn;
     private ArrayList regions;
     private ArrayList lastThrow;
     private ArrayList cards;
 
 
-    public SpelerModel(String name, Boolean turn, ArrayList regions, ArrayList lastThrow,ArrayList cards){
-        this.name=name;
-        this.turn=turn;
-        this.regions=regions;
-        this.lastThrow=lastThrow;
-        this.cards=cards;
+    public PlayerModel(){
+
+    }
+    public PlayerModel(String username, Boolean turn, ArrayList regions, ArrayList lastThrow, ArrayList cards){
+        this.username = username;
+        this.turn = turn;
+        this.regions = regions;
+        this.lastThrow = lastThrow;
+        this.cards = cards;
 
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Boolean getTurn() {
