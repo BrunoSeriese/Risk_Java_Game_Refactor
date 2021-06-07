@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SceneController">
+   <children>
+      <ImageView>
+         <image>
+            <Image url="@../images/bg.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="593.0" layoutX="-31.0" layoutY="-33.0">
+         <image>
+            <Image url="@../images/note.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="51.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Als aanvaller kan je gebieden veroveren, bij elke verovering krijg je een veroveringskaart." textAlignment="CENTER" wrappingWidth="447.7837858200073">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="52.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deze hou je in je inventory totdat je er 3 hebt verzameld. Na het verzamelen van 3 verschillende of 3 dezelfde kaarten, krijg je een optie om deze in te wisselen voor nieuwe legers." textAlignment="CENTER" wrappingWidth="447.7837858200073">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="51.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 verschillende = 10 legers" textAlignment="CENTER" wrappingWidth="447.7837858200073">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="52.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 kanonnen = 8 legers" textAlignment="CENTER" wrappingWidth="447.7837858200073">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="51.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 paarden = 6 legers" textAlignment="CENTER" wrappingWidth="447.7837858200073">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="52.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 poppetjes = 4 legers" textAlignment="CENTER" wrappingWidth="447.7837858200073">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="56.0" fitWidth="89.0" layoutX="98.0" layoutY="561.0">
+         <image>
+            <Image url="@../images/left.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="187.0" layoutY="551.0">
+         <image>
+            <Image url="@../images/button_back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="89.0" layoutX="345.0" layoutY="561.0" rotate="180.0">
+         <image>
+            <Image url="@../images/left.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="playGame" alignment="CENTER" layoutX="102.0" layoutY="560.0" mnemonicParsing="false" onAction="#openRuleSet2" opacity="0.01" prefHeight="58.0" prefWidth="81.0" text="rules_previous" textAlignment="CENTER">
+         <effect>
+            <Shadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="playGame1" alignment="CENTER" layoutX="353.0" layoutY="560.0" mnemonicParsing="false"  onAction="#openRuleSet" opacity="0.01" prefHeight="58.0" prefWidth="73.0" text="rules_next" textAlignment="CENTER">
+         <effect>
+            <Shadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="playGame11" alignment="CENTER" layoutX="203.0" layoutY="566.0" mnemonicParsing="false"  onAction="#switchToLobby" opacity="0.01" prefHeight="47.0" prefWidth="132.0" text="rules_back" textAlignment="CENTER">
+         <effect>
+            <Shadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,3 +1,5 @@
 application\Main.class
-HelloFX.class
-controllers\MenuController.class
+views\MenuView.class
+views\LobbyView.class
+controllers\SpelbordController.class
+controllers\LobbyController.class

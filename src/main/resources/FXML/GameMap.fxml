@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LobbyController">
+   <children>
+      <ImageView preserveRatio="true">
+         <image>
+            <Image url="@../images/gamemap.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="97.0" fitWidth="100.0" layoutX="14.0" layoutY="609.0">
+         <image>
+            <Image url="@../images/card_icon.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

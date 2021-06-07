@@ -16,31 +16,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Button btn = new Button("CLICK ME");
-        btn.setStyle("-fx-background-image: url('../images/left.png')");
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
         primaryStage.setTitle("Risk Game");
-        primaryStage.setScene(new Scene(root,1400, 860));
+        primaryStage.setScene(new Scene(root,1280, 720));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
-
-
-
-
-//        Button btn = new Button();
-//
-//        btn.setText("Find Lobby");
-//        btn.setOnAction(event -> System.out.println("Find Lobby"));
-//
-//        StackPane root = new StackPane();
-//        root.getChildren().add(btn);
-//
-//        Scene scene = new Scene(root, 1400, 860);
-//
-//
-//        primaryStage.setTitle("Hello World!");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
     }
 
     public static void main(String[] args) {
