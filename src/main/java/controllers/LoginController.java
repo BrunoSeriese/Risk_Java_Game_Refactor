@@ -7,6 +7,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
 import javafx.event.ActionEvent;
+import models.PlayerModel;
 
 import javax.xml.crypto.Data;
 import java.util.Arrays;
@@ -16,9 +17,18 @@ import java.util.concurrent.ExecutionException;
 
 public class LoginController {
 
+    static PlayerModel playerModel;
+
     public void testMessage(String username){
         System.out.println("de username is: " + username);
+    }
 
+    public static PlayerModel getInstance() {
+        if (playerModel == null) {
+            playerModel = new PlayerModel();
+            System.out.println("nieuwe instantie is aangemaakt");
+        }
+        return playerModel;
     }
 
     public String createLobbyCode() {
@@ -114,6 +124,22 @@ public class LoginController {
                 System.out.println("Lobby not found");
             }
             System.out.println("de lobbycode is " + code);
+        }
+    }
+
+    public boolean emptyUsername(String textfield){
+        if (textfield.equals("")){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean emptyLobbycode(String code){
+        if (code.equals("")){
+            return true;
+        } else {
+            return false;
         }
     }
 }
