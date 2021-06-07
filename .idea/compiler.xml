@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="RiskGameJava" />
         <module name="Risk_Java_Game" />
+        <module name="hellofx" />
       </profile>
     </annotationProcessing>
   </component>

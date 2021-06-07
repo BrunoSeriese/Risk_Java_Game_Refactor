@@ -4,16 +4,31 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LobbyController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SpelbordController">
    <children>
       <ImageView preserveRatio="true">
          <image>
             <Image url="@../images/gamemap.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="97.0" fitWidth="100.0" layoutX="14.0" layoutY="609.0">
+      <ImageView fitHeight="97.0" fitWidth="100.0" layoutX="14.0" layoutY="609.0" onMouseClicked="#showCards">
          <image>
             <Image url="@../images/card_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="97.0" fitWidth="100.0" layoutX="1166.0" layoutY="312.0" onMouseClicked="#showPlayers">
+         <image>
+            <Image url="@../images/playerIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="97.0" fitWidth="100.0" layoutX="14.0" layoutY="505.0" onMouseClicked="#rollDice">
+         <image>
+            <Image url="@../images/dice_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="1214.0" layoutY="3.0" onMouseClicked="#surrenderGame">
+         <image>
+            <Image url="@../images/surrender_icon.png" />
          </image>
       </ImageView>
    </children>

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 
 public class SceneController {
@@ -48,26 +49,10 @@ public class SceneController {
         stage.show();
     }
 
-    public void openRuleSet(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/rules1.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void openRuleSet2(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/rules2.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void openRuleSet3(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/rules3.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
+
+
+
+
 
 }

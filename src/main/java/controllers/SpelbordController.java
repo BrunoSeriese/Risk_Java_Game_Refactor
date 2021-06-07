@@ -2,6 +2,10 @@ package controllers;
 
 public class SpelbordController {
 
+    public void showPlayers(){}
+    public void rollDice(){}
+    public void showCards(){}
+    public void surrenderGame(){}
 
 
 
