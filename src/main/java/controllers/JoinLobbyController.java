@@ -31,17 +31,19 @@ public class JoinLobbyController {
     }
 
     public void switchToInsertLobbycode(ActionEvent event) throws IOException{
-        System.out.println("de lobbycode is: " + codeField.getText());
-        if (loginController.emptyLobbycode(codeField.getText())) {
-            System.out.println("Lobbycode is leeg");
-        } else {
+        System.out.println("Ingevulde lobbycode is: " + codeField.getText());
+        if (loginController.validateLobby(codeField.getText())) {
             System.out.println("de usernamefield is: " + playerModel.getUsername());
-            loginController.checkJoin(playerModel.getUsername(), codeField.getText());
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/Lobby.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            if (loginController.checkJoin(playerModel.getUsername(), codeField.getText())){
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/Lobby.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } else {
+            System.out.println("lobbycode is ongeldig, probeer het nog eens");
+
         }
     }
 

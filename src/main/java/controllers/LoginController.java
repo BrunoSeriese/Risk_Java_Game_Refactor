@@ -84,10 +84,11 @@ public class LoginController {
                 System.out.println(document.getData().size());
                 return true;
             } else{
+                System.out.println("De lobby is vol");
                 return false;
             }
         } else {
-            System.out.println("No such document!");
+            System.out.println("Lobby not found");
             return false;
         }
     }
@@ -108,23 +109,24 @@ public class LoginController {
         System.out.println("Update time : " + result.get().getUpdateTime());
     }
 
-    public void checkJoin(String username, String code){
+    public boolean checkJoin(String username, String code){
         if (username.equals("")){
             System.out.println("Username is leeg");
+            return false;
         } else {
             try {
                 if (readLobby(code)){
                     joinLobby(code, username);
-                } else {
-                    System.out.println("lobby is vol");
+                    return true;
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 System.out.println("Lobby not found");
+                return false;
             }
-            System.out.println("de lobbycode is " + code);
         }
+        return false;
     }
 
     public boolean emptyUsername(String textfield){
@@ -140,6 +142,23 @@ public class LoginController {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public boolean validateLobby(String code){
+        if (code.equals("")){
+            return false;
+        } else {
+            code = code.toLowerCase();
+            char [] charArray = code.toCharArray();
+            for (int i = 0; i < charArray.length; i++){
+                char ch = charArray[i];
+                if (ch >= 'a' && ch <= 'z'){
+                    System.out.println("Ingevulde lobbycode bevat letters");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
