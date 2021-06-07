@@ -53,5 +53,13 @@
             <Image url="@../images/left.png" />
          </image>
       </ImageView>
+      <Button fx:id="playGame11" alignment="CENTER" layoutX="45.0" layoutY="86.0" mnemonicParsing="false" onAction="#switchToCreatedLobby" opacity="0.01" prefHeight="79.0" prefWidth="94.0" text="JoinLobbyBack" textAlignment="CENTER">
+         <effect>
+            <Shadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
