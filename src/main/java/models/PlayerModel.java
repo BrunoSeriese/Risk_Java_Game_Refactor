@@ -1,5 +1,6 @@
 package models;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class PlayerModel {
@@ -8,6 +9,9 @@ public class PlayerModel {
     private ArrayList regions;
     private ArrayList lastThrow;
     private ArrayList cards;
+    private Color color; //random #,#,# digits for color code (ik weet niet of gewoon 'red' of 'blue' werkt, maar vgm moet het color codes, dus rgb(255,255,255) bijvoorbeeld
+    private Boolean hasWon; //set true if conquered all regions
+    private Boolean canExchangeCards; // if true, verschijnt button met trade in cards fzo, komt later
 
 
     public PlayerModel(){
