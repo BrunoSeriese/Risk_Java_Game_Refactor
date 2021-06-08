@@ -1,6 +1,7 @@
 package models;
 
 import java.awt.*;
+import java.net.Inet4Address;
 import java.util.ArrayList;
 
 public class PlayerModel {
@@ -11,7 +12,7 @@ public class PlayerModel {
     private boolean hasTurn;
     private int playerID;
     private ArrayList<CountryModel> countries;
-    private ArrayList lastThrow;
+    private ArrayList<Integer> lastThrow;
     private ArrayList cards;
     private Color color; //random #,#,# digits for color code (ik weet niet of gewoon 'red' of 'blue' werkt, maar vgm moet het color codes, dus rgb(255,255,255) bijvoorbeeld
     private Boolean hasWon; //set true if conquered all regions
@@ -29,19 +30,18 @@ public class PlayerModel {
         this.hasTurn = false;
 
     }
-    public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList lastThrow, ArrayList cards){
+    public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList<Integer> lastThrow, ArrayList cards){
         this.username = username;
-
-
-
         this.countries = countries;
-
         // is last throw echt nodig? last throw lijkt heel onnodig
         this.lastThrow = lastThrow;
         this.cards = cards;
-
     }
 
+    public PlayerModel(String username, ArrayList<Integer>lastThrow){
+        this.username = username;
+        this.lastThrow = lastThrow;
+    }
     public void startTurn(GameStateModel hostedGame){
         if (this.turnID == hostedGame.getTurnID()) {
 
@@ -93,11 +93,11 @@ public class PlayerModel {
     }
 
 
-    public ArrayList getLastThrow() {
+    public ArrayList<Integer> getLastThrow() {
         return lastThrow;
     }
 
-    public void setLastThrow(ArrayList lastThrow) {
+    public void setLastThrow(ArrayList<Integer> lastThrow) {
         this.lastThrow = lastThrow;
     }
 

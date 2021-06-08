@@ -7,9 +7,6 @@ import java.util.Random;
 
 public class DiceController {
 
-
-
-
         private int roll;
         private ArrayList<Integer> diceArray;
         private Random die;
