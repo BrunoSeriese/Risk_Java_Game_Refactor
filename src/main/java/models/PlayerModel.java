@@ -7,9 +7,10 @@ public class PlayerModel {
     private int turnArmies;
     private String username;
     private int turnID;
+    private boolean hasTurn;
     private int playerID;
     private ArrayList<CountryModel> countries;
-    private ArrayList lastThrow;
+    private ArrayList<Integer> lastThrow;
     private ArrayList cards;
     private Color color; //random #,#,# digits for color code (ik weet niet of gewoon 'red' of 'blue' werkt, maar vgm moet het color codes, dus rgb(255,255,255) bijvoorbeeld
     private Boolean hasWon; //set true if conquered all regions
@@ -24,14 +25,15 @@ public class PlayerModel {
         this.playerID = playerID;
         this.turnID = turnID;
         this.turnArmies = 0;
+        this.hasTurn = false;
 
     }
-    public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList lastThrow, ArrayList cards){
+    public PlayerModel(String username, ArrayList<Integer> lastThrow, ArrayList cards){
         this.username = username;
 
 
 
-        this.countries = countries;
+        //this.countries = countries;
 
         // is last throw echt nodig? last throw lijkt heel onnodig
         this.lastThrow = lastThrow;
@@ -73,6 +75,10 @@ public class PlayerModel {
         }
     }
 
+    public void setHasTurn(){
+        this.hasTurn = true;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -82,14 +88,21 @@ public class PlayerModel {
     }
 
 
+    public int getTurnID(){
+        return turnID;
+    }
 
 
-
-    public ArrayList getLastThrow() {
+    public ArrayList<Integer> getLastThrow() {
         return lastThrow;
     }
 
-    public void setLastThrow(ArrayList lastThrow) {
+    public void setLastThrow(ArrayList<Integer> lastThrow) {
         this.lastThrow = lastThrow;
     }
+
+
+    public void buildPhase(){}
+    public void attackPhase(){}
+    public void endPhase(){}
 }

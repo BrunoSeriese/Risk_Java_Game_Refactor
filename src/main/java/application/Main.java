@@ -1,5 +1,7 @@
 package application;
 
+import controllers.DiceController;
+import controllers.SpelbordController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main extends Application {
     @Override
@@ -21,10 +24,19 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root,1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();
+        SpelbordController controllertest=new SpelbordController();
+        controllertest.onClick();
+        controllertest.aanval();
+
+
+
+        System.out.println("in main");
 
     }
 
     public static void main(String[] args) {
         launch(args);
+
+
     }
 }

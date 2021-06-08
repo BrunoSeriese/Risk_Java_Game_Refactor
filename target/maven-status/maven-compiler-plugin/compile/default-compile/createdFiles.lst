@@ -6,3 +6,4 @@ models\CountryModel.class
 models\SpelbordModel.class
 controllers\SpelbordController.class
 controllers\LobbyController.class
+models\GameStateModel.class
