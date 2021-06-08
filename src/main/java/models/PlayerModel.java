@@ -88,7 +88,9 @@ public class PlayerModel {
     }
 
 
-
+    public int getTurnID(){
+        return turnID;
+    }
 
 
     public ArrayList<Integer> getLastThrow() {
@@ -98,4 +100,9 @@ public class PlayerModel {
     public void setLastThrow(ArrayList<Integer> lastThrow) {
         this.lastThrow = lastThrow;
     }
+
+
+    public void buildPhase(){}
+    public void attackPhase(){}
+    public void endPhase(){}
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class SpelbordModel {
-
+    private PlayerModel currentPlayer;
     private ArrayList<PlayerModel> players;
     private ArrayList<Integer> armies;
     private ArrayList<CountryModel> countries;
@@ -44,5 +44,32 @@ public class SpelbordModel {
 
         // give this updated army on the country to firebase
 
+    }
+
+    public void turnInProgress(ArrayList<PlayerModel> players, GameStateModel hostedGame){
+
+        for (int i = 0; i<players.size();i++){
+
+            if (players.get(i).getTurnID() == hostedGame.getTurnID()){
+
+                // now you have the player who has a turn
+                currentPlayer = players.get(i);
+
+                currentPlayer.buildPhase();
+                currentPlayer.attackPhase();
+                currentPlayer.endPhase();
+
+                hostedGame.nextTurn();
+            }
+        }
+
+    }
+
+    public ArrayList<PlayerModel> getPlayers(){
+        return this.players;
+    }
+
+    public ArrayList<CountryModel> getCountries(){
+        return this.countries;
     }
 }

@@ -29,6 +29,9 @@ public class Main extends Application {
         controllertest.aanval();
 
 
+
+        System.out.println("in main");
+
     }
 
     public static void main(String[] args) {
