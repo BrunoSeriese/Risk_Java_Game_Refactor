@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
@@ -10,7 +11,7 @@ public class DiceController {
 
 
         private int roll;
-        private int[] diceArray;
+        private ArrayList<Integer> diceArray;
         private Random die;
 
         public DiceController( ) {
@@ -18,18 +19,18 @@ public class DiceController {
         }
 
 
-        public int[] roll(int numberOfDice) {
+        public ArrayList<Integer> roll(int numberOfDice) {
 
-            diceArray = new int[numberOfDice];
+            diceArray = new ArrayList<>();
 
-            for(int i = 0; i < diceArray.length; i++) {
+            for(int i = 0; i < numberOfDice; i++) {
                 die = new Random();
-                roll = die.nextInt(5) + 1;
-                diceArray[i] = roll;
+                roll = die.nextInt(6) + 1;
+                diceArray.add(roll);
             }
 
-            Arrays.sort(diceArray);
-            Collections.reverse(Arrays.asList(diceArray));
+            Collections.sort(diceArray);
+            Collections.reverse(diceArray);
 
             return diceArray;
         }
