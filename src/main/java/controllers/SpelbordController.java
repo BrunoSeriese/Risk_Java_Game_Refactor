@@ -13,37 +13,34 @@ public class SpelbordController {
         ArrayList<Integer> worp1 = new DiceController().roll(3);
         ArrayList<Integer> worp2 = new DiceController().roll(3);
 
-
-
-
         PlayerModel speler1 = new PlayerModel("Petra", worp1);
         PlayerModel speler2 = new PlayerModel("Erik", worp2);
-//      SpelerModel speler3= new SpelerModel("johan",false,dice,dice,dice);
+
         spelers.add(speler1);
         spelers.add(speler2);
-
-
-        ///// als het spel in staat X is, en speler heeft bepaalde resources, dan ....
-        //////////////////// aanval()
-
 
     }
     public void aanval() {
 
-        System.out.println("hoogste worp speler 1: "+ spelers.get(0).getLastThrow().get(0));
-        System.out.println("Hoogste worp speler 2: "+ spelers.get(1).getLastThrow().get(0));
+        System.out.println("worp speler 1: "+ spelers.get(0).getLastThrow());
+        System.out.println("worp speler 2: "+ spelers.get(1).getLastThrow());
 
-        int speler1hoogste = spelers.get(0).getLastThrow().get(0);
-        int speler2hoogste = spelers.get(1).getLastThrow().get(0);
+        int attackThrow1 = spelers.get(0).getLastThrow().get(0);
+        int defendThrow1 = spelers.get(1).getLastThrow().get(0);
+        int attackThrow2= spelers.get(0).getLastThrow().get(1);
+        int defendThrow2 = spelers.get(1).getLastThrow().get(1);
 
-        if (speler1hoogste > speler2hoogste){
-            System.out.println("speler 1 wint");
 
-        } else if(speler2hoogste > speler1hoogste) {
+
+        if (attackThrow1 > defendThrow1 && attackThrow2 > defendThrow2){
+            System.out.println("speler 1 wint");//hier iets van spelers.get(1).setSoldaten(soldaten-2)
+
+
+        } else if(defendThrow1 >= attackThrow1 && defendThrow2 >= attackThrow2 ) {
             System.out.println("2 wint");
 
         }else {
-            System.out.println("Gelijkspel");
+            System.out.println("gelijkspel allebij een pion weg");
         }
 
 
