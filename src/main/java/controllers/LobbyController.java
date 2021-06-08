@@ -35,7 +35,6 @@ public class LobbyController {
         // then start off the game with a SpelbordModel.turnInProgress()
 
 
-
         }
     }
 
