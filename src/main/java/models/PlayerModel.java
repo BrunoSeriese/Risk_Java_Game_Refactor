@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PlayerModel {
+
     private int turnArmies;
     private String username;
     private int turnID;
@@ -87,8 +88,9 @@ public class PlayerModel {
         this.username = username;
     }
 
-
-
+    public int getTurnID(){
+        return turnID;
+    }
 
 
     public ArrayList getLastThrow() {
@@ -98,4 +100,9 @@ public class PlayerModel {
     public void setLastThrow(ArrayList lastThrow) {
         this.lastThrow = lastThrow;
     }
+
+
+    public void buildPhase(){}
+    public void attackPhase(){}
+    public void endPhase(){}
 }
