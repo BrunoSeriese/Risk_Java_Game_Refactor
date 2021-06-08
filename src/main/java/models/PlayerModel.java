@@ -3,6 +3,7 @@ package models;
 import java.awt.*;
 import java.net.Inet4Address;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class PlayerModel {
 
@@ -13,11 +14,11 @@ public class PlayerModel {
     private int playerID;
     private ArrayList<CountryModel> countries;
     private ArrayList<Integer> lastThrow;
-    private ArrayList cards;
+    private ArrayList cards = new ArrayList();
     private Color color; //random #,#,# digits for color code (ik weet niet of gewoon 'red' of 'blue' werkt, maar vgm moet het color codes, dus rgb(255,255,255) bijvoorbeeld
     private Boolean hasWon; //set true if conquered all regions
     private Boolean canExchangeCards; // if true, verschijnt button met trade in cards fzo, komt later
-
+    private int aantalLegers;
 
     public PlayerModel(){
 
@@ -30,12 +31,14 @@ public class PlayerModel {
         this.hasTurn = false;
 
     }
-    public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList<Integer> lastThrow, ArrayList cards){
+    public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList<Integer> lastThrow, ArrayList cards, Integer aantalLegers, Color color){
         this.username = username;
         this.countries = countries;
         // is last throw echt nodig? last throw lijkt heel onnodig
         this.lastThrow = lastThrow;
         this.cards = cards;
+        this.aantalLegers=aantalLegers;
+        this.color=color;
     }
 
     public PlayerModel(String username, ArrayList<Integer>lastThrow){
@@ -101,8 +104,27 @@ public class PlayerModel {
         this.lastThrow = lastThrow;
     }
 
+    public int getAantalLegers() {
+        return aantalLegers;
+    }
+
+    public void setAantalLegers(int aantalLegers) {
+        this.aantalLegers = aantalLegers;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
     public void buildPhase(){}
     public void attackPhase(){}
     public void endPhase(){}
+
+    public ArrayList<Integer> getCards() {
+        return cards;
+    }
 }
