@@ -22,6 +22,9 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+
+        System.out.println("in main");
+
     }
 
     public static void main(String[] args) {
