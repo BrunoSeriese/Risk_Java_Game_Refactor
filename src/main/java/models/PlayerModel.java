@@ -7,6 +7,7 @@ public class PlayerModel {
     private int turnArmies;
     private String username;
     private int turnID;
+    private boolean hasTurn;
     private int playerID;
     private ArrayList<CountryModel> countries;
     private ArrayList lastThrow;
@@ -24,6 +25,7 @@ public class PlayerModel {
         this.playerID = playerID;
         this.turnID = turnID;
         this.turnArmies = 0;
+        this.hasTurn = false;
 
     }
     public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList lastThrow, ArrayList cards){
@@ -71,6 +73,10 @@ public class PlayerModel {
             //
             //if country [i] is at 1/4th, switch to next playerID
         }
+    }
+
+    public void setHasTurn(){
+        this.hasTurn = true;
     }
 
     public String getUsername() {
