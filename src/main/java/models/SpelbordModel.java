@@ -14,9 +14,23 @@ public class SpelbordModel {
     public SpelbordModel(ArrayList<PlayerModel> players,  ArrayList<CountryModel> countries){
         this.players = players;
 
-        // countries zijn dus alle landen met hun eigen ID en playercolor van de speler die het bezit
+        // geef de spelers een random unique ID in de firebase naast hun naam!. daarna laad ze hier in door over de
+        //firebase connectie te loopen
+
+        for (int i = 0; i< players.size();i++){
+//            this.players.set(i,(NameFromFirebase,IDfromFirebase,) = PlayersFromFirebaseConnection[i]
+        }
+
+
+
+        // countries zijn dus alle landen met hun eigen ID en ID van de speler die het bezit
         // + legers die er op staan
         this.countries = countries;
+
+        for (int i = 0; i<countries.size(); i++){
+
+        }
+
     }
 
 

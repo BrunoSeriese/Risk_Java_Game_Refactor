@@ -2,12 +2,12 @@ package models;
 
 public class CountryModel {
 
-    private String playerColour;
+    private int playerID;
     private int countryID;
     private int army;
 
-    public CountryModel(String playerColour,int countryID, int army){
-        this.playerColour = playerColour;
+    public CountryModel(int ID,int countryID, int army){
+        this.playerID = ID;
         this.countryID = countryID;
         this.army = army;
 
