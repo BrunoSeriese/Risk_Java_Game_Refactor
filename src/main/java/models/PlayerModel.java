@@ -4,8 +4,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PlayerModel {
+    private int turnArmies;
     private String username;
-    private Boolean turn;
+    private int turnID;
     private int playerID;
     private ArrayList<CountryModel> countries;
     private ArrayList lastThrow;
@@ -18,16 +19,17 @@ public class PlayerModel {
     public PlayerModel(){
 
     }
-    public PlayerModel(String username, int playerID){
+    public PlayerModel(String username, int playerID, int turnID){
         this.username = username;
         this.playerID = playerID;
+        this.turnID = turnID;
+        this.turnArmies = 0;
 
     }
-    public PlayerModel(String username, Boolean turn, ArrayList<CountryModel> countries, ArrayList lastThrow, ArrayList cards){
+    public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList lastThrow, ArrayList cards){
         this.username = username;
 
-        // ik zou dit niet in het playermodel zetten maar in de gamestate
-        this.turn = turn;
+
 
         this.countries = countries;
 
@@ -35,6 +37,26 @@ public class PlayerModel {
         this.lastThrow = lastThrow;
         this.cards = cards;
 
+    }
+
+    public void startTurn(GameStateModel hostedGame){
+        if (this.turnID == hostedGame.getTurnID()) {
+
+            // let observer check this for all players, if yes then let them play
+
+            // give player armies to use
+
+//            this.turnArmies = ownedCountries / modifier
+
+            //force player to put down his turnArmies until it reaches zero
+
+
+
+            // let player attack from one country to another
+
+
+            // if end turn is pressed. end turn and let observer update turnID for GAMESTATE, not player
+        }
     }
 
     public void setCountries(ArrayList<CountryModel> countries){
@@ -59,13 +81,7 @@ public class PlayerModel {
         this.username = username;
     }
 
-    public Boolean getTurn() {
-        return turn;
-    }
 
-    public void setTurn(Boolean turn) {
-        this.turn = turn;
-    }
 
 
 
