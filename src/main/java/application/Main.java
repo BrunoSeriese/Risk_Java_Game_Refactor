@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.GameStateModel;
 
 public class Main extends Application {
     @Override
@@ -16,15 +17,11 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root,1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();
-        SpelbordController controllertest=new SpelbordController();
-//        controllertest.onClick();
-//        controllertest.aanval();
-//        controllertest.startGame();
-//        controllertest.handInCard();
 
 
+//        GameStateModel gameStateModel = new GameStateModel();
+//        gameStateModel.checkFirebaseTurn("215633");
 
-        System.out.println("in main");
 
     }
 
