@@ -31,6 +31,7 @@ public class PlayerModel {
         this.hasTurn = false;
         this.countries = null;
     }
+
     public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList<Integer> lastThrow, ArrayList cards, Integer aantalLegers, Color color){
         this.username = username;
         this.countries = countries;

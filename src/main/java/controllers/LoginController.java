@@ -39,17 +39,19 @@ public class LoginController {
     }
 
     public void createLobby(String username, String lobbycode) throws ExecutionException, InterruptedException {
+        PlayerModel playerModel1 = new PlayerModel(username, 0);
+
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         // Add document data  with id "alovelace" using a hashmap
 
         Map<String, Object> playerData = new HashMap<>();
         playerData.put("TurnID", 1);
-        playerData.put("isHost", true);
+        playerData.put("TurnArmies", 3);
         playerData.put("username", username);
 
 
         Map<String, Object> data = new HashMap<>();
-        data.put("players", Arrays.asList(playerData));
+        data.put("players", Arrays.asList(playerModel1));
         data.put("gameIsRunning", false);
 
         //asynchronously write data
