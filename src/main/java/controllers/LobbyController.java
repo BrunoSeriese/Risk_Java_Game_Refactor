@@ -31,6 +31,7 @@ public class LobbyController {
             stage.show();
         }
 
+        //TODO zorg ervoor dat lobbycode en namen worden displayed
 
         //hier komt de variable GameState die naar true gezet moet worden zodat de server weet dat de game is gestart
         //gameIsRunning = true bijvoorbeeld

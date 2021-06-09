@@ -32,8 +32,10 @@ public class JoinLobbyController {
 
     public void switchToInsertLobbycode(ActionEvent event) throws IOException{
         System.out.println("Ingevulde lobbycode is: " + codeField.getText());
+
         if (loginController.validateLobby(codeField.getText())) {
             System.out.println("de usernamefield is: " + playerModel.getUsername());
+
             if (loginController.checkJoin(playerModel.getUsername(), codeField.getText())){
                 root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/Lobby.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();

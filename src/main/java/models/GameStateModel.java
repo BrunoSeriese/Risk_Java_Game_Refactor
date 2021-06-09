@@ -29,8 +29,6 @@ public class GameStateModel {
             this.turnID = turnID +1;
             // roept de volgende turn aan
             map.turnInProgress(map.getPlayers(), new GameStateModel(this.getTurnID()));
-
-
         }else if (turnID == 4){
             this.turnID = 1;
             // roept de volgende turn aan

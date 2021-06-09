@@ -9,6 +9,7 @@ public class PlayerModel {
     private int turnID;
     private boolean hasTurn;
     private ArrayList<CountryModel> countries;
+    private boolean canInterract;
 
 //    private ArrayList<Integer> lastThrow;
 
