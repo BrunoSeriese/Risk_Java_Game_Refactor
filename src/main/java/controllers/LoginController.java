@@ -70,6 +70,7 @@ public class LoginController {
                 String lobbycode = createLobbyCode();
                 createLobby(username, lobbycode);
                 State.lobbycode = lobbycode;
+                System.out.println("De state lobbycode is " + State.lobbycode);
             }
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -128,9 +129,9 @@ public class LoginController {
         DocumentSnapshot document = future.get();
         System.out.println(document.get("players"));
 
-        Map<String, Object> playerData = new HashMap<>();
-        playerData.put("isHost", false);
-        playerData.put("username", username);
+//        Map<String, Object> playerData = new HashMap<>();
+//        playerData.put("isHost", false);
+//        playerData.put("username", username);
 
         State.lobbycode = lobbycode;
         PlayerModel playerModel2 = generateInstance(username, lobbycode);
@@ -184,20 +185,29 @@ public class LoginController {
         }
     }
 
+    public void gameRunning() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<WriteResult> future = docRef.update("gameIsRunning", true);
+
+        WriteResult result = future.get();
+        System.out.println("Write result: " + result);
+    }
+
     public boolean genoegSpelers() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
-
         ApiFuture<DocumentSnapshot> future = docRef.get();
-
         DocumentSnapshot document = future.get();
 
         List<String> arrayValue = (List<String>)document.get("players");
 
         if (arrayValue.size() == 4){
+            gameRunning();
             return true;
         } else {
             System.out.println("Er zijn niet genoeg mensen in de lobby");
             return false;
         }
     }
+
+
 }
