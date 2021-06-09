@@ -22,6 +22,10 @@ public class Main extends Application {
 //        GameStateModel gameStateModel = new GameStateModel();
 //        gameStateModel.checkFirebaseTurn("215633");
 
+        //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen
+        //UNCOMMENT BOVENSTE STUK CODE ALS JE TURNID VAN FIRESTORE WIL TESTEN
+        //ANDERS WERKT DE CODE NIET
+
 
     }
 

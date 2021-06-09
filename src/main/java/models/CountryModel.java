@@ -31,7 +31,7 @@ public class CountryModel {
         this.army = army;
     }
 
-    //TODO dictionary werkend krijgen
+    //TODO dictionary werkend krijgen en van kunnen getten dus de Keys en Values
 //    public void CountriesAndIdMap() {
 //        //EUROPE
 //        CountriesAndId.put("Iceland", "EU1");

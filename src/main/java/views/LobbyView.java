@@ -2,8 +2,10 @@ package views;
 
 public class LobbyView {
 
-
-//    Stage lobbyStage;
+//TODO zorg ervoor dat lobbycode en namen worden displayed met een setText(firestore->lobbycode)
+//TODO van firebase usernames pakken en die displayen in de lobby met een setText(firestore->username))
+//
+//   Stage lobbyStage;
 //
 //
 //    public LobbyView(Stage lobbyStage){

@@ -26,31 +26,29 @@ public class LobbyController {
 
     public void startGame(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
 
-        if (loginController.genoegSpelers()){
-
+        if (loginController.genoegSpelers()) {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
+
+
+            //hier komt de variable GameState die naar true gezet moet worden zodat de server weet dat de game is gestart
+            //gameIsRunning = true bijvoorbeeld
+            loginController.gameRunning();
         }
 
-        //TODO zorg ervoor dat lobbycode en namen worden displayed
-
-        //hier komt de variable GameState die naar true gezet moet worden zodat de server weet dat de game is gestart
-        //gameIsRunning = true bijvoorbeeld
-
-        //gamestate wordt init op 1
-        GameStateModel gameState = new GameStateModel(1);
-        // update gamestate naar firebase
+            //gamestate wordt init op 1
+            GameStateModel gameState = new GameStateModel(1);
+            // update gamestate naar firebase
 
 
+            // let the game init here
+            SpelbordModel hostedGame = new SpelbordModel();
 
-        // let the game init here
-        SpelbordModel hostedGame = new SpelbordModel();
-
-        // then start off the game with a SpelbordModel.turnInProgress()
-
+            // then start off the game with a SpelbordModel.turnInProgress()
 
         }
     }

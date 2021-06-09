@@ -201,7 +201,6 @@ public class LoginController {
         List<String> arrayValue = (List<String>)document.get("players");
 
         if (arrayValue.size() == 4){
-            gameRunning();
             return true;
         } else {
             System.out.println("Er zijn niet genoeg mensen in de lobby");
