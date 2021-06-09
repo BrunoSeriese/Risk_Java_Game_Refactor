@@ -17,10 +17,10 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         SpelbordController controllertest=new SpelbordController();
-        controllertest.onClick();
-        controllertest.aanval();
-        controllertest.startGame();
-        controllertest.handInCard();
+//        controllertest.onClick();
+//        controllertest.aanval();
+//        controllertest.startGame();
+//        controllertest.handInCard();
 
 
 
