@@ -69,6 +69,7 @@ public class LoginController {
             } else {
                 String lobbycode = createLobbyCode();
                 createLobby(username, lobbycode);
+                State.lobbycode = lobbycode;
             }
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -131,6 +132,7 @@ public class LoginController {
         playerData.put("isHost", false);
         playerData.put("username", username);
 
+        State.lobbycode = lobbycode;
         PlayerModel playerModel2 = generateInstance(username, lobbycode);
 
         ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerModel2));
@@ -179,6 +181,23 @@ public class LoginController {
                 }
             }
             return true;
+        }
+    }
+
+    public boolean genoegSpelers() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+
+        DocumentSnapshot document = future.get();
+
+        List<String> arrayValue = (List<String>)document.get("players");
+
+        if (arrayValue.size() == 4){
+            return true;
+        } else {
+            System.out.println("Er zijn niet genoeg mensen in de lobby");
+            return false;
         }
     }
 }
