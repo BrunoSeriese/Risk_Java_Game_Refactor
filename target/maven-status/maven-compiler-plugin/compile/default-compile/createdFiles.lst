@@ -1,9 +1,0 @@
-application\Main.class
-models\PlayerModel.class
-views\MenuView.class
-views\LobbyView.class
-models\CountryModel.class
-models\SpelbordModel.class
-controllers\SpelbordController.class
-controllers\LobbyController.class
-models\GameStateModel.class
