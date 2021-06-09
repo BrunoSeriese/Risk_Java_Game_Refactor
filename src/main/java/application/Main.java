@@ -1,19 +1,11 @@
 package application;
 
-import controllers.DiceController;
 import controllers.SpelbordController;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Arrays;
 
 public class Main extends Application {
     @Override
@@ -27,6 +19,8 @@ public class Main extends Application {
         SpelbordController controllertest=new SpelbordController();
         controllertest.onClick();
         controllertest.aanval();
+        controllertest.startGame();
+        controllertest.handInCard();
 
 
 
