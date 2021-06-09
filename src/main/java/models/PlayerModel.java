@@ -18,6 +18,7 @@ public class PlayerModel {
     private Boolean hasWon; //set true if conquered all regions
     private Boolean canExchangeCards; // if true, verschijnt button met trade in cards fzo, komt later
     private int aantalLegers;
+    private int startLegers;
 
 
     public PlayerModel(){
@@ -26,7 +27,7 @@ public class PlayerModel {
     public PlayerModel(String username,  int turnID){
         this.username = username;
         this.turnID = turnID;
-        this.turnArmies = 0;
+        this.turnArmies = 3;
         this.hasTurn = false;
 
     }
@@ -44,25 +45,7 @@ public class PlayerModel {
         this.username = username;
         this.lastThrow = lastThrow;
     }
-    public void startTurn(GameStateModel hostedGame){
-        if (this.turnID == hostedGame.getTurnID()) {
 
-            // let observer check this for all players, if yes then let them play
-
-            // give player armies to use
-
-//            this.turnArmies = ownedCountries / modifier
-
-            //force player to put down his turnArmies until it reaches zero
-
-
-
-            // let player attack from one country to another
-
-
-            // if end turn is pressed. end turn and let observer update turnID for GAMESTATE, not player
-        }
-    }
 
     public void setCountries(ArrayList<CountryModel> countries){
         // give as input the countries arraylist from the initialized spelbordmodel
