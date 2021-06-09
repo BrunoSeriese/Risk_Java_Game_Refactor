@@ -39,15 +39,18 @@ public class LoginController {
     }
 
     public void createLobby(String username, String lobbycode) throws ExecutionException, InterruptedException {
-        PlayerModel playerModel1 = new PlayerModel(username, 0);
+        PlayerModel playerModel1 = new PlayerModel(username, 1);
+        System.out.println("playermodel instantie is gemaakt");
+
 
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-        // Add document data  with id "alovelace" using a hashmap
 
-        Map<String, Object> playerData = new HashMap<>();
-        playerData.put("TurnID", 1);
-        playerData.put("TurnArmies", 3);
-        playerData.put("username", username);
+//        Map<String, Object> playerData = new HashMap<>();
+//        playerData.put("TurnID", playerModel1.getTurnID());
+//        playerData.put("TurnArmies", playerModel1.getTurnArmies());
+//        playerData.put("username", playerModel1.getUsername());
+//        playerData.put("hasTurn", playerModel1.getHasTurn());
+//        playerData.put("countries", playerModel1.getCountries());
 
 
         Map<String, Object> data = new HashMap<>();
@@ -76,16 +79,23 @@ public class LoginController {
         System.out.println("de username is: " + username);
     }
 
-    public boolean readLobby(String lobbycode) throws ExecutionException, InterruptedException {
+    public boolean readLobby(String username, String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         // asynchronously retrieve the document
         ApiFuture<DocumentSnapshot> future = docRef.get();
         // future.get() blocks on response
         DocumentSnapshot document = future.get();
+
+
         if (document.exists()) {
             System.out.println("Document data: " + document.getData());
-            if (document.getData().size() < 4){
-                System.out.println(document.getData().size());
+            List<String> arrayValue = (List<String>)document.get("players");
+            System.out.println(arrayValue.size());
+
+            if (arrayValue.size() < 4){
+                System.out.println("er zitten in array: " + arrayValue.size());
+                PlayerModel playerModel2 = new PlayerModel(username, 0);
+                playerModel2.setTurnID(arrayValue.size() + 1);
                 return true;
             } else{
                 System.out.println("De lobby is vol");
@@ -99,6 +109,9 @@ public class LoginController {
 
 
     public void joinLobby(String lobbycode, String username) throws ExecutionException, InterruptedException {
+
+        //TODO turnid in de parameter zetten
+//        PlayerModel playerModel2 = new PlayerModel(username,turnID);
 
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         // asynchronously retrieve the document
@@ -115,7 +128,7 @@ public class LoginController {
         playerData.put("isHost", false);
         playerData.put("username", username);
 
-        ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerData));
+        ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerModel));
 
 //        Map<String, Object> data = new HashMap<>();
 //        data.put("players", arrayUnion);
@@ -133,7 +146,7 @@ public class LoginController {
             return false;
         } else {
             try {
-                if (readLobby(code)){
+                if (readLobby(username, code)){
                     joinLobby(code, username);
                     return true;
                 }
