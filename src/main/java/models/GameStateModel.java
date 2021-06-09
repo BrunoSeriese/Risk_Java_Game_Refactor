@@ -9,6 +9,8 @@ public class GameStateModel {
     private SpelbordModel map;
     private int turnID;
     private boolean gameOver;
+    private PlayerModel players;
+    private CountryModel countries;
 
 
 

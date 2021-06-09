@@ -11,6 +11,10 @@ public class SpelbordModel {
     private ArrayList<Integer> armies;
     private ArrayList<CountryModel> countries;
 
+
+    public SpelbordModel(){
+
+    }
     public SpelbordModel(ArrayList<PlayerModel> players,  ArrayList<CountryModel> countries){
         this.players = players;
 

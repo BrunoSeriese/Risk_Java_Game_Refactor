@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.GameStateModel;
 import models.SpelbordModel;
 
 import java.io.IOException;
@@ -27,10 +28,14 @@ public class LobbyController {
         //hier komt de variable GameState die naar true gezet moet worden zodat de server weet dat de game is gestart
         //gameIsRunning = true bijvoorbeeld
 
+        //gamestate wordt init op 1
+        GameStateModel gameState = new GameStateModel(1);
+        // update gamestate naar firebase
+
 
 
         // let the game init here
-//        SpelbordModel hostedGame = new SpelbordModel()
+        SpelbordModel hostedGame = new SpelbordModel();
 
         // then start off the game with a SpelbordModel.turnInProgress()
 
