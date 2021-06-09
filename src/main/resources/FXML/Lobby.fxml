@@ -61,50 +61,37 @@
             <Image url="@../images/namelabel_transparent.png" />
          </image>
       </ImageView>
-      <Text layoutX="200.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="playerName1" textAlignment="CENTER" wrappingWidth="217.4700469970703">
+      <Text fx:id="textName1" layoutX="200.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="217.4700469970703">
          <font>
             <Font name="Rockwell" size="22.0" />
          </font>
       </Text>
-      <Text layoutX="200.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="playerName2" textAlignment="CENTER" wrappingWidth="217.4700469970703">
+      <Text fx:id="textName2" layoutX="200.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="217.4700469970703">
          <font>
             <Font name="Rockwell" size="22.0" />
          </font>
       </Text>
-      <Text layoutX="200.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="playerName3" textAlignment="CENTER" wrappingWidth="217.4700469970703">
+      <Text fx:id="textName3" layoutX="200.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="217.4700469970703">
          <font>
             <Font name="Rockwell" size="22.0" />
          </font>
       </Text>
-      <Text layoutX="200.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="playerName4" textAlignment="CENTER" wrappingWidth="217.4700469970703">
+      <Text fx:id="textName4" layoutX="200.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="217.4700469970703">
          <font>
             <Font name="Rockwell" size="22.0" />
          </font>
       </Text>
-      <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="50.0" layoutY="90.0">
-         <image>
-            <Image url="@../images/left.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="90.0" fitWidth="200.0" layoutX="164.0" layoutY="517.0">
          <image>
             <Image url="@../images/start_button.png" />
          </image>
       </ImageView>
-      <Text layoutX="178.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CODE: 123456" textAlignment="CENTER">
+      <Text layoutX="178.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CODE:" textAlignment="CENTER">
          <font>
             <Font name="Rockwell" size="27.0" />
          </font>
       </Text>
-      <Button fx:id="playGame11" alignment="CENTER" layoutX="53.0" layoutY="89.0" mnemonicParsing="false" opacity="0.01" prefHeight="39.0" prefWidth="59.0" text="LobbyBack" textAlignment="CENTER">
-         <effect>
-            <Shadow />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="playGame111" alignment="CENTER" layoutX="178.0" layoutY="526.0" mnemonicParsing="false" onAction="#startGame" opacity="0.01" prefHeight="74.0" prefWidth="181.0" text="LobbyStart" textAlignment="CENTER">
+      <Button fx:id="LobbyStartButton" alignment="CENTER" layoutX="178.0" layoutY="526.0" mnemonicParsing="false" onAction="#startGame" opacity="0.01" prefHeight="74.0" prefWidth="181.0" text="LobbyStart" textAlignment="CENTER">
          <effect>
             <Shadow />
          </effect>
