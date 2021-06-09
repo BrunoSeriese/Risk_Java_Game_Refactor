@@ -2,17 +2,13 @@ package controllers;
 
 import application.State;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
+import com.google.firestore.v1.Document;
 import javafx.event.ActionEvent;
 import models.PlayerModel;
 
 import javax.xml.crypto.Data;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class LoginController {
@@ -45,11 +41,17 @@ public class LoginController {
     public void createLobby(String username, String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         // Add document data  with id "alovelace" using a hashmap
-        Map<String, String> playerData = new HashMap<>();
-        playerData.put("type", "host");
+
+        Map<String, Object> playerData = new HashMap<>();
+        playerData.put("TurnID", 1);
+        playerData.put("isHost", true);
+        playerData.put("username", username);
+
 
         Map<String, Object> data = new HashMap<>();
-        data.put(username, playerData);
+        data.put("players", Arrays.asList(playerData));
+        data.put("gameIsRunning", false);
+
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
         // ...
@@ -93,20 +95,34 @@ public class LoginController {
         }
     }
 
+
     public void joinLobby(String lobbycode, String username) throws ExecutionException, InterruptedException {
 
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-        // Add document data  with id "alovelace" using a hashmap
-        Map<String, String> playerData = new HashMap<>();
-        playerData.put("type", "player");
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // future.get() blocks on response
+        DocumentSnapshot document = future.get();
+        System.out.println(document.get("players"));
 
-        Map<String, Object> data = new HashMap<>();
-        data.put(username, playerData);
+        //TO DO aanmaken van van playerTurnID door eerst te kijken hoe groot de array is en dan +1. Andere opties zijn mogelijk
+//        String playerTurnID = document.getString("players");
+
+        Map<String, Object> playerData = new HashMap<>();
+//        playerData.put("TurnID", playerTurnID.length() + 1);
+        playerData.put("isHost", false);
+        playerData.put("username", username);
+
+        ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerData));
+
+//        Map<String, Object> data = new HashMap<>();
+//        data.put("players", arrayUnion);
+
         //asynchronously write data
-        ApiFuture<WriteResult> result = docRef.update(data);
+//        ApiFuture<WriteResult> result = docRef.update(data);
         // ...
         // result.get() blocks on response
-        System.out.println("Update time : " + result.get().getUpdateTime());
+        System.out.println("Update time : " + arrayUnion.get().getUpdateTime());
     }
 
     public boolean checkJoin(String username, String code){
