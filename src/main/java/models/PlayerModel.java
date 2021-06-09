@@ -23,7 +23,7 @@ public class PlayerModel {
 //    private Boolean canExchangeCards; // if true, verschijnt button met trade in cards fzo, komt later
 
 
-    private int aantalLegers;
+//    private int aantalLegers;
 
 //    private int startLegers;
 
@@ -40,12 +40,12 @@ public class PlayerModel {
     }
 
     public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList cards, Integer aantalLegers){
-        this.username = username;
-        this.countries = countries;
+//        this.username = username;
+//        this.countries = countries;
 //        // is last throw echt nodig? last throw lijkt heel onnodig
 //        this.lastThrow = lastThrow;
-        this.cards = cards;
-        this.aantalLegers=aantalLegers;
+//        this.cards = cards;
+//        this.aantalLegers=aantalLegers;
 //        this.color=color;
     }
 
@@ -91,13 +91,13 @@ public class PlayerModel {
 //        this.lastThrow = lastThrow;
 //    }
 
-    public int getAantalLegers() {
-        return aantalLegers;
-    }
-
-    public void setAantalLegers(int aantalLegers) {
-        this.aantalLegers = aantalLegers;
-    }
+//    public int getAantalLegers() {
+//        return aantalLegers;
+//    }
+//
+//    public void setAantalLegers(int aantalLegers) {
+//        this.aantalLegers = aantalLegers;
+//    }
 
 //    public Color getColor() {
 //        return color;

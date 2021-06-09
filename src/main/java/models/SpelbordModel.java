@@ -2,7 +2,8 @@ package models;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SpelbordModel {
@@ -11,6 +12,7 @@ public class SpelbordModel {
     private ArrayList<Integer> armies;
     private ArrayList<CountryModel> countries;
 
+    private Map<String, String> countriesWithID = new HashMap<String, String>();
 
     public SpelbordModel(){
 
@@ -76,4 +78,17 @@ public class SpelbordModel {
     public ArrayList<CountryModel> getCountries(){
         return this.countries;
     }
+
+    public void setCountries(Map<String, String> countriesWithID){
+
+        ArrayList<CountryModel> newCountryList = new ArrayList<CountryModel>();
+        // elke keer loopen en dan newCountryList.add een country met zijn id in een Country Object
+
+
+    }
+
 }
+
+
+
+
