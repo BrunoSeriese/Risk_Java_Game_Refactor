@@ -57,10 +57,8 @@ public class LoginController {
         data.put("players", Arrays.asList(playerModel1));
         data.put("gameIsRunning", false);
 
-        //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
-        // ...
-        // result.get() blocks on response
+
         System.out.println("Update time : " + result.get().getUpdateTime());
     }
 
@@ -83,11 +81,10 @@ public class LoginController {
 
     public boolean readLobby(String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-        // asynchronously retrieve the document
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-        // future.get() blocks on response
-        DocumentSnapshot document = future.get();
 
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+
+        DocumentSnapshot document = future.get();
 
         if (document.exists()) {
             System.out.println("Document data: " + document.getData());
@@ -109,9 +106,9 @@ public class LoginController {
 
     public PlayerModel generateInstance(String username, String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-        // asynchronously retrieve the document
+
         ApiFuture<DocumentSnapshot> future = docRef.get();
-        // future.get() blocks on response
+
         DocumentSnapshot document = future.get();
 
         List<String> arrayValue = (List<String>)document.get("players");
@@ -123,9 +120,6 @@ public class LoginController {
 
     public void joinLobby(String lobbycode, String username) throws ExecutionException, InterruptedException {
 
-        //TODO turnid in de parameter zetten
-//        PlayerModel playerModel2 = new PlayerModel(username,turnID);
-
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         // asynchronously retrieve the document
         ApiFuture<DocumentSnapshot> future = docRef.get();
@@ -133,25 +127,13 @@ public class LoginController {
         DocumentSnapshot document = future.get();
         System.out.println(document.get("players"));
 
-        //TO DO aanmaken van van playerTurnID door eerst te kijken hoe groot de array is en dan +1. Andere opties zijn mogelijk
-//        String playerTurnID = document.getString("players");
-
         Map<String, Object> playerData = new HashMap<>();
-//        playerData.put("TurnID", playerTurnID.length() + 1);
         playerData.put("isHost", false);
         playerData.put("username", username);
 
         PlayerModel playerModel2 = generateInstance(username, lobbycode);
 
         ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerModel2));
-
-//        Map<String, Object> data = new HashMap<>();
-//        data.put("players", arrayUnion);
-
-        //asynchronously write data
-//        ApiFuture<WriteResult> result = docRef.update(data);
-        // ...
-        // result.get() blocks on response
         System.out.println("Update time : " + arrayUnion.get().getUpdateTime());
     }
 
@@ -177,14 +159,6 @@ public class LoginController {
 
     public boolean emptyUsername(String textfield){
         if (textfield.equals("")){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean emptyLobbycode(String code){
-        if (code.equals("")){
             return true;
         } else {
             return false;
