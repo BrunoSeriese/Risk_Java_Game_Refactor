@@ -19,6 +19,7 @@ public class PlayerModel {
     private Boolean canExchangeCards; // if true, verschijnt button met trade in cards fzo, komt later
     private int aantalLegers;
 
+
     public PlayerModel(){
 
     }
