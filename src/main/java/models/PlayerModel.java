@@ -11,7 +11,6 @@ public class PlayerModel {
     private String username;
     private int turnID;
     private boolean hasTurn;
-    private int playerID;
     private ArrayList<CountryModel> countries;
     private ArrayList<Integer> lastThrow;
     private ArrayList cards = new ArrayList();
@@ -23,9 +22,8 @@ public class PlayerModel {
     public PlayerModel(){
 
     }
-    public PlayerModel(String username, int playerID, int turnID){
+    public PlayerModel(String username,  int turnID){
         this.username = username;
-        this.playerID = playerID;
         this.turnID = turnID;
         this.turnArmies = 0;
         this.hasTurn = false;
