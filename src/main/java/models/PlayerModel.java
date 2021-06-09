@@ -12,7 +12,7 @@ public class PlayerModel {
 
 //    private ArrayList<Integer> lastThrow;
 
-    private ArrayList cards = new ArrayList();
+//    private ArrayList cards = new ArrayList();
 
 
 //    private Color color; //random #,#,# digits for color code (ik weet niet of gewoon 'red' of 'blue' werkt, maar vgm moet het color codes, dus rgb(255,255,255) bijvoorbeeld
@@ -79,7 +79,27 @@ public class PlayerModel {
         return turnID;
     }
 
-//
+    public int getTurnArmies() {
+        return turnArmies;
+    }
+
+    public void setTurnArmies(int turnArmies) {
+        this.turnArmies = turnArmies;
+    }
+
+    public boolean isHasTurn() {
+        return hasTurn;
+    }
+
+    public void setHasTurn(boolean hasTurn) {
+        this.hasTurn = hasTurn;
+    }
+
+    public ArrayList<CountryModel> getCountries() {
+        return countries;
+    }
+
+    //
 //    public ArrayList<Integer> getLastThrow() {
 //        return lastThrow;
 //    }
@@ -108,7 +128,11 @@ public class PlayerModel {
     public void attackPhase(){}
     public void endPhase(){}
 
-    public ArrayList<Integer> getCards() {
-        return cards;
+//    public ArrayList<Integer> getCards() {
+//        return cards;
+//    }
+
+    public void setTurnID(int turnID) {
+        this.turnID = turnID;
     }
 }

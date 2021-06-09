@@ -79,7 +79,9 @@ public class LoginController {
         System.out.println("de username is: " + username);
     }
 
-    public boolean readLobby(String username, String lobbycode) throws ExecutionException, InterruptedException {
+
+
+    public boolean readLobby(String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         // asynchronously retrieve the document
         ApiFuture<DocumentSnapshot> future = docRef.get();
@@ -94,8 +96,6 @@ public class LoginController {
 
             if (arrayValue.size() < 4){
                 System.out.println("er zitten in array: " + arrayValue.size());
-                PlayerModel playerModel2 = new PlayerModel(username, 0);
-                playerModel2.setTurnID(arrayValue.size() + 1);
                 return true;
             } else{
                 System.out.println("De lobby is vol");
@@ -107,6 +107,19 @@ public class LoginController {
         }
     }
 
+    public PlayerModel generateInstance(String username, String lobbycode) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // future.get() blocks on response
+        DocumentSnapshot document = future.get();
+
+        List<String> arrayValue = (List<String>)document.get("players");
+        PlayerModel playerModel2 = new PlayerModel(username, arrayValue.size() + 1);
+        playerModel2.setTurnID(arrayValue.size() + 1);
+
+        return playerModel2;
+    }
 
     public void joinLobby(String lobbycode, String username) throws ExecutionException, InterruptedException {
 
@@ -128,7 +141,9 @@ public class LoginController {
         playerData.put("isHost", false);
         playerData.put("username", username);
 
-        ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerModel));
+        PlayerModel playerModel2 = generateInstance(username, lobbycode);
+
+        ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerModel2));
 
 //        Map<String, Object> data = new HashMap<>();
 //        data.put("players", arrayUnion);
@@ -146,7 +161,7 @@ public class LoginController {
             return false;
         } else {
             try {
-                if (readLobby(username, code)){
+                if (readLobby(code)){
                     joinLobby(code, username);
                     return true;
                 }
