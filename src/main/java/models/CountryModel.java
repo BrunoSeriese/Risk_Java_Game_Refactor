@@ -1,11 +1,15 @@
 package models;
 
+import java.util.Map;
+
 public class CountryModel {
 
     private int playerID;
     private String countryID;
     private int army;
     private String countryName;
+
+
 
     public CountryModel(String countryID,String countryName){
         this.countryID = countryID;
