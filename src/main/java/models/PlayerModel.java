@@ -12,13 +12,20 @@ public class PlayerModel {
     private int turnID;
     private boolean hasTurn;
     private ArrayList<CountryModel> countries;
-    private ArrayList<Integer> lastThrow;
+
+//    private ArrayList<Integer> lastThrow;
+
     private ArrayList cards = new ArrayList();
-    private Color color; //random #,#,# digits for color code (ik weet niet of gewoon 'red' of 'blue' werkt, maar vgm moet het color codes, dus rgb(255,255,255) bijvoorbeeld
-    private Boolean hasWon; //set true if conquered all regions
-    private Boolean canExchangeCards; // if true, verschijnt button met trade in cards fzo, komt later
+
+
+//    private Color color; //random #,#,# digits for color code (ik weet niet of gewoon 'red' of 'blue' werkt, maar vgm moet het color codes, dus rgb(255,255,255) bijvoorbeeld
+//    private Boolean hasWon; //set true if conquered all regions
+//    private Boolean canExchangeCards; // if true, verschijnt button met trade in cards fzo, komt later
+
+
     private int aantalLegers;
-    private int startLegers;
+
+//    private int startLegers;
 
 
     public PlayerModel(){
@@ -32,20 +39,17 @@ public class PlayerModel {
         this.countries = null;
     }
 
-    public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList<Integer> lastThrow, ArrayList cards, Integer aantalLegers, Color color){
+    public PlayerModel(String username,  ArrayList<CountryModel> countries, ArrayList cards, Integer aantalLegers){
         this.username = username;
         this.countries = countries;
-        // is last throw echt nodig? last throw lijkt heel onnodig
-        this.lastThrow = lastThrow;
+//        // is last throw echt nodig? last throw lijkt heel onnodig
+//        this.lastThrow = lastThrow;
         this.cards = cards;
         this.aantalLegers=aantalLegers;
-        this.color=color;
+//        this.color=color;
     }
 
-    public PlayerModel(String username, ArrayList<Integer>lastThrow){
-        this.username = username;
-        this.lastThrow = lastThrow;
-    }
+
 
 
     public void setCountries(ArrayList<CountryModel> countries){
@@ -78,14 +82,14 @@ public class PlayerModel {
         return turnID;
     }
 
-
-    public ArrayList<Integer> getLastThrow() {
-        return lastThrow;
-    }
-
-    public void setLastThrow(ArrayList<Integer> lastThrow) {
-        this.lastThrow = lastThrow;
-    }
+//
+//    public ArrayList<Integer> getLastThrow() {
+//        return lastThrow;
+//    }
+//
+//    public void setLastThrow(ArrayList<Integer> lastThrow) {
+//        this.lastThrow = lastThrow;
+//    }
 
     public int getAantalLegers() {
         return aantalLegers;
@@ -95,13 +99,13 @@ public class PlayerModel {
         this.aantalLegers = aantalLegers;
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
+//    public Color getColor() {
+//        return color;
+//    }
+//
+//    public void setColor(Color color) {
+//        this.color = color;
+//    }
 
     public void buildPhase(){}
     public void attackPhase(){}
