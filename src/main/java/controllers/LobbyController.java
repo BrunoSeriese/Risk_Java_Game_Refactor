@@ -43,7 +43,7 @@ public class LobbyController {
             //gamestate wordt init op 1
             GameStateModel gameState = new GameStateModel(1);
             // update gamestate naar firebase
-
+            //Todo Gamestate moet firebase
 
             // let the game init here
             SpelbordModel hostedGame = new SpelbordModel();
