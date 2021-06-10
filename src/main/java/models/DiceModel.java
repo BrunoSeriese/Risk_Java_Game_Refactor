@@ -1,17 +1,17 @@
-package controllers;
+package models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
-public class DiceController {
+public class DiceModel {
 
         private int roll;
         private ArrayList<Integer> diceArray;
         private Random die;
 
-        public DiceController( ) {
+        public DiceModel( ) {
 
         }
 
