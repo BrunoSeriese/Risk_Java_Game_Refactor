@@ -1,5 +1,7 @@
 package controllers;
 
+import application.State;
+import com.google.cloud.firestore.DocumentReference;
 import com.sun.javafx.sg.prism.NGExternalNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,20 @@ public class LobbyController {
     private Parent root;
 
     LoginController loginController = new LoginController();
+
+    public void attachlistener(){
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        docRef.addSnapshotListener((documentSnapshot, e) -> {
+            System.out.println(documentSnapshot.getData().get("gameIsRunning"));
+            if ((boolean) documentSnapshot.getData().get("gameIsRunning")){
+
+            }
+        });
+    }
+
+    public LobbyController(){
+        attachlistener();
+    }
 
 
     public void startGame(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
