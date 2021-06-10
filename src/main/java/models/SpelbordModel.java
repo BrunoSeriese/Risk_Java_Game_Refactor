@@ -19,7 +19,7 @@ public class SpelbordModel {
     }
     public SpelbordModel(ArrayList<PlayerModel> players,  ArrayList<CountryModel> countries){
         this.players = players;
-
+        this.countries = countries;
         // geef de spelers een random unique ID in de firebase naast hun naam!. daarna laad ze hier in door over de
         //firebase connectie te loopen
 
@@ -85,6 +85,13 @@ public class SpelbordModel {
         // elke keer loopen en dan newCountryList.add een country met zijn id in een Country Object
 
 
+    }
+
+    public void setPlayers(){
+        //Todo maak hier een arrayList<PlayerModel> die gemaakt wordt vanuit alle 4 spelers uit firebase
+        // ArrayList<PlayerModel> playersFromFirebase = new ArrayList<PlayerModel>
+        // loop over de informatie van alle spelers en voeg ze toe als player object
+        // dus this.players = playersFromFirebase
     }
 
 
