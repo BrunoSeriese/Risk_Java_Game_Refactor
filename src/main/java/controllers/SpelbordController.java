@@ -10,9 +10,13 @@ import java.util.List;
 public class SpelbordController {
 
 
-    public void showCards(){}
+    public void showCards(){
+    }
     public void showPlayers(){}
-    public void rollDice(){}
+    public void rollDice(){
+
+
+    }
 
 //    private List<PlayerModel> spelers = new ArrayList<>();
 //
@@ -46,7 +50,7 @@ public class SpelbordController {
 ////        PlayerModel winnaar = null;
 ////        if (attackThrow1 > defendThrow1 && attackThrow2 > defendThrow2){
 ////            System.out.println("speler 1 wint");//hier iets van spelers.get(1).setSoldaten(soldaten-2)
-////            winnaar = spelers.get(0);
+////            winnaar = spelers.get();
 ////        } else if(defendThrow1 >= attackThrow1 && defendThrow2 >= attackThrow2 ) {
 ////            System.out.println("2 wint");
 ////            winnaar = spelers.get(1);
@@ -91,41 +95,35 @@ public class SpelbordController {
 //        spelers.get(0).setColor(Color.blue);
 //
 //    }
+//public void removeCard (int cardNumber){
+//    spelers.get(0).getCards().remove(new Integer(cardNumber));
+//    spelers.get(0).getCards().remove(new Integer(cardNumber));
+//    spelers.get(0).getCards().remove(new Integer(cardNumber));
+//}
 //
 //    public void handInCard(){
 //        int Paarden= Collections.frequency(spelers.get(0).getCards(), 2);
 //        int Kannonen= Collections.frequency(spelers.get(0).getCards(), 1);
 //        int Ridders= Collections.frequency(spelers.get(0).getCards(), 3);
 //        if(Kannonen >= 3){ ///moet nog kaarten verwijderen
-//            System.out.println("Kaarten ingeleverd(Kanon)");
+//            System.out.println("Kaarten ingeleverd:Kanon");
 //            spelers.get(0).setAantalLegers(spelers.get(0).getAantalLegers()+8);
-//            spelers.get(0).getCards().remove(new Integer(1));
-//            spelers.get(0).getCards().remove(new Integer(1));
-//            spelers.get(0).getCards().remove(new Integer(1));
-//            System.out.println("Geupdate arraylist met kaarten: " +spelers.get(0).getCards());
-//            System.out.println("Geupdate aantal legers: "+ spelers.get(0).getAantalLegers());
+//            removeCard(1);
 //        }
 //        else if(Paarden>= 3){
 //            System.out.println("Kaarten ingeleverd(Paard");
 //            spelers.get(0).setAantalLegers(spelers.get(0).getAantalLegers()+10);
-//            spelers.get(0).getCards().remove(new Integer(2));
-//            spelers.get(0).getCards().remove(new Integer(2));
-//            spelers.get(0).getCards().remove(new Integer(2));
-//            System.out.println("Geupdate arraylist met kaarten: " +spelers.get(0).getCards());
-//            System.out.println("Geupdate aantal legers: "+ spelers.get(0).getAantalLegers());
+//            removeCard(2);
+//
 //
 //        }else if (Ridders >= 3){
 //            System.out.println("Kaarten ingeleverd");
 //            spelers.get(0).setAantalLegers(spelers.get(0).getAantalLegers()+14);
-//            spelers.get(0).getCards().remove(new Integer(3));
-//            spelers.get(0).getCards().remove(new Integer(3));
-//            spelers.get(0).getCards().remove(new Integer(3));
-//            System.out.println("Geupdate arraylist met kaarten: " +spelers.get(0).getCards());
-//            System.out.println("Geupdate aantal legers: "+ spelers.get(0).getAantalLegers());
+//            removeCard(3);
+//
 //
 //        }else{
 //            System.out.println("Je hebt geen geldige combinatie van kaarten");
-//
 //        }
 //    }
 //
@@ -166,4 +164,3 @@ public class SpelbordController {
 
 
 }
-
