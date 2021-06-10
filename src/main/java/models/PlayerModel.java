@@ -124,7 +124,9 @@ public class PlayerModel {
 //    public void setColor(Color color) {
 //        this.color = color;
 //    }
-
+        //Todo: om het te laten werken moet elke phase wachten op events van de kaart (klik events)
+        //Todo: klik events MOETEN TURNID ALTIJD VERGELIJKEN MET turnID van speler!
+        // door deze regeling kan de speler altijd
     public void buildPhase(){}
     public void attackPhase(){}
     public void endPhase(){}
