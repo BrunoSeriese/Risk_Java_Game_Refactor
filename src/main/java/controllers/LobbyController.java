@@ -48,7 +48,7 @@ public class LobbyController {
             // let the game init here
             SpelbordModel hostedGame = new SpelbordModel();
 
-            // then start off the game with a SpelbordModel.turnInProgress()
+            //Todo then start off the game with a SpelbordModel.turnInProgress()
 
         }
     }

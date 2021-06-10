@@ -116,6 +116,7 @@ public class LoginController {
         List<String> arrayValue = (List<String>)document.get("players");
         PlayerModel playerModel2 = new PlayerModel(username, arrayValue.size() + 1);
         playerModel2.setTurnID(arrayValue.size() + 1);
+        //Todo er zijn 2 arrays met turnID = 2, maak een nieuwe game aan en populate met spelers om te testen of dit vaker gebeurt
 
         return playerModel2;
     }

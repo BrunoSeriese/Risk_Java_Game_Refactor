@@ -19,8 +19,8 @@ public class Main extends Application {
         primaryStage.show();
 
 
-//        GameStateModel gameStateModel = new GameStateModel();
-//        gameStateModel.checkFirebaseTurn("215633");
+        GameStateModel gameStateModel = new GameStateModel();
+        gameStateModel.checkFirebaseTurn("530662");
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen
         //UNCOMMENT BOVENSTE STUK CODE ALS JE TURNID VAN FIRESTORE WIL TESTEN
