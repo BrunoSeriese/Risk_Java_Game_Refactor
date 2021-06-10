@@ -87,11 +87,16 @@ public class SpelbordModel {
 
     }
 
-    public void setPlayers(){
-        //Todo maak hier een arrayList<PlayerModel> die gemaakt wordt vanuit alle 4 spelers uit firebase
+    public void setPlayers(ArrayList<PlayerModel> playersFromFirebase){
+        //maak hier een arrayList<PlayerModel> die gemaakt wordt vanuit alle 4 spelers uit firebase
         // ArrayList<PlayerModel> playersFromFirebase = new ArrayList<PlayerModel>
         // loop over de informatie van alle spelers en voeg ze toe als player object
         // dus this.players = playersFromFirebase
+
+        this.players = playersFromFirebase;
+        System.out.println("de players zijn " + players);
+
+
     }
 
 

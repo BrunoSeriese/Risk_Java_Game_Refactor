@@ -5,7 +5,9 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firestore.v1.Document;
 import javafx.event.ActionEvent;
+import models.GameStateModel;
 import models.PlayerModel;
+import models.SpelbordModel;
 
 import javax.xml.crypto.Data;
 import java.util.*;
@@ -14,6 +16,7 @@ import java.util.concurrent.ExecutionException;
 public class LoginController {
 
     static PlayerModel playerModel;
+    SpelbordModel spelbordModel = new SpelbordModel();
 
     public void testMessage(String username){
         System.out.println("de username is: " + username);
@@ -56,6 +59,7 @@ public class LoginController {
         Map<String, Object> data = new HashMap<>();
         data.put("players", Arrays.asList(playerModel1));
         data.put("gameIsRunning", false);
+        data.put("gamestateTurnID", 1);
 
         ApiFuture<WriteResult> result = docRef.set(data);
 
@@ -206,6 +210,20 @@ public class LoginController {
         } else {
             System.out.println("Er zijn niet genoeg mensen in de lobby");
             return false;
+        }
+    }
+
+    public void allPlayers(String lobbycode) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+        //TODO net als bij logincontrol.generateInstance een instantie maken voor spelbordModel met de arrayvalue van hier en countries.
+
+        if (document.exists()) {
+            ArrayList<PlayerModel> arrayValue = (ArrayList<PlayerModel>) document.get("players");
+//            System.out.println(arrayValue);
+            spelbordModel.setPlayers(arrayValue);
         }
     }
 
