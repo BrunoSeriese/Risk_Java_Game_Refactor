@@ -89,9 +89,7 @@ public class GameStateModel {
 
     }
 
-    //TODO get GamestateTurnID van firestore en dan matchen met de method hierboven, dat pas als de gamestateTurnID van firestore < 4
-    // dan hij hem mag incrementen met 1 (aka next turn) en als hij al op 4 staat,
-    // dan moet hij naar 1 gezet worden zodat de eerste player weer aan de beurt is
+//    TODO hier moet de turnID vergeleken worden met de playerID. hierna wordt pas de functie hierboven aangeroepen
 
     public long getGamestateTurnIDFirestore(String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
