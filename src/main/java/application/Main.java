@@ -23,7 +23,9 @@ public class Main extends Application {
 //        gameStateModel.getPlayersFirebaseTurnID("869211");
 
 //        gameStateModel.getGamestateTurnIDFirestore("869211");
+        gameStateModel.comparePlayerIDtoTurnID("869211","2");
         gameStateModel.nextTurnIDFirebase("869211");
+
 
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen

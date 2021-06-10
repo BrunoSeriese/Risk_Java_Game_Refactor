@@ -24,6 +24,7 @@ public class GameStateModel {
     private String lobbycode;
 
 
+
     public GameStateModel(int TurnID) {
         this.turnID = 1;
         this.gameOver = false;
@@ -89,15 +90,20 @@ public class GameStateModel {
 
     }
 
-//    TODO hier moet de turnID vergeleken worden met de playerID. hierna wordt pas de functie hierboven aangeroepen
+//    TODO zorg ervoor dat de lokale playerID wordt aangesproken hier als playerLocalID, maybe met final String?
 
-    public long comparePlayerIDtoTurnID(String lobbycode) throws ExecutionException, InterruptedException {
+    public long comparePlayerIDtoTurnID(String lobbycode, String playerLocalID) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
 
 
 
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
+        if (playerLocalID.equals(document.get("gamestateTurnID").toString())){
+            System.out.println("this is your turn!");
+        } else{
+            System.out.println("nah fam, not your turn");
+        }
 
         return (long) document.getData().get("gamestateTurnID");
     }
