@@ -91,7 +91,7 @@ public class GameStateModel {
 
 //    TODO hier moet de turnID vergeleken worden met de playerID. hierna wordt pas de functie hierboven aangeroepen
 
-    public long getGamestateTurnIDFirestore(String lobbycode) throws ExecutionException, InterruptedException {
+    public long comparePlayerIDtoTurnID(String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
 
 
