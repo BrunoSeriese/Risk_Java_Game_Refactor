@@ -47,7 +47,7 @@ public class LobbyController {
 
             // let the game init here
             SpelbordModel hostedGame = new SpelbordModel();
-
+            //Todo populate the hostedgame with a ArrayList<PlayerModel> and ArrayList<CountryModel>s
             //Todo then start off the game with a SpelbordModel.turnInProgress()
 
         }
