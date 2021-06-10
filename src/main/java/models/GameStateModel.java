@@ -60,11 +60,33 @@ public class GameStateModel {
         }
     }
 
-    //TODO gamestateTurnID zien te incrementen, eerst testen, en dan matchen met onze code
-    public void nextTurnIDFirebase(String lobbycode) {
+
+    public void nextTurnIDFirebase(String lobbycode) throws ExecutionException, InterruptedException {
+        int toUpdate;
         //get benodigde stuff van firestore
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-        ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", FieldValue.increment(1));
+
+        // haal de info van doc players op
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+        // haal de info van gamestateTurnID op
+        Object stringID = document.get("gamestateTurnID").toString();
+
+        // maak toUpdate een int die gelijk staat aan de turnID uit firebase
+        toUpdate = Integer.parseInt(stringID.toString());
+
+        // als de stringID gelijk is aan 4 dan wordt de value naar 1 gezet. anders wordt toUpdate + 1 gebruikt
+        if (stringID.equals("4")){
+            ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", 1);
+        } else {
+            ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", toUpdate +1);
+        }
+
+
+
+
+
     }
 
     //TODO get GamestateTurnID van firestore en dan matchen met de method hierboven, dat pas als de gamestateTurnID van firestore < 4
@@ -73,6 +95,9 @@ public class GameStateModel {
 
     public long getGamestateTurnIDFirestore(String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
+
+
+
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
