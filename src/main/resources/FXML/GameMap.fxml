@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,16 +17,25 @@
          <image>
             <Image url="@../images/card_icon.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="playerIcon" fitHeight="97.0" fitWidth="100.0" layoutX="1166.0" layoutY="312.0" onMouseClicked="#showPlayers">
          <image>
             <Image url="@../images/playerIcon.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="diceIcon" fitHeight="97.0" fitWidth="100.0" layoutX="14.0" layoutY="505.0" onMouseClicked="#rollDice">
          <image>
             <Image url="@../images/dice_icon.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="NA1" fitHeight="172.0" fitWidth="410.0" layoutX="200.0" layoutY="19.0">
          <image>

@@ -18,7 +18,6 @@ import java.util.concurrent.ExecutionException;
 
 public class LobbyController {
 
-    public Label sheeshLabel;
     private Stage stage;
     private Scene scene;
     private Parent root;

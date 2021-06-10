@@ -1,5 +1,5 @@
 package observers;
 
 public interface SpelbordObserver {
-    public void update(SpelbordObservable sb);
+    void update(SpelbordObservable sb);
 }
