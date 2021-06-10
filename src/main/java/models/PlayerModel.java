@@ -127,6 +127,7 @@ public class PlayerModel {
         //Todo: om het te laten werken moet elke phase wachten op events van de kaart (klik events)
         //Todo: klik events MOETEN TURNID ALTIJD VERGELIJKEN MET turnID van speler!
         // door deze regeling kan de speler altijd
+    // Todo hoe zorgen ervoor dat andere spelers in deze phase wel gewoon hun kaarten kunnen bekijken?
     public void buildPhase(){}
     public void attackPhase(){}
     public void endPhase(){}
