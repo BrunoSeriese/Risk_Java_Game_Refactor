@@ -30,7 +30,10 @@ public class LobbyController {
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             System.out.println(documentSnapshot.getData().get("gameIsRunning"));
             if ((boolean) documentSnapshot.getData().get("gameIsRunning")){
-
+                System.out.println("De game is running");
+                //TODO Hier moet de nieuwe scene komen
+                //Je kan een lobby maken die op FALSE staat, (lees console, print false).
+                // In firebase kan je de gameIsRunning op True zetten, lees dan console, print true) 
             }
         });
     }
@@ -43,6 +46,10 @@ public class LobbyController {
     public void startGame(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
 
         if (loginController.genoegSpelers()) {
+            loginController.gameRunning();
+
+            //TODO Deze scene moet naar de listener/ observer boven in attachListener()
+            //De starter/host zet de gameIsRunning op True en de listener ziet dat en veranderd bij iedereen de scene.
             root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -53,7 +60,7 @@ public class LobbyController {
 
             //hier komt de variable GameState die naar true gezet moet worden zodat de server weet dat de game is gestart
             //gameIsRunning = true bijvoorbeeld
-            loginController.gameRunning();
+
         }
 
             //gamestate wordt init op 1
