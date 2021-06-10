@@ -26,8 +26,8 @@ public class SpelbordController {
 ////        ArrayList<Integer> worp1 = new DiceController().roll(3);
 ////        ArrayList<Integer> worp2 = new DiceController().roll(3);
 ////
-////        PlayerModel speler1 = new PlayerModel("Petra", worp1);
-////        PlayerModel speler2 = new PlayerModel("Erik", worp2);
+////        PlayerModel speler1 = new PlayerModel("Petra", worp1); ///TODO: ipv speler 1 aanmaken moet de speler die aanvalt uit de database worden gehaald en ipv speler 2 de verdediger
+////        PlayerModel speler2 = new PlayerModel("Erik", worp2);  /// Playermodel speler1= Speler uit database
 ////
 ////
 ////        spelers.add(speler1);
@@ -61,20 +61,13 @@ public class SpelbordController {
 ////            return;
 ////        }
 //
-//        // (3) er wordt een willekeurige kaart gekozen
+//             (3) er wordt een willekeurige kaart gekozen
 //
-//        //Integer willekeurigeKaart = new Random().nextInt(3)+1;
-////        Integer willekeurigeKaart = new Integer(1);
-//
-//
-////        // (4) de winnaar krijgt de willekerugei kaart
+//          Integer willekeurigeKaart = new Random().nextInt(3)+1;
+
+////            (4) de winnaar krijgt de willekerugei kaart
 ////        winnaar.getCards().add(willekeurigeKaart);
-////        winnaar.getCards().add(willekeurigeKaart);
-////        winnaar.getCards().add(willekeurigeKaart);
-////
-////        winnaar.getCards().add(2);
-////
-////        System.out.println(winnaar.getCards());
+
 //
 //
 //
