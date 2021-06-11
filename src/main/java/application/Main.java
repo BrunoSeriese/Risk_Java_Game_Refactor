@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import models.CountryModel;
 import models.GameStateModel;
 import models.SpelbordModel;
+import org.apache.log4j.BasicConfigurator;
 
 public class Main extends Application {
     @Override
@@ -19,7 +20,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root,1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();
-
+//        BasicConfigurator.configure();
 //        remove comment van State.TurnID en State.TurnID om GameStateModel te testen
 //        State.lobbycode = "762447";
 //        State.TurnID = 1;

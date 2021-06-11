@@ -1,7 +1,9 @@
 package controllers;
 
 import application.State;
+import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.sun.javafx.sg.prism.NGExternalNode;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -24,40 +26,45 @@ public class LobbyController {
     private Scene scene;
     private Parent root;
 
+
     static GameStateModel gameStateModel;
     LoginController loginController = new LoginController();
+
+    public boolean checkGameIsRunning() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+        if ((boolean) document.getData().get("gameIsRunning")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public void attachlistener(ActionEvent event) {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
-            System.out.println(documentSnapshot.getData().get("gameIsRunning"));
 
+            //TODO Fix dat andere spelers ook switchen naar de gamemap als 1 player start klikt
             try {
                 if (loginController.genoegSpelers()) {
-                    loginController.gameRunning();
-
-                    if ((boolean) documentSnapshot.getData().get("gameIsRunning")) {
+                    if (checkGameIsRunning()) {
+                        loginController.gameRunning();
                         System.out.println("De game is running");
-
                         root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
                         stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
                         scene = new Scene(root);
                         Platform.runLater(() -> {
                             stage.setScene(scene);
                         });
-                        //TODO fix dat stage niet null wordt, wanneer je de nextturn button klikt op de gamemap.
 
                         loginController.getGameStateModelInstance();
                         System.out.println("De scene is uitgevoerd");
-
                     }
                 }
-            } catch (ExecutionException executionException) {
+            } catch (ExecutionException | InterruptedException | IOException executionException) {
                 executionException.printStackTrace();
-            } catch (InterruptedException interruptedException) {
-                interruptedException.printStackTrace();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
             }
         });
     }
