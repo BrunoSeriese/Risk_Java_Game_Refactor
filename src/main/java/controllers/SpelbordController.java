@@ -1,19 +1,26 @@
 package controllers;
-import com.google.common.collect.Lists;
-import io.grpc.internal.JsonUtil;
-import models.PlayerModel;
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
+import application.State;
+import models.GameStateModel;
+import models.SpelbordModel;
+
+import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
+    GameStateModel gameStateModel = new GameStateModel();
 
 
-    public void showCards(){
+    public void endTurn() throws ExecutionException, InterruptedException {
+        gameStateModel.nextTurnIDFirebase(State.lobbycode);
     }
-    public void showPlayers(){}
-    public void rollDice(){
+
+    public void showCards() {
+    }
+
+    public void showPlayers() {
+    }
+
+    public void rollDice() {
 
 
     }
@@ -134,7 +141,6 @@ public class SpelbordController {
     //    IK WEET BTW NIET OF DIT IN DE CONTROLLER MOET OF IN DE MODEL!!!
 
 
-
     //maak aantal spelers gelijk aan hoeveel mensen in lobby, dus 4 nieuwe spelers.
     // de usernames kan je met .getUserName fzo pakken, kijk ff in de rest van de classes van jansen.
 
@@ -153,7 +159,6 @@ public class SpelbordController {
 
     //als een speler die 3 cards heeft dan schakelt de canExchageCards naar = true en dan verschijnt er een knopje die we nog moeten maken en die hele interface nog met, 'Trade in' bijvoorbeeld
     //dan verschijnt er een scherm met het aantal troepen dat diegene krijgt en dan klikt ie op "OK" en dan ontvangt hij de troepen en gaan die kaarten weg.
-
 
 
 }

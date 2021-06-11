@@ -37,6 +37,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <ImageView fx:id="endTurn" fitHeight="97.0" fitWidth="201.0" layoutX="750.0" layoutY="622.0" onMouseClicked="#endTurn">
+         <image>
+            <Image url="@../images/button_end_turn.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
       <ImageView fx:id="NA1" fitHeight="172.0" fitWidth="410.0" layoutX="200.0" layoutY="19.0">
          <image>
             <Image url="@../images/NA/NA1.png" />
