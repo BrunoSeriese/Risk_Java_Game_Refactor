@@ -25,20 +25,29 @@ public class LobbyController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    boolean isInGame = false;
 
     static GameStateModel gameStateModel;
     LoginController loginController = new LoginController();
+
+    public boolean checkIfInGame() {
+        if (!isInGame) {
+            isInGame = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public boolean checkGameIsRunning() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        if ((boolean) document.getData().get("gameIsRunning")) {
-            return false;
-        } else {
+        if ((boolean) document.getData().get("gameIsRunning") == false) {
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -48,24 +57,31 @@ public class LobbyController {
 
             //TODO Fix dat andere spelers ook switchen naar de gamemap als 1 player start klikt
             try {
-                if (loginController.genoegSpelers()) {
-                    if (checkGameIsRunning()) {
-                        loginController.gameRunning();
-                        System.out.println("De game is running");
-                        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
-                        stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
-                        scene = new Scene(root);
-                        Platform.runLater(() -> {
-                            stage.setScene(scene);
-                        });
+                if (checkIfInGame()) {
+                    System.out.println("1");
+                    if (loginController.genoegSpelers()) {
+                        System.out.println("2");
+                        if (checkGameIsRunning()) {
+                            System.out.println("3");
+                            loginController.gameRunning();
+                            System.out.println("De game is running");
+                            root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
+                            stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
+                            scene = new Scene(root);
+                            Platform.runLater(() -> {
+                                stage.setScene(scene);
+                            });
 
-                        loginController.getGameStateModelInstance();
-                        System.out.println("De scene is uitgevoerd");
+                            loginController.getGameStateModelInstance();
+                            System.out.println("De scene is uitgevoerd");
+                        }
                     }
                 }
+
             } catch (ExecutionException | InterruptedException | IOException executionException) {
                 executionException.printStackTrace();
             }
+
         });
     }
 
