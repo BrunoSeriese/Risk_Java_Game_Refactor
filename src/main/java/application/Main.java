@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.CountryModel;
 import models.GameStateModel;
+import models.SpelbordModel;
 
 public class Main extends Application {
     @Override
@@ -18,6 +20,10 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+// test hiermee de countries
+//        SpelbordModel tester = new SpelbordModel();
+//        tester.CountriesAndIdMap();
+//        tester.getCountries();
 
         GameStateModel gameStateModel = new GameStateModel();
 //        gameStateModel.getPlayersFirebaseTurnID("869211");
@@ -31,6 +37,8 @@ public class Main extends Application {
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen
         //UNCOMMENT BOVENSTE STUK CODE ALS JE TURNID VAN FIRESTORE WIL TESTEN
         //ANDERS WERKT DE CODE NIET
+
+
 
 
     }

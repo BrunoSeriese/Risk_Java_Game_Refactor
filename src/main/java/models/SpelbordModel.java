@@ -1,9 +1,12 @@
 package models;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 
 public class SpelbordModel {
@@ -71,11 +74,40 @@ public class SpelbordModel {
 
     }
 
+    public void CountriesAndIdMap() {
+        //EUROPE
+        ArrayList<CountryModel> countriesAndID = new ArrayList<CountryModel>();
+
+        try {
+            File myObj = new File("src/main/resources/text/countries.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+
+                String countryName = data.split(":")[0];
+                String countryCode = data.split(":")[1];
+                CountryModel newCountry = new CountryModel(countryCode,countryName);
+                countriesAndID.add(newCountry);
+
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        this.countries = countriesAndID;
+    }
+
     public ArrayList<PlayerModel> getPlayers(){
         return this.players;
     }
 
     public ArrayList<CountryModel> getCountries(){
+
+        for (int i = 0; i<countries.size(); i++){
+            System.out.println(countries.get(i).getCountryID() + " " +countries.get(i).getCountryName());
+        }
+
         return this.countries;
     }
 
