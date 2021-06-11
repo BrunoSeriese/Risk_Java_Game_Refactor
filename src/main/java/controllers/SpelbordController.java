@@ -25,6 +25,12 @@ public class SpelbordController {
 
     }
 
+
+    //Todo zorg ervoor dat via de map de 2 countryID's worden meegegeven
+    public void attackPlayer(String countryCodeAttacker, String countryCodeDefender){
+
+    }
+
 //    private List<PlayerModel> spelers = new ArrayList<>();
 //
 ////

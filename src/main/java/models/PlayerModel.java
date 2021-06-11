@@ -50,19 +50,7 @@ public class PlayerModel {
 
 
 
-    public void setCountries(ArrayList<CountryModel> countries){
-        // give as input the countries arraylist from the initialized spelbordmodel
-
-        // randomize it with an arrayList function
-
-        // loop through an arrayList and divide the countries by 4, every time you get at a 1/4th point switch
-        // to next playerID
-
-        for(int i = 0;i<countries.size(); i++){
-            //
-            //if country [i] is at 1/4th, switch to next playerID
-        }
-    }
+    public void setCountries(ArrayList<CountryModel> countries){ }
 
     public void setHasTurn(){
         this.hasTurn = true;
@@ -100,7 +88,14 @@ public class PlayerModel {
         return countries;
     }
 
-    //
+    public void removeCountry(int lostCountry){
+        // give as parameter the country that the player lost
+        this.countries.remove(lostCountry);
+    }
+    public void gainCountry(CountryModel wonCountry){
+        this.countries.add(wonCountry);
+    }
+
 //    public ArrayList<Integer> getLastThrow() {
 //        return lastThrow;
 //    }

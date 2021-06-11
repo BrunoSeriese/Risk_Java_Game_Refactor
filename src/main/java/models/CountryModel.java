@@ -40,6 +40,9 @@ public class CountryModel {
     public String getCountryName(){
         return this.countryName;
     }
+    public void setPlayerID(int playerID){
+        this.playerID = playerID;
+    }
 
 
 
