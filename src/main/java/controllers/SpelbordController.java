@@ -3,14 +3,17 @@ package controllers;
 import application.State;
 import models.GameStateModel;
 import models.SpelbordModel;
+import sun.rmi.runtime.Log;
 
 import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
-    GameStateModel gameStateModel = new GameStateModel();
+    LoginController loginController = new LoginController();
+    GameStateModel gameStateModel;
 
 
     public void endTurn() throws ExecutionException, InterruptedException {
+        gameStateModel = loginController.getGameStateModelInstance();
         gameStateModel.nextTurnIDFirebase(State.lobbycode);
     }
 

@@ -31,6 +31,7 @@ public class LobbyController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             System.out.println(documentSnapshot.getData().get("gameIsRunning"));
+
             try {
                 if (loginController.genoegSpelers()) {
                     loginController.gameRunning();
