@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.GameStateModel;
+import models.PlayerModel;
 import models.SpelbordModel;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class LobbyController {
     private Scene scene;
     private Parent root;
 
+    static GameStateModel gameStateModel;
     LoginController loginController = new LoginController();
 
     public void attachlistener(ActionEvent event) {
@@ -37,23 +39,15 @@ public class LobbyController {
                         System.out.println("De game is running");
 
                         root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
-                        System.out.println("1");
                         stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
-                        System.out.println("2");
-                        System.out.println(stage);
                         scene = new Scene(root);
-                        System.out.println("3");
-                        System.out.println(scene);
                         Platform.runLater(() -> {
                             stage.setScene(scene);
                         });
-                        System.out.println("4");
+                        //TODO fix dat stage niet null wordt, wanneer je de nextturn button klikt op de gamemap.
 
+                        loginController.getGameStateModelInstance();
                         System.out.println("De scene is uitgevoerd");
-
-                        //TODO Hier moet de nieuwe scene komen
-                        //Je kan een lobby maken die op FALSE staat, (lees console, print false).
-                        // In firebase kan je de gameIsRunning op True zetten, lees dan console, print true)
 
                     }
                 }
@@ -74,19 +68,12 @@ public class LobbyController {
 
     public void startGame(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
 
-
-        //TODO Deze scene moet naar de listener/ observer boven in attachListener()
-        //De starter/host zet de gameIsRunning op True en de listener ziet dat en veranderd bij iedereen de scene.
-
 //            root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
 //            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //            scene = new Scene(root);
 //            stage.setScene(scene);
 //            stage.show();
 
-
-        //hier komt de variable GameState die naar true gezet moet worden zodat de server weet dat de game is gestart
-        //gameIsRunning = true bijvoorbeeld
 
     }
 

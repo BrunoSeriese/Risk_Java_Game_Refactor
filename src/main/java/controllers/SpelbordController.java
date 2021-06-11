@@ -15,14 +15,15 @@ public class SpelbordController {
     }
 
     public void showCards() {
+        System.out.println("showcard");
     }
 
     public void showPlayers() {
+        System.out.println("showplayer");
     }
 
     public void rollDice() {
-
-
+        System.out.println("rolldice");
     }
 
 

@@ -3,7 +3,6 @@ package models;
 import application.State;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-import controllers.LoginController;
 
 import java.io.Writer;
 import java.util.*;
@@ -12,13 +11,11 @@ import java.util.concurrent.ExecutionException;
 public class GameStateModel {
 
     // spelbord model moet niet map zijn maar bijv private SpelbordModel map = firebase.get(currentMap)
-    LoginController loginController = new LoginController();
     private SpelbordModel map;
     private int turnID;
     private boolean gameOver;
     private PlayerModel players;
     private CountryModel countries;
-    private String lobbycode;
 
 
 
@@ -35,10 +32,10 @@ public class GameStateModel {
                 System.out.println(State.TurnID);
                 int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
                 if (firebaseTurnID == State.TurnID){
-                    System.out.println("Het is jou turn!");
+                    System.out.println("Jij bent aan de beurt " + firebaseTurnID);
                     //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
                 } else {
-                    System.out.println("Je bent niet aan de beurt");
+                    System.out.println("Je bent niet aan de beurt, TurnID " + firebaseTurnID + " is aan de beurt");
                 }
             }
         });

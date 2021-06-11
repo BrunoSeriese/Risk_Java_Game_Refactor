@@ -21,14 +21,14 @@ public class Main extends Application {
         primaryStage.show();
 
 //        remove comment van State.TurnID en State.TurnID om GameStateModel te testen
-        State.lobbycode = "762447";
-        State.TurnID = 1;
-        GameStateModel gameStateModel = new GameStateModel();
+//        State.lobbycode = "762447";
+//        State.TurnID = 1;
+//        GameStateModel gameStateModel = new GameStateModel();
 
 //        gameStateModel.getPlayersFirebaseTurnID("869211");
 //        gameStateModel.getGamestateTurnIDFirestore("869211");
-        gameStateModel.comparePlayerIDtoTurnID("762447","2");
-        gameStateModel.nextTurnIDFirebase("869211");
+//        gameStateModel.comparePlayerIDtoTurnID("762447","2");
+//        gameStateModel.nextTurnIDFirebase("869211");
 
 //        test hiermee de countries
 //        SpelbordModel tester = new SpelbordModel();

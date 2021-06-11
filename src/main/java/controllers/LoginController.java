@@ -16,6 +16,7 @@ import java.util.concurrent.ExecutionException;
 public class LoginController {
 
     static PlayerModel playerModel;
+    static GameStateModel gameStateModel;
     SpelbordModel spelbordModel = new SpelbordModel();
 
 
@@ -29,6 +30,14 @@ public class LoginController {
             System.out.println("nieuwe instantie is aangemaakt");
         }
         return playerModel;
+    }
+
+    public GameStateModel getGameStateModelInstance(){
+        if (gameStateModel == null) {
+            gameStateModel = new GameStateModel();
+            System.out.println("nieuwe instantie van GameStateModel is aangemaakt");
+        }
+        return gameStateModel;
     }
 
     public String createLobbyCode() {
@@ -200,7 +209,7 @@ public class LoginController {
         List<String> arrayValue = (List<String>)document.get("players");
 
         //TODO vergeet niet om de nummer terug naar 4 te zetten
-        if (arrayValue.size() == 2){
+        if (arrayValue.size() == 1){
             return true;
         } else {
             System.out.println("Er zijn niet genoeg mensen in de lobby");
