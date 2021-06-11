@@ -19,6 +19,7 @@ public class JoinLobbyController {
     private Scene scene;
     private Parent root;
     LoginController loginController = new LoginController();
+
     PlayerModel playerModel;
 
     @FXML

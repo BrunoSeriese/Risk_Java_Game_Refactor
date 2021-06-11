@@ -18,6 +18,8 @@ public class LoginController {
     static PlayerModel playerModel;
     SpelbordModel spelbordModel = new SpelbordModel();
 
+
+
     public void testMessage(String username){
         System.out.println("de username is: " + username);
     }
@@ -79,7 +81,6 @@ public class LoginController {
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Hello World!");
         System.out.println("de username is: " + username);
     }
 
@@ -137,6 +138,7 @@ public class LoginController {
 //        Map<String, Object> playerData = new HashMap<>();
 //        playerData.put("isHost", false);
 //        playerData.put("username", username);
+
 
         State.lobbycode = lobbycode;
         PlayerModel playerModel2 = generateInstance(username, lobbycode);
@@ -205,7 +207,7 @@ public class LoginController {
 
         List<String> arrayValue = (List<String>)document.get("players");
 
-        
+
         //TODO vergeet niet om de nummer terug naar 4 te zetten
         if (arrayValue.size() == 2){
             return true;
