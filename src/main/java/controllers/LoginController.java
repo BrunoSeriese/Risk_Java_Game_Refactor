@@ -205,7 +205,9 @@ public class LoginController {
 
         List<String> arrayValue = (List<String>)document.get("players");
 
-        if (arrayValue.size() == 4){
+        
+        //TODO vergeet niet om de nummer terug naar 4 te zetten
+        if (arrayValue.size() == 2){
             return true;
         } else {
             System.out.println("Er zijn niet genoeg mensen in de lobby");
