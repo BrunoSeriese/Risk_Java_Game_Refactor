@@ -19,7 +19,6 @@ public class LoginController {
     SpelbordModel spelbordModel = new SpelbordModel();
 
 
-
     public void testMessage(String username){
         System.out.println("de username is: " + username);
     }
@@ -45,8 +44,8 @@ public class LoginController {
 
     public void createLobby(String username, String lobbycode) throws ExecutionException, InterruptedException {
         PlayerModel playerModel1 = new PlayerModel(username, 1);
+        State.TurnID = 1;
         System.out.println("playermodel instantie is gemaakt");
-
 
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
 
@@ -56,7 +55,6 @@ public class LoginController {
 //        playerData.put("username", playerModel1.getUsername());
 //        playerData.put("hasTurn", playerModel1.getHasTurn());
 //        playerData.put("countries", playerModel1.getCountries());
-
 
         Map<String, Object> data = new HashMap<>();
         data.put("players", Arrays.asList(playerModel1));
@@ -76,6 +74,7 @@ public class LoginController {
                 String lobbycode = createLobbyCode();
                 createLobby(username, lobbycode);
                 State.lobbycode = lobbycode;
+
                 System.out.println("De state lobbycode is " + State.lobbycode);
             }
         } catch (ExecutionException | InterruptedException e) {
@@ -88,9 +87,7 @@ public class LoginController {
 
     public boolean readLobby(String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-
         ApiFuture<DocumentSnapshot> future = docRef.get();
-
         DocumentSnapshot document = future.get();
 
         if (document.exists()) {
@@ -113,32 +110,27 @@ public class LoginController {
 
     public PlayerModel generateInstance(String username, String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-
         ApiFuture<DocumentSnapshot> future = docRef.get();
-
         DocumentSnapshot document = future.get();
 
         List<String> arrayValue = (List<String>)document.get("players");
         PlayerModel playerModel2 = new PlayerModel(username, arrayValue.size() + 1);
         playerModel2.setTurnID(arrayValue.size() + 1);
-
+        State.TurnID = arrayValue.size() + 1;
+        System.out.println("De stateturnid is: " + State.TurnID);
 
         return playerModel2;
     }
 
     public void joinLobby(String lobbycode, String username) throws ExecutionException, InterruptedException {
-
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-        // asynchronously retrieve the document
         ApiFuture<DocumentSnapshot> future = docRef.get();
-        // future.get() blocks on response
         DocumentSnapshot document = future.get();
         System.out.println(document.get("players"));
 
 //        Map<String, Object> playerData = new HashMap<>();
 //        playerData.put("isHost", false);
 //        playerData.put("username", username);
-
 
         State.lobbycode = lobbycode;
         PlayerModel playerModel2 = generateInstance(username, lobbycode);
@@ -206,7 +198,6 @@ public class LoginController {
         DocumentSnapshot document = future.get();
 
         List<String> arrayValue = (List<String>)document.get("players");
-
 
         //TODO vergeet niet om de nummer terug naar 4 te zetten
         if (arrayValue.size() == 2){

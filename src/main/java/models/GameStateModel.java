@@ -2,10 +2,7 @@ package models;
 
 import application.State;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.FieldValue;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import controllers.LoginController;
 
 import java.io.Writer;
@@ -28,11 +25,27 @@ public class GameStateModel {
     public GameStateModel(int TurnID) {
         this.turnID = 1;
         this.gameOver = false;
+    }
 
+    public void attachlistener(){
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        docRef.addSnapshotListener((documentSnapshot, e) -> {
+            if (documentSnapshot != null) {
+                System.out.println(documentSnapshot.getData().get("gamestateTurnID"));
+                System.out.println(State.TurnID);
+                int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
+                if (firebaseTurnID == State.TurnID){
+                    System.out.println("Het is jou turn!");
+                    //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
+                } else {
+                    System.out.println("Je bent niet aan de beurt");
+                }
+            }
+        });
     }
 
     public GameStateModel() {
-
+        attachlistener();
     }
 
     //if the player turnID matches the gamestate turnID. then he can start his turn
@@ -83,22 +96,17 @@ public class GameStateModel {
         } else {
             ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", toUpdate +1);
         }
-
-
-
-
-
     }
+
+
 
 //    TODO zorg ervoor dat de lokale playerID wordt aangesproken hier als playerLocalID, maybe met final String?
 
     public long comparePlayerIDtoTurnID(String lobbycode, String playerLocalID) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
-
-
-
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
+
         if (playerLocalID.equals(document.get("gamestateTurnID").toString())){
             System.out.println("this is your turn!");
         } else{

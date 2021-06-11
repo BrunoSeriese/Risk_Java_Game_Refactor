@@ -18,12 +18,14 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-
+//        remove comment van State.TurnID en State.TurnID om GameStateModel te testen
+//        State.lobbycode = "762447";
+//        State.TurnID = 1;
         GameStateModel gameStateModel = new GameStateModel();
-//        gameStateModel.getPlayersFirebaseTurnID("869211");
 
+//        gameStateModel.getPlayersFirebaseTurnID("869211");
 //        gameStateModel.getGamestateTurnIDFirestore("869211");
-        gameStateModel.comparePlayerIDtoTurnID("869211","2");
+        gameStateModel.comparePlayerIDtoTurnID("762447","2");
         gameStateModel.nextTurnIDFirebase("869211");
 
 
