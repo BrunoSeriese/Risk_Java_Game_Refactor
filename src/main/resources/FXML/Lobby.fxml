@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LobbyController">
    <children>
@@ -62,36 +61,31 @@
             <Image url="@../images/namelabel_transparent.png" />
          </image>
       </ImageView>
-      <Text fx:id="textName1" layoutX="200.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="217.4700469970703">
-         <font>
-            <Font name="Rockwell" size="22.0" />
-         </font>
-      </Text>
-      <Text fx:id="textName2" layoutX="200.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="217.4700469970703">
-         <font>
-            <Font name="Rockwell" size="22.0" />
-         </font>
-      </Text>
-      <Text fx:id="textName3" layoutX="200.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="217.4700469970703">
-         <font>
-            <Font name="Rockwell" size="22.0" />
-         </font>
-      </Text>
-      <Text fx:id="textName4" layoutX="200.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="217.4700469970703">
-         <font>
-            <Font name="Rockwell" size="22.0" />
-         </font>
-      </Text>
       <ImageView fitHeight="90.0" fitWidth="200.0" layoutX="164.0" layoutY="517.0">
          <image>
             <Image url="@../images/start_button.png" />
          </image>
       </ImageView>
-      <Text fx:id="lobbyCodeText" layoutX="178.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CODE:" textAlignment="CENTER">
+      <Label fx:id="username1" alignment="CENTER" layoutX="218.0" layoutY="150.0" prefHeight="34.0" prefWidth="181.0" text="placeholder1">
          <font>
-            <Font name="Rockwell" size="27.0" />
+            <Font name="Rockwell" size="28.0" />
          </font>
-      </Text>
+      </Label>
+      <Label fx:id="username2" alignment="CENTER" layoutX="218.0" layoutY="230.0" prefHeight="34.0" prefWidth="181.0" text="placeholder2">
+         <font>
+            <Font name="Rockwell" size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="username3" alignment="CENTER" layoutX="218.0" layoutY="310.0" prefHeight="34.0" prefWidth="181.0" text="placeholder3">
+         <font>
+            <Font name="Rockwell" size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="username4" alignment="CENTER" layoutX="218.0" layoutY="390.0" prefHeight="34.0" prefWidth="181.0" text="placeholder4">
+         <font>
+            <Font name="Rockwell" size="28.0" />
+         </font>
+      </Label>
       <Button fx:id="LobbyStartButton" alignment="CENTER" layoutX="178.0" layoutY="526.0" mnemonicParsing="false" onAction="#startGame" opacity="0.01" prefHeight="74.0" prefWidth="181.0" text="LobbyStart" textAlignment="CENTER">
          <effect>
             <Shadow />
