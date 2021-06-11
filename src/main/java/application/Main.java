@@ -21,8 +21,8 @@ public class Main extends Application {
         primaryStage.show();
 
 //        remove comment van State.TurnID en State.TurnID om GameStateModel te testen
-//        State.lobbycode = "762447";
-//        State.TurnID = 1;
+        State.lobbycode = "762447";
+        State.TurnID = 1;
         GameStateModel gameStateModel = new GameStateModel();
 
 //        gameStateModel.getPlayersFirebaseTurnID("869211");
