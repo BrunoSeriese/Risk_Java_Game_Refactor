@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.CountryModel;
 import models.GameStateModel;
+import models.SpelbordModel;
 
 public class Main extends Application {
     @Override
@@ -28,7 +30,10 @@ public class Main extends Application {
         gameStateModel.comparePlayerIDtoTurnID("762447","2");
         gameStateModel.nextTurnIDFirebase("869211");
 
-
+//        test hiermee de countries
+//        SpelbordModel tester = new SpelbordModel();
+//        tester.CountriesAndIdMap();
+//        tester.getCountries();
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen
         //UNCOMMENT BOVENSTE STUK CODE ALS JE TURNID VAN FIRESTORE WIL TESTEN
