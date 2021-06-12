@@ -209,7 +209,7 @@ public class LoginController {
         List<String> arrayValue = (List<String>)document.get("players");
 
         //TODO vergeet niet om de nummer terug naar 4 te zetten
-        if (arrayValue.size() == 2){
+        if (arrayValue.size() == 4){
             return true;
         } else {
             System.out.println("Er zijn niet genoeg mensen in de lobby");

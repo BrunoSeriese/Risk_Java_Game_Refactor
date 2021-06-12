@@ -6,22 +6,32 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.FieldValue;
 import com.google.cloud.firestore.WriteResult;
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import models.CountryModel;
 import models.GameStateModel;
 import models.SpelbordModel;
-import sun.rmi.runtime.Log;
+import views.SpelbordView;
 
 import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
+
+    @FXML
+    ImageView endTurnIcon;
+    @FXML
+    ImageView cardIcon;
+    @FXML
+    ImageView diceIcon;
+    @FXML
+    ImageView playerIcon;
+
+
+    SpelbordView spelbordView = new SpelbordView();
     LoginController loginController = new LoginController();
     GameStateModel gameStateModel;
 
 
-    public void endTurn() throws ExecutionException, InterruptedException {
-        gameStateModel = loginController.getGameStateModelInstance();
-        gameStateModel.nextTurnIDFirebase(State.lobbycode);
-    }
 
     public void showCards() {
         System.out.println("showcard");
@@ -35,12 +45,6 @@ public class SpelbordController {
         System.out.println("rolldice");
     }
 
-
-    //Todo zorg ervoor dat via de map de 2 countryID's worden meegegeven
-    public void attackPlayer(String countryCodeAttacker, String countryCodeDefender){
-
-    }
-
     public void setInFirebase() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection("794342").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
@@ -52,6 +56,44 @@ public class SpelbordController {
         CountryModel countryModel = new CountryModel("NA1");
         ApiFuture<WriteResult> result = docRef.update("countries", FieldValue.arrayUnion(spelbordModel));
     }
+
+    public void endTurn() throws ExecutionException, InterruptedException {
+        gameStateModel = loginController.getGameStateModelInstance();
+        gameStateModel.nextTurnIDFirebase(State.lobbycode);
+
+    }
+    
+    public void hideHUD(){
+        cardIcon.setVisible(false);
+        diceIcon.setVisible(false);
+        playerIcon.setVisible(false);
+    }
+    public void showHUD(){
+        cardIcon.setVisible(true);
+        diceIcon.setVisible(true);
+        playerIcon.setVisible(true);
+    }
+
+    public void HUD() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+        if (State.TurnID == Integer.parseInt(document.get("gamestateTurnID").toString())){
+            showHUD();
+        }else{
+            hideHUD();
+        }
+    }
+
+
+
+    //Todo zorg ervoor dat via de map de 2 countryID's worden meegegeven
+    public void attackPlayer(String countryCodeAttacker, String countryCodeDefender){
+
+    }
+
+
 
 //    private List<PlayerModel> spelers = new ArrayList<>();
 //
