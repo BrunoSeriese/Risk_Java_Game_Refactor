@@ -79,7 +79,7 @@ public class SpelbordModel {
             File myObj = new File("src/main/resources/text/countries.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
+                   String data = myReader.nextLine();
 
                 String countryCode = data.split(":")[1];
                 CountryModel newCountry = new CountryModel(countryCode);

@@ -16,6 +16,7 @@ public class GameStateModel {
     private boolean gameOver;
     private PlayerModel players;
     private CountryModel countries;
+    private boolean canEnd;
 
 
 
@@ -33,6 +34,7 @@ public class GameStateModel {
                 int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
                 if (firebaseTurnID == State.TurnID){
                     System.out.println("Jij bent aan de beurt " + firebaseTurnID);
+                    canEnd = true;
                     //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
 
 
@@ -43,6 +45,7 @@ public class GameStateModel {
 
                 } else {
                     System.out.println("Je bent niet aan de beurt, TurnID " + firebaseTurnID + " is aan de beurt");
+                    canEnd = false;
                 }
             }
         });
@@ -80,28 +83,30 @@ public class GameStateModel {
 
 
     public void nextTurnIDFirebase(String lobbycode) throws ExecutionException, InterruptedException {
-        int toUpdate;
-        //get benodigde stuff van firestore
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
 
-        // haal de info van doc players op
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-        DocumentSnapshot document = future.get();
+        if (canEnd) {
+            int toUpdate;
+            //get benodigde stuff van firestore
+            DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
 
-        // haal de info van gamestateTurnID op
-        Object stringID = document.get("gamestateTurnID").toString();
+            // haal de info van doc players op
+            ApiFuture<DocumentSnapshot> future = docRef.get();
+            DocumentSnapshot document = future.get();
 
-        // maak toUpdate een int die gelijk staat aan de turnID uit firebase
-        toUpdate = Integer.parseInt(stringID.toString());
+            // haal de info van gamestateTurnID op
+            Object stringID = document.get("gamestateTurnID").toString();
 
-        // als de stringID gelijk is aan 4 dan wordt de value naar 1 gezet. anders wordt toUpdate + 1 gebruikt
-        if (stringID.equals("4")){
-            ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", 1);
-        } else {
-            ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", toUpdate +1);
+            // maak toUpdate een int die gelijk staat aan de turnID uit firebase
+            toUpdate = Integer.parseInt(stringID.toString());
+
+            // als de stringID gelijk is aan 4 dan wordt de value naar 1 gezet. anders wordt toUpdate + 1 gebruikt
+            if (stringID.equals("4")) {
+                ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", 1);
+            } else {
+                ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", toUpdate + 1);
+            }
         }
     }
-
 
 
 //    TODO zorg ervoor dat de lokale playerID wordt aangesproken hier als playerLocalID, maybe met final String?

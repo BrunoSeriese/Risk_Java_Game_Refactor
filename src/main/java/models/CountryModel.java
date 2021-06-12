@@ -26,7 +26,6 @@ public class CountryModel {
 //    }
 
     public CountryModel(String countryID){
-        this.playerID = State.TurnID;
         this.countryID = countryID;
         this.army = 2;
     }
