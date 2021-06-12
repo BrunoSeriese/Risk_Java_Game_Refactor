@@ -48,7 +48,30 @@ public class PlayerModel {
     }
 
 
+    public void garrison(int playerID){
+        //this.armies = *haal aantal landen uit firebase dat de player bezit en deel door 3/ als kleiner dan 3 dan is het 3. (mag niet lager zijn)
 
+
+        //Todo hier moet een mouselistener zijn die het land opvangt waar je op klikt en kijkt of het overeenkomt met jouw id
+        // zo ja dan is elke klik 1 leger erbij op het land
+        //elke keer this.turnArmies -1 en bij aanvang controleren of turnArmies niet 0 is
+
+        if (this.turnArmies != 0){
+
+        } else if (this.turnArmies == 0){
+            this.attack();
+        }
+    }
+  public void attack(){
+      //Todo hier moet een mouselistener zijn die het land opvangt waar je op klikt en kijkt of het overeenkomt met jouw ID
+
+//       if (clickedCountry.playerid == player.turnID){
+//          if (secondClickedCountry.playerID != player.turnID){
+//              System.out.println("je kan dit land aanvallen");
+//            }else{ System.out.println("je kan niet jezelf aanvallen");}
+//          } else { System.out.println("je kan niet aanvallen vanuit een land van een vijand!");
+//       }
+  }
 
     public void setCountries(ArrayList<CountryModel> countries){ }
 

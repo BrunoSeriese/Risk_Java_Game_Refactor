@@ -34,6 +34,13 @@ public class GameStateModel {
                 if (firebaseTurnID == State.TurnID){
                     System.out.println("Jij bent aan de beurt " + firebaseTurnID);
                     //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
+
+
+                    //ToDo zorg ervoor dat hier een mouse event listeren
+
+                    //functie garrison(current playerID)
+
+
                 } else {
                     System.out.println("Je bent niet aan de beurt, TurnID " + firebaseTurnID + " is aan de beurt");
                 }
