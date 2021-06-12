@@ -3,6 +3,8 @@ package models;
 import application.State;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 import java.io.Writer;
 import java.util.*;
@@ -15,7 +17,6 @@ public class GameStateModel {
     private int turnID;
     private boolean gameOver;
     private PlayerModel players;
-    private CountryModel countries;
     private boolean canEnd;
 
 
@@ -54,6 +55,15 @@ public class GameStateModel {
     public GameStateModel() {
         attachlistener();
     }
+
+
+
+
+
+
+
+
+
 
     //if the player turnID matches the gamestate turnID. then he can start his turn
     public void getPlayersFirebaseTurnID(String lobbycode) throws ExecutionException, InterruptedException {

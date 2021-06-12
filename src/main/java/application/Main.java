@@ -23,6 +23,7 @@ public class Main extends Application {
         primaryStage.show();
 
 
+
 //        BasicConfigurator.configure();
 //        remove comment van State.TurnID en State.TurnID om GameStateModel te testen
 //        State.lobbycode = "762447";

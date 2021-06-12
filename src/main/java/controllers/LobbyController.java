@@ -7,11 +7,13 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.sun.javafx.sg.prism.NGExternalNode;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.GameStateModel;
 import models.PlayerModel;
@@ -52,6 +54,8 @@ public class LobbyController {
 
     }
 
+
+
     public void attachlistener() {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
@@ -64,6 +68,7 @@ public class LobbyController {
                         System.out.println("De game is running");
                         root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
                         scene = new Scene(root);
+
                         Platform.runLater(() -> {
                             State.stage.setScene(scene);
                         });
