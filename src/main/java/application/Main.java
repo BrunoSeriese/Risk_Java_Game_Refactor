@@ -35,9 +35,12 @@ public class Main extends Application {
 //        gameStateModel.nextTurnIDFirebase("869211");
 
 //        test hiermee de countries
-//        SpelbordModel tester = new SpelbordModel();
-//        tester.CountriesAndIdMap();
-//        tester.getCountries();
+        SpelbordModel tester = new SpelbordModel();
+        tester.CountriesAndIdMap();
+        tester.getCountries();
+
+        SpelbordController spelbordController = new SpelbordController();
+        spelbordController.setInFirebase();
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen
         //UNCOMMENT BOVENSTE STUK CODE ALS JE TURNID VAN FIRESTORE WIL TESTEN

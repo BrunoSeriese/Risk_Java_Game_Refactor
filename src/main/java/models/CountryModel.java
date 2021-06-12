@@ -1,5 +1,7 @@
 package models;
 
+import application.State;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -12,15 +14,27 @@ public class CountryModel {
     private int playerID;
     private String countryID;
     private int army;
-    private String countryName;
+//    private String countryName;
+
 //    private Map<String, String> CountriesAndId = new HashMap<>();
 
 
 
-    public CountryModel(String countryID,String countryName){
+//    public CountryModel(String countryID,String countryName){
+//        this.countryID = countryID;
+//        this.countryName = countryName;
+//    }
+
+    public CountryModel(String countryID){
+        this.playerID = State.TurnID;
         this.countryID = countryID;
-        this.countryName = countryName;
+        this.army = 2;
     }
+
+    public void getAllCountryID(){
+
+    }
+
     public CountryModel(int ID,String countryID, int army){
         this.playerID = ID;
         this.countryID = countryID;
@@ -37,9 +51,10 @@ public class CountryModel {
     public String getCountryID(){
         return this.countryID;
     }
-    public String getCountryName(){
-        return this.countryName;
-    }
+
+//    public String getCountryName(){
+//        return this.countryName;
+//    }
     public void setPlayerID(int playerID){
         this.playerID = playerID;
     }

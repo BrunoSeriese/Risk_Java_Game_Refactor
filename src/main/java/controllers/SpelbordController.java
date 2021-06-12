@@ -1,6 +1,12 @@
 package controllers;
 
 import application.State;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.FieldValue;
+import com.google.cloud.firestore.WriteResult;
+import models.CountryModel;
 import models.GameStateModel;
 import models.SpelbordModel;
 import sun.rmi.runtime.Log;
@@ -33,6 +39,18 @@ public class SpelbordController {
     //Todo zorg ervoor dat via de map de 2 countryID's worden meegegeven
     public void attackPlayer(String countryCodeAttacker, String countryCodeDefender){
 
+    }
+
+    public void setInFirebase() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("794342").document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+        SpelbordModel spelbordModel = new SpelbordModel();
+        spelbordModel.CountriesAndIdMap();
+        System.out.println(spelbordModel.getCountries().toString());
+        CountryModel countryModel = new CountryModel("NA1");
+        ApiFuture<WriteResult> result = docRef.update("countries", FieldValue.arrayUnion(spelbordModel));
     }
 
 //    private List<PlayerModel> spelers = new ArrayList<>();

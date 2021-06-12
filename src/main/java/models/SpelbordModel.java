@@ -1,5 +1,8 @@
 package models;
 
+import io.opencensus.stats.Aggregation;
+import sun.jvm.hotspot.utilities.CPPExpressions;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
@@ -14,9 +17,9 @@ public class SpelbordModel {
 
     private Map<String, String> countriesWithID = new HashMap<String, String>();
 
-    public SpelbordModel(){
+    public SpelbordModel(){}
 
-    }
+
     public SpelbordModel(ArrayList<PlayerModel> players,  ArrayList<CountryModel> countries){
         this.players = players;
         this.countries = countries;
@@ -27,14 +30,11 @@ public class SpelbordModel {
 //            this.players.set(i,(NameFromFirebase,IDfromFirebase,) = PlayersFromFirebaseConnection[i]
         }
 
-
-
         // countries zijn dus alle landen met hun eigen ID en ID van de speler die het bezit
         // + legers die er op staan
         this.countries = countries;
 
         for (int i = 0; i<countries.size(); i++){
-
         }
 
     }
@@ -81,9 +81,8 @@ public class SpelbordModel {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
 
-                String countryName = data.split(":")[0];
                 String countryCode = data.split(":")[1];
-                CountryModel newCountry = new CountryModel(countryCode,countryName);
+                CountryModel newCountry = new CountryModel(countryCode);
                 countriesAndID.add(newCountry);
 
             }
@@ -93,7 +92,11 @@ public class SpelbordModel {
             e.printStackTrace();
         }
         Collections.shuffle(countriesAndID);
+        System.out.println("counties and id" + countriesAndID);
         this.countries = countriesAndID;
+        for (int i = 0; i<countriesAndID.size(); i++){
+            System.out.println(countriesAndID.get(i).getCountryID());
+        }
     }
 
     public ArrayList<PlayerModel> getPlayers(){
@@ -101,10 +104,16 @@ public class SpelbordModel {
     }
 
     public ArrayList<CountryModel> getCountries(){
-
-        for (int i = 0; i<countries.size(); i++){
-            System.out.println(countries.get(i).getCountryID() + " " +countries.get(i).getCountryName());
-        }
+        ArrayList<CountryModel> countryID = new ArrayList<>();
+//        countryID
+//        for (int i = 0; i<countries.size(); i++){
+////            System.out.println(countries.get(i).getCountryID() + " " +countries.get(i).getCountryName());
+//            System.out.println(countries.get(i).getCountryID());
+////            String x = countries.get(i).getCountryID();
+////            countryID.add(x);
+//        }
+        System.out.println(countryID);
+        System.out.println(String.valueOf(countries));
 
         return this.countries;
     }
@@ -125,8 +134,6 @@ public class SpelbordModel {
 
         this.players = playersFromFirebase;
         System.out.println("de players zijn " + players);
-
-
     }
 
 
