@@ -12,14 +12,17 @@ import models.SpelbordModel;
 import org.apache.log4j.BasicConfigurator;
 
 public class Main extends Application {
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        State.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
         primaryStage.setTitle("Risk Game");
         primaryStage.setScene(new Scene(root,1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();
+
+
 //        BasicConfigurator.configure();
 //        remove comment van State.TurnID en State.TurnID om GameStateModel te testen
 //        State.lobbycode = "762447";
