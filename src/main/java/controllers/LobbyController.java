@@ -56,7 +56,6 @@ public class LobbyController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
 
-            //TODO Fix dat andere spelers ook switchen naar de gamemap als 1 player start klikt
             try {
                 if (checkGameIsRunning()) {
                     System.out.println("2");
@@ -90,11 +89,11 @@ public class LobbyController {
 
         if (loginController.genoegSpelers())
             loginController.gameRunning();
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
     }
 
