@@ -3,10 +3,7 @@ package models;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class SpelbordModel {
@@ -95,6 +92,7 @@ public class SpelbordModel {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        Collections.shuffle(countriesAndID);
         this.countries = countriesAndID;
     }
 
