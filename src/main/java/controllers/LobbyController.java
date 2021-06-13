@@ -4,25 +4,18 @@ import application.State;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.sun.javafx.sg.prism.NGExternalNode;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.GameStateModel;
-import models.PlayerModel;
 import models.SpelbordModel;
 import views.LobbyView;
-
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -41,13 +34,10 @@ public class LobbyController {
     Label username1;
     @FXML
     Label username2;
-    @FXML Label username3;
-    @FXML Label username4;
-
-    int A= 0;
-
-
-
+    @FXML
+    Label username3;
+    @FXML
+    Label username4;
 
     public boolean checkIfInGame() {
         if (!isInGame) {
@@ -105,24 +95,25 @@ public class LobbyController {
 
     public LobbyController() throws ExecutionException, InterruptedException {
         attachlistener();
-        System.out.println("run method");
-        LobbyView lobbyView=new LobbyView();
-
-        lobbyView.getFirebaseUsernames("110720");
 
 
-        /////
+
+        //geen idee wat deze code hier doet??
+
+//        System.out.println("run method");
+//        LobbyView lobbyView = new LobbyView();
+//        lobbyView.getFirebaseUsernames("110720");
     }
 
     public void startGame(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
 
         if (loginController.enoughPlayers())
             loginController.gameRunning();
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
@@ -137,7 +128,7 @@ public class LobbyController {
 
     @FXML
     public void initialize() throws ExecutionException, InterruptedException {
-        LobbyView lobbyView=new LobbyView();
+        LobbyView lobbyView = new LobbyView();
 
         username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
 //        username2.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(1)));

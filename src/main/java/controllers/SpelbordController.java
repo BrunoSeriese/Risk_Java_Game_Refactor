@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import models.CountryModel;
 import models.GameStateModel;
 import models.SpelbordModel;
 import views.SpelbordView;
@@ -67,7 +66,7 @@ public class SpelbordController {
 
 
     public void setArmyAndCountryInFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.get("countries") != null) {
@@ -83,7 +82,7 @@ public class SpelbordController {
     }
 
     public void getArmyAndCountryFromFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -99,42 +98,80 @@ public class SpelbordController {
 
 
     //TODO NIET AAN DEZE 4 METHODS KOMEN
-    public void setArmyFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+
+//    public void setArmyFirebase() throws ExecutionException, InterruptedException {
+//        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
+//        ApiFuture<DocumentSnapshot> future = docRef.get();
+//        DocumentSnapshot document = future.get();
+//
+//        if (document.exists()) {
+//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+//            System.out.println("dit is arraycountrydata: " + arrayCountryData);
+//
+//            arrayCountryData.
+//
+//
+//
+//
+//            HashMap newData = new HashMap();
+//            newData.put("army", 4);
+//
+//            ArrayList<HashMap> testArray = new ArrayList<>();
+//            testArray.add(newData);
+////            long newValue = (long) oldValue.put("army", 4);
+//
+//
+//            System.out.println("test new value: " + newValue);
+//            docRef.update("countries", newValue);
+//        }
+//        else {
+//            System.out.println("No document found!");
+//        }
+//    }
+
+//    public void setArmyFirebase(int arrayNumber, int newArmies) throws ExecutionException, InterruptedException {
+//        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
+//        ApiFuture<DocumentSnapshot> future = docRef.get();
+//        DocumentSnapshot document = future.get();
+//
+//        if (document.exists()) {
+//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+//            System.out.println("dit is arraycountrydata: " + arrayCountryData);
+//
+////            ArrayList<HashMap> data = new ArrayList<HashMap>();
+////            data.add(0, ;
+//
+//            Map<String, Integer> dataMap = new HashMap<>();
+//            dataMap.put("army", newArmies);
+////
+////            ArrayList<String> countries = new ArrayList<>();
+////            countries.add(arrayNumber, "test");
+//
+//
+//            docRef.update("countries", dataMap);
+//        }
+//        else {
+//            System.out.println("No document found!");
+//        }
+//    }
+
+    public void getArmyFirebase(int arrayNumber) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
             System.out.println("dit is arraycountrydata:    "+arrayCountryData);
-            for (HashMap armyAndCountryID : arrayCountryData) {
-                System.out.println(armyAndCountryID);
+            System.out.println(arrayCountryData.get(arrayNumber).get("army"));
 
-            }
-        } else {
-            System.out.println("No document found!");
-        }
-    }
-
-    public void getArmyFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-        DocumentSnapshot document = future.get();
-        if (document.exists()) {
-
-            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
-            for (HashMap armyAndCountryID : arrayCountryData) {
-                System.out.println(armyAndCountryID);
-
-            }
         } else {
             System.out.println("No document found!");
         }
     }
 
     public void setPlayerIDtoCountry() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -151,7 +188,7 @@ public class SpelbordController {
     }
 
     public void getPlayerIDtoCountry() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -169,7 +206,7 @@ public class SpelbordController {
     //TODO NIET AANKOMEN IS MINE ^^^^^^^^
 
 
-    public void testButton(ActionEvent event) {
+    public void getButtonID(ActionEvent event) {
         System.out.println("clickedAAAAAAAAAA!!!");
         Button buttonid = (Button) event.getSource();
         System.out.println(buttonid);

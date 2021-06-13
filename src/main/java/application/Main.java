@@ -44,9 +44,13 @@ public class Main extends Application {
 
 
         //Uncomment om in firebase de countries in te zetten
-//        SpelbordController spelbordController = new SpelbordController();
-//        spelbordController.setInFirebase();
-//        spelbordController.getFromFirebase();
+        SpelbordController spelbordController = new SpelbordController();
+        spelbordController.setArmyAndCountryInFirebase();
+//        spelbordController.getArmyAndCountryFromFirebase();
+//
+//        spelbordController.setArmyFirebase(1,32);
+//        spelbordController.getArmyFirebase(1);
+
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen
         //UNCOMMENT BOVENSTE STUK CODE ALS JE TURNID VAN FIRESTORE WIL TESTEN

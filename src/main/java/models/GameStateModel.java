@@ -129,7 +129,7 @@ public class GameStateModel {
 
 //    TODO zorg ervoor dat de lokale playerID wordt aangesproken hier als playerLocalID, maybe met final String?
 
-    public long comparePlayerIDtoTurnID(String lobbycode, String playerLocalID) throws ExecutionException, InterruptedException {
+    public long comparePlayerIDtoTurnIDFirebase(String lobbycode, String playerLocalID) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
