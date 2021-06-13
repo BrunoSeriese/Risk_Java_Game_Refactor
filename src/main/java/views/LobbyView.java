@@ -23,13 +23,13 @@ public class LobbyView {
 
 
 
-    //TODO zorg ervoor dat lobbycode en namen worden displayed met een setText(firestore->lobbycode)
+
     @FXML
     public void displayLobbyCode() {
     }
 
 
-//TODO van firebase usernames pakken en die displayen in de lobby met een setText(firestore->username))
+
   //TODO is nog niet af
     public ArrayList<String> getFirebaseUsernames(String lobbyCode) throws ExecutionException, InterruptedException {
         //get benodigde stuff van firestore

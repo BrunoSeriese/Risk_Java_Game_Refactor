@@ -144,7 +144,9 @@ public class LobbyController {
 //        username3.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(2)));
 //        username4.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(3)));
 
-    }
+    } //TODO: code in een loop zetten dat als een 2e speler joint de username2 word uitgevoerd enzv
+    //TODO: Initialize DRY maken
+    //TODO: ook de lobbycode pakken en die displayen
 }
 
 
