@@ -28,6 +28,7 @@ public class CountryModel {
     public CountryModel(String countryID){
         this.countryID = countryID;
         this.army = 2;
+        this.playerID = 0;
     }
 
     public void getAllCountryID(){
