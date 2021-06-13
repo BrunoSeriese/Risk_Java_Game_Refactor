@@ -13,4 +13,11 @@ public class SpelbordView {
     public static ImageView diceIcon;
     @FXML
     public static ImageView playerIcon;
+
+    public void garrison(){
+        //Todo catch mouseEvent
+        // catch clickedCountry
+        // Check if country has the same playerID as the player
+
+    }
 }

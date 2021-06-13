@@ -2,10 +2,7 @@ package controllers;
 
 import application.State;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.FieldValue;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import models.CountryModel;
@@ -13,6 +10,9 @@ import models.GameStateModel;
 import models.SpelbordModel;
 import views.SpelbordView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
@@ -52,9 +52,32 @@ public class SpelbordController {
 
         SpelbordModel spelbordModel = new SpelbordModel();
         spelbordModel.CountriesAndIdMap();
-        System.out.println(spelbordModel.getCountries().toString());
+
         CountryModel countryModel = new CountryModel("NA1");
         ApiFuture<WriteResult> result = docRef.update("countries", FieldValue.arrayUnion(spelbordModel));
+    }
+
+    public void getFromFirebase() throws ExecutionException, InterruptedException {
+        //todo je moet een niveau dieper hier! maar hoe? check de terminal output om te zien wat ik bedoel
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("794342").document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        System.out.println(document);
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayPlayerData = (ArrayList<HashMap>) document.get("countries"); //zet alle data van 'players' in array wat hashmaps bevatten
+
+            for (HashMap playerData : arrayPlayerData) {
+                System.out.println(playerData);  //loopt door de arrays van firestore zodat je ze apart kan zien van elke player
+
+                Map.Entry<String, Long> entry = (Map.Entry<String, Long>) playerData.entrySet().iterator().next(); //elke
+                String turnIdKey = entry.getKey(); //pakt de key van elke 1e Key-Value combo
+                Long turnIdValue = entry.getValue(); //pakt de bijbehorende value van die 1e key
+                System.out.println(turnIdKey + " = " + turnIdValue); //print beide key en value
+            }
+        } else {
+            System.out.println("No document found!");
+        }
     }
 
     public void endTurn() throws ExecutionException, InterruptedException {

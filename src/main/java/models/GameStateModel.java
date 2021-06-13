@@ -5,6 +5,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import views.SpelbordView;
 
 import java.io.Writer;
 import java.util.*;
@@ -18,6 +19,7 @@ public class GameStateModel {
     private boolean gameOver;
     private PlayerModel players;
     private boolean canEnd;
+    private SpelbordView viewer;
 
 
 
@@ -41,7 +43,7 @@ public class GameStateModel {
 
                     //ToDo zorg ervoor dat hier een mouse event listeren
 
-                    //functie garrison(current playerID)
+                    //functie viewer.garrison(current playerID)
 
 
                 } else {

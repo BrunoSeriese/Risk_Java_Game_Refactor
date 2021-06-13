@@ -92,11 +92,9 @@ public class SpelbordModel {
             e.printStackTrace();
         }
         Collections.shuffle(countriesAndID);
-        System.out.println("counties and id" + countriesAndID);
+
         this.countries = countriesAndID;
-        for (int i = 0; i<countriesAndID.size(); i++){
-            System.out.println(countriesAndID.get(i).getCountryID());
-        }
+
     }
 
     public ArrayList<PlayerModel> getPlayers(){
