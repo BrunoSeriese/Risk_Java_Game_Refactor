@@ -26,6 +26,7 @@ public class JoinLobbyController {
     TextField codeField;
 
 
+
     public JoinLobbyController(){
         System.out.println("I am alive");
         playerModel = loginController.getInstance();
