@@ -46,6 +46,9 @@ public class SpelbordController {
         spelbordModel = getSpelbordModelInstance();
     }
 
+    public void handleClicky(){
+        System.out.println("CLICKYYY MOFO");
+    }
     public void showCards() {
         System.out.println("showcard");
     }
