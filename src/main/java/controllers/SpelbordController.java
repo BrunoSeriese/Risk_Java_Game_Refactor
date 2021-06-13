@@ -33,6 +33,9 @@ public class SpelbordController {
 
 
 
+    public void handleClicky(){
+        System.out.println("CLICKYYY MOFO");
+    }
     public void showCards() {
         System.out.println("showcard");
     }
