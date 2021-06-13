@@ -49,12 +49,17 @@ public class SpelbordController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection("794342").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
+        if (document.get("countries") != null){
+            System.out.println("this shit is already made");
+        } else{
+            SpelbordModel spelbordModel = new SpelbordModel();
+            spelbordModel.CountriesAndIdMap();
 
-        SpelbordModel spelbordModel = new SpelbordModel();
-        spelbordModel.CountriesAndIdMap();
+            CountryModel countryModel = new CountryModel("NA1");
+            ApiFuture<WriteResult> result = docRef.update("countries", FieldValue.arrayUnion(spelbordModel));
+        }
 
-        CountryModel countryModel = new CountryModel("NA1");
-        ApiFuture<WriteResult> result = docRef.update("countries", FieldValue.arrayUnion(spelbordModel));
+
     }
 
     public void getFromFirebase() throws ExecutionException, InterruptedException {

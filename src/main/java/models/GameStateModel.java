@@ -21,7 +21,12 @@ public class GameStateModel {
     private boolean canEnd;
     private SpelbordView viewer;
 
-
+    EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            System.out.println("ER is geklikt");
+        }
+    };
 
     public GameStateModel(int TurnID) {
         this.turnID = 1;
@@ -37,6 +42,7 @@ public class GameStateModel {
                 int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
                 if (firebaseTurnID == State.TurnID){
                     System.out.println("Jij bent aan de beurt " + firebaseTurnID);
+                    State.stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
                     canEnd = true;
                     //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
 

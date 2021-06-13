@@ -92,7 +92,7 @@ public class LobbyController {
 
     public void startGame(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
 
-        if (loginController.genoegSpelers())
+        if (loginController.enoughPlayers())
             loginController.gameRunning();
             root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

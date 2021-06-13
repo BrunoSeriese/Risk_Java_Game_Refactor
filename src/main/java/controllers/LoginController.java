@@ -201,7 +201,7 @@ public class LoginController {
         System.out.println("Write result: " + result);
     }
 
-    public boolean genoegSpelers() throws ExecutionException, InterruptedException {
+    public boolean enoughPlayers() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -209,7 +209,7 @@ public class LoginController {
         List<String> arrayValue = (List<String>)document.get("players");
 
         //TODO vergeet niet om de nummer terug naar 4 te zetten
-        if (arrayValue.size() == 4){
+        if (arrayValue.size() == 2){
             return true;
         } else {
             System.out.println("Er zijn niet genoeg mensen in de lobby");

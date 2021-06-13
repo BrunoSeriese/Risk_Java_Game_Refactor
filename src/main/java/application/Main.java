@@ -40,9 +40,9 @@ public class Main extends Application {
 //        tester.CountriesAndIdMap();
 //        tester.getCountries();
 //
-        SpelbordController spelbordController = new SpelbordController();
+//        SpelbordController spelbordController = new SpelbordController();
 //        spelbordController.setInFirebase();
-        spelbordController.getFromFirebase();
+//        spelbordController.getFromFirebase();
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen
         //UNCOMMENT BOVENSTE STUK CODE ALS JE TURNID VAN FIRESTORE WIL TESTEN
