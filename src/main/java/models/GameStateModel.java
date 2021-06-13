@@ -21,7 +21,12 @@ public class GameStateModel {
     private boolean canEnd;
     private SpelbordView viewer;
 
-
+    EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            System.out.println("ER is geklikt");
+        }
+    };
 
     public GameStateModel(int TurnID) {
         this.turnID = 1;
@@ -42,7 +47,7 @@ public class GameStateModel {
 
 
                     //ToDo zorg ervoor dat hier een mouse event listeren
-
+                    State.stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
                     //functie viewer.garrison(current playerID)
 
 
