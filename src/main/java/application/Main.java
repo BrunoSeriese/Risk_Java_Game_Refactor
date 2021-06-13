@@ -18,10 +18,9 @@ public class Main extends Application {
         State.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
         primaryStage.setTitle("Risk Game");
-        primaryStage.setScene(new Scene(root,1280, 720));
+        primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();
-
 
 
 //        BasicConfigurator.configure();
@@ -30,21 +29,23 @@ public class Main extends Application {
 //        State.TurnID = 1;
 //        GameStateModel gameStateModel = new GameStateModel();
 
+
 //        gameStateModel.getPlayersFirebaseTurnID("869211");
 //        gameStateModel.getGamestateTurnIDFirestore("869211");
 //        gameStateModel.comparePlayerIDtoTurnID("762447","2");
 //        gameStateModel.nextTurnIDFirebase("869211");
+
 
 //        test hiermee de countries
 //        SpelbordModel tester = new SpelbordModel();
 //        tester.CountriesAndIdMap();
 //        tester.getCountries();
 //
-        //Comment dit uit om in firebase de countries in te zetten (2 regels idk of die get werkt)
+
+
+        //Uncomment om in firebase de countries in te zetten
 //        SpelbordController spelbordController = new SpelbordController();
 //        spelbordController.setInFirebase();
-
-
 //        spelbordController.getFromFirebase();
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen

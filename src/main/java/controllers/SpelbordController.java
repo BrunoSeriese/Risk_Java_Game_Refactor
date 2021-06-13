@@ -42,13 +42,14 @@ public class SpelbordController {
         return spelbordModel;
     }
 
-    public SpelbordController(){
+    public SpelbordController() {
         spelbordModel = getSpelbordModelInstance();
     }
 
-    public void handleClicky(){
+    public void handleClicky() {
         System.out.println("CLICKYYY MOFO");
     }
+
     public void showCards() {
         System.out.println("showcard");
     }
@@ -65,9 +66,9 @@ public class SpelbordController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
-        if (document.get("countries") != null){
+        if (document.get("countries") != null) {
             System.out.println("this shit is already made");
-        } else{
+        } else {
             spelbordModel.CountriesAndIdMap();
             Map<String, Object> data = new HashMap<>();
             data.put("countries", spelbordModel.getCountries());
@@ -78,22 +79,14 @@ public class SpelbordController {
     }
 
     public void getFromFirebase() throws ExecutionException, InterruptedException {
-        //todo je moet een niveau dieper hier! maar hoe? check de terminal output om te zien wat ik bedoel
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("794342").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
-        System.out.println(document);
         if (document.exists()) {
 
-            ArrayList<HashMap> arrayPlayerData = (ArrayList<HashMap>) document.get("countries"); //zet alle data van 'players' in array wat hashmaps bevatten
-
-            for (HashMap playerData : arrayPlayerData) {
-                System.out.println(playerData);  //loopt door de arrays van firestore zodat je ze apart kan zien van elke player
-
-                Map.Entry<String, Long> entry = (Map.Entry<String, Long>) playerData.entrySet().iterator().next(); //elke
-                String turnIdKey = entry.getKey(); //pakt de key van elke 1e Key-Value combo
-                Long turnIdValue = entry.getValue(); //pakt de bijbehorende value van die 1e key
-                System.out.println(turnIdKey + " = " + turnIdValue); //print beide key en value
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                System.out.println(armyAndCountryID);
             }
         } else {
             System.out.println("No document found!");
@@ -105,13 +98,14 @@ public class SpelbordController {
         gameStateModel.nextTurnIDFirebase(State.lobbycode);
 
     }
-    
-    public void hideHUD(){
+
+    public void hideHUD() {
         cardIcon.setVisible(false);
         diceIcon.setVisible(false);
         playerIcon.setVisible(false);
     }
-    public void showHUD(){
+
+    public void showHUD() {
         cardIcon.setVisible(true);
         diceIcon.setVisible(true);
         playerIcon.setVisible(true);
@@ -122,20 +116,18 @@ public class SpelbordController {
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        if (State.TurnID == Integer.parseInt(document.get("gamestateTurnID").toString())){
+        if (State.TurnID == Integer.parseInt(document.get("gamestateTurnID").toString())) {
             showHUD();
-        }else{
+        } else {
             hideHUD();
         }
     }
 
 
-
     //Todo zorg ervoor dat via de map de 2 countryID's worden meegegeven
-    public void attackPlayer(String countryCodeAttacker, String countryCodeDefender){
+    public void attackPlayer(String countryCodeAttacker, String countryCodeDefender) {
 
     }
-
 
 
 //    private List<PlayerModel> spelers = new ArrayList<>();
