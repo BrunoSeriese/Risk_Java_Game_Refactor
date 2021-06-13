@@ -29,6 +29,7 @@ public class LobbyController {
     private Parent root;
     boolean isInGame = false;
 
+
     static GameStateModel gameStateModel;
     LoginController loginController = new LoginController();
 
@@ -53,8 +54,6 @@ public class LobbyController {
         }
 
     }
-
-
 
     public void attachlistener() {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
@@ -88,7 +87,6 @@ public class LobbyController {
     public LobbyController() {
         attachlistener();
     }
-
 
     public void startGame(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
 

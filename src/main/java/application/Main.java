@@ -40,8 +40,11 @@ public class Main extends Application {
 //        tester.CountriesAndIdMap();
 //        tester.getCountries();
 //
+        //Comment dit uit om in firebase de countries in te zetten (2 regels idk of die get werkt)
 //        SpelbordController spelbordController = new SpelbordController();
 //        spelbordController.setInFirebase();
+
+
 //        spelbordController.getFromFirebase();
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen

@@ -26,12 +26,25 @@ public class SpelbordController {
     @FXML
     ImageView playerIcon;
 
+    static SpelbordModel spelbordModel;
+    GameStateModel gameStateModel;
 
     SpelbordView spelbordView = new SpelbordView();
     LoginController loginController = new LoginController();
-    GameStateModel gameStateModel;
 
+    //Mogelijkheid dat dit weg kan
+    //checkt of er al een instantie is, anders maakt hij er een
+    public static SpelbordModel getSpelbordModelInstance() {
+        if (spelbordModel == null) {
+            spelbordModel = new SpelbordModel();
+            System.out.println("nieuwe instantie Spelbordmodel is aangemaakt");
+        }
+        return spelbordModel;
+    }
 
+    public SpelbordController(){
+        spelbordModel = getSpelbordModelInstance();
+    }
 
     public void showCards() {
         System.out.println("showcard");
@@ -46,20 +59,19 @@ public class SpelbordController {
     }
 
     public void setInFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("794342").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.get("countries") != null){
             System.out.println("this shit is already made");
         } else{
-            SpelbordModel spelbordModel = new SpelbordModel();
             spelbordModel.CountriesAndIdMap();
+            Map<String, Object> data = new HashMap<>();
+            data.put("countries", spelbordModel.getCountries());
 
-            CountryModel countryModel = new CountryModel("NA1");
-            ApiFuture<WriteResult> result = docRef.update("countries", FieldValue.arrayUnion(spelbordModel));
+//            CountryModel countryModel = new CountryModel("NA1");
+            ApiFuture<WriteResult> result = docRef.update(data);
         }
-
-
     }
 
     public void getFromFirebase() throws ExecutionException, InterruptedException {
