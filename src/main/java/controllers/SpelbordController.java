@@ -3,7 +3,9 @@ package controllers;
 import application.State;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import models.CountryModel;
 import models.GameStateModel;
@@ -17,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
 
+    public Button buttonNA1;
     @FXML
     ImageView endTurnIcon;
     @FXML
@@ -62,7 +65,8 @@ public class SpelbordController {
         System.out.println("rolldice");
     }
 
-    public void setInFirebase() throws ExecutionException, InterruptedException {
+
+    public void setArmyAndCountryInFirebase() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -78,7 +82,7 @@ public class SpelbordController {
         }
     }
 
-    public void getFromFirebase() throws ExecutionException, InterruptedException {
+    public void getArmyAndCountryFromFirebase() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -91,6 +95,84 @@ public class SpelbordController {
         } else {
             System.out.println("No document found!");
         }
+    }
+
+
+    //TODO NIET AAN DEZE 4 METHODS KOMEN
+    public void setArmyFirebase() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                System.out.println(armyAndCountryID);
+
+            }
+        } else {
+            System.out.println("No document found!");
+        }
+    }
+
+    public void getArmyFirebase() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                System.out.println(armyAndCountryID);
+
+            }
+        } else {
+            System.out.println("No document found!");
+        }
+    }
+
+    public void setPlayerIDtoCountry() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                System.out.println(armyAndCountryID);
+
+            }
+        } else {
+            System.out.println("No document found!");
+        }
+    }
+
+    public void getPlayerIDtoCountry() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection("776722").document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                System.out.println(armyAndCountryID);
+
+            }
+        } else {
+            System.out.println("No document found!");
+        }
+    }
+    //TODO NIET AANKOMEN IS MINE ^^^^^^^^
+
+
+    public void testButton(ActionEvent event) {
+        System.out.println("clickedAAAAAAAAAA!!!");
+        Button buttonid = (Button) event.getSource();
+        System.out.println(buttonid);
     }
 
     public void endTurn() throws ExecutionException, InterruptedException {
@@ -128,6 +210,32 @@ public class SpelbordController {
     public void attackPlayer(String countryCodeAttacker, String countryCodeDefender) {
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    private List<PlayerModel> spelers = new ArrayList<>();
@@ -231,16 +339,14 @@ public class SpelbordController {
 //            System.out.println("Je hebt geen geldige combinatie van kaarten");
 //        }
 //    }
-//
-//    public void showPlayers() {
-//    } //method voor de buttons in de UI/Interface - show players is een simpele popup met de namen van de players en kleur
-//
-//    public void rollDice() {
-//    } //method voor de buttons in de UI/Interface - roll dice daar moet je met martin ff overleggen
-//
-//    public void showCards() {
-//    } //method voor de buttons in de UI/Interface - show cards wordt een kleine nieuwe interface waar chiel en ryan aan gaan werken
-//
+
+
+
+
+
+
+
+
 
 
     //    IK WEET BTW NIET OF DIT IN DE CONTROLLER MOET OF IN DE MODEL!!!
