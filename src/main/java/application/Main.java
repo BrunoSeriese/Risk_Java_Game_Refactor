@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import models.CountryModel;
 import models.GameStateModel;
@@ -17,7 +18,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         State.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
-        primaryStage.setTitle("Risk Game");
+        primaryStage.setTitle("Risk");
+        primaryStage.getIcons().add(new Image( "images/risklogo.png"));
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();
