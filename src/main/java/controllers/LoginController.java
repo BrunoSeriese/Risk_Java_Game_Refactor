@@ -3,28 +3,33 @@ package controllers;
 import application.State;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-import com.google.firestore.v1.Document;
-import javafx.event.ActionEvent;
-import models.GameStateModel;
+import models.GameModel;
 import models.PlayerModel;
 import models.SpelbordModel;
 
-import javax.xml.crypto.Data;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class LoginController {
 
     static PlayerModel playerModel;
-    static GameStateModel gameStateModel;
-    SpelbordModel spelbordModel = new SpelbordModel();
+    static GameModel gameModel;
+    static SpelbordModel spelbordModel;
 
 
     public void testMessage(String username){
         System.out.println("de username is: " + username);
     }
 
-    public static PlayerModel getInstance() {
+    public static SpelbordModel getSpelbordModelInstance(){
+        if (spelbordModel == null) {
+            spelbordModel = new SpelbordModel();
+            System.out.println("nieuwe instantie is aangemaakt");
+        }
+        return spelbordModel;
+    }
+
+    public static PlayerModel getPlayerModelInstance() {
         if (playerModel == null) {
             playerModel = new PlayerModel();
             System.out.println("nieuwe instantie is aangemaakt");
@@ -32,12 +37,12 @@ public class LoginController {
         return playerModel;
     }
 
-    public GameStateModel getGameStateModelInstance(){
-        if (gameStateModel == null) {
-            gameStateModel = new GameStateModel();
-            System.out.println("nieuwe instantie van GameStateModel is aangemaakt");
+    public GameModel getGameModelInstance(){
+        if (gameModel == null) {
+            gameModel = new GameModel();
+            System.out.println("nieuwe instantie van GameModel is aangemaakt");
         }
-        return gameStateModel;
+        return gameModel;
     }
 
     public String createLobbyCode() {

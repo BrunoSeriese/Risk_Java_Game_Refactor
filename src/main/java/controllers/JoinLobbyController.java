@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import models.PlayerModel;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 
 public class JoinLobbyController {
 
@@ -29,7 +28,7 @@ public class JoinLobbyController {
 
     public JoinLobbyController(){
         System.out.println("I am alive");
-        playerModel = loginController.getInstance();
+        playerModel = loginController.getPlayerModelInstance();
     }
 
     public void switchToInsertLobbycode(ActionEvent event) throws IOException{

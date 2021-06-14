@@ -25,7 +25,7 @@ public class PreLobbyController {
 
     public PreLobbyController(){
         System.out.println("I am alive");
-        playerModel = loginController.getInstance();
+        playerModel = loginController.getPlayerModelInstance();
     }
 
     public void switchToLobby(ActionEvent event) throws IOException {

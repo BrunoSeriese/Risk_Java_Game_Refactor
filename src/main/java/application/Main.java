@@ -7,10 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import models.CountryModel;
-import models.GameStateModel;
-import models.SpelbordModel;
-import org.apache.log4j.BasicConfigurator;
 
 public class Main extends Application {
 
@@ -26,10 +22,10 @@ public class Main extends Application {
 
 
 //        BasicConfigurator.configure();
-//        remove comment van State.TurnID en State.TurnID om GameStateModel te testen
+//        remove comment van State.TurnID en State.TurnID om GameModel te testen
 //        State.lobbycode = "762447";
 //        State.TurnID = 1;
-//        GameStateModel gameStateModel = new GameStateModel();
+//        GameModel gameStateModel = new GameModel();
 
 
 //        gameStateModel.getPlayersFirebaseTurnID("869211");

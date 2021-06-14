@@ -1,13 +1,11 @@
 package models;
 
-import io.opencensus.stats.Aggregation;
+import controllers.SpelbordController;
 import observers.SpelbordObservable;
 import observers.SpelbordObserver;
-import sun.jvm.hotspot.utilities.CPPExpressions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -20,7 +18,11 @@ public class SpelbordModel implements SpelbordObservable {
     private Map<String, String> countriesWithID = new HashMap<String, String>();
     private List<SpelbordObserver> observers = new ArrayList<SpelbordObserver>();
 
-    public SpelbordModel(){}
+
+
+    public SpelbordModel(){
+        SpelbordController.getSpelbordControllerInstance();
+    }
 
 
     public SpelbordModel(ArrayList<PlayerModel> players,  ArrayList<CountryModel> countries){
@@ -55,7 +57,7 @@ public class SpelbordModel implements SpelbordObservable {
 
     }
 
-    public void turnInProgress(ArrayList<PlayerModel> players, GameStateModel hostedGame){
+    public void turnInProgress(ArrayList<PlayerModel> players, GameModel hostedGame){
 
         for (int i = 0; i<players.size();i++){
 
@@ -68,7 +70,7 @@ public class SpelbordModel implements SpelbordObservable {
                 currentPlayer.attackPhase();
                 currentPlayer.endPhase();
 
-                hostedGame.nextTurn();
+                hostedGame.spelbordController.nextTurn();
             }
         }
 

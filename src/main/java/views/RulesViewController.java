@@ -1,4 +1,4 @@
-package controllers;
+package views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RulesController {
+public class RulesViewController {
 
     private Stage stage;
     private Scene scene;

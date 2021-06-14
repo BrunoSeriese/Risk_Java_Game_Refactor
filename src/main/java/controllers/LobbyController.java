@@ -4,22 +4,16 @@ import application.State;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.sun.javafx.sg.prism.NGExternalNode;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import models.GameStateModel;
-import models.PlayerModel;
+import models.GameModel;
 import models.SpelbordModel;
 import views.LobbyView;
 
@@ -35,7 +29,7 @@ public class LobbyController {
     boolean isInGame = false;
 
 
-    static GameStateModel gameStateModel;
+    static GameModel gameModel;
     LoginController loginController = new LoginController();
     @FXML
     Label username1;
@@ -88,7 +82,7 @@ public class LobbyController {
                             State.stage.setScene(scene);
                         });
 
-                        loginController.getGameStateModelInstance();
+                        loginController.getGameModelInstance();
                         System.out.println("De scene is uitgevoerd");
                     }
                 }
@@ -128,7 +122,7 @@ public class LobbyController {
     }
 
     //gamestate wordt init op 1
-    GameStateModel gameState = new GameStateModel(1);
+    GameModel gameState = new GameModel(1);
     // update gamestate naar firebase
     //Todo Gamestate moet firebase
 
