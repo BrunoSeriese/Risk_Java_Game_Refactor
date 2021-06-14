@@ -9,14 +9,17 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import models.GameStateModel;
 import models.SpelbordModel;
+import observers.SpelbordObservable;
+import observers.SpelbordObserver;
 import views.SpelbordView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class SpelbordController {
+public class SpelbordController{
 
     public Button buttonNA1;
     @FXML
@@ -30,8 +33,8 @@ public class SpelbordController {
 
     static SpelbordModel spelbordModel;
     GameStateModel gameStateModel;
+    static SpelbordController spelbordController;
 
-    SpelbordView spelbordView = new SpelbordView();
     LoginController loginController = new LoginController();
 
     //Mogelijkheid dat dit weg kan
@@ -44,24 +47,16 @@ public class SpelbordController {
         return spelbordModel;
     }
 
+    public static SpelbordController getSpelbordControllerInstance(){
+        if (spelbordController == null) {
+            spelbordController = new SpelbordController();
+            System.out.println("nieuwe instantie spelbordController is aangemaakt");
+        }
+        return spelbordController;
+    }
+
     public SpelbordController() {
         spelbordModel = getSpelbordModelInstance();
-    }
-
-    public void handleClicky() {
-        System.out.println("CLICKYYY MOFO");
-    }
-
-    public void showCards() {
-        System.out.println("showcard");
-    }
-
-    public void showPlayers() {
-        System.out.println("showplayer");
-    }
-
-    public void rollDice() {
-        System.out.println("rolldice");
     }
 
 
@@ -248,30 +243,9 @@ public class SpelbordController {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void registerObserver(SpelbordObserver sbv) {
+        spelbordModel.register(sbv);
+    }
 
 
 

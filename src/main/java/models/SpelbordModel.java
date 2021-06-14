@@ -1,6 +1,8 @@
 package models;
 
 import io.opencensus.stats.Aggregation;
+import observers.SpelbordObservable;
+import observers.SpelbordObserver;
 import sun.jvm.hotspot.utilities.CPPExpressions;
 
 import java.io.File;
@@ -9,13 +11,14 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 
-public class SpelbordModel {
+public class SpelbordModel implements SpelbordObservable {
     private PlayerModel currentPlayer;
     private ArrayList<PlayerModel> players;
     private ArrayList<Integer> armies;
     private ArrayList<CountryModel> countries;
 
     private Map<String, String> countriesWithID = new HashMap<String, String>();
+    private List<SpelbordObserver> observers = new ArrayList<SpelbordObserver>();
 
     public SpelbordModel(){}
 
@@ -134,7 +137,17 @@ public class SpelbordModel {
         System.out.println("de players zijn " + players);
     }
 
+    @Override
+    public void register(SpelbordObserver observer) {
+        observers.add(observer);
+    }
 
+    @Override
+    public void notifyAllObservers() {
+        for (SpelbordObserver s : observers) {
+            s.update(this);
+        }
+    }
 
 
 }
