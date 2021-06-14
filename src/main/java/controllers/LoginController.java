@@ -12,37 +12,19 @@ import java.util.concurrent.ExecutionException;
 
 public class LoginController {
 
-    static PlayerModel playerModel;
-    static GameModel gameModel;
     static SpelbordModel spelbordModel;
+    static LoginController loginController;
 
+    public LoginController getLoginControllerInstance() {
+        if (loginController == null) {
+            loginController = new LoginController();
+            System.out.println("nieuwe instantie van Logincontroller is aangemaakt");
+        }
+        return loginController;
+    }
 
-    public void testMessage(String username){
+    public void testMessage(String username) {
         System.out.println("de username is: " + username);
-    }
-
-    public static SpelbordModel getSpelbordModelInstance(){
-        if (spelbordModel == null) {
-            spelbordModel = new SpelbordModel();
-            System.out.println("nieuwe instantie is aangemaakt");
-        }
-        return spelbordModel;
-    }
-
-    public static PlayerModel getPlayerModelInstance() {
-        if (playerModel == null) {
-            playerModel = new PlayerModel();
-            System.out.println("nieuwe instantie is aangemaakt");
-        }
-        return playerModel;
-    }
-
-    public GameModel getGameModelInstance(){
-        if (gameModel == null) {
-            gameModel = new GameModel();
-            System.out.println("nieuwe instantie van GameModel is aangemaakt");
-        }
-        return gameModel;
     }
 
     public String createLobbyCode() {
@@ -80,8 +62,8 @@ public class LoginController {
         System.out.println("Update time : " + result.get().getUpdateTime());
     }
 
-    public void checkCreate(String username){
-        try{
+    public void checkCreate(String username) {
+        try {
             if (username.equals("")) {
                 System.out.println("Username is leeg");
             } else {
@@ -98,7 +80,6 @@ public class LoginController {
     }
 
 
-
     public boolean readLobby(String lobbycode) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
@@ -106,13 +87,13 @@ public class LoginController {
 
         if (document.exists()) {
             System.out.println("Document data: " + document.getData());
-            List<String> arrayValue = (List<String>)document.get("players");
+            List<String> arrayValue = (List<String>) document.get("players");
             System.out.println(arrayValue.size());
 
-            if (arrayValue.size() < 4){
+            if (arrayValue.size() < 4) {
                 System.out.println("er zitten in array: " + arrayValue.size());
                 return true;
-            } else{
+            } else {
                 System.out.println("De lobby is vol");
                 return false;
             }
@@ -127,7 +108,7 @@ public class LoginController {
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        List<String> arrayValue = (List<String>)document.get("players");
+        List<String> arrayValue = (List<String>) document.get("players");
         PlayerModel playerModel2 = new PlayerModel(username, arrayValue.size() + 1);
         playerModel2.setTurnID(arrayValue.size() + 1);
         State.TurnID = arrayValue.size() + 1;
@@ -153,13 +134,13 @@ public class LoginController {
         System.out.println("Update time : " + arrayUnion.get().getUpdateTime());
     }
 
-    public boolean checkJoin(String username, String code){
-        if (username.equals("")){
+    public boolean checkJoin(String username, String code) {
+        if (username.equals("")) {
             System.out.println("Username is leeg");
             return false;
         } else {
             try {
-                if (readLobby(code)){
+                if (readLobby(code)) {
                     joinLobby(code, username);
                     return true;
                 }
@@ -173,23 +154,23 @@ public class LoginController {
         return false;
     }
 
-    public boolean emptyUsername(String textfield){
-        if (textfield.equals("")){
+    public boolean emptyUsername(String textfield) {
+        if (textfield.equals("")) {
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean validateLobby(String code){
-        if (code.equals("")){
+    public boolean validateLobby(String code) {
+        if (code.equals("")) {
             return false;
         } else {
             code = code.toLowerCase();
-            char [] charArray = code.toCharArray();
-            for (int i = 0; i < charArray.length; i++){
+            char[] charArray = code.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
                 char ch = charArray[i];
-                if (ch >= 'a' && ch <= 'z'){
+                if (ch >= 'a' && ch <= 'z') {
                     System.out.println("Ingevulde lobbycode bevat letters");
                     return false;
                 }
@@ -211,10 +192,10 @@ public class LoginController {
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        List<String> arrayValue = (List<String>)document.get("players");
+        List<String> arrayValue = (List<String>) document.get("players");
 
         //TODO vergeet niet om de nummer terug naar 4 te zetten
-        if (arrayValue.size() >=2 ){
+        if (arrayValue.size() >= 2) {
             return true;
         } else {
             System.out.println("Er zijn niet genoeg mensen in de lobby");
@@ -235,8 +216,6 @@ public class LoginController {
             spelbordModel.setPlayers(arrayValue);
         }
     }
-
-
 
 
 }

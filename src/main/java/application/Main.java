@@ -20,6 +20,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+    //TODO VERY IMPORTANT! TO DOO DOO REMOVE ALL GETINSTANCES  AND REPLACE BY X x = NEW X();
 
 //        BasicConfigurator.configure();
 //        remove comment van State.TurnID en State.TurnID om GameModel te testen
@@ -36,7 +37,7 @@ public class Main extends Application {
 
 //        test hiermee de countries
 //        SpelbordModel tester = new SpelbordModel();
-//        tester.CountriesAndIdMap();
+//        tester.CountriesAndIdMap      ();
 //        tester.getCountries();
 //
 

@@ -14,10 +14,17 @@ public class SpelbordModel implements SpelbordObservable {
     private ArrayList<PlayerModel> players;
     private ArrayList<Integer> armies;
     private ArrayList<CountryModel> countries;
-
     private Map<String, String> countriesWithID = new HashMap<String, String>();
     private List<SpelbordObserver> observers = new ArrayList<SpelbordObserver>();
+    static SpelbordModel spelbordModel;
 
+    public static SpelbordModel getSpelbordModelInstance(){
+        if (spelbordModel == null) {
+            spelbordModel = new SpelbordModel();
+            System.out.println("nieuwe instantie van SpelbordModel is aangemaakt");
+        }
+        return spelbordModel;
+    }
 
 
     public SpelbordModel(){

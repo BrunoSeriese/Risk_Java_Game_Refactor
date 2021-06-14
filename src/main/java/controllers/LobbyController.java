@@ -35,13 +35,12 @@ public class LobbyController {
     Label username1;
     @FXML
     Label username2;
-    @FXML Label username3;
-    @FXML Label username4;
-    @FXML Label lobbyCode;
-
-
-
-
+    @FXML
+    Label username3;
+    @FXML
+    Label username4;
+    @FXML
+    Label lobbyCode;
 
     public boolean checkIfInGame() {
         if (!isInGame) {
@@ -82,7 +81,7 @@ public class LobbyController {
                             State.stage.setScene(scene);
                         });
 
-                        loginController.getGameModelInstance();
+                        gameModel.getGameModelInstance();
                         System.out.println("De scene is uitgevoerd");
                     }
                 }
@@ -97,12 +96,14 @@ public class LobbyController {
     }
 
 
-    public LobbyController() throws ExecutionException, InterruptedException {
+    public LobbyController() {
         attachlistener();
-        System.out.println("run method");
-        LobbyView lobbyView=new LobbyView();
 
-        lobbyView.getFirebaseUsernames("110720");
+
+
+//        System.out.println("run method");
+//        LobbyView lobbyView = new LobbyView();
+//        lobbyView.getFirebaseUsernames("110720");
 
 
         /////
@@ -122,39 +123,39 @@ public class LobbyController {
     }
 
     //gamestate wordt init op 1
-    GameModel gameState = new GameModel(1);
+//    GameModel gameState = new GameModel(1);
     // update gamestate naar firebase
     //Todo Gamestate moet firebase
 
     // let the game init here
-    SpelbordModel hostedGame = new SpelbordModel();
+//    SpelbordModel hostedGame = new SpelbordModel();
     //Todo populate the hostedgame with a ArrayList<PlayerModel> and ArrayList<CountryModel>s
 
-    @FXML
-    public void initialize() throws ExecutionException, InterruptedException {
-        LobbyView lobbyView=new LobbyView();
-        lobbyCode.setText(State.lobbycode);
-
-        if (lobbyView.getFirebaseUsernames(State.lobbycode).size()==1) {
-            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
-        }else if(lobbyView.getFirebaseUsernames(State.lobbycode).size()==2) {
-            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
-            username2.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(1)));
-        }else if(lobbyView.getFirebaseUsernames(State.lobbycode).size()==3){
-            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
-            username2.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(1)));
-            username3.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(2)));
-        }else if(lobbyView.getFirebaseUsernames(State.lobbycode).size()==4) {
-            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
-            username2.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(1)));
-            username3.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(2)));
-            username4.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(3)));
-        }else{
-            System.out.println("er is iets fout gegaan met de namen aan het spel toevoegen");
-        }
-    } //TODO: code in een loop zetten dat als een 2e speler joint de username2 word uitgevoerd enzv
-    //TODO: Initialize DRY maken
-    //TODO: ook de lobbycode pakken en die displayen
+//    @FXML
+//    public void initialize() throws ExecutionException, InterruptedException {
+//        LobbyView lobbyView = new LobbyView();
+//        lobbyCode.setText(State.lobbycode);
+//
+//        if (lobbyView.getFirebaseUsernames(State.lobbycode).size() == 1) {
+//            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
+//        } else if (lobbyView.getFirebaseUsernames(State.lobbycode).size() == 2) {
+//            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
+//            username2.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(1)));
+//        } else if (lobbyView.getFirebaseUsernames(State.lobbycode).size() == 3) {
+//            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
+//            username2.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(1)));
+//            username3.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(2)));
+//        } else if (lobbyView.getFirebaseUsernames(State.lobbycode).size() == 4) {
+//            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
+//            username2.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(1)));
+//            username3.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(2)));
+//            username4.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(3)));
+//        } else {
+//            System.out.println("er is iets fout gegaan met de namen aan het spel toevoegen");
+//        }
+//    } //TODO: code in een loop zetten dat als een 2e speler joint de username2 word uitgevoerd enzv
+//    //TODO: Initialize DRY maken
+//    //TODO: ook de lobbycode pakken en die displayen
 }
 
 

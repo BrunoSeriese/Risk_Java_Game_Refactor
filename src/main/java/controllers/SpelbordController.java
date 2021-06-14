@@ -21,49 +21,28 @@ import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
 
-    static SpelbordModel spelbordModel;
     GameModel gameModel;
-    static SpelbordController spelbordController;
+    static SpelbordModel spelbordModel;
     private SpelbordModel map;
     private boolean canEnd;
     private int turnID;
     private boolean gameOver;
-
+    static SpelbordController spelbordController;
     //    gameModel = loginController.getGameModelInstance();
 //    LoginController loginController = new LoginController();
 
-    /*
-Mogelijkheid dat dit weg kan
-checkt of er al een instantie is, anders maakt hij er een
-*/
-    public static SpelbordModel getSpelbordModelInstance() {
-        if (spelbordModel == null) {
-            spelbordModel = new SpelbordModel();
-            System.out.println("nieuwe instantie Spelbordmodel is aangemaakt");
-        }
-        return spelbordModel;
-    }
 
     public static SpelbordController getSpelbordControllerInstance() {
         if (spelbordController == null) {
             spelbordController = new SpelbordController();
-            System.out.println("nieuwe instantie is aangemaakt");
+            System.out.println("nieuwe instantie van SpelbordController is aangemaakt");
         }
         return spelbordController;
     }
 
-    public SpelbordController() {
-        spelbordModel = getSpelbordModelInstance();
-        attachlistener();
-//        spelbordController = getSpelbordControllerInstance();
-    }
 
-    EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent e) {
-            System.out.println("ER is geklikt");
-        }
-    };
+
+    EventHandler<MouseEvent> eventHandler = e -> System.out.println("ER is geklikt");
 
     public void attachlistener() {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
@@ -92,6 +71,11 @@ checkt of er al een instantie is, anders maakt hij er een
         });
     }
 
+    public SpelbordController() {
+        spelbordModel = spelbordModel.getSpelbordModelInstance();
+        attachlistener();
+//        spelbordController = getSpelbordControllerInstance();
+    }
 
     public void setArmyAndCountryInFirebase() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");

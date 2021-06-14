@@ -304,14 +304,6 @@
       <Label layoutX="263.0" layoutY="493.0" text="SA2" />
       <Label layoutX="388.0" layoutY="476.0" text="SA3" />
       <Label layoutX="303.0" layoutY="585.0" text="SA4" />
-      <Button fx:id="buttonNA1" layoutX="472.0" layoutY="78.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font size="8.0" />
-         </font>
-      </Button>
 
       <Button fx:id="cSA1"  layoutX="261.0" layoutY="415.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>

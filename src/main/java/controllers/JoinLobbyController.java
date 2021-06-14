@@ -27,8 +27,8 @@ public class JoinLobbyController {
 
 
     public JoinLobbyController(){
-        System.out.println("I am alive");
-        playerModel = loginController.getPlayerModelInstance();
+        System.out.println("I am joinlobby alive");
+        playerModel = playerModel.getPlayerModelInstance();
     }
 
     public void switchToInsertLobbycode(ActionEvent event) throws IOException{
