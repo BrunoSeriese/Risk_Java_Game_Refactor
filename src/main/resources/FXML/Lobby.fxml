@@ -87,6 +87,16 @@
             <Font name="Rockwell" size="28.0" />
          </font>
       </Label>
+      <Label fx:id="lobbyLabel" layoutX="178.0" layoutY="470.0" text="CODE: ">
+         <font>
+            <Font name="Rockwell" size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="lobbyCode" layoutX="300.0" layoutY="470.0" text="code">
+         <font>
+            <Font name="Rockwell" size="28.0" />
+         </font>
+      </Label>
       <Button fx:id="LobbyStartButton" alignment="CENTER" layoutX="178.0" layoutY="526.0" mnemonicParsing="false" onAction="#startGame" opacity="0.01" prefHeight="74.0" prefWidth="181.0" text="LobbyStart" textAlignment="CENTER">
          <effect>
             <Shadow />
