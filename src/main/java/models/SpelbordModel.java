@@ -21,7 +21,6 @@ public class SpelbordModel implements SpelbordObservable {
 
 
     public SpelbordModel(){
-        SpelbordController.getSpelbordControllerInstance();
     }
 
 

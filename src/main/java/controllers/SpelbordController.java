@@ -30,7 +30,7 @@ public class SpelbordController {
     private boolean gameOver;
 
     //    gameModel = loginController.getGameModelInstance();
-    LoginController loginController = new LoginController();
+//    LoginController loginController = new LoginController();
 
     /*
 Mogelijkheid dat dit weg kan
@@ -52,19 +52,18 @@ checkt of er al een instantie is, anders maakt hij er een
         return spelbordController;
     }
 
+    public SpelbordController() {
+        spelbordModel = getSpelbordModelInstance();
+        attachlistener();
+//        spelbordController = getSpelbordControllerInstance();
+    }
+
     EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             System.out.println("ER is geklikt");
         }
     };
-
-
-    public SpelbordController() {
-        spelbordModel = getSpelbordModelInstance();
-        spelbordController = getSpelbordControllerInstance();
-    }
-
 
     public void attachlistener() {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
@@ -196,7 +195,7 @@ checkt of er al een instantie is, anders maakt hij er een
 
     //TODO matchen met code hierboven
     public void nextTurn() {
-        if (gameModel.isGameOver()) {
+        if (gameModel.isGameOver() == true) {
             //end game. this should be called by an observer?
         } else if (gameModel.getTurnID() < 4) {
             gameModel.setTurnID(gameModel.getTurnID() + 1);
@@ -216,11 +215,6 @@ checkt of er al een instantie is, anders maakt hij er een
     public void attackPlayer(String countryCodeAttacker, String countryCodeDefender) {
 
     }
-
-    public void registerObserver(SpelbordObserver sbv) {
-        spelbordModel.register(sbv);
-    }
-
 
     public void getButtonID(ActionEvent event) {
         System.out.println("clickedAAAAAAAAAA!!!");
@@ -248,6 +242,9 @@ checkt of er al een instantie is, anders maakt hij er een
         nextTurnIDFirebase();
     }
 
+    public void registerObserver(SpelbordObserver sbv) {
+        spelbordModel.register(sbv);
+    }
 
 //    //TODO NIET AAN DEZE 4 METHODS KOMEN
 //

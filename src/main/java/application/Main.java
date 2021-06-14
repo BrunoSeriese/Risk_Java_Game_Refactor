@@ -42,8 +42,8 @@ public class Main extends Application {
 
 
         //Uncomment om in firebase de countries in te zetten
-        SpelbordController spelbordController = new SpelbordController();
-        spelbordController.setArmyAndCountryInFirebase();
+//        SpelbordController spelbordController = new SpelbordController();
+//        spelbordController.setArmyAndCountryInFirebase();
 //        spelbordController.getArmyAndCountryFromFirebase();
 //
 //        spelbordController.setArmyFirebase(1,32);
