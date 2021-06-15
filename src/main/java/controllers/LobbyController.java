@@ -130,10 +130,10 @@ public class LobbyController {
 //    SpelbordModel hostedGame = new SpelbordModel();
     //Todo populate the hostedgame with a ArrayList<PlayerModel> and ArrayList<CountryModel>s
 
-//    @FXML
-//    public void displayLobbyCode() {
-//        lobbyCode.setText(State.lobbycode);
-//    }
+    @FXML
+    public void initialize() {
+        lobbyCode.setText(State.lobbycode);
+    }
 
 }
 
