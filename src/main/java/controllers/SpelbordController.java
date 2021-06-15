@@ -40,7 +40,13 @@ public class SpelbordController {
         return spelbordController;
     }
 
-
+    public GameModel getGameModelInstance() {
+        if (gameModel == null) {
+            gameModel = new GameModel(1);
+            System.out.println("nieuwe instantie van GameModel is aangemaakt");
+        }
+        return gameModel;
+    }
 
     EventHandler<MouseEvent> eventHandler = e -> System.out.println("ER is geklikt");
 
@@ -74,7 +80,6 @@ public class SpelbordController {
     public SpelbordController() {
         spelbordModel = spelbordModel.getSpelbordModelInstance();
         attachlistener();
-//        spelbordController = getSpelbordControllerInstance();
     }
 
     public void setArmyAndCountryInFirebase() throws ExecutionException, InterruptedException {

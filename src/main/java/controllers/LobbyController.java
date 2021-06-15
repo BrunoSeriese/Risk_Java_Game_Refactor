@@ -28,7 +28,7 @@ public class LobbyController {
     private Parent root;
     boolean isInGame = false;
 
-
+    SpelbordController spelbordController;
     static GameModel gameModel;
     LoginController loginController = new LoginController();
     @FXML
@@ -81,7 +81,7 @@ public class LobbyController {
                             State.stage.setScene(scene);
                         });
 
-                        gameModel.getGameModelInstance();
+                        spelbordController.getGameModelInstance();
                         System.out.println("De scene is uitgevoerd");
                     }
                 }
