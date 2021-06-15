@@ -85,6 +85,11 @@ public class SpelbordController {
     public SpelbordController() {
         gameModel = getGameModelInstance();
         spelbordModel = spelbordModel.getSpelbordModelInstance();
+
+        //todo verder uitwerken
+//        SpelbordObserver phaseID = null;
+//        spelbordModel.register(phaseID);
+//        phaseID.update(1);
         attachlistener();
     }
 
