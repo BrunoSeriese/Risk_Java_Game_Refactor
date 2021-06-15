@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    SpelbordController spelbordController;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         State.stage = primaryStage;
@@ -41,13 +43,15 @@ public class Main extends Application {
 //        tester.getCountries();
 //
 
-
+        State.lobbycode = "791967";
         //Uncomment om in firebase de countries in te zetten
-//        SpelbordController spelbordController = new SpelbordController();
+//        spelbordController = spelbordController.getSpelbordControllerInstance();
+        SpelbordController spelbordController = new SpelbordController();
+
 //        spelbordController.setArmyAndCountryInFirebase();
 //        spelbordController.getArmyAndCountryFromFirebase();
 //
-//        spelbordController.setArmyFirebase(1,32);
+        spelbordController.setArmyFirebase();
 //        spelbordController.getArmyFirebase(1);
 
 
