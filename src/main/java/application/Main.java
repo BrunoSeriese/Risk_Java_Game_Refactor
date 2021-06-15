@@ -51,7 +51,9 @@ public class Main extends Application {
 //        spelbordController.setArmyAndCountryInFirebase();
 //        spelbordController.getArmyAndCountryFromFirebase();
 //
-        spelbordController.setArmyFirebase();
+
+
+        spelbordController.setArmyFirebase("NA6", 345);
 //        spelbordController.getArmyFirebase(1);
 
 

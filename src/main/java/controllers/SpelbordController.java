@@ -54,12 +54,11 @@ public class SpelbordController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null) {
-                System.out.println(documentSnapshot.getData().get("gamestateTurnID"));
-                System.out.println(State.TurnID);
+//                System.out.println(documentSnapshot.getData().get("gamestateTurnID"));
+//                System.out.println(State.TurnID);
                 int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
-                System.out.println("hij is niet gezet");
                 gameModel.setTurnID(firebaseTurnID);
-                System.out.println("hij is gezet");
+
                 startMainLoop();
             }
         });
@@ -111,6 +110,7 @@ public class SpelbordController {
         DocumentSnapshot document = future.get();
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+
             for (HashMap armyAndCountryID : arrayCountryData) {
                 System.out.println(armyAndCountryID);
             }
@@ -119,41 +119,35 @@ public class SpelbordController {
         }
     }
 
-    public void setArmyFirebase() throws ExecutionException, InterruptedException {
+    public void setArmyFirebase(String ButtonID, int newArmies) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
+
+
         if (document.exists()) {
-            int count = 0;
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            System.out.println(arrayCountryData);
+
+            int count = 0;
+
             for (HashMap armyAndCountryID : arrayCountryData) {
-                System.out.println(armyAndCountryID);
-                if (armyAndCountryID.containsValue("NA6")) {
-                    System.out.println("dit is NA6");
-                    System.out.println("de army is " + armyAndCountryID.get("army"));
-                    System.out.println(armyAndCountryID.replace("army", 40));
 
-                } else {
-                    count++;
+                if (armyAndCountryID.containsValue(ButtonID)) {
+//                        System.out.println(armyAndCountryID);
+                    System.out.println(arrayCountryData.get(count).put("army", newArmies));
+                    System.out.println(arrayCountryData);
+                    System.out.println(count);
+                    break;
                 }
+                count += 1;
             }
+            docRef.update("countries", arrayCountryData);
 
-//            for (int i = 0; i < arrayCountryData.size(); i++) {
-//                System.out.println(i);
-//                if (i.containsValue("NA6")) {
-//                    System.out.println("dit is NA6");
-//                    System.out.println("de army is " + armyAndCountryID.get("army"));
-//                    Map<String, Integer> data = new HashMap<>();
-//                    data.put("army", 20);
-//
-//                    ArrayList<HashMap> arrayIndex = new ArrayList<>();
-//                    arrayIndex.add(armyAndCountryID.containsValue("NA6"), data);
-//                    docRef.update("countries", arrayIndex);
-//                }
-//            }
         } else {
             System.out.println("No document found!");
         }
+
     }
 
 
