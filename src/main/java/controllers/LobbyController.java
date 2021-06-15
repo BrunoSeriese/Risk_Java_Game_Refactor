@@ -23,6 +23,7 @@ import java.util.concurrent.ExecutionException;
 
 public class LobbyController {
 
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -99,8 +100,6 @@ public class LobbyController {
     public LobbyController() {
         attachlistener();
 
-
-
 //        System.out.println("run method");
 //        LobbyView lobbyView = new LobbyView();
 //        lobbyView.getFirebaseUsernames("110720");
@@ -131,10 +130,12 @@ public class LobbyController {
 //    SpelbordModel hostedGame = new SpelbordModel();
     //Todo populate the hostedgame with a ArrayList<PlayerModel> and ArrayList<CountryModel>s
 
-    @FXML
-    public void displayLobbyCode() throws ExecutionException, InterruptedException {
-        LobbyView lobbyView = new LobbyView();
-        lobbyCode.setText(State.lobbycode);
+//    @FXML
+//    public void displayLobbyCode() {
+//        lobbyCode.setText(State.lobbycode);
+//    }
+
+}
 
 //        if (lobbyView.getFirebaseUsernames(State.lobbycode).size() == 1) {
 //            username1.setText(String.valueOf(lobbyView.getFirebaseUsernames(State.lobbycode).get(0)));
@@ -153,9 +154,9 @@ public class LobbyController {
 //        } else {
 //            System.out.println("er is iets fout gegaan met de namen aan het spel toevoegen");
 //        }
-    } //TODO: code in een loop zetten dat als een 2e speler joint de username2 word uitgevoerd enzv
+//TODO: code in een loop zetten dat als een 2e speler joint de username2 word uitgevoerd enzv
 //    //TODO: Initialize DRY maken
 //    //TODO: ook de lobbycode pakken en die displayen
-}
+
 
 
