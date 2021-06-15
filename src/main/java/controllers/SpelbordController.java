@@ -146,7 +146,6 @@ public class SpelbordController {
         } else {
             System.out.println("No document found!");
         }
-
     }
 
 
@@ -247,16 +246,15 @@ public class SpelbordController {
         System.out.println(buttonid.getId().split("c")[1]);
         String buttonIdCode = buttonid.getId().split("c")[1];
 
-         int phaseID = 1;
+        int phaseID = 1;
 
         // if observerItem phaseID == 1 clicking on a country will add armies
-        if (phaseID == 1){
-            setArmyFirebase(buttonIdCode,10);
+        if (phaseID == 1) {
+            setArmyFirebase(buttonIdCode, 10);
         }
 
 
         // if observerItem phaseID == 2 clicking on a country will try to stage a attack
-
 
 
     }
