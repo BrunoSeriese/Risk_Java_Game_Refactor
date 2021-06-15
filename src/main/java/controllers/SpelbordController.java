@@ -21,7 +21,7 @@ import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
 
-    GameModel gameModel;
+    static GameModel gameModel;
     static SpelbordModel spelbordModel;
     private SpelbordModel map;
     private boolean canEnd;
@@ -40,7 +40,7 @@ public class SpelbordController {
         return spelbordController;
     }
 
-    public GameModel getGameModelInstance() {
+    public static GameModel getGameModelInstance() {
         if (gameModel == null) {
             gameModel = new GameModel(1);
             System.out.println("nieuwe instantie van GameModel is aangemaakt");
@@ -57,27 +57,35 @@ public class SpelbordController {
                 System.out.println(documentSnapshot.getData().get("gamestateTurnID"));
                 System.out.println(State.TurnID);
                 int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
-                if (firebaseTurnID == State.TurnID) {
-                    System.out.println("Jij bent aan de beurt " + firebaseTurnID);
-                    State.stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-                    canEnd = true;
-                    //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
-
-
-                    //ToDo zorg ervoor dat hier een mouse event listeren
-
-                    //functie viewer.garrison(current playerID)
-
-
-                } else {
-                    System.out.println("Je bent niet aan de beurt, TurnID " + firebaseTurnID + " is aan de beurt");
-                    canEnd = false;
-                }
+                System.out.println("hij is niet gezet");
+                gameModel.setTurnID(firebaseTurnID);
+                System.out.println("hij is gezet");
+                startMainLoop();
             }
         });
     }
 
+    public void startMainLoop(){
+        if (gameModel.getTurnID() == State.TurnID) {
+            System.out.println("Jij bent aan de beurt " + gameModel.getTurnID());
+            State.stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+            canEnd = true;
+            //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
+
+
+            //ToDo zorg ervoor dat hier een mouse event listeren
+
+            //functie viewer.garrison(current playerID)
+
+
+        } else {
+            System.out.println("Je bent niet aan de beurt, TurnID " + gameModel.getTurnID() + " is aan de beurt");
+            canEnd = false;
+        }
+    }
+
     public SpelbordController() {
+        gameModel = getGameModelInstance();
         spelbordModel = spelbordModel.getSpelbordModelInstance();
         attachlistener();
     }

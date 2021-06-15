@@ -23,7 +23,7 @@ public class GameModel implements GameObservable {
     private PlayerModel players;
 
     private SpelbordViewController viewer;
-    SpelbordController spelbordController = new SpelbordController();
+//    SpelbordController spelbordController = new SpelbordController();
     private List<GameObserver> observers = new ArrayList<GameObserver>();
     static GameModel gameModel;
 

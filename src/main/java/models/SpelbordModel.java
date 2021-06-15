@@ -76,7 +76,7 @@ public class SpelbordModel implements SpelbordObservable {
                 currentPlayer.attackPhase();
                 currentPlayer.endPhase();
 
-                hostedGame.spelbordController.nextTurn();
+//                hostedGame.spelbordController.nextTurn();
             }
         }
 
