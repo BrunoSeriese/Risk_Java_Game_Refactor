@@ -75,6 +75,7 @@ public class LobbyController {
                     if (checkIfInGame()) {
                         System.out.println("3");
                         System.out.println("De game is running");
+                        spelbordController.setArmyAndCountryInFirebase();
                         root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
                         scene = new Scene(root);
 
@@ -83,6 +84,7 @@ public class LobbyController {
                         });
 
                         spelbordController.getGameModelInstance();
+
                         System.out.println("De scene is uitgevoerd");
                     }
                 }
@@ -99,6 +101,7 @@ public class LobbyController {
 
     public LobbyController() {
         attachlistener();
+        spelbordController = SpelbordController.getSpelbordControllerInstance();
 
 //        System.out.println("run method");
 //        LobbyView lobbyView = new LobbyView();

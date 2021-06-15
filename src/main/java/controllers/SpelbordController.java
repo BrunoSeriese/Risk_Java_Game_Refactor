@@ -95,6 +95,7 @@ public class SpelbordController {
         if (document.get("countries") != null) {
             System.out.println("this shit is already made");
         } else {
+            System.out.println("testttttttt");
             spelbordModel.CountriesAndIdMap();
             Map<String, Object> data = new HashMap<>();
             data.put("countries", spelbordModel.getCountries());
