@@ -41,7 +41,7 @@ public class SpelbordViewController implements SpelbordObserver {
     }
 
 
-    public void getButtonID(ActionEvent event) {
+    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
         spelbordController.getButtonID(event);
     }
 

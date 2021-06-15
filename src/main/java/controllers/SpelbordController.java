@@ -89,7 +89,7 @@ public class SpelbordController {
     }
 
     public void setArmyAndCountryInFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.get("countries") != null) {
@@ -105,7 +105,7 @@ public class SpelbordController {
     }
 
     public void getArmyAndCountryFromFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -120,7 +120,7 @@ public class SpelbordController {
     }
 
     public void setArmyFirebase(String ButtonID, int newArmies) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
@@ -241,9 +241,23 @@ public class SpelbordController {
 
     }
 
-    public void getButtonID(ActionEvent event) {
+    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
         Button buttonid = (Button) event.getSource();
         System.out.println(buttonid.getId().split("c")[1]);
+        String buttonIdCode = buttonid.getId().split("c")[1];
+
+         int phaseID = 1;
+
+        // if observerItem phaseID == 1 clicking on a country will add armies
+        if (phaseID == 1){
+            setArmyFirebase(buttonIdCode,10);
+        }
+
+
+        // if observerItem phaseID == 2 clicking on a country will try to stage a attack
+
+
+
     }
 
     public void handleClicky() {
