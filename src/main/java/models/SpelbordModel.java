@@ -1,23 +1,34 @@
 package models;
 
-import io.opencensus.stats.Aggregation;
-import sun.jvm.hotspot.utilities.CPPExpressions;
+import controllers.SpelbordController;
+import observers.SpelbordObservable;
+import observers.SpelbordObserver;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 
-public class SpelbordModel {
+public class SpelbordModel implements SpelbordObservable {
     private PlayerModel currentPlayer;
     private ArrayList<PlayerModel> players;
     private ArrayList<Integer> armies;
     private ArrayList<CountryModel> countries;
-
     private Map<String, String> countriesWithID = new HashMap<String, String>();
+    private List<SpelbordObserver> observers = new ArrayList<SpelbordObserver>();
+    static SpelbordModel spelbordModel;
 
-    public SpelbordModel(){}
+    public static SpelbordModel getSpelbordModelInstance(){
+        if (spelbordModel == null) {
+            spelbordModel = new SpelbordModel();
+            System.out.println("nieuwe instantie van SpelbordModel is aangemaakt");
+        }
+        return spelbordModel;
+    }
+
+
+    public SpelbordModel(){
+    }
 
 
     public SpelbordModel(ArrayList<PlayerModel> players,  ArrayList<CountryModel> countries){
@@ -52,7 +63,7 @@ public class SpelbordModel {
 
     }
 
-    public void turnInProgress(ArrayList<PlayerModel> players, GameStateModel hostedGame){
+    public void turnInProgress(ArrayList<PlayerModel> players, GameModel hostedGame){
 
         for (int i = 0; i<players.size();i++){
 
@@ -65,7 +76,7 @@ public class SpelbordModel {
                 currentPlayer.attackPhase();
                 currentPlayer.endPhase();
 
-                hostedGame.nextTurn();
+//                hostedGame.spelbordController.nextTurn();
             }
         }
 
@@ -134,7 +145,17 @@ public class SpelbordModel {
         System.out.println("de players zijn " + players);
     }
 
+    @Override
+    public void register(SpelbordObserver observer) {
+        observers.add(observer);
+    }
 
+    @Override
+    public void notifyAllObservers() {
+        for (SpelbordObserver s : observers) {
+            s.update(this);
+        }
+    }
 
 
 }

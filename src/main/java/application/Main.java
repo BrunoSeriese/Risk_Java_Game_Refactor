@@ -5,29 +5,30 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import models.CountryModel;
-import models.GameStateModel;
-import models.SpelbordModel;
-import org.apache.log4j.BasicConfigurator;
 
 public class Main extends Application {
+
+    SpelbordController spelbordController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         State.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
-        primaryStage.setTitle("Risk Game");
+        primaryStage.setTitle("Risk");
+        primaryStage.getIcons().add(new Image( "images/risklogo.png"));
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();
 
+    //TODO VERY IMPORTANT! TO DOO DOO REMOVE ALL GETINSTANCES  AND REPLACE BY X x = NEW X();
 
 //        BasicConfigurator.configure();
-//        remove comment van State.TurnID en State.TurnID om GameStateModel te testen
+//        remove comment van State.TurnID en State.TurnID om GameModel te testen
 //        State.lobbycode = "762447";
 //        State.TurnID = 1;
-//        GameStateModel gameStateModel = new GameStateModel();
+//        GameModel gameStateModel = new GameModel();
 
 
 //        gameStateModel.getPlayersFirebaseTurnID("869211");
@@ -38,17 +39,21 @@ public class Main extends Application {
 
 //        test hiermee de countries
 //        SpelbordModel tester = new SpelbordModel();
-//        tester.CountriesAndIdMap();
+//        tester.CountriesAndIdMap      ();
 //        tester.getCountries();
 //
 
-
+//        State.lobbycode = "791967";
         //Uncomment om in firebase de countries in te zetten
-        SpelbordController spelbordController = new SpelbordController();
-        spelbordController.setArmyAndCountryInFirebase();
+//        spelbordController = spelbordController.getSpelbordControllerInstance();
+//        SpelbordController spelbordController = new SpelbordController();
+
+//        spelbordController.setArmyAndCountryInFirebase();
 //        spelbordController.getArmyAndCountryFromFirebase();
 //
-//        spelbordController.setArmyFirebase(1,32);
+
+
+//        spelbordController.setArmyFirebase("NA6", 345);
 //        spelbordController.getArmyFirebase(1);
 
 

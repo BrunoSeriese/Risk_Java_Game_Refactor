@@ -24,8 +24,8 @@ public class PreLobbyController {
     TextField usernameField;
 
     public PreLobbyController(){
-        System.out.println("I am alive");
-        playerModel = loginController.getInstance();
+        System.out.println("I am prelobby alive");
+        playerModel = playerModel.getPlayerModelInstance();
     }
 
     public void switchToLobby(ActionEvent event) throws IOException {
