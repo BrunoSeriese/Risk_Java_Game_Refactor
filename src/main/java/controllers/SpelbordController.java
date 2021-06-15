@@ -242,9 +242,8 @@ public class SpelbordController {
     }
 
     public void getButtonID(ActionEvent event) {
-        System.out.println("clickedAAAAAAAAAA!!!");
         Button buttonid = (Button) event.getSource();
-        System.out.println(buttonid);
+        System.out.println(buttonid.getId().split("c")[1]);
     }
 
     public void handleClicky() {
