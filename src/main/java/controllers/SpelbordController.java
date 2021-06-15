@@ -124,7 +124,6 @@ public class SpelbordController {
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
             System.out.println(arrayCountryData);
@@ -143,7 +142,6 @@ public class SpelbordController {
                 count += 1;
             }
             docRef.update("countries", arrayCountryData);
-
         } else {
             System.out.println("No document found!");
         }

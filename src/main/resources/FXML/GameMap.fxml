@@ -47,217 +47,217 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="NA1" fitHeight="172.0" fitWidth="410.0" layoutX="200.0" layoutY="19.0">
+      <ImageView fx:id="NA1-Image" fitHeight="172.0" fitWidth="410.0" layoutX="200.0" layoutY="19.0">
          <image>
             <Image url="@../images/NA/NA1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA2" layoutX="21.0" layoutY="100.0">
+      <ImageView fx:id="NA2-Image" layoutX="21.0" layoutY="100.0">
          <image>
             <Image url="@../images/NA/NA2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA3" layoutX="130.0" layoutY="109.0">
+      <ImageView fx:id="NA3-Image" layoutX="130.0" layoutY="109.0">
          <image>
             <Image url="@../images/NA/NA3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA4" layoutX="287.0" layoutY="87.0">
+      <ImageView fx:id="NA4-Image" layoutX="287.0" layoutY="87.0">
          <image>
             <Image url="@../images/NA/NA4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA5" layoutX="141.0" layoutY="164.0">
+      <ImageView fx:id="NA5-Image" layoutX="141.0" layoutY="164.0">
          <image>
             <Image url="@../images/NA/NA5.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA6" layoutX="263.0" layoutY="169.0">
+      <ImageView fx:id="NA6-Image" layoutX="263.0" layoutY="169.0">
          <image>
             <Image url="@../images/NA/NA6.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA7" layoutX="348.0" layoutY="159.0">
+      <ImageView fx:id="NA7-Image" layoutX="348.0" layoutY="159.0">
          <image>
             <Image url="@../images/NA/NA7.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA8" layoutX="167.0" layoutY="224.0">
+      <ImageView fx:id="NA8-Image" layoutX="167.0" layoutY="224.0">
          <image>
             <Image url="@../images/NA/NA8.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA9" layoutX="239.0" layoutY="227.0">
+      <ImageView fx:id="NA9-Image" layoutX="239.0" layoutY="227.0">
          <image>
             <Image url="@../images/NA/NA9.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="NA10" layoutX="181.0" layoutY="298.0">
+      <ImageView fx:id="NA10-Image" layoutX="181.0" layoutY="298.0">
          <image>
             <Image url="@../images/NA/NA10.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="SA1" layoutX="237.0" layoutY="387.0">
+      <ImageView fx:id="SA1-Image" layoutX="237.0" layoutY="387.0">
          <image>
             <Image url="@../images/SA/SA1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="SA3" fitHeight="159.0" fitWidth="202.0" layoutX="260.0" layoutY="426.0">
+      <ImageView fx:id="SA3-Image" fitHeight="159.0" fitWidth="202.0" layoutX="260.0" layoutY="426.0">
          <image>
             <Image url="@../images/SA/SA3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="SA2" layoutX="227.0" layoutY="440.0">
+      <ImageView fx:id="SA2-Image" layoutX="227.0" layoutY="440.0">
          <image>
             <Image url="@../images/SA/SA2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="SA4" layoutX="279.0" layoutY="526.0">
+      <ImageView fx:id="SA4-Image" layoutX="279.0" layoutY="526.0">
          <image>
             <Image url="@../images/SA/SA4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="OCE1" fitHeight="140.0" fitWidth="255.0" layoutX="943.0" layoutY="384.0">
+      <ImageView fx:id="OCE1-Image" fitHeight="140.0" fitWidth="255.0" layoutX="943.0" layoutY="384.0">
          <image>
             <Image url="@../images/OCE/OCE1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="OCE2" layoutX="962.0" layoutY="547.0">
+      <ImageView fx:id="OCE2-Image" layoutX="962.0" layoutY="547.0">
          <image>
             <Image url="@../images/OCE/OCE2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="OCE3" layoutX="1038.0" layoutY="534.0">
+      <ImageView fx:id="OCE3-Image" layoutX="1038.0" layoutY="534.0">
          <image>
             <Image url="@../images/OCE/OCE3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="OCE4" layoutX="1164.0" layoutY="563.0">
+      <ImageView fx:id="OCE4-Image" layoutX="1164.0" layoutY="563.0">
          <image>
             <Image url="@../images/OCE/OCE4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="AFRICA1" layoutX="477.0" layoutY="333.0">
+      <ImageView fx:id="AFRICA1-Image" layoutX="477.0" layoutY="333.0">
          <image>
             <Image url="@../images/AFRICA/AFRICA1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="AFRICA2" layoutX="589.0" layoutY="355.0">
+      <ImageView fx:id="AFRICA2-Image" layoutX="589.0" layoutY="355.0">
          <image>
             <Image url="@../images/AFRICA/AFRICA2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="AFRICA3" layoutX="641.0" layoutY="410.0">
+      <ImageView fx:id="AFRICA3-Image" layoutX="641.0" layoutY="410.0">
          <image>
             <Image url="@../images/AFRICA/AFRICA3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="AFRICA4" layoutX="577.0" layoutY="469.0">
+      <ImageView fx:id="AFRICA4-Image" layoutX="577.0" layoutY="469.0">
          <image>
             <Image url="@../images/AFRICA/AFRICA4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="AFRICA5" layoutX="584.0" layoutY="543.0">
+      <ImageView fx:id="AFRICA5-Image" layoutX="584.0" layoutY="543.0">
          <image>
             <Image url="@../images/AFRICA/AFRICA5.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="AFRICA6" layoutX="718.0" layoutY="583.0">
+      <ImageView fx:id="AFRICA6-Image" layoutX="718.0" layoutY="583.0">
          <image>
             <Image url="@../images/AFRICA/AFRICA6.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="EU3" fitHeight="219.0" fitWidth="186.0" layoutX="638.0" layoutY="101.0">
+      <ImageView fx:id="EU3-Image" fitHeight="219.0" fitWidth="186.0" layoutX="638.0" layoutY="101.0">
          <image>
             <Image url="@../images/EU/EU3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="EU1" layoutX="520.0" layoutY="152.0">
+      <ImageView fx:id="EU1-Image" layoutX="520.0" layoutY="152.0">
          <image>
             <Image url="@../images/EU/EU1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="EU2" layoutX="573.0" layoutY="90.0">
+      <ImageView fx:id="EU2-Image" layoutX="573.0" layoutY="90.0">
          <image>
             <Image url="@../images/EU/EU2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="EU4" layoutX="517.0" layoutY="191.0">
+      <ImageView fx:id="EU4-Image" layoutX="517.0" layoutY="191.0">
          <image>
             <Image url="@../images/EU/EU4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="EU5" layoutX="570.0" layoutY="202.0">
+      <ImageView fx:id="EU5-Image" layoutX="570.0" layoutY="202.0">
          <image>
             <Image url="@../images/EU/EU5.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="EU6" layoutX="515.0" layoutY="248.0">
+      <ImageView fx:id="EU6-Image" layoutX="515.0" layoutY="248.0">
          <image>
             <Image url="@../images/EU/EU6.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="EU7" layoutX="568.0" layoutY="254.0">
+      <ImageView fx:id="EU7-Image" layoutX="568.0" layoutY="254.0">
          <image>
             <Image url="@../images/EU/EU7.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA1" layoutX="811.0" layoutY="103.0">
+      <ImageView fx:id="ASIA1-Image" layoutX="811.0" layoutY="103.0">
          <image>
             <Image url="@../images/ASIA/ASIA1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA2" fitHeight="237.0" fitWidth="170.0" layoutX="850.0" layoutY="49.0">
+      <ImageView fx:id="ASIA2-Image" fitHeight="237.0" fitWidth="170.0" layoutX="850.0" layoutY="49.0">
          <image>
             <Image url="@../images/ASIA/ASIA2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA3" layoutX="980.0" layoutY="80.0">
+      <ImageView fx:id="ASIA3-Image" layoutX="980.0" layoutY="80.0">
          <image>
             <Image url="@../images/ASIA/ASIA3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA4" layoutX="1065.0" layoutY="111.0">
+      <ImageView fx:id="ASIA4-Image" layoutX="1065.0" layoutY="111.0">
          <image>
             <Image url="@../images/ASIA/ASIA4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA5" layoutX="973.0" layoutY="169.0">
+      <ImageView fx:id="ASIA5-Image" layoutX="973.0" layoutY="169.0">
          <image>
             <Image url="@../images/ASIA/ASIA5.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA6" layoutX="979.0" layoutY="215.0">
+      <ImageView fx:id="ASIA6-Image" layoutX="979.0" layoutY="215.0">
          <image>
             <Image url="@../images/ASIA/ASIA6.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA7" layoutX="1093.0" layoutY="201.0">
+      <ImageView fx:id="ASIA7-Image" layoutX="1093.0" layoutY="201.0">
          <image>
             <Image url="@../images/ASIA/ASIA7.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA8" layoutX="749.0" layoutY="214.0">
+      <ImageView fx:id="ASIA8-Image" layoutX="749.0" layoutY="214.0">
          <image>
             <Image url="@../images/ASIA/ASIA8.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA9" fitHeight="120.0" fitWidth="204.0" layoutX="856.0" layoutY="262.0">
+      <ImageView fx:id="ASIA9-Image" fitHeight="120.0" fitWidth="204.0" layoutX="856.0" layoutY="262.0">
          <image>
             <Image url="@../images/ASIA/ASIA9.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA10" layoutX="659.0" layoutY="297.0">
+      <ImageView fx:id="ASIA10-Image" layoutX="659.0" layoutY="297.0">
          <image>
             <Image url="@../images/ASIA/ASIA10.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA11" layoutX="812.0" layoutY="321.0">
+      <ImageView fx:id="ASIA11-Image" layoutX="812.0" layoutY="321.0">
          <image>
             <Image url="@../images/ASIA/ASIA11.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ASIA12" layoutX="945.0" layoutY="362.0">
+      <ImageView fx:id="ASIA12-Image" layoutX="945.0" layoutY="362.0">
          <image>
             <Image url="@../images/ASIA/ASIA12.png" />
          </image>
@@ -305,7 +305,7 @@
       <Label layoutX="388.0" layoutY="476.0" text="SA3" />
       <Label layoutX="303.0" layoutY="585.0" text="SA4" />
 
-      <Button fx:id="cSA1"  layoutX="261.0" layoutY="415.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="SA1"  layoutX="261.0" layoutY="415.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -314,7 +314,7 @@
          </font>
       </Button>
       <Label layoutX="483.0" layoutY="55.0" text="NA1" />
-      <Button fx:id="cNA9"  layoutX="285.0" layoutY="273.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA9"  layoutX="285.0" layoutY="273.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -322,7 +322,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA7"  layoutX="370.0" layoutY="198.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA7"  layoutX="370.0" layoutY="198.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -330,7 +330,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA10" layoutX="215.0" layoutY="324.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA10" layoutX="215.0" layoutY="324.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -338,7 +338,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA8"  layoutX="210.0" layoutY="257.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA8"  layoutX="210.0" layoutY="257.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -346,7 +346,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA5" layoutX="194.0" layoutY="189.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA5" layoutX="194.0" layoutY="189.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -354,7 +354,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA2" layoutX="70.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA2" layoutX="70.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -362,7 +362,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA3"  layoutX="182.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA3"  layoutX="182.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -370,7 +370,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU2" layoutX="587.0" layoutY="159.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="EU2" layoutX="587.0" layoutY="159.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -378,7 +378,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cAFRICA5" layoutX="616.0" layoutY="623.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="AFRICA5" layoutX="616.0" layoutY="623.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -394,7 +394,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cAFRICA3" layoutX="684.0" layoutY="472.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="AFRICA3" layoutX="684.0" layoutY="472.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -402,7 +402,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cAFRICA2" layoutX="629.0" layoutY="392.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="AFRICA2" layoutX="629.0" layoutY="392.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -418,7 +418,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA11" layoutX="866.0" layoutY="397.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA11" layoutX="866.0" layoutY="397.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -426,7 +426,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA9"  layoutX="940.0" layoutY="330.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA9"  layoutX="940.0" layoutY="330.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -434,7 +434,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA8" layoutX="806.0" layoutY="285.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA8" layoutX="806.0" layoutY="285.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -442,7 +442,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU3" layoutX="716.0" layoutY="221.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="EU3" layoutX="716.0" layoutY="221.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -450,7 +450,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cSA4" layoutX="296.0" layoutY="580.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="SA4" layoutX="296.0" layoutY="580.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -458,7 +458,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cSA2"  layoutX="285.0" layoutY="500.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="SA2"  layoutX="285.0" layoutY="500.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -466,7 +466,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cSA3"  layoutX="380.0" layoutY="498.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="SA3"  layoutX="380.0" layoutY="498.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -474,7 +474,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA1"  layoutX="477.0" layoutY="78.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA1"  layoutX="477.0" layoutY="78.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -490,7 +490,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cOCE2"  layoutX="1020.0" layoutY="590.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="OCE2"  layoutX="1020.0" layoutY="590.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -498,7 +498,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU7" layoutX="627.0" layoutY="280.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="EU7" layoutX="627.0" layoutY="280.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -506,7 +506,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU5"  layoutX="604.0" layoutY="229.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="EU5"  layoutX="604.0" layoutY="229.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -514,7 +514,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU6"  layoutX="526.0" layoutY="297.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="EU6"  layoutX="526.0" layoutY="297.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -530,7 +530,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA2"  layoutX="927.0" layoutY="186.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA2"  layoutX="927.0" layoutY="186.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -538,7 +538,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU1"  layoutX="524.0" layoutY="167.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="EU1"  layoutX="524.0" layoutY="167.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -546,7 +546,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cOCE4"  layoutX="1198.0" layoutY="573.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="OCE4"  layoutX="1198.0" layoutY="573.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -554,7 +554,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cOCE1"  layoutX="994.0" layoutY="464.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="OCE1"  layoutX="994.0" layoutY="464.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -562,7 +562,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA4"  layoutX="1168.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA4"  layoutX="1168.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -570,7 +570,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA3"  layoutX="1047.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA3"  layoutX="1047.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -578,7 +578,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA6"  layoutX="1031.0" layoutY="253.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA6"  layoutX="1031.0" layoutY="253.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -586,7 +586,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA5"  layoutX="1002.0" layoutY="200.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA5"  layoutX="1002.0" layoutY="200.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -594,7 +594,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA12"  layoutX="958.0" layoutY="406.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA12"  layoutX="958.0" layoutY="406.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -602,7 +602,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA6"  layoutX="273.0" layoutY="198.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA6"  layoutX="273.0" layoutY="198.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -610,7 +610,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA4" layoutX="291.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="NA4" layoutX="291.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -618,7 +618,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cAFRICA6"  layoutX="715.0" layoutY="618.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="38.0" scaleShape="false" text="Armies">
+      <Button fx:id="AFRICA6"  layoutX="715.0" layoutY="618.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="38.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -626,7 +626,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA10"  layoutX="723.0" layoutY="380.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA10"  layoutX="723.0" layoutY="380.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -634,7 +634,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA7"  layoutX="1104.0" layoutY="300.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="ASIA7"  layoutX="1104.0" layoutY="300.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -642,7 +642,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU4"  layoutX="508.0" layoutY="229.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="EU4"  layoutX="508.0" layoutY="229.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
