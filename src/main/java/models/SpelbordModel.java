@@ -85,17 +85,24 @@ public class SpelbordModel implements SpelbordObservable {
     public void CountriesAndIdMap() {
         //EUROPE
         ArrayList<CountryModel> countriesAndID = new ArrayList<CountryModel>();
-
+        int count = 1;
         try {
             File myObj = new File("src/main/resources/text/countries.txt");
             Scanner myReader = new Scanner(myObj);
+
             while (myReader.hasNextLine()) {
-                   String data = myReader.nextLine();
+                String data = myReader.nextLine();
 
                 String countryCode = data.split(":")[1];
                 CountryModel newCountry = new CountryModel(countryCode);
+                //Count mag maximaal tot 4
+                if (count == 5){
+                    count = 1;
+                }
+                newCountry.setPlayerID(count);
+//                System.out.println("de getter van player is: " + newCountry.getPlayerID()); //uncomment als je beter wilt begrijpen
                 countriesAndID.add(newCountry);
-
+                count++;
             }
             myReader.close();
         } catch (FileNotFoundException e) {
