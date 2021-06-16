@@ -64,4 +64,16 @@ public class CountryModel {
     public int getPlayerID() {
         return playerID;
     }
+
+    public void setCountryID(String countryID) {
+        this.countryID = countryID;
+    }
+
+    public ArrayList<String> getNeighbor() {
+        return neighbor;
+    }
+
+    public void setNeighbor(ArrayList<String> neighbor) {
+        this.neighbor = neighbor;
+    }
 }
