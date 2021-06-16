@@ -22,6 +22,7 @@ public class GameModel implements GameObservable {
     private boolean gameOver;
     private PlayerModel players;
     private int phaseID;
+    private ArrayList<String> selectedCountries;
 
     private SpelbordViewController viewer;
     //    SpelbordController spelbordController = new SpelbordController();
@@ -46,6 +47,17 @@ public class GameModel implements GameObservable {
     public GameModel() {
 //        spelbordController.attachlistener();
     }
+
+    public void setSelectedCountries(String countryID){
+
+        if (this.selectedCountries.size() < 2){
+            this.selectedCountries.add(countryID);
+        } else if (this.selectedCountries.size() == 2){
+            this.selectedCountries.removeAll(this.selectedCountries);
+        }
+    }
+
+    public ArrayList<String> getSelectedCountries(){return  this.selectedCountries;}
 
     public int getTurnID() {
         return this.turnID;
