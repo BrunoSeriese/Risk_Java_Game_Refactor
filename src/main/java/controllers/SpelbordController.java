@@ -280,13 +280,19 @@ public class SpelbordController {
         System.out.println(buttonid.getId().split("c")[1]);
         String buttonIdCode = buttonid.getId().split("c")[1];
 
-        int phaseID = 1;
+
+
 
 
 
         // if observerItem phaseID == 1 clicking on a country will add armies
-        if (phaseID == 1) {
-            setArmyFirebase(buttonIdCode, getArmyFirebase(buttonIdCode) + 4);
+        if (gameModel.getPhaseID() == 1) {
+            int oldArmies = getArmyFirebase(buttonIdCode);
+            setArmyFirebase(buttonIdCode, oldArmies + 4);
+            buttonid.setText(String.valueOf(oldArmies + 4));
+            gameModel.updatePhaseID();
+        } else if (gameModel.getPhaseID() == 2){
+            System.out.println("now you cant update armies, only attack scrub");
         }
 
 

@@ -21,9 +21,10 @@ public class GameModel implements GameObservable {
     private int turnID;
     private boolean gameOver;
     private PlayerModel players;
+    private int phaseID;
 
     private SpelbordViewController viewer;
-//    SpelbordController spelbordController = new SpelbordController();
+    //    SpelbordController spelbordController = new SpelbordController();
     private List<GameObserver> observers = new ArrayList<GameObserver>();
     static GameModel gameModel;
 
@@ -36,10 +37,10 @@ public class GameModel implements GameObservable {
 //    }
 
 
-
     public GameModel(int TurnID) {
         this.turnID = 1;
         this.gameOver = false;
+        this.phaseID = 1;
     }
 
     public GameModel() {
@@ -52,6 +53,17 @@ public class GameModel implements GameObservable {
 
     public void setTurnID(int turnID) {
         this.turnID = turnID;
+    }
+
+    public int getPhaseID() {
+        return this.phaseID;
+    }
+
+    public void updatePhaseID() {
+        if (this.phaseID < 3) {
+            this.phaseID += 1;
+        } else {this.phaseID = 1;}
+
     }
 
     public SpelbordModel getMap() {
