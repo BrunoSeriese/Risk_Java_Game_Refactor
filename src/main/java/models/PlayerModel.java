@@ -11,6 +11,7 @@ public class PlayerModel {
     private ArrayList<CountryModel> countries;
     private boolean canInterract;
     static PlayerModel playerModel;
+    private double playerColor;
 
 
     public static PlayerModel getPlayerModelInstance() {
@@ -20,6 +21,8 @@ public class PlayerModel {
         }
         return playerModel;
     }
+
+
 
 
 //    private ArrayList<Integer> lastThrow;
@@ -46,6 +49,16 @@ public class PlayerModel {
         this.hasTurn = false;
         this.countries = null;
     }
+
+    public PlayerModel(String username, int turnID, double playerColor) {
+        this.username = username;
+        this.turnID = turnID;
+        this.turnArmies = 3;
+        this.hasTurn = false;
+        this.countries = null;
+        this.playerColor = playerColor;
+    }
+
 
     public PlayerModel(String username, ArrayList<CountryModel> countries, ArrayList cards, Integer aantalLegers) {
 //        this.username = username;
@@ -130,6 +143,14 @@ public class PlayerModel {
 
     public void gainCountry(CountryModel wonCountry) {
         this.countries.add(wonCountry);
+    }
+
+    public double getPlayerColor() {
+        return playerColor;
+    }
+
+    public void setPlayerColor(double playerColor) {
+        this.playerColor = playerColor;
     }
 
 //    public ArrayList<Integer> getLastThrow() {

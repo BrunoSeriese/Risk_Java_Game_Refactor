@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -141,6 +142,9 @@
          <image>
             <Image url="@../images/AFRICA/AFRICA1.png" />
          </image>
+         <effect>
+            <ColorAdjust saturation="1.0" />
+         </effect>
       </ImageView>
       <ImageView fx:id="AFRICA2" layoutX="589.0" layoutY="355.0">
          <image>
@@ -171,6 +175,9 @@
          <image>
             <Image url="@../images/EU/EU3.png" />
          </image>
+         <effect>
+            <ColorAdjust saturation="1.0" />
+         </effect>
       </ImageView>
       <ImageView fx:id="EU1" layoutX="520.0" layoutY="152.0">
          <image>
@@ -305,7 +312,7 @@
       <Label layoutX="388.0" layoutY="476.0" text="SA3" />
       <Label layoutX="303.0" layoutY="585.0" text="SA4" />
 
-      <Button fx:id="cSA1"  layoutX="261.0" layoutY="415.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cSA1" layoutX="261.0" layoutY="415.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -314,7 +321,7 @@
          </font>
       </Button>
       <Label layoutX="483.0" layoutY="55.0" text="NA1" />
-      <Button fx:id="cNA9"  layoutX="285.0" layoutY="273.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cNA9" layoutX="285.0" layoutY="273.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -322,7 +329,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA7"  layoutX="370.0" layoutY="198.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cNA7" layoutX="370.0" layoutY="198.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -338,7 +345,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA8"  layoutX="210.0" layoutY="257.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cNA8" layoutX="210.0" layoutY="257.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -362,7 +369,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA3"  layoutX="182.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cNA3" layoutX="182.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -386,7 +393,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button id="cAFRICA4"  layoutX="618.0" layoutY="522.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="38.0" scaleShape="false" text="Armies">
+      <Button id="cAFRICA4" layoutX="618.0" layoutY="522.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="38.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -410,7 +417,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button id="cAFRICA1"  layoutX="533.0" layoutY="447.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button id="cAFRICA1" layoutX="533.0" layoutY="447.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -426,7 +433,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA9"  layoutX="940.0" layoutY="330.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA9" layoutX="940.0" layoutY="330.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -442,7 +449,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU3" layoutX="716.0" layoutY="221.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cEU3" layoutX="700.0" layoutY="215.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -458,7 +465,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cSA2"  layoutX="285.0" layoutY="500.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cSA2" layoutX="285.0" layoutY="500.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -466,7 +473,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cSA3"  layoutX="380.0" layoutY="498.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cSA3" layoutX="380.0" layoutY="498.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -474,7 +481,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA1"  layoutX="477.0" layoutY="78.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cNA1" layoutX="477.0" layoutY="78.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -482,7 +489,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button id="cOCE3"  layoutX="1098.0" layoutY="611.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button id="cOCE3" layoutX="1098.0" layoutY="611.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -490,7 +497,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cOCE2"  layoutX="1020.0" layoutY="590.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cOCE2" layoutX="1020.0" layoutY="590.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -506,7 +513,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU5"  layoutX="604.0" layoutY="229.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cEU5" layoutX="604.0" layoutY="229.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -514,7 +521,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU6"  layoutX="526.0" layoutY="297.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cEU6" layoutX="526.0" layoutY="297.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -530,7 +537,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA2"  layoutX="927.0" layoutY="186.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA2" layoutX="927.0" layoutY="186.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -538,7 +545,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU1"  layoutX="524.0" layoutY="167.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cEU1" layoutX="524.0" layoutY="167.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -546,7 +553,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cOCE4"  layoutX="1198.0" layoutY="573.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cOCE4" layoutX="1198.0" layoutY="573.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -554,7 +561,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cOCE1"  layoutX="994.0" layoutY="464.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cOCE1" layoutX="994.0" layoutY="464.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -562,7 +569,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA4"  layoutX="1168.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA4" layoutX="1168.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -570,7 +577,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA3"  layoutX="1047.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA3" layoutX="1047.0" layoutY="136.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -578,7 +585,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA6"  layoutX="1031.0" layoutY="253.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA6" layoutX="1031.0" layoutY="253.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -586,7 +593,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA5"  layoutX="1002.0" layoutY="200.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA5" layoutX="1002.0" layoutY="200.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -594,7 +601,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA12"  layoutX="958.0" layoutY="406.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA12" layoutX="958.0" layoutY="406.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -602,7 +609,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cNA6"  layoutX="273.0" layoutY="198.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cNA6" layoutX="273.0" layoutY="198.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -618,7 +625,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cAFRICA6"  layoutX="715.0" layoutY="618.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="38.0" scaleShape="false" text="Armies">
+      <Button fx:id="cAFRICA6" layoutX="715.0" layoutY="618.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="38.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -626,7 +633,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA10"  layoutX="723.0" layoutY="380.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA10" layoutX="723.0" layoutY="380.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -634,7 +641,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA7"  layoutX="1104.0" layoutY="300.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cASIA7" layoutX="1104.0" layoutY="300.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -642,7 +649,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cEU4"  layoutX="508.0" layoutY="229.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
+      <Button fx:id="cEU4" layoutX="508.0" layoutY="229.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" text="Armies">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

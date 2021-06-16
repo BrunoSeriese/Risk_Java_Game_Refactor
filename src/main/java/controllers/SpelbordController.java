@@ -7,16 +7,16 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.WriteResult;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.GameModel;
-import models.PlayerModel;
 import models.SpelbordModel;
 import observers.SpelbordObserver;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -247,7 +247,7 @@ public class SpelbordController {
                         return true;
                     } else {
                         System.out.println("nee helaas");
-                        gameModel.setSelectedCountries();
+                        gameModel.clearSelectedCountries();
                         return false;
                     }
                 }
@@ -344,20 +344,20 @@ public class SpelbordController {
         } else if (gameModel.getPhaseID() == 2) {
             System.out.println("now you cant update armies, only attack scrub");
             if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
-                gameModel.setSelectedCountries();
+                gameModel.clearSelectedCountries();
                 System.out.println("check if exists");
-                gameModel.setSelectedCountries(buttonIdCode);
+                gameModel.clearSelectedCountries(buttonIdCode);
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
             } else if (gameModel.getSelectedCountries().size() == 1) {
-                gameModel.setSelectedCountries(buttonIdCode);
+                gameModel.clearSelectedCountries(buttonIdCode);
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
                 if (getNeighborsFirebase()){
-                    gameModel.setSelectedCountries();
+                    gameModel.clearSelectedCountries();
                 }
 
 //            } else if (gameModel.getSelectedCountries().size() == 2) {
 //                System.out.println(gameModel.getSelectedCountries().get(0) + " " + gameModel.getSelectedCountries().get(1));
-//                gameModel.setSelectedCountries();
+//                gameModel.clearSelectedCountries();
                 //Todo check of gameModel.getSelectedCountries().get(0) gameModel.getSelectedCountries().get(1) kan aanvallen
 
                 //Todo laat de spelers de dice gooien
@@ -394,6 +394,17 @@ public class SpelbordController {
     public void registerObserver(SpelbordObserver sbv) {
         spelbordModel.register(sbv);
     }
+
+    public void setColorCountry(ImageView imageLand, double playerColor){
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setHue(playerColor);
+        colorAdjust.setSaturation(1);
+
+        imageLand.setEffect(colorAdjust);
+    }
+
+
+
 
     //    //TODO NIET AAN DEZE 4 METHODS KOMEN
 //

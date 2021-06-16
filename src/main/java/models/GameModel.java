@@ -49,7 +49,7 @@ public class GameModel implements GameObservable {
 //        spelbordController.attachlistener();
     }
 
-    public void setSelectedCountries(String countryID){
+    public void clearSelectedCountries(String countryID){
 
         if (this.selectedCountries == null || this.selectedCountries.size() < 2  ){
             this.selectedCountries.add(countryID);
@@ -59,7 +59,7 @@ public class GameModel implements GameObservable {
         }
     }
 
-    public void setSelectedCountries(){
+    public void clearSelectedCountries(){
         this.selectedCountries.clear();
     }
 

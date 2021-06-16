@@ -9,6 +9,7 @@ import controllers.SpelbordController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import models.GameModel;
 import models.SpelbordModel;
@@ -29,6 +30,12 @@ public class SpelbordViewController implements SpelbordObserver {
     public static ImageView playerIcon;
     @FXML
     public Button buttonNA1;
+    @FXML
+    public ImageView NA1;
+    @FXML
+    public ImageView NA5;
+
+
 
     SpelbordController spelbordController = SpelbordController.getSpelbordControllerInstance();
     static SpelbordModel spelbordModel;
@@ -59,10 +66,15 @@ public class SpelbordViewController implements SpelbordObserver {
 
     public void rollDice() {
         spelbordController.rollDice();
+//        setColorCountry(NA1, State.ORANGE);
     }
 
     public void endTurn() throws ExecutionException, InterruptedException {
         spelbordController.endTurn();
+    }
+
+    public void setColorCountry(ImageView imageLand, double playerColor){
+        spelbordController.setColorCountry(imageLand, playerColor);
     }
 
 

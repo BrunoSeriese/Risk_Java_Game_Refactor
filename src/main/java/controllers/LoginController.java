@@ -3,7 +3,6 @@ package controllers;
 import application.State;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-import models.GameModel;
 import models.PlayerModel;
 import models.SpelbordModel;
 
@@ -39,9 +38,10 @@ public class LoginController {
     }
 
     public void createLobby(String username, String lobbycode) throws ExecutionException, InterruptedException {
-        PlayerModel playerModel1 = new PlayerModel(username, 1);
+        PlayerModel playerModel1 = new PlayerModel(username, 1, 0.0);
         State.TurnID = 1;
         System.out.println("playermodel instantie is gemaakt");
+        System.out.println("jouw kleur  " + playerModel1.getPlayerColor());
 
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
 
@@ -110,12 +110,37 @@ public class LoginController {
 
         List<String> arrayValue = (List<String>) document.get("players");
         PlayerModel playerModel2 = new PlayerModel(username, arrayValue.size() + 1);
+        playerModel2.setPlayerColor(assignColorToPlayer(arrayValue.size() + 1));
+        System.out.println("dit is wahed color    " + playerModel2.getPlayerColor());
         playerModel2.setTurnID(arrayValue.size() + 1);
         State.TurnID = arrayValue.size() + 1;
         System.out.println("De stateturnid is: " + State.TurnID);
 
         return playerModel2;
     }
+
+    private double assignColorToPlayer(int i) {
+        switch (i) {
+            case 1:
+                return State.BLUE;
+            case 2:
+                return State.GREEN;
+            case 3:
+                return State.ORANGE;
+        }
+       return 0;
+    }
+
+//        if (i == 2) {
+//            return State.BLUE;
+//        } else if (i == 3) {
+//            return State.GREEN;
+//        } else if (i == 4) {
+//            return State.ORANGE;
+//        }
+//        return 0;
+
+
 
     public void joinLobby(String lobbycode, String username) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
