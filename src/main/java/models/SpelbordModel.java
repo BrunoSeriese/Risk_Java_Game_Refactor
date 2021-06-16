@@ -96,7 +96,6 @@ public class SpelbordModel implements SpelbordObservable {
                 String neighbors = data.split(":") [2];
                 ArrayList<String> neighborData = new ArrayList<>(Arrays.asList(neighbors.split(",")));
 
-                System.out.println(neighborData);
                 CountryModel newCountry = new CountryModel(countryCode, neighborData);
                 //Count mag maximaal tot 4
                 if (count == 5){

@@ -102,7 +102,6 @@ public class SpelbordController {
         if (document.get("countries") != null) {
             System.out.println("this shit is already made");
         } else {
-            System.out.println("testttttttt");
             spelbordModel.CountriesAndIdMap();
             Map<String, Object> data = new HashMap<>();
             data.put("countries", spelbordModel.getCountries());
@@ -211,7 +210,7 @@ public class SpelbordController {
         }
     }
 
-    public void getNeighborsFirebase() throws ExecutionException, InterruptedException {
+    public void getNeighborsFirebase() throws ExecutionException, InterruptedException { //TODO BRUNO parameters geven van de buttonID fzo? als je klikt
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -226,14 +225,17 @@ public class SpelbordController {
 
             for (HashMap armyAndCountryID : arrayCountryData) {
 
-                if (armyAndCountryID.containsValue("AFRICA3")) {    //TODO <--- dit land in de arraySelectedCountries gooien op index 0
-                    arraySelectedCountries.add(0, "eigenLand");
+                if (armyAndCountryID.containsValue("AFRICA3")) {//TODO Bruno hier moet iets komen van je eigen land van waar je wil aanvallen
+                    arraySelectedCountries.add(0, "land 1"); //TODO Bruno hier moet iets komen van je eigen land van waar je wil aanvallen
+                    System.out.println("dit is selected countries:   " + arraySelectedCountries);
 
                     arrayCountryData.get(count).get("neighbor");
                     ArrayList x = (ArrayList) arrayCountryData.get(count).get("neighbor");
 
-                    if (x.contains("ASIA10")) { //TODO <--- dit land in de arraySelectedCountries gooien op index 1
-                        arraySelectedCountries.add(1, "enemyLand");
+                    if (x.contains("ASIA10")) {//TODO Bruno hier moet iets komen van je eigen land van waar je wil aanvallen
+                        arraySelectedCountries.add(1, "land 2"); //TODO Bruno hier moet iets komen van de enemyland die je wil aanvallen
+                        System.out.println("dit is selected countries:   " + arraySelectedCountries);
+
                         System.out.println("Je mag aanvallen");
                     } else {
                         System.out.println("nee helaas");
