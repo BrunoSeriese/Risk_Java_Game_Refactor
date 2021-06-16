@@ -128,22 +128,22 @@ public class SpelbordController {
     }
 
 
-    public  int getArmyFirebase(String ButtonID) throws ExecutionException, InterruptedException {
+    public int getArmyFirebase(String ButtonID) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
+            System.out.println("dit is arraycountrydata:    " + arrayCountryData);
             int count = 0;
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue(ButtonID)) {
 //                        System.out.println(armyAndCountryID);
                     System.out.println(arrayCountryData.get(count).get("army"));
-                    String currentArmies =  arrayCountryData.get(count).get("army").toString();
-                    int firstArmy =  Integer.parseInt(currentArmies);
+                    String currentArmies = arrayCountryData.get(count).get("army").toString();
+                    int firstArmy = Integer.parseInt(currentArmies);
                     System.out.println(firstArmy);
                     return firstArmy;
                 }
@@ -155,6 +155,7 @@ public class SpelbordController {
         }
         return 0;
     }
+
     public void setArmyFirebase(String ButtonID, int newArmies) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
@@ -210,30 +211,31 @@ public class SpelbordController {
         }
     }
 
-    public void getNeighborsInFirebase() throws ExecutionException, InterruptedException {
+    public void getNeighborsFirebase() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
-            int count = 0;
-            for (HashMap armyAndCountryID : arrayCountryData) {
-//                System.out.println(armyAndCountryID);
-                if (armyAndCountryID.containsValue("AFRICA3")) {
 
-////                        System.out.println(armyAndCountryID);
-                    System.out.println(arrayCountryData.get(count).get("neighbor"));
-                    if (Arrays.asList(arrayCountryData.get(count).get("neighbor")).contains("ASIA10")){
+            int count = 0;
+
+            ArrayList arraySelectedCountries = gameModel.getSelectedCountries();
+            System.out.println("dit is selected countries:   " + arraySelectedCountries);
+
+            for (HashMap armyAndCountryID : arrayCountryData) {
+
+                if (armyAndCountryID.containsValue("AFRICA3")) {    //TODO <--- dit land in de arraySelectedCountries gooien op index 0
+
+                    arrayCountryData.get(count).get("neighbor");
+                    ArrayList x = (ArrayList) arrayCountryData.get(count).get("neighbor");
+
+                    if (x.contains("ASIA10")) { //TODO <--- dit land in de arraySelectedCountries gooien op index 1
                         System.out.println("Je mag aanvallen");
                     } else {
                         System.out.println("nee helaas");
                     }
-//                    for(Object x : Arrays.asList(arrayCountryData.get(count).get("neighbor")) ){
-//                        System.out.println(x);
-//
-//                    }
                 }
                 count += 1;
             }
@@ -315,28 +317,23 @@ public class SpelbordController {
         String buttonIdCode = buttonid.getId().split("c")[1];
 
 
-
-
-
-
         // if observerItem phaseID == 1 clicking on a country will add armies
         if (gameModel.getPhaseID() == 1) {
             int oldArmies = getArmyFirebase(buttonIdCode);
             setArmyFirebase(buttonIdCode, oldArmies + 4);
             buttonid.setText(String.valueOf(oldArmies + 4));
             gameModel.updatePhaseID();
-        } else if (gameModel.getPhaseID() == 2){
+        } else if (gameModel.getPhaseID() == 2) {
             System.out.println("now you cant update armies, only attack scrub");
-            if ( gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 2 ){
-            System.out.println("check if exists");
+            if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 2) {
+                System.out.println("check if exists");
                 gameModel.setSelectedCountries(buttonIdCode);
-            } else if (gameModel.getSelectedCountries().size() == 2){
+            } else if (gameModel.getSelectedCountries().size() == 2) {
                 System.out.println(gameModel.getSelectedCountries().get(0) + " " + gameModel.getSelectedCountries().get(1));
                 //Todo check of gameModel.getSelectedCountries().get(0) gameModel.getSelectedCountries().get(1) kan aanvallen
 
                 //Todo laat de spelers de dice gooien
             }
-
 
 
         }
