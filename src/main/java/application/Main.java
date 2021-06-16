@@ -43,15 +43,15 @@ public class Main extends Application {
 //        tester.getCountries();
 //
 
-//        State.lobbycode = "791967";
+        State.lobbycode = "337789";
         //Uncomment om in firebase de countries in te zetten
-//        spelbordController = spelbordController.getSpelbordControllerInstance();
+        spelbordController = spelbordController.getSpelbordControllerInstance();
 //        SpelbordController spelbordController = new SpelbordController();
 
 //        spelbordController.setArmyAndCountryInFirebase();
 //        spelbordController.getArmyAndCountryFromFirebase();
 //
-
+        spelbordController.getNeighborsInFirebase();
 
 //        spelbordController.setArmyFirebase("NA6", 345);
 //        spelbordController.getArmyFirebase(1);

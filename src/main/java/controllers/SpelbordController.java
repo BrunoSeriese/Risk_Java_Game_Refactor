@@ -16,6 +16,7 @@ import observers.SpelbordObserver;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -204,6 +205,39 @@ public class SpelbordController {
                 Long turnIdValue = entry.getValue(); //pakt de bijbehorende value van die 1e key
                 System.out.println(turnIdKey + " = " + turnIdValue); //print beide key en value
             }
+        } else {
+            System.out.println("No document found!");
+        }
+    }
+
+    public void getNeighborsInFirebase() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
+            int count = 0;
+            for (HashMap armyAndCountryID : arrayCountryData) {
+//                System.out.println(armyAndCountryID);
+                if (armyAndCountryID.containsValue("AFRICA3")) {
+
+////                        System.out.println(armyAndCountryID);
+                    System.out.println(arrayCountryData.get(count).get("neighbor"));
+                    if (Arrays.asList(arrayCountryData.get(count).get("neighbor")).contains("ASIA10")){
+                        System.out.println("Je mag aanvallen");
+                    } else {
+                        System.out.println("nee helaas");
+                    }
+//                    for(Object x : Arrays.asList(arrayCountryData.get(count).get("neighbor")) ){
+//                        System.out.println(x);
+//
+//                    }
+                }
+                count += 1;
+            }
+
         } else {
             System.out.println("No document found!");
         }
