@@ -42,6 +42,7 @@ public class GameModel implements GameObservable {
         this.turnID = 1;
         this.gameOver = false;
         this.phaseID = 1;
+        this.selectedCountries = new ArrayList<String>();
     }
 
     public GameModel() {
@@ -50,10 +51,11 @@ public class GameModel implements GameObservable {
 
     public void setSelectedCountries(String countryID){
 
-        if (this.selectedCountries.size() < 2){
+        if (this.selectedCountries == null || this.selectedCountries.size() < 2  ){
             this.selectedCountries.add(countryID);
         } else if (this.selectedCountries.size() == 2){
-            this.selectedCountries.removeAll(this.selectedCountries);
+            this.selectedCountries.remove(0);
+            this.selectedCountries.remove(1);
         }
     }
 

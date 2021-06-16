@@ -327,14 +327,15 @@ public class SpelbordController {
             gameModel.updatePhaseID();
         } else if (gameModel.getPhaseID() == 2){
             System.out.println("now you cant update armies, only attack scrub");
-//            if (gameModel.getSelectedCountries().size() < 2){
-//                gameModel.setSelectedCountries(buttonIdCode);
-//            } else if (gameModel.getSelectedCountries().size() == 2){
-//                System.out.println(gameModel.getSelectedCountries().get(0) + " " + gameModel.getSelectedCountries().get(1));
+            if ( gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 2 ){
+            System.out.println("check if exists");
+                gameModel.setSelectedCountries(buttonIdCode);
+            } else if (gameModel.getSelectedCountries().size() == 2){
+                System.out.println(gameModel.getSelectedCountries().get(0) + " " + gameModel.getSelectedCountries().get(1));
                 //Todo check of gameModel.getSelectedCountries().get(0) gameModel.getSelectedCountries().get(1) kan aanvallen
 
                 //Todo laat de spelers de dice gooien
-//            }
+            }
 
 
 
