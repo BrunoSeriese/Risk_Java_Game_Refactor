@@ -227,19 +227,22 @@ public class SpelbordController {
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue("AFRICA3")) {    //TODO <--- dit land in de arraySelectedCountries gooien op index 0
+                    arraySelectedCountries.add(0, "eigenLand");
 
                     arrayCountryData.get(count).get("neighbor");
                     ArrayList x = (ArrayList) arrayCountryData.get(count).get("neighbor");
 
                     if (x.contains("ASIA10")) { //TODO <--- dit land in de arraySelectedCountries gooien op index 1
+                        arraySelectedCountries.add(1, "enemyLand");
                         System.out.println("Je mag aanvallen");
                     } else {
                         System.out.println("nee helaas");
+                        arraySelectedCountries.clear();
                     }
                 }
                 count += 1;
             }
-
+            System.out.println("werkt" + arraySelectedCountries);
         } else {
             System.out.println("No document found!");
         }
