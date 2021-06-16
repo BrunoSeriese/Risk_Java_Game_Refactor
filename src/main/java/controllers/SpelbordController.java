@@ -61,18 +61,27 @@ public class SpelbordController {
                 int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
                 gameModel.setTurnID(firebaseTurnID);
 
-                startMainLoop();
+                try {
+                    startMainLoop();
+                } catch (ExecutionException executionException) {
+                    executionException.printStackTrace();
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
             }
         });
     }
 
-    public void startMainLoop() {
+    public void startMainLoop() throws ExecutionException, InterruptedException {
         if (gameModel.getTurnID() == State.TurnID) {
             System.out.println("Jij bent aan de beurt " + gameModel.getTurnID());
             State.stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
             canEnd = true;
             //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
 
+            if (gameModel.getSelectedCountries().size() == 2) {
+                getNeighborsFirebase();
+            }
 
             //ToDo zorg ervoor dat hier een mouse event listeren
 
@@ -210,7 +219,7 @@ public class SpelbordController {
         }
     }
 
-    public void getNeighborsFirebase() throws ExecutionException, InterruptedException { //TODO BRUNO parameters geven van de buttonID fzo? als je klikt
+    public boolean getNeighborsFirebase() throws ExecutionException, InterruptedException { //TODO BRUNO parameters geven van de buttonID fzo? als je klikt
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -225,21 +234,21 @@ public class SpelbordController {
 
             for (HashMap armyAndCountryID : arrayCountryData) {
 
-                if (armyAndCountryID.containsValue("AFRICA3")) {//TODO Bruno hier moet iets komen van je eigen land van waar je wil aanvallen
-                    arraySelectedCountries.add(0, "land 1"); //TODO Bruno hier moet iets komen van je eigen land van waar je wil aanvallen
+                if (armyAndCountryID.containsValue(arraySelectedCountries.get(0))) {
                     System.out.println("dit is selected countries:   " + arraySelectedCountries);
 
                     arrayCountryData.get(count).get("neighbor");
                     ArrayList x = (ArrayList) arrayCountryData.get(count).get("neighbor");
 
-                    if (x.contains("ASIA10")) {//TODO Bruno hier moet iets komen van je eigen land van waar je wil aanvallen
-                        arraySelectedCountries.add(1, "land 2"); //TODO Bruno hier moet iets komen van de enemyland die je wil aanvallen
+                    if (x.contains(arraySelectedCountries.get(1))) {
                         System.out.println("dit is selected countries:   " + arraySelectedCountries);
 
                         System.out.println("Je mag aanvallen");
+                        return true;
                     } else {
                         System.out.println("nee helaas");
-                        arraySelectedCountries.clear();
+                        gameModel.setSelectedCountries();
+                        return false;
                     }
                 }
                 count += 1;
@@ -247,7 +256,9 @@ public class SpelbordController {
             System.out.println("werkt" + arraySelectedCountries);
         } else {
             System.out.println("No document found!");
+
         }
+        return false;
     }
 
     public void nextTurnIDFirebase() throws ExecutionException, InterruptedException {
@@ -316,6 +327,8 @@ public class SpelbordController {
 
     }
 
+
+    //TODO probleem dat iedereen nu die buttons kan klikken
     public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
         Button buttonid = (Button) event.getSource();
         System.out.println(buttonid.getId().split("c")[1]);
@@ -330,24 +343,33 @@ public class SpelbordController {
             gameModel.updatePhaseID();
         } else if (gameModel.getPhaseID() == 2) {
             System.out.println("now you cant update armies, only attack scrub");
-            if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 2) {
+            if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
+                gameModel.setSelectedCountries();
                 System.out.println("check if exists");
                 gameModel.setSelectedCountries(buttonIdCode);
-            } else if (gameModel.getSelectedCountries().size() == 2) {
-                System.out.println(gameModel.getSelectedCountries().get(0) + " " + gameModel.getSelectedCountries().get(1));
+                System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
+            } else if (gameModel.getSelectedCountries().size() == 1) {
+                gameModel.setSelectedCountries(buttonIdCode);
+                System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
+                if (getNeighborsFirebase()){
+                    gameModel.setSelectedCountries();
+                }
+
+//            } else if (gameModel.getSelectedCountries().size() == 2) {
+//                System.out.println(gameModel.getSelectedCountries().get(0) + " " + gameModel.getSelectedCountries().get(1));
+//                gameModel.setSelectedCountries();
                 //Todo check of gameModel.getSelectedCountries().get(0) gameModel.getSelectedCountries().get(1) kan aanvallen
 
                 //Todo laat de spelers de dice gooien
             }
-
-
         }
-
-
-        // if observerItem phaseID == 2 clicking on a country will try to stage an attack
-
-
     }
+
+
+    // if observerItem phaseID == 2 clicking on a country will try to stage an attack
+
+
+
 
     public void handleClicky() {
         System.out.println("CLICKYYY MOFO");
