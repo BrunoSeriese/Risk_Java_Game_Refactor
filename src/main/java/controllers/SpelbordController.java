@@ -14,6 +14,7 @@ import models.PlayerModel;
 import models.SpelbordModel;
 import observers.SpelbordObserver;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -125,6 +126,34 @@ public class SpelbordController {
         }
     }
 
+
+    public  int getArmyFirebase(String ButtonID) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
+            int count = 0;
+            for (HashMap armyAndCountryID : arrayCountryData) {
+
+                if (armyAndCountryID.containsValue(ButtonID)) {
+//                        System.out.println(armyAndCountryID);
+                    System.out.println(arrayCountryData.get(count).get("army"));
+                    String currentArmies =  arrayCountryData.get(count).get("army").toString();
+                    int firstArmy =  Integer.parseInt(currentArmies);
+                    System.out.println(firstArmy);
+                    return firstArmy;
+                }
+                count += 1;
+            }
+
+        } else {
+            System.out.println("No document found!");
+        }
+        return 0;
+    }
     public void setArmyFirebase(String ButtonID, int newArmies) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
@@ -253,13 +282,15 @@ public class SpelbordController {
 
         int phaseID = 1;
 
+
+
         // if observerItem phaseID == 1 clicking on a country will add armies
         if (phaseID == 1) {
-            setArmyFirebase(buttonIdCode, 10);
+            setArmyFirebase(buttonIdCode, getArmyFirebase(buttonIdCode) + 4);
         }
 
 
-        // if observerItem phaseID == 2 clicking on a country will try to stage a attack
+        // if observerItem phaseID == 2 clicking on a country will try to stage an attack
 
 
     }
@@ -336,20 +367,7 @@ public class SpelbordController {
 //        }
 //    }
 //
-//    public void getArmyFirebase(int arrayNumber) throws ExecutionException, InterruptedException {
-//        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
-//        ApiFuture<DocumentSnapshot> future = docRef.get();
-//        DocumentSnapshot document = future.get();
-//        if (document.exists()) {
 //
-//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
-//            System.out.println(arrayCountryData.get(arrayNumber).get("army"));
-//
-//        } else {
-//            System.out.println("No document found!");
-//        }
-//    }
 //
 //    public void setPlayerIDtoCountry() throws ExecutionException, InterruptedException {
 //        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
