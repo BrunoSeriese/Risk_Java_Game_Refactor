@@ -14,6 +14,7 @@ public class CountryModel {
     private int playerID;
     private String countryID;
     private int army;
+    private ArrayList<String> neighbor;
 //    private String countryName;
 
 //    private Map<String, String> CountriesAndId = new HashMap<>();
@@ -25,10 +26,11 @@ public class CountryModel {
 //        this.countryName = countryName;
 //    }
 
-    public CountryModel(String countryID){
+    public CountryModel(String countryID, ArrayList<String> neighborData){
         this.countryID = countryID;
         this.army = 2;
         this.playerID = 1;
+        this.neighbor = neighborData;
     }
 
     public void getAllCountryID(){
