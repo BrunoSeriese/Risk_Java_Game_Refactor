@@ -29,12 +29,52 @@ public class SpelbordViewController implements SpelbordObserver {
     @FXML
     public static ImageView playerIcon;
     @FXML
-    public Button buttonNA1;
-    @FXML
     public ImageView NA1;
-    @FXML
     public ImageView NA5;
 
+    public Button cNA1;
+    public Button cNA2;
+    public Button cNA3;
+    public Button cNA4;
+    public Button cNA5;
+    public Button cNA6;
+    public Button cNA7;
+    public Button cNA8;
+    public Button cNA9;
+    public Button cNA10;
+    public Button cAFRICA1;
+    public Button cAFRICA2;
+    public Button cAFRICA3;
+    public Button cAFRICA4;
+    public Button cAFRICA5;
+    public Button cAFRICA6;
+    public Button cEU1;
+    public Button cEU2;
+    public Button cEU3;
+    public Button cEU4;
+    public Button cEU5;
+    public Button cEU6;
+    public Button cEU7;
+    public Button cSA1;
+    public Button cSA2;
+    public Button cSA3;
+    public Button cSA4;
+    public Button cOCE1;
+    public Button cOCE2;
+    public Button cOCE3;
+    public Button cOCE4;
+    public Button cASIA1;
+    public Button cASIA2;
+    public Button cASIA3;
+    public Button cASIA4;
+    public Button cASIA5;
+    public Button cASIA6;
+    public Button cASIA7;
+    public Button cASIA8;
+    public Button cASIA9;
+    public Button cASIA10;
+    public Button cASIA11;
+    public Button cASIA12;
 
 
     SpelbordController spelbordController = SpelbordController.getSpelbordControllerInstance();
@@ -66,7 +106,8 @@ public class SpelbordViewController implements SpelbordObserver {
 
     public void rollDice() {
         spelbordController.rollDice();
-//        setColorCountry(NA1, State.ORANGE);
+        setColorCountry(NA5, State.GREEN);
+        setColorCountry(NA1, State.BLUE);
     }
 
     public void endTurn() throws ExecutionException, InterruptedException {
@@ -76,6 +117,10 @@ public class SpelbordViewController implements SpelbordObserver {
     public void setColorCountry(ImageView imageLand, double playerColor){
         spelbordController.setColorCountry(imageLand, playerColor);
     }
+
+//    public void setCountryColorStartGame() throws ExecutionException, InterruptedException {
+//        spelbordController.setCountryColorStartGame();
+//    }
 
 
 

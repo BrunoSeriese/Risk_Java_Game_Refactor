@@ -377,7 +377,7 @@ public class SpelbordController {
         DocumentSnapshot document = future.get();
 
 
-        docRef.update("actionsTaken", Integer.valueOf(document.getData().get("actionsTaken").toString())  + 1);
+        docRef.update("actionsTaken", Integer.valueOf(document.getData().get("actionsTaken").toString()) + 1);
     }
 
     //TODO probleem dat iedereen nu die buttons kan klikken
@@ -483,10 +483,27 @@ public class SpelbordController {
     }
 
 
+//    public void setCountryColorStartGame() throws ExecutionException, InterruptedException {
+//        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+//        ApiFuture<DocumentSnapshot> future = docRef.get();
+//        DocumentSnapshot document = future.get();
+//        if (document.exists()) {
+//
+//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+//
+//            for (HashMap armyAndCountryID : arrayCountryData) {
+//                System.out.println("kleurentest: " + armyAndCountryID);
+//            }
+//
+//
+//        }
+//
+//    }
+//}
     //    //TODO NIET AAN DEZE 4 METHODS KOMEN
 //
-
 }
+
 
 //            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 //            System.out.println("dit is arraycountrydata: " + arrayCountryData);

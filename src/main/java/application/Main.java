@@ -44,9 +44,11 @@ public class Main extends Application {
 //
 
 //        State.lobbycode = "337789";
+
         //Uncomment om in firebase de countries in te zetten
 //        spelbordController = spelbordController.getSpelbordControllerInstance();
 //        SpelbordController spelbordController = new SpelbordController();
+//
 
 //        spelbordController.setArmyAndCountryInFirebase();
 //        spelbordController.getArmyAndCountryFromFirebase();
@@ -55,6 +57,8 @@ public class Main extends Application {
 
 //        spelbordController.setArmyFirebase("NA6", 345);
 //        spelbordController.getArmyFirebase(1);
+
+
 
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen
