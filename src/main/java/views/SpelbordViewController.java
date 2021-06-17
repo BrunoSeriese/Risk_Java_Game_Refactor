@@ -16,9 +16,12 @@ import models.SpelbordModel;
 import observers.SpelbordObservable;
 import observers.SpelbordObserver;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class SpelbordViewController implements SpelbordObserver {
+
+    ArrayList<Button> buttonsArray = new ArrayList<>();
 
     @FXML
     public static ImageView endTurnIcon;
@@ -32,8 +35,9 @@ public class SpelbordViewController implements SpelbordObserver {
     public ImageView NA1;
     public ImageView NA5;
 
-    public Button cNA1;
-    public Button cNA2;
+    @FXML
+    public static Button cNA1;
+    public static Button cNA2;
     public Button cNA3;
     public Button cNA4;
     public Button cNA5;
@@ -82,7 +86,6 @@ public class SpelbordViewController implements SpelbordObserver {
     GameModel gameModel;
     LoginController loginController = new LoginController();
 
-
     public SpelbordViewController() {
         spelbordController.registerObserver(this);
     }
@@ -122,8 +125,58 @@ public class SpelbordViewController implements SpelbordObserver {
 //        spelbordController.setCountryColorStartGame();
 //    }
 
+    public void setArmies(Button button, int armies){
+//        button = "c" + button;
+//        button = (Button) button;
+        spelbordController.setArmies(button, armies);
+    }
 
-
+    public ArrayList<Button> addButtonArray(){
+        buttonsArray.add(cNA1);
+        buttonsArray.add(cNA2);
+        buttonsArray.add(cNA3);
+        buttonsArray.add(cNA4);
+        buttonsArray.add(cNA5);
+        buttonsArray.add(cNA6);
+        buttonsArray.add(cNA7);
+        buttonsArray.add(cNA8);
+        buttonsArray.add(cNA9);
+        buttonsArray.add(cNA10);
+        buttonsArray.add(cAFRICA1);
+        buttonsArray.add(cAFRICA2);
+        buttonsArray.add(cAFRICA3);
+        buttonsArray.add(cAFRICA4);
+        buttonsArray.add(cAFRICA5);
+        buttonsArray.add(cAFRICA6);
+        buttonsArray.add(cEU1);
+        buttonsArray.add(cEU2);
+        buttonsArray.add(cEU3);
+        buttonsArray.add(cEU4);
+        buttonsArray.add(cEU5);
+        buttonsArray.add(cEU6);
+        buttonsArray.add(cEU7);
+        buttonsArray.add(cSA1);
+        buttonsArray.add(cSA2);
+        buttonsArray.add(cSA3);
+        buttonsArray.add(cSA4);
+        buttonsArray.add(cOCE1);
+        buttonsArray.add(cOCE2);
+        buttonsArray.add(cOCE3);
+        buttonsArray.add(cOCE4);
+        buttonsArray.add(cASIA1);
+        buttonsArray.add(cASIA2);
+        buttonsArray.add(cASIA3);
+        buttonsArray.add(cASIA4);
+        buttonsArray.add(cASIA5);
+        buttonsArray.add(cASIA6);
+        buttonsArray.add(cASIA7);
+        buttonsArray.add(cASIA8);
+        buttonsArray.add(cASIA9);
+        buttonsArray.add(cASIA10);
+        buttonsArray.add(cASIA11);
+        buttonsArray.add(cASIA12);
+        return buttonsArray;
+    }
 
     //TODO FIX HUD
 //    public void hideHUD() {
