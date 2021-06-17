@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import models.DiceModel;
 import models.GameModel;
 import models.SpelbordModel;
 import observers.SpelbordObserver;
@@ -30,6 +31,7 @@ public class SpelbordController {
     private int turnID;
     private boolean gameOver;
     static SpelbordController spelbordController;
+    private DiceModel dice = new DiceModel();
     //    gameModel = loginController.getGameModelInstance();
 //    LoginController loginController = new LoginController();
 
@@ -352,15 +354,27 @@ public class SpelbordController {
                 gameModel.clearSelectedCountries(buttonIdCode);
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
                 if (getNeighborsFirebase()){
+
+
+                    //Todo laat de spelers de dice gooien
+                    ArrayList<Integer> dice1 = dice.roll(3);
+                    ArrayList<Integer> dice2 = dice.roll(2);
+
+                    for (int num: dice1){
+                        System.out.println(num);
+                    }
+                    for (int num: dice2){
+                        System.out.println(num);
+                    }
+
                     gameModel.clearSelectedCountries();
                 }
 
 //            } else if (gameModel.getSelectedCountries().size() == 2) {
 //                System.out.println(gameModel.getSelectedCountries().get(0) + " " + gameModel.getSelectedCountries().get(1));
 //                gameModel.clearSelectedCountries();
-                //Todo check of gameModel.getSelectedCountries().get(0) gameModel.getSelectedCountries().get(1) kan aanvallen
+                //
 
-                //Todo laat de spelers de dice gooien
             }
         }
     }
