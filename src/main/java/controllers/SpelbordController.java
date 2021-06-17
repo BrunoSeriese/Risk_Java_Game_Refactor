@@ -11,15 +11,19 @@ import javafx.beans.binding.IntegerBinding;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.DiceModel;
 import models.GameModel;
 import models.SpelbordModel;
 import observers.SpelbordObserver;
+import views.SpelbordViewController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,9 +39,13 @@ public class SpelbordController {
     private boolean gameOver;
     static SpelbordController spelbordController;
     private DiceModel dice = new DiceModel();
+    private ImageView[] countries;
     //    gameModel = loginController.getGameModelInstance();
 //    LoginController loginController = new LoginController();
 
+    public void setCountries(ImageView[] countries) {
+        this.countries = countries;
+    }
 
     public static SpelbordController getSpelbordControllerInstance() {
         if (spelbordController == null) {
@@ -162,6 +170,8 @@ public class SpelbordController {
 
 //            CountryModel countryModel = new CountryModel("NA1");
             ApiFuture<WriteResult> result = docRef.update(data);
+
+            System.out.println("Data naar firebase: " + result);
         }
     }
 
@@ -185,8 +195,8 @@ public class SpelbordController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
-        if (document.exists()) {
 
+        if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
             System.out.println("dit is arraycountrydata:    " + arrayCountryData);
             int count = 0;
@@ -372,7 +382,7 @@ public class SpelbordController {
 
     }
 
-    public void setArmies(Button button, int armies){
+    public void setArmies(Button button, int armies) {
         button.setText(String.valueOf(armies));
     }
 
@@ -413,7 +423,7 @@ public class SpelbordController {
                 // Functie aangemaakt in spelbordViewController voor het set van text (setArmies())
 
                 String countryButtonWithC = "c" + armyAndCountryID.get("countryID");
-                System.out.println("De country met c is: " + countryButtonWithC);
+//                System.out.println("De country met c is: " + countryButtonWithC);
 //                ArrayList x = spelbordViewController.addButtonArray();
 //                System.out.println(x.toString());
 //                Button countryButton = new Button(countryButtonWithC);
@@ -549,11 +559,72 @@ public class SpelbordController {
     }
 
 
-//    public void setCountryColorStartGame() throws ExecutionException, InterruptedException {
-//        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
-//        ApiFuture<DocumentSnapshot> future = docRef.get();
-//        DocumentSnapshot document = future.get();
-//
+    private double getPlayerColor(int id) {
+        switch (id) {
+            case 1:
+                return State.RED;
+            case 2:
+                return State.GREEN;
+            case 3:
+                return State.BLUE;
+            case 4:
+                return State.ORANGE;
+        }
+
+        return State.RED;
+    }
+
+    public void setCountryColorStartGame() throws ExecutionException, InterruptedException, IOException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+        if (document.exists()) {
+            System.out.println("Ding bestaat");
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            System.out.println("test1" + arrayCountryData);
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                System.out.println("test2" + armyAndCountryID);
+                if (armyAndCountryID.containsKey("playerID")) {
+                    System.out.println("PLAYER ID IS: " + armyAndCountryID.get("playerID"));
+
+                    String countryID = (String) armyAndCountryID.get("countryID");
+
+                    System.out.println("COUNTRY ID IS" + countryID);
+
+                    for (ImageView country : countries) {
+                        System.out.println("COUNTRY (IMAGE) ID IS" + country.getId());
+
+                        if (country.getId().equals(countryID)) {
+
+                            System.out.println("gevonden");
+                            Long id = (Long) armyAndCountryID.get("playerID");
+                            System.out.println(id.intValue());
+                            double color = getPlayerColor(id.intValue());
+////
+                            System.out.println("PLAYER COLOR IS: " + color);
+
+                            setColorCountry(country, color);
+                        }
+                    }
+                }
+            }
+        }
+
+
+//        for (ImageView country : countries) {
+//            if (country.getId().equals("NA1")) {
+//                setColorCountry(country, getPlayerColor((int) document.get("playerID")));
+//                System.out.println("GELUKT");
+//            }
+//        }
+
+//        DocumentSnapshot test = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players").get().get();
+//        SpelbordViewController spelbordViewController = new SpelbordViewController();
+//        System.out.println("array "+ spelbordViewController.addImageViewArray());
+
+
 //        if (document.exists()) {
 //
 //            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
@@ -564,31 +635,30 @@ public class SpelbordController {
 ////                if (armyAndCountryID.containsKey("countryID")) {
 ////                    System.out.println(armyAndCountryID.get("countryID"));//prints country id
 ////                }
-////
 //                if (armyAndCountryID.containsKey("playerID")) {
 //                    System.out.println(armyAndCountryID.get("playerID")); //prints player id
 //
 //                    if ((Long) armyAndCountryID.get("playerID") == 1) {
 //                        armyAndCountryID.get("countryID");
-//                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.RED); //TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
-//                    } else if ((Long) armyAndCountryID.get("playerID") == 2) {
+//                        setColorCountry((ImageView) armyAndCountryID.get("countryID") , State.RED); //TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
+//                    }
+//                    else if ((Long) armyAndCountryID.get("playerID") == 2) {
 //                        armyAndCountryID.get("countryID");
 //                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.BLUE);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
-//                    } else if ((Long) armyAndCountryID.get("playerID") == 3) {
+//                    }
+//                    else if ((Long) armyAndCountryID.get("playerID") == 3) {
 //                        armyAndCountryID.get("countryID");
 //                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.GREEN);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
-//                    } else if ((Long) armyAndCountryID.get("playerID") == 4) {
+//                    }
+//                    else if ((Long) armyAndCountryID.get("playerID") == 4) {
 //                        armyAndCountryID.get("countryID");
 //                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.ORANGE);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
 //                    }
-//
 //                }
 //            }
-//
 //        }
-//
-//
 //    }
+    }
 }
 
 

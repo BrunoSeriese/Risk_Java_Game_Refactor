@@ -142,9 +142,6 @@
          <image>
             <Image url="@../images/AFRICA/AFRICA1.png" />
          </image>
-         <effect>
-            <ColorAdjust saturation="1.0" />
-         </effect>
       </ImageView>
       <ImageView fx:id="AFRICA2" layoutX="589.0" layoutY="355.0">
          <image>
@@ -175,9 +172,6 @@
          <image>
             <Image url="@../images/EU/EU3.png" />
          </image>
-         <effect>
-            <ColorAdjust saturation="1.0" />
-         </effect>
       </ImageView>
       <ImageView fx:id="EU1" layoutX="520.0" layoutY="152.0">
          <image>

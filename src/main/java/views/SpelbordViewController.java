@@ -8,6 +8,7 @@ import controllers.LoginController;
 import controllers.SpelbordController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
@@ -16,12 +17,16 @@ import models.SpelbordModel;
 import observers.SpelbordObservable;
 import observers.SpelbordObserver;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
-public class SpelbordViewController implements SpelbordObserver {
+public class SpelbordViewController implements Initializable {
+
 
     ArrayList<Button> buttonsArray = new ArrayList<>();
+    ArrayList<ImageView> imageViewArray = new ArrayList<>();
 
     @FXML
     public static ImageView endTurnIcon;
@@ -32,12 +37,14 @@ public class SpelbordViewController implements SpelbordObserver {
     @FXML
     public static ImageView playerIcon;
     @FXML
-    public ImageView NA1;
-    public ImageView NA5;
+    public ImageView NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
+            AFRICA5, AFRICA6, EU1, EU2, EU3, EU4, EU5, EU6, EU7, SA1, SA2, SA3, SA4, OCE1, OCE2, OCE3, OCE4, ASIA1, ASIA2, ASIA3, ASIA4, ASIA5, ASIA6, ASIA7, ASIA8, ASIA9, ASIA10, ASIA11, ASIA12;
+
+    public ImageView[] countries;
 
     @FXML
-    public static Button cNA1;
-    public static Button cNA2;
+    public Button cNA1;
+    public Button cNA2;
     public Button cNA3;
     public Button cNA4;
     public Button cNA5;
@@ -86,9 +93,9 @@ public class SpelbordViewController implements SpelbordObserver {
     GameModel gameModel;
     LoginController loginController = new LoginController();
 
-    public SpelbordViewController() {
-        spelbordController.registerObserver(this);
-    }
+//    public SpelbordViewController() {
+//        spelbordController.registerObserver(this);
+//    }
 
 
     public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
@@ -109,15 +116,13 @@ public class SpelbordViewController implements SpelbordObserver {
 
     public void rollDice() {
         spelbordController.rollDice();
-        setColorCountry(NA5, State.GREEN);
-        setColorCountry(NA1, State.BLUE);
     }
 
     public void endTurn() throws ExecutionException, InterruptedException {
         spelbordController.endTurn();
     }
 
-    public void setColorCountry(ImageView imageLand, double playerColor){
+    public void setColorCountry(ImageView imageLand, double playerColor) {
         spelbordController.setColorCountry(imageLand, playerColor);
     }
 
@@ -125,13 +130,13 @@ public class SpelbordViewController implements SpelbordObserver {
 //        spelbordController.setCountryColorStartGame();
 //    }
 
-    public void setArmies(Button button, int armies){
+    public void setArmies(Button button, int armies) {
 //        button = "c" + button;
 //        button = (Button) button;
         spelbordController.setArmies(button, armies);
     }
 
-    public ArrayList<Button> addButtonArray(){
+    public ArrayList<Button> addButtonArray() {
         buttonsArray.add(cNA1);
         buttonsArray.add(cNA2);
         buttonsArray.add(cNA3);
@@ -178,6 +183,15 @@ public class SpelbordViewController implements SpelbordObserver {
         return buttonsArray;
     }
 
+    public void initialize() {
+        countries = new ImageView[]{NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
+                AFRICA5, AFRICA6, EU1, EU2, EU3, EU4, EU5, EU6, EU7, SA1, SA2, SA3, SA4, OCE1, OCE2, OCE3, OCE4, ASIA1, ASIA2, ASIA3, ASIA4, ASIA5, ASIA6, ASIA7, ASIA8, ASIA9, ASIA10, ASIA11, ASIA12};
+    }
+
+    public ImageView[] getCountriesArray(){
+        return countries;
+    }
+
     //TODO FIX HUD
 //    public void hideHUD() {
 //        cardIcon.setVisible(false);
@@ -204,14 +218,20 @@ public class SpelbordViewController implements SpelbordObserver {
 //    }
 
 
-    public void garrison(){
+    public void garrison() {
         //Todo catch mouseEvent
         // catch clickedCountry
         // Check if country has the same playerID as the player
 
     }
+
+//    @Override
+//    public void update(SpelbordObservable sb) {
+//
+//    }
+
     @Override
-    public void update(SpelbordObservable sb) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 }

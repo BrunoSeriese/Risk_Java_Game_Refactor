@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import views.SpelbordViewController;
 
 public class Main extends Application {
 
@@ -43,12 +44,18 @@ public class Main extends Application {
 //        tester.getCountries();
 //
 
-//        State.lobbycode = "337789";
+        State.lobbycode = "337789";
 
         //Uncomment om in firebase de countries in te zetten
 //        spelbordController = spelbordController.getSpelbordControllerInstance();
-//        SpelbordController spelbordController = new SpelbordController();
+//        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
+//        loader.load();
 //
+//        SpelbordController spelbordController = new SpelbordController();
+//        SpelbordViewController spelbordViewController = loader.getController();
+//        spelbordViewController.initialize();
+//        spelbordController.setCountryColorStartGame();
+
 
 //        spelbordController.setArmyAndCountryInFirebase();
 //        spelbordController.getArmyAndCountryFromFirebase();

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import models.GameModel;
 import models.SpelbordModel;
 import views.LobbyView;
+import views.SpelbordViewController;
 
 
 import java.io.IOException;
@@ -76,14 +77,21 @@ public class LobbyController {
                         System.out.println("3");
                         System.out.println("De game is running");
 
-                        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
+                        root = loader.load();
                         scene = new Scene(root);
 
-                        Platform.runLater(() -> {
-                            State.stage.setScene(scene);
-                        });
+                        SpelbordViewController spelbordViewController = loader.getController();
+                        spelbordViewController.initialize();
+
+                        Platform.runLater(() -> State.stage.setScene(scene));
                         SpelbordController spelbordController = new SpelbordController();
                         spelbordController.setArmyAndCountryInFirebase();
+
+                        Thread.sleep(10);
+
+                        spelbordController.setCountries(spelbordViewController.getCountriesArray());
+                        spelbordController.setCountryColorStartGame();
                         System.out.println("AFTERRR METHODDD");
 //
 
