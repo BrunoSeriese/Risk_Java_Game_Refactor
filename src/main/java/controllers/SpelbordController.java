@@ -353,19 +353,32 @@ public class SpelbordController {
             } else if (gameModel.getSelectedCountries().size() == 1) {
                 gameModel.clearSelectedCountries(buttonIdCode);
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
-                if (getNeighborsFirebase()){
+                if (getNeighborsFirebase()) {
 
 
                     //Todo laat de spelers de dice gooien
                     ArrayList<Integer> dice1 = dice.roll(3);
                     ArrayList<Integer> dice2 = dice.roll(2);
 
-                    for (int num: dice1){
+                    for (int num : dice1) {
                         System.out.println(num);
                     }
-                    for (int num: dice2){
+                    for (int num : dice2) {
                         System.out.println(num);
                     }
+
+                    if (dice1.get(0) > dice2.get(0)) {
+                        System.out.println("defender loses an army");
+                    } else {
+                        System.out.println("attacker loses an army");
+                    }
+
+                    if (dice1.get(1) > dice2.get(1)) {
+                        System.out.println("defender loses an army");
+                    } else {
+                        System.out.println("attacker loses an army");
+                    }
+
 
                     gameModel.clearSelectedCountries();
                 }
@@ -377,12 +390,11 @@ public class SpelbordController {
 
             }
         }
+
     }
 
 
     // if observerItem phaseID == 2 clicking on a country will try to stage an attack
-
-
 
 
     public void handleClicky() {
@@ -409,15 +421,13 @@ public class SpelbordController {
         spelbordModel.register(sbv);
     }
 
-    public void setColorCountry(ImageView imageLand, double playerColor){
+    public void setColorCountry(ImageView imageLand, double playerColor) {
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setHue(playerColor);
         colorAdjust.setSaturation(1);
 
         imageLand.setEffect(colorAdjust);
     }
-
-
 
 
     //    //TODO NIET AAN DEZE 4 METHODS KOMEN
