@@ -118,9 +118,9 @@ public class SpelbordViewController implements SpelbordObserver {
         spelbordController.setColorCountry(imageLand, playerColor);
     }
 
-    public void setCountryColorStartGame() throws ExecutionException, InterruptedException {
-        spelbordController.setCountryColorStartGame();
-    }
+//    public void setCountryColorStartGame() throws ExecutionException, InterruptedException {
+//        spelbordController.setCountryColorStartGame();
+//    }
 
 
 
