@@ -2,9 +2,12 @@ package controllers;
 
 import application.State;
 import com.google.api.core.ApiFuture;
+import com.google.api.core.SettableApiFuture;
+import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.WriteResult;
+import javafx.beans.binding.IntegerBinding;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -53,6 +56,45 @@ public class SpelbordController {
     }
 
     EventHandler<MouseEvent> eventHandler = e -> System.out.println("ER is geklikt");
+
+//    public void armiesListener() {
+//        DSettableApiFuture<List<DocumentChange>> future = SettableApiFuture.create();
+
+
+//            if (documentSnapshot != null) {
+//
+//
+//                ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) documentSnapshot.get("countries");
+//
+////                int count = 0;
+//
+//                ArrayList arraySelectedCountries = gameModel.getSelectedCountries();
+//                System.out.println("dit is selected countries:   " + arraySelectedCountries);
+//
+//                for (HashMap armyAndCountryID : arrayCountryData) {
+//                    System.out.println("De armies is : " + armyAndCountryID.get("army") + " van land " + armyAndCountryID.get("countryID"));
+//
+////                    if (armyAndCountryID.containsValue(arraySelectedCountries.get(0))) {
+////                        System.out.println("dit is selected countries:   " + arraySelectedCountries);
+////                        arrayCountryData.get(count).get("neighbor");
+////                        ArrayList x = (ArrayList) arrayCountryData.get(count).get("neighbor");
+////
+////                        if (x.contains(arraySelectedCountries.get(1))) {
+////                            System.out.println("dit is selected countries:   " + arraySelectedCountries);
+////                            System.out.println("Je mag aanvallen");
+////                        } else {
+////                            System.out.println("nee helaas");
+////                            gameModel.clearSelectedCountries();
+////                        }
+////                    }
+////                    count += 1;
+//                }
+//                System.out.println("werkt" + arraySelectedCountries);
+//
+//            }
+//            }
+//        });
+//    }
 
     public void attachlistener() {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
@@ -329,6 +371,14 @@ public class SpelbordController {
 
     }
 
+    public void incrementActionsTaken() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+
+        docRef.update("actionsTaken", Integer.valueOf(document.getData().get("actionsTaken").toString())  + 1);
+    }
 
     //TODO probleem dat iedereen nu die buttons kan klikken
     public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
@@ -343,6 +393,7 @@ public class SpelbordController {
             setArmyFirebase(buttonIdCode, oldArmies + 4);
             buttonid.setText(String.valueOf(oldArmies + 4));
             gameModel.updatePhaseID();
+            incrementActionsTaken();
         } else if (gameModel.getPhaseID() == 2) {
             System.out.println("now you cant update armies, only attack scrub");
             if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
@@ -350,9 +401,11 @@ public class SpelbordController {
                 System.out.println("check if exists");
                 gameModel.clearSelectedCountries(buttonIdCode);
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
+                incrementActionsTaken();
             } else if (gameModel.getSelectedCountries().size() == 1) {
                 gameModel.clearSelectedCountries(buttonIdCode);
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
+                incrementActionsTaken();
                 if (getNeighborsFirebase()) {
 
 

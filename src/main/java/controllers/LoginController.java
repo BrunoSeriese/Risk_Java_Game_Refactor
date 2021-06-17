@@ -56,6 +56,7 @@ public class LoginController {
         data.put("players", Arrays.asList(playerModel1));
         data.put("gameIsRunning", false);
         data.put("gamestateTurnID", 1);
+        data.put("actionsTaken", 0);
 
         ApiFuture<WriteResult> result = docRef.set(data);
 
