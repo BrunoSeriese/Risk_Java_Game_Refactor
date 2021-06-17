@@ -487,22 +487,47 @@ public class SpelbordController {
 //        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
 //        ApiFuture<DocumentSnapshot> future = docRef.get();
 //        DocumentSnapshot document = future.get();
+//
 //        if (document.exists()) {
 //
 //            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 //
 //            for (HashMap armyAndCountryID : arrayCountryData) {
-//                System.out.println("kleurentest: " + armyAndCountryID);
-//            }
+//                System.out.println("kleurentest: " + armyAndCountryID); //gets alle nodige info
 //
+////                if (armyAndCountryID.containsKey("countryID")) {
+////                    System.out.println(armyAndCountryID.get("countryID"));//prints country id
+////                }
+////
+//                if (armyAndCountryID.containsKey("playerID")) {
+//                    System.out.println(armyAndCountryID.get("playerID")); //prints player id
+//
+//                    if ((Long) armyAndCountryID.get("playerID") == 1) {
+//                        armyAndCountryID.get("countryID");
+//                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.RED); //TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
+//                    } else if ((Long) armyAndCountryID.get("playerID") == 2) {
+//                        armyAndCountryID.get("countryID");
+//                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.BLUE);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
+//                    } else if ((Long) armyAndCountryID.get("playerID") == 3) {
+//                        armyAndCountryID.get("countryID");
+//                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.GREEN);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
+//                    } else if ((Long) armyAndCountryID.get("playerID") == 4) {
+//                        armyAndCountryID.get("countryID");
+//                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.ORANGE);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
+//                    }
+//
+//                }
+//            }
 //
 //        }
 //
-//    }
-//}
-    //    //TODO NIET AAN DEZE 4 METHODS KOMEN
 //
+//    }
 }
+
+
+//    //TODO NIET AAN DEZE 4 METHODS KOMEN
+//
 
 
 //            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
