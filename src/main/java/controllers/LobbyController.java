@@ -14,10 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.GameModel;
-import models.SpelbordModel;
-import views.LobbyView;
 import views.SpelbordViewController;
-
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -29,7 +26,7 @@ public class LobbyController {
     private Scene scene;
     private Parent root;
     boolean isInGame = false;
-
+    SpelbordController spelbordController;
 
     static GameModel gameModel;
     LoginController loginController = new LoginController();
@@ -88,9 +85,10 @@ public class LobbyController {
                         SpelbordController spelbordController = new SpelbordController();
                         spelbordController.setArmyAndCountryInFirebase();
 
-                        Thread.sleep(10);
+                        Thread.sleep(50);
 
                         spelbordController.setCountries(spelbordViewController.getCountriesArray());
+                        spelbordController.setButtons(spelbordViewController.getButtonsArray());
                         spelbordController.setCountryColorStartGame();
                         System.out.println("AFTERRR METHODDD");
 //

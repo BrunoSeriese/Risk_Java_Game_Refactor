@@ -43,52 +43,15 @@ public class SpelbordViewController implements Initializable {
     public ImageView[] countries;
 
     @FXML
-    public Button cNA1;
-    public Button cNA2;
-    public Button cNA3;
-    public Button cNA4;
-    public Button cNA5;
-    public Button cNA6;
-    public Button cNA7;
-    public Button cNA8;
-    public Button cNA9;
-    public Button cNA10;
-    public Button cAFRICA1;
-    public Button cAFRICA2;
-    public Button cAFRICA3;
-    public Button cAFRICA4;
-    public Button cAFRICA5;
-    public Button cAFRICA6;
-    public Button cEU1;
-    public Button cEU2;
-    public Button cEU3;
-    public Button cEU4;
-    public Button cEU5;
-    public Button cEU6;
-    public Button cEU7;
-    public Button cSA1;
-    public Button cSA2;
-    public Button cSA3;
-    public Button cSA4;
-    public Button cOCE1;
-    public Button cOCE2;
-    public Button cOCE3;
-    public Button cOCE4;
-    public Button cASIA1;
-    public Button cASIA2;
-    public Button cASIA3;
-    public Button cASIA4;
-    public Button cASIA5;
-    public Button cASIA6;
-    public Button cASIA7;
-    public Button cASIA8;
-    public Button cASIA9;
-    public Button cASIA10;
-    public Button cASIA11;
-    public Button cASIA12;
+    public Button cNA1, cNA2, cNA3, cNA4, cNA5, cNA6, cNA7, cNA8, cNA9, cNA10, cAFRICA1, cAFRICA2, cAFRICA3, cAFRICA4,
+            cAFRICA5, cAFRICA6, cEU1, cEU2, cEU3, cEU4, cEU5, cEU6, cEU7, cSA1, cSA2, cSA3, cSA4, cOCE1, cOCE2, cOCE3, cOCE4,
+            cASIA1, cASIA2, cASIA3, cASIA4, cASIA5, cASIA6, cASIA7, cASIA8, cASIA9, cASIA10, cASIA11, cASIA12;
+
+    public Button[] buttons;
 
 
-    SpelbordController spelbordController = SpelbordController.getSpelbordControllerInstance();
+
+    SpelbordController spelbordController = new SpelbordController();
     static SpelbordModel spelbordModel;
     GameModel gameModel;
     LoginController loginController = new LoginController();
@@ -186,11 +149,20 @@ public class SpelbordViewController implements Initializable {
     public void initialize() {
         countries = new ImageView[]{NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
                 AFRICA5, AFRICA6, EU1, EU2, EU3, EU4, EU5, EU6, EU7, SA1, SA2, SA3, SA4, OCE1, OCE2, OCE3, OCE4, ASIA1, ASIA2, ASIA3, ASIA4, ASIA5, ASIA6, ASIA7, ASIA8, ASIA9, ASIA10, ASIA11, ASIA12};
+
+        buttons = new Button[]{cNA1, cNA2, cNA3, cNA4, cNA5, cNA6, cNA7, cNA8, cNA9, cNA10, cAFRICA1, cAFRICA2, cAFRICA3, cAFRICA4,
+                cAFRICA5, cAFRICA6, cEU1, cEU2, cEU3, cEU4, cEU5, cEU6, cEU7, cSA1, cSA2, cSA3, cSA4, cOCE1, cOCE2, cOCE3, cOCE4,
+                cASIA1, cASIA2, cASIA3, cASIA4, cASIA5, cASIA6, cASIA7, cASIA8, cASIA9, cASIA10, cASIA11, cASIA12};
     }
 
     public ImageView[] getCountriesArray(){
         return countries;
     }
+
+    public Button[] getButtonsArray() {
+        return buttons;
+    }
+
 
     //TODO FIX HUD
 //    public void hideHUD() {

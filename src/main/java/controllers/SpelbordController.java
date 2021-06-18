@@ -2,26 +2,20 @@ package controllers;
 
 import application.State;
 import com.google.api.core.ApiFuture;
-import com.google.api.core.SettableApiFuture;
-import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.WriteResult;
-import javafx.beans.binding.IntegerBinding;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.DiceModel;
 import models.GameModel;
 import models.SpelbordModel;
 import observers.SpelbordObserver;
-import views.SpelbordViewController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,11 +34,16 @@ public class SpelbordController {
     static SpelbordController spelbordController;
     private DiceModel dice = new DiceModel();
     private ImageView[] countries;
+    private Button[] buttons;
     //    gameModel = loginController.getGameModelInstance();
 //    LoginController loginController = new LoginController();
 
     public void setCountries(ImageView[] countries) {
         this.countries = countries;
+    }
+
+    public void setButtons(Button[] buttons){
+        this.buttons = buttons;
     }
 
     public static SpelbordController getSpelbordControllerInstance() {
@@ -149,7 +148,7 @@ public class SpelbordController {
     public SpelbordController() {
         gameModel = getGameModelInstance();
         spelbordModel = spelbordModel.getSpelbordModelInstance();
-
+        countryListener();
         //todo verder uitwerken
 //        SpelbordObserver phaseID = null;
 //        spelbordModel.register(phaseID);
@@ -393,6 +392,22 @@ public class SpelbordController {
 
 
         docRef.update("actionsTaken", Integer.valueOf(document.getData().get("actionsTaken").toString()) + 1);
+    }
+
+
+    public void countryListener(){
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        docRef.addSnapshotListener((documentSnapshot, e) -> {
+            documentSnapshot.getData().get("countries");
+            System.out.println("IK BESTAAAAAAAAAAAAAAAA");
+            for (Button button : buttons){
+                Platform.runLater(() -> button.setText("TESTTTTTTTT"));
+
+                System.out.println("TESTTTTTTTTTTTTTTTTTT" + button);
+//                button.setText("12333333333333333");
+//                setArmiesOnButton(button, "100");
+            }
+        });
     }
 
     //TODO IMPORTANT dit is eigenlijk gewoon een functien, dus NIET een listener.
