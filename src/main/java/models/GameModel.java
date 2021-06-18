@@ -63,7 +63,9 @@ public class GameModel implements GameObservable {
         this.selectedCountries.clear();
     }
 
-    public ArrayList<String> getSelectedCountries(){return  this.selectedCountries;}
+    public ArrayList<String> getSelectedCountries(){
+        return this.selectedCountries;
+    }
 
     public int getTurnID() {
         return this.turnID;
