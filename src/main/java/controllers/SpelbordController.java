@@ -115,6 +115,7 @@ public class SpelbordController {
                 try {
                     startMainLoop();
                     armiesListener();
+                    countryListener();
                 } catch (ExecutionException executionException) {
                     executionException.printStackTrace();
                 } catch (InterruptedException interruptedException) {
@@ -148,7 +149,7 @@ public class SpelbordController {
     public SpelbordController() {
         gameModel = getGameModelInstance();
         spelbordModel = spelbordModel.getSpelbordModelInstance();
-        countryListener();
+
         //todo verder uitwerken
 //        SpelbordObserver phaseID = null;
 //        spelbordModel.register(phaseID);
@@ -197,16 +198,16 @@ public class SpelbordController {
 
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-            System.out.println("dit is arraycountrydata:    " + arrayCountryData);
+//            System.out.println("dit is arraycountrydata:    " + arrayCountryData);
             int count = 0;
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue(ButtonID)) {
 //                        System.out.println(armyAndCountryID);
-                    System.out.println(arrayCountryData.get(count).get("army"));
+//                    System.out.println(arrayCountryData.get(count).get("army"));
                     String currentArmies = arrayCountryData.get(count).get("army").toString();
                     int firstArmy = Integer.parseInt(currentArmies);
-                    System.out.println(firstArmy);
+//                    System.out.println(firstArmy);
                     return firstArmy;
                 }
                 count += 1;
@@ -404,10 +405,8 @@ public class SpelbordController {
                 Platform.runLater(() -> {
                     try {
                         button.setText(String.valueOf(getArmyFirebase(button.getId().split("c")[1])));
-                    } catch (ExecutionException executionException) {
+                    } catch (ExecutionException | InterruptedException executionException) {
                         executionException.printStackTrace();
-                    } catch (InterruptedException interruptedException) {
-                        interruptedException.printStackTrace();
                     }
                 });
 
