@@ -401,7 +401,15 @@ public class SpelbordController {
             documentSnapshot.getData().get("countries");
             System.out.println("IK BESTAAAAAAAAAAAAAAAA");
             for (Button button : buttons){
-                Platform.runLater(() -> button.setText("TESTTTTTTTT"));
+                Platform.runLater(() -> {
+                    try {
+                        button.setText(String.valueOf(getArmyFirebase(button.getId().split("c")[1])));
+                    } catch (ExecutionException executionException) {
+                        executionException.printStackTrace();
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
+                });
 
                 System.out.println("TESTTTTTTTTTTTTTTTTTT" + button);
 //                button.setText("12333333333333333");
@@ -474,8 +482,10 @@ public class SpelbordController {
     //TODO probleem dat iedereen nu die buttons kan klikken
     public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
         Button buttonid = (Button) event.getSource();
+        System.out.println(event.getSource() + "dit is de source");
         System.out.println(buttonid.getId().split("c")[1]);
         String buttonIdCode = buttonid.getId().split("c")[1];
+
 
 
         // if observerItem phaseID == 1 clicking on a country will add armies
@@ -499,32 +509,37 @@ public class SpelbordController {
                 incrementActionsTaken();
                 if (getNeighborsFirebase()) {
 
+                    //todo check if both players have at least 2 armies
+                    int attackersArmy = getArmyFirebase(gameModel.getSelectedCountries().get(0));
+                    int defendersArmy = getArmyFirebase(gameModel.getSelectedCountries().get(1));
 
-                    //Todo laat de spelers de dice gooien
-                    ArrayList<Integer> dice1 = dice.roll(3);
-                    ArrayList<Integer> dice2 = dice.roll(2);
+                    if (attackersArmy >= 2 && defendersArmy >= 1) {
+                        ArrayList<Integer> dice1 = dice.roll(3);
+                        ArrayList<Integer> dice2 = dice.roll(2);
 
-                    for (int num : dice1) {
-                        System.out.println(num);
+                        for (int num : dice1) {
+                            System.out.println(num);
+                        }
+                        for (int num : dice2) {
+                            System.out.println(num);
+                        }
+
+                        if (dice1.get(0) > dice2.get(0)) {
+                            System.out.println("defender loses an army");
+                        } else {
+                            System.out.println("attacker loses an army");
+                        }
+
+                        if (dice1.get(1) > dice2.get(1)) {
+                            System.out.println("defender loses an army");
+                        } else {
+                            System.out.println("attacker loses an army");
+                        }
+
+
+                        gameModel.clearSelectedCountries();
                     }
-                    for (int num : dice2) {
-                        System.out.println(num);
-                    }
 
-                    if (dice1.get(0) > dice2.get(0)) {
-                        System.out.println("defender loses an army");
-                    } else {
-                        System.out.println("attacker loses an army");
-                    }
-
-                    if (dice1.get(1) > dice2.get(1)) {
-                        System.out.println("defender loses an army");
-                    } else {
-                        System.out.println("attacker loses an army");
-                    }
-
-
-                    gameModel.clearSelectedCountries();
                 }
 
 //            } else if (gameModel.getSelectedCountries().size() == 2) {
