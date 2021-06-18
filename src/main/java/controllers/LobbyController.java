@@ -85,7 +85,7 @@ public class LobbyController {
                         SpelbordController spelbordController = new SpelbordController();
                         spelbordController.setArmyAndCountryInFirebase();
 
-                        Thread.sleep(50);
+                        Thread.sleep(20);
 
                         spelbordController.setCountries(spelbordViewController.getCountriesArray());
                         spelbordController.setButtons(spelbordViewController.getButtonsArray());
