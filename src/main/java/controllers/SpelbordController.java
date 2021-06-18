@@ -117,10 +117,8 @@ public class SpelbordController {
                     startMainLoop();
 //                    armiesListener();
 //                    countryListener();
-                } catch (ExecutionException executionException) {
+                } catch (ExecutionException | InterruptedException executionException) {
                     executionException.printStackTrace();
-                } catch (InterruptedException interruptedException) {
-                    interruptedException.printStackTrace();
                 }
             }
         });
@@ -359,7 +357,7 @@ public class SpelbordController {
 
     //TODO matchen met code hierboven
     public void nextTurn() {
-        if (gameModel.isGameOver() == true) {
+        if (gameModel.isGameOver()) {
             //end game. this should be called by an observer?
         } else if (gameModel.getTurnID() < 4) {
             gameModel.setTurnID(gameModel.getTurnID() + 1);
@@ -398,7 +396,7 @@ public class SpelbordController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             documentSnapshot.getData().get("countries");
-            System.out.println("IK BESTAAAAAAAAAAAAAAAA");
+//            System.out.println("IK BESTAAAAAAAAAAAAAAAA");
             for (Button button : buttons) {
                 Platform.runLater(() -> {
                     try {
@@ -408,7 +406,7 @@ public class SpelbordController {
                     }
                 });
 
-                System.out.println("TESTTTTTTTTTTTTTTTTTT" + button);
+//                System.out.println("TESTTTTTTTTTTTTTTTTTT" + button);
 //                button.setText("12333333333333333");
 //                setArmiesOnButton(button, "100");
             }
@@ -491,7 +489,7 @@ public class SpelbordController {
                 setArmyFirebase(buttonIdCode, oldArmies + 4);
                 buttonid.setText(String.valueOf(oldArmies + 4));
                 gameModel.updatePhaseID();
-                incrementActionsTaken();
+//                incrementActionsTaken();
             } else if (gameModel.getPhaseID() == 2) {
                 System.out.println("now you cant update armies, only attack scrub");
                 if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
@@ -499,11 +497,11 @@ public class SpelbordController {
                     System.out.println("check if exists");
                     gameModel.clearSelectedCountries(buttonIdCode);
                     System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
-                    incrementActionsTaken();
+//                    incrementActionsTaken();
                 } else if (gameModel.getSelectedCountries().size() == 1) {
                     gameModel.clearSelectedCountries(buttonIdCode);
                     System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
-                    incrementActionsTaken();
+//                    incrementActionsTaken();
                     if (getNeighborsFirebase()) {
 
                         //todo check if both players have at least 2 armies
@@ -583,7 +581,7 @@ public class SpelbordController {
     public void setColorCountry(ImageView imageLand, double playerColor) {
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setHue(playerColor);
-        colorAdjust.setSaturation(1);
+        colorAdjust.setSaturation(0.8);
 
         imageLand.setEffect(colorAdjust);
     }
@@ -613,27 +611,27 @@ public class SpelbordController {
             System.out.println("Ding bestaat");
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-            System.out.println("test1" + arrayCountryData);
+//            System.out.println("test1" + arrayCountryData);
             for (HashMap armyAndCountryID : arrayCountryData) {
-                System.out.println("test2" + armyAndCountryID);
+//                System.out.println("test2" + armyAndCountryID);
                 if (armyAndCountryID.containsKey("playerID")) {
-                    System.out.println("PLAYER ID IS: " + armyAndCountryID.get("playerID"));
+//                    System.out.println("PLAYER ID IS: " + armyAndCountryID.get("playerID"));
 
                     String countryID = (String) armyAndCountryID.get("countryID");
 
-                    System.out.println("COUNTRY ID IS" + countryID);
+//                    System.out.println("COUNTRY ID IS" + countryID);
 
                     for (ImageView country : countries) {
-                        System.out.println("COUNTRY (IMAGE) ID IS" + country.getId());
+//                        System.out.println("COUNTRY (IMAGE) ID IS" + country.getId());
 
                         if (country.getId().equals(countryID)) {
 
-                            System.out.println("gevonden");
+//                            System.out.println("gevonden");
                             Long id = (Long) armyAndCountryID.get("playerID");
-                            System.out.println(id.intValue());
+//                            System.out.println(id.intValue());
                             double color = getPlayerColor(id.intValue());
 ////
-                            System.out.println("PLAYER COLOR IS: " + color);
+//                            System.out.println("PLAYER COLOR IS: " + color);
 
                             setColorCountry(country, color);
                         }

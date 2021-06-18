@@ -85,10 +85,11 @@ public class LobbyController {
                         SpelbordController spelbordController = new SpelbordController();
                         spelbordController.setArmyAndCountryInFirebase();
 
-                        Thread.sleep(20);
+                        Thread.sleep(50);
 
                         spelbordController.setCountries(spelbordViewController.getCountriesArray());
                         spelbordController.setButtons(spelbordViewController.getButtonsArray());
+                        Thread.sleep(50);
                         spelbordController.setCountryColorStartGame();
                         System.out.println("AFTERRR METHODDD");
 //
