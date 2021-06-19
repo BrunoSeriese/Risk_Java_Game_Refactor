@@ -295,7 +295,7 @@ public class SpelbordController {
                         System.out.println("Je mag aanvallen");
                         return true;
                     } else {
-                        System.out.println("nee helaas");
+                        System.out.println("Je mag alleen landen aanvallen dat naast je zit");
                         gameModel.clearSelectedCountries();
                         return false;
                     }
@@ -354,7 +354,6 @@ public class SpelbordController {
 
     }
 
-    //TODO matchen met code hierboven
     public void nextTurn() {
         if (gameModel.isGameOver()) {
             //end game. this should be called by an observer?
@@ -470,6 +469,31 @@ public class SpelbordController {
         }
     }
 
+    public boolean checkArmiesOnCountry(String country) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+
+            //Pak alle dingen in de countries field in firebase
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                if (armyAndCountryID.containsValue(country)) {
+                    int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
+                    if (firebaseArmies >= 2) {
+                        System.out.println("Je hebt genoeg armies om aan te vallen");
+                        return true;
+                    } else {
+                        System.out.println("Je hebt niet genoeg armies om aan te vallen");
+                        return false;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean checkOwnPlayerCountry(String country) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
@@ -542,10 +566,10 @@ public class SpelbordController {
                     gameModel.clearSelectedCountries();
                     System.out.println("check if exists");
                     if (checkOwnPlayerCountry(buttonIdCode)) {
-                        gameModel.clearSelectedCountries(buttonIdCode);
+                        if (checkArmiesOnCountry(buttonIdCode)) {
+                            gameModel.clearSelectedCountries(buttonIdCode);
+                        }
                     }
-                    System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
-//                    incrementActionsTaken();
                 } else if (gameModel.getSelectedCountries().size() == 1) {
                     // Checken van eigen land of enemy land
                     ArrayList<String> arraySelectedCountries = gameModel.getSelectedCountries();
@@ -559,14 +583,14 @@ public class SpelbordController {
                             int defendersArmy = getArmyFirebase(gameModel.getSelectedCountries().get(1));
 
                             if (attackersArmy >= 2 && defendersArmy >= 1) {
-                                ArrayList<Integer> dice1 = dice.roll(3);
-                                ArrayList<Integer> dice2 = dice.roll(2);
+                                ArrayList<Integer> dice1 = dice.roll(1);
+                                ArrayList<Integer> dice2 = dice.roll(1);
 
                                 for (int num : dice1) {
-                                    System.out.println(num);
+                                    System.out.println("Aanvallende dobbelsteen is " + num);
                                 }
                                 for (int num : dice2) {
-                                    System.out.println(num);
+                                    System.out.println("Verdedigende dobbelsteen is " + num);
                                 }
 
                                 if (dice1.get(0) > dice2.get(0)) {
@@ -575,11 +599,11 @@ public class SpelbordController {
                                     System.out.println("attacker loses an army");
                                 }
 
-                                if (dice1.get(1) > dice2.get(1)) {
-                                    System.out.println("defender loses an army");
-                                } else {
-                                    System.out.println("attacker loses an army");
-                                }
+//                                if (dice1.get(1) > dice2.get(1)) {
+//                                    System.out.println("defender loses an army");
+//                                } else {
+//                                    System.out.println("attacker loses an army");
+//                                }
                                 gameModel.clearSelectedCountries();
                             }
                         }
