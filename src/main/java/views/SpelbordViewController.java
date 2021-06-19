@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import models.GameModel;
 import models.SpelbordModel;
 import observers.SpelbordObservable;
@@ -29,6 +30,10 @@ public class SpelbordViewController implements Initializable {
     ArrayList<Button> buttonsArray = new ArrayList<>();
     ArrayList<ImageView> imageViewArray = new ArrayList<>();
 
+    @FXML
+    public ImageView exchangeIcon;
+    @FXML
+    public AnchorPane cardInventory;
     @FXML
     public ImageView endTurnIcon;
     @FXML
@@ -63,12 +68,14 @@ public class SpelbordViewController implements Initializable {
         spelbordController.getButtonID(event);
     }
 
-    public void handleClicky() {
-        spelbordController.handleClicky();
+
+
+    public void showCardInventory() {
+        cardInventory.setVisible(true);
     }
 
-    public void showCards() {
-        spelbordController.showCards();
+    public void closeCardInventory() {
+        cardInventory.setVisible(false);
     }
 
     public void endTurn() throws ExecutionException, InterruptedException {

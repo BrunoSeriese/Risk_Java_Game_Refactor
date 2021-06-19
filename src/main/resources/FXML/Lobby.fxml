@@ -66,22 +66,22 @@
             <Image url="@../images/start_button.png" />
          </image>
       </ImageView>
-      <Label fx:id="username1" alignment="CENTER" layoutX="218.0" layoutY="150.0" prefHeight="34.0" prefWidth="181.0" text="placeholder1">
+      <Label fx:id="username1" alignment="CENTER" layoutX="218.0" layoutY="150.0" prefHeight="34.0" prefWidth="181.0">
          <font>
             <Font name="Rockwell" size="28.0" />
          </font>
       </Label>
-      <Label fx:id="username2" alignment="CENTER" layoutX="218.0" layoutY="230.0" prefHeight="34.0" prefWidth="181.0" text="placeholder2">
+      <Label fx:id="username2" alignment="CENTER" layoutX="218.0" layoutY="230.0" prefHeight="34.0" prefWidth="181.0">
          <font>
             <Font name="Rockwell" size="28.0" />
          </font>
       </Label>
-      <Label fx:id="username3" alignment="CENTER" layoutX="218.0" layoutY="310.0" prefHeight="34.0" prefWidth="181.0" text="placeholder3">
+      <Label fx:id="username3" alignment="CENTER" layoutX="218.0" layoutY="310.0" prefHeight="34.0" prefWidth="181.0">
          <font>
             <Font name="Rockwell" size="28.0" />
          </font>
       </Label>
-      <Label fx:id="username4" alignment="CENTER" layoutX="218.0" layoutY="390.0" prefHeight="34.0" prefWidth="181.0" text="placeholder4">
+      <Label fx:id="username4" alignment="CENTER" layoutX="218.0" layoutY="390.0" prefHeight="34.0" prefWidth="181.0">
          <font>
             <Font name="Rockwell" size="28.0" />
          </font>

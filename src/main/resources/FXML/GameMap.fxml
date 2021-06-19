@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.SpelbordViewController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.SpelbordViewController">
    <children>
       <ImageView preserveRatio="true">
          <image>
             <Image url="@../images/gamemap.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cardIcon" fitHeight="97.0" fitWidth="100.0" layoutX="14.0" layoutY="609.0" onMouseClicked="#showCards">
+      <ImageView fx:id="cardIcon" fitHeight="97.0" fitWidth="100.0" layoutX="14.0" layoutY="609.0" onMouseClicked="#showCardInventory">
          <image>
             <Image url="@../images/card_icon.png" />
          </image>
@@ -245,48 +244,48 @@
             <Image url="@../images/ASIA/ASIA12.png" />
          </image>
       </ImageView>
-      <Label layoutX="72.0" layoutY="130.0" text="NA2" />
-      <Label layoutX="187.0" layoutY="131.0" text="NA3" />
-      <Label layoutX="301.0" layoutY="122.0" text="NA4" />
-      <Label layoutX="195.0" layoutY="184.0" text="NA5" />
-      <Label layoutX="285.0" layoutY="197.0" text="NA6" />
-      <Label layoutX="380.0" layoutY="194.0" text="NA7" />
-      <Label layoutX="198.0" layoutY="254.0" text="NA8" />
-      <Label layoutX="296.0" layoutY="269.0" text="NA9" />
-      <Label layoutX="216.0" layoutY="328.0" text="NA10" />
-      <Label layoutX="528.0" layoutY="418.0" text="AFRICA1" />
-      <Label layoutX="614.0" layoutY="377.0" text="AFRICA2" />
-      <Label layoutX="667.0" layoutY="454.0" text="AFRICA3" />
-      <Label layoutX="608.0" layoutY="517.0" text="AFRICA4" />
-      <Label layoutX="611.0" layoutY="601.0" text="AFRICA5" />
-      <Label layoutX="712.0" layoutY="602.0" text="AFRICA6" />
-      <Label layoutX="833.0" layoutY="180.0" text="ASIA1" />
-      <Label layoutX="918.0" layoutY="156.0" text="ASIA2" />
-      <Label layoutX="1037.0" layoutY="131.0" text="ASIA3" />
-      <Label layoutX="1166.0" layoutY="131.0" text="ASIA4" />
-      <Label layoutX="1003.0" layoutY="197.0" text="ASIA5" />
-      <Label layoutX="1029.0" layoutY="254.0" text="ASIA6" />
-      <Label layoutX="1111.0" layoutY="285.0" text="ASIA7" />
-      <Label layoutX="808.0" layoutY="265.0" text="ASIA8" />
-      <Label layoutX="939.0" layoutY="311.0" text="ASIA9" />
-      <Label layoutX="715.0" layoutY="348.0" text="ASIA10" />
-      <Label layoutX="865.0" layoutY="376.0" text="ASIA11" />
-      <Label layoutX="954.0" layoutY="390.0" text="ASIA12" />
-      <Label layoutX="533.0" layoutY="154.0" text="EU1" />
-      <Label layoutX="599.0" layoutY="156.0" text="EU2" />
-      <Label layoutX="728.0" layoutY="193.0" text="EU3" />
-      <Label layoutX="542.0" layoutY="228.0" text="EU4" />
-      <Label layoutX="605.0" layoutY="229.0" text="EU5" />
-      <Label layoutX="531.0" layoutY="300.0" text="EU6" />
-      <Label layoutX="626.0" layoutY="277.0" text="EU7" />
-      <Label layoutX="1071.0" layoutY="454.0" text="OCE1" textFill="WHITE" />
-      <Label layoutX="988.0" layoutY="590.0" text="OCE2" />
-      <Label layoutX="1101.0" layoutY="590.0" text="OCE3" />
-      <Label layoutX="1171.0" layoutY="613.0" text="OCE4" />
-      <Label layoutX="274.0" layoutY="408.0" text="SA1" />
-      <Label layoutX="263.0" layoutY="493.0" text="SA2" />
-      <Label layoutX="388.0" layoutY="476.0" text="SA3" />
-      <Label layoutX="303.0" layoutY="585.0" text="SA4" />
+<!--      <Label layoutX="72.0" layoutY="130.0" text="NA2" />-->
+<!--      <Label layoutX="187.0" layoutY="131.0" text="NA3" />-->
+<!--      <Label layoutX="301.0" layoutY="122.0" text="NA4" />-->
+<!--      <Label layoutX="195.0" layoutY="184.0" text="NA5" />-->
+<!--      <Label layoutX="285.0" layoutY="197.0" text="NA6" />-->
+<!--      <Label layoutX="380.0" layoutY="194.0" text="NA7" />-->
+<!--      <Label layoutX="198.0" layoutY="254.0" text="NA8" />-->
+<!--      <Label layoutX="296.0" layoutY="269.0" text="NA9" />-->
+<!--      <Label layoutX="216.0" layoutY="328.0" text="NA10" />-->
+<!--      <Label layoutX="528.0" layoutY="418.0" text="AFRICA1" />-->
+<!--      <Label layoutX="614.0" layoutY="377.0" text="AFRICA2" />-->
+<!--      <Label layoutX="667.0" layoutY="454.0" text="AFRICA3" />-->
+<!--      <Label layoutX="608.0" layoutY="517.0" text="AFRICA4" />-->
+<!--      <Label layoutX="611.0" layoutY="601.0" text="AFRICA5" />-->
+<!--      <Label layoutX="712.0" layoutY="602.0" text="AFRICA6" />-->
+<!--      <Label layoutX="833.0" layoutY="180.0" text="ASIA1" />-->
+<!--      <Label layoutX="918.0" layoutY="156.0" text="ASIA2" />-->
+<!--      <Label layoutX="1037.0" layoutY="131.0" text="ASIA3" />-->
+<!--      <Label layoutX="1166.0" layoutY="131.0" text="ASIA4" />-->
+<!--      <Label layoutX="1003.0" layoutY="197.0" text="ASIA5" />-->
+<!--      <Label layoutX="1029.0" layoutY="254.0" text="ASIA6" />-->
+<!--      <Label layoutX="1111.0" layoutY="285.0" text="ASIA7" />-->
+<!--      <Label layoutX="808.0" layoutY="265.0" text="ASIA8" />-->
+<!--      <Label layoutX="939.0" layoutY="311.0" text="ASIA9" />-->
+<!--      <Label layoutX="715.0" layoutY="348.0" text="ASIA10" />-->
+<!--      <Label layoutX="865.0" layoutY="376.0" text="ASIA11" />-->
+<!--      <Label layoutX="954.0" layoutY="390.0" text="ASIA12" />-->
+<!--      <Label layoutX="533.0" layoutY="154.0" text="EU1" />-->
+<!--      <Label layoutX="599.0" layoutY="156.0" text="EU2" />-->
+<!--      <Label layoutX="728.0" layoutY="193.0" text="EU3" />-->
+<!--      <Label layoutX="542.0" layoutY="228.0" text="EU4" />-->
+<!--      <Label layoutX="605.0" layoutY="229.0" text="EU5" />-->
+<!--      <Label layoutX="531.0" layoutY="300.0" text="EU6" />-->
+<!--      <Label layoutX="626.0" layoutY="277.0" text="EU7" />-->
+<!--      <Label layoutX="1071.0" layoutY="454.0" text="OCE1" textFill="WHITE" />-->
+<!--      <Label layoutX="988.0" layoutY="590.0" text="OCE2" />-->
+<!--      <Label layoutX="1101.0" layoutY="590.0" text="OCE3" />-->
+<!--      <Label layoutX="1171.0" layoutY="613.0" text="OCE4" />-->
+<!--      <Label layoutX="274.0" layoutY="408.0" text="SA1" />-->
+<!--      <Label layoutX="263.0" layoutY="493.0" text="SA2" />-->
+<!--      <Label layoutX="388.0" layoutY="476.0" text="SA3" />-->
+<!--      <Label layoutX="303.0" layoutY="585.0" text="SA4" />-->
 
       <Button fx:id="cSA1" layoutX="261.0" layoutY="415.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" stylesheets="@../CSS/buttonStyle.css" text="2">
          <cursor>
@@ -296,7 +295,6 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Label layoutX="483.0" layoutY="55.0" text="NA1" />
       <Button fx:id="cNA9" layoutX="285.0" layoutY="273.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" stylesheets="@../CSS/buttonStyle.css" text="2">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -409,7 +407,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Button fx:id="cASIA9" layoutX="940.0" layoutY="330.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" stylesheets="@../CSS/buttonStyle.css" text="2">
+      <Button fx:id="cASIA9" layoutX="940.0" layoutY="300.0" mnemonicParsing="false" onAction="#getButtonID" prefHeight="25.0" prefWidth="36.0" scaleShape="false" stylesheets="@../CSS/buttonStyle.css" text="2">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -634,4 +632,133 @@
             <Font size="8.0" />
          </font>
       </Button>
+   <AnchorPane fx:id="cardInventory" layoutX="2.0" layoutY="1.0" prefHeight="714.0" prefWidth="1274.0">
+      <children>
+         <ImageView fitHeight="628.0" fitWidth="628.0" layoutX="323.0" layoutY="-17.0">
+            <image>
+               <Image url="@../images/note.png" />
+            </image>
+         </ImageView>
+         <GridPane fx:id="cardGrid" layoutX="424.0" layoutY="98.0" prefHeight="398.0" prefWidth="427.0" vgap="10.0">
+           <columnConstraints>
+             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="106.0" />
+             <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="109.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="110.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="103.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+               <ImageView fitHeight="130.0" fitWidth="90.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/cannon_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="139.0" fitWidth="94.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/horse_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="135.0" fitWidth="89.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/soldier_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="135.0" fitWidth="89.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/soldier_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="130.0" fitWidth="89.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/cannon_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="139.0" fitWidth="94.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/horse_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="130.0" fitWidth="89.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/cannon_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="135.0" fitWidth="89.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/soldier_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="139.0" fitWidth="94.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/horse_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="135.0" fitWidth="89.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/soldier_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="139.0" fitWidth="94.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/horse_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+               <ImageView fitHeight="130.0" fitWidth="89.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+                  <image>
+                     <Image url="@../images/cannon_card.png" />
+                  </image>
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+               </ImageView>
+            </children>
+         </GridPane>
+         <ImageView fx:id="exchangeIcon" layoutX="559.0" layoutY="496.0">
+            <image>
+               <Image url="@../images/button_exchange_cards.png" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="closeCardInventory" fitHeight="39.0" fitWidth="71.0" layoutX="432.0" layoutY="515.0" onMouseClicked="#closeCardInventory">
+            <image>
+               <Image url="@../images/left.png" />
+            </image>
+         </ImageView>
+      </children></AnchorPane>
 </AnchorPane>

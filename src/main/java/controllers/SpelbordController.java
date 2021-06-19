@@ -606,15 +606,6 @@ public class SpelbordController {
 
     // if observerItem phaseID == 2 clicking on a country will try to stage an attack
 
-
-    public void handleClicky() {
-        System.out.println("CLICKYYY MOFO");
-    }
-
-    public void showCards() {
-        System.out.println("showcard");
-    }
-
     public void endTurn() throws ExecutionException, InterruptedException {
         nextTurnIDFirebase();
     }
