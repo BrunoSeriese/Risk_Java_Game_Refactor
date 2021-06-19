@@ -183,7 +183,7 @@ public class SpelbordController {
 
 
             for (HashMap armyAndCountryID : arrayCountryData) {
-                System.out.println(armyAndCountryID.get("playerID"));
+//                System.out.println(armyAndCountryID.get("playerID"));
                 String currentID = String.valueOf(armyAndCountryID.get("playerID"));
 
                 if (currentID.equals("1")) {
@@ -442,65 +442,29 @@ public class SpelbordController {
         });
     }
 
-    //TODO IMPORTANT dit is eigenlijk gewoon een functien, dus NIET een listener.
-    // Voor listener heb je regel 396 nodig dat uitgecomment is
-
-    public void armiesListener() throws ExecutionException, InterruptedException {
+    public void removeArmiesFromPlayer(String country) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
-//        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
-//        docRef.addSnapshotListener((documentSnapshot, e) -> {
         if (document.exists()) {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-            document.getData().get("countries");
-            System.out.println("De nieuwe test: " + document.getData().get("countries"));
-            int count = 0;
 
+            int count = 0;
             //Pak alle dingen in de countries field in firebase
             for (HashMap armyAndCountryID : arrayCountryData) {
-//                    System.out.println("de army en countryid is " + armyAndCountryID);
-//                    System.out.println("de army is: " + armyAndCountryID.get("army"));
-//                    System.out.println("de countryID is: " + armyAndCountryID.get("countryID"));
-
-                //TODO Hier moet de buttons id (met de c) vergeleken worden met de countryID (van hier)
-                // Moeite met buttons FXML krijgen (met c) van de fx:id bestand
-                // Als het true is dan moet de de button .settext met army krijgen
-                // Functie aangemaakt in spelbordViewController voor het set van text (setArmies())
-
-                String countryButtonWithC = "c" + armyAndCountryID.get("countryID");
-//                System.out.println("De country met c is: " + countryButtonWithC);
-//                ArrayList x = spelbordViewController.addButtonArray();
-//                System.out.println(x.toString());
-//                Button countryButton = new Button(countryButtonWithC);
-//                System.out.println(countryButton);
-
-                //TODO deze comment KAN weg, misschien kunnen we het later gebruiken
-//                SpelbordViewController spelbordViewController = new SpelbordViewController();
-//                spelbordViewController.setArmies(countryButton, armyAndCountryID.get("army"));
-//                if (armyAndCountryID.containsValue(arraySelectedCountries.get(0))) {
-//                    System.out.println("dit is selected countries:   " + arraySelectedCountries);
-//
-//                    arrayCountryData.get(count).get("neighbor");
-//                    ArrayList x = (ArrayList) arrayCountryData.get(count).get("neighbor");
-//
-//                    if (x.contains(arraySelectedCountries.get(1))) {
-//                        System.out.println("dit is selected countries:   " + arraySelectedCountries);
-//
-//                        System.out.println("Je mag aanvallen");
-//                    } else {
-//                        System.out.println("nee helaas");
-//                        gameModel.clearSelectedCountries();
-//                    }
-//                }
-//                count += 1;
-//                count += 1;
+                if (armyAndCountryID.containsValue(country)) {
+                    int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
+                    if (firebaseArmies == 1) {
+                        arrayCountryData.get(count).put("playerID", State.TurnID);
+                        //TODO verander kleur op map
+                    } else {
+                        arrayCountryData.get(count).put("army", firebaseArmies - 1);
+                    }
+                }
+                count++;
             }
-//            System.out.println("werkt" + arraySelectedCountries);
-        } else {
-            System.out.println("No document found!");
-
+            docRef.update("countries", arrayCountryData);
         }
     }
 
@@ -632,8 +596,14 @@ public class SpelbordController {
 
                                 if (dice1.get(0) > dice2.get(0)) {
                                     System.out.println("defender loses an army");
+                                    removeArmiesFromPlayer(gameModel.getSelectedCountries().get(1));
+                                    dice1.clear();
+                                    dice2.clear();
                                 } else {
                                     System.out.println("attacker loses an army");
+                                    removeArmiesFromPlayer(gameModel.getSelectedCountries().get(0));
+                                    dice1.clear();
+                                    dice2.clear();
                                 }
 
 //                                if (dice1.get(1) > dice2.get(1)) {
@@ -641,6 +611,7 @@ public class SpelbordController {
 //                                } else {
 //                                    System.out.println("attacker loses an army");
 //                                }
+
                                 gameModel.clearSelectedCountries();
                             }
                         }
