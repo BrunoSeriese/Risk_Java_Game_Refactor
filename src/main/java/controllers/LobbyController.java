@@ -79,7 +79,6 @@ public class LobbyController {
                         scene = new Scene(root);
 
                         SpelbordViewController spelbordViewController = loader.getController();
-                        spelbordViewController.initialize();
 
                         Platform.runLater(() -> State.stage.setScene(scene));
                         SpelbordController spelbordController = new SpelbordController();
@@ -87,6 +86,7 @@ public class LobbyController {
 
                         Thread.sleep(50);
 
+                        spelbordController.setSpelbordViewController(spelbordViewController);
                         spelbordController.setCountries(spelbordViewController.getCountriesArray());
                         spelbordController.setButtons(spelbordViewController.getButtonsArray());
                         Thread.sleep(50);

@@ -11,7 +11,6 @@ import views.SpelbordViewController;
 
 public class Main extends Application {
 
-    SpelbordController spelbordController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

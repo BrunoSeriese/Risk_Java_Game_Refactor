@@ -26,7 +26,8 @@ import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
 
-    static SpelbordViewController spelbordViewController = getSpelbordViewControllerInstance();
+    //    static SpelbordViewController spelbordViewController = getSpelbordViewControllerInstance();
+    private SpelbordViewController spelbordViewController;
     static GameModel gameModel;
     static SpelbordModel spelbordModel;
     private SpelbordModel map;
@@ -40,8 +41,20 @@ public class SpelbordController {
     //    gameModel = loginController.getGameModelInstance();
 //    LoginController loginController = new LoginController();
 
+    public ImageView[] getCountries() {
+        System.out.println("Countries worden opgevraagd");
+        System.out.println(Arrays.toString(this.countries));
+
+        return this.countries;
+    }
+
     public void setCountries(ImageView[] countries) {
+        System.out.println("Countries worden aangepast");
         this.countries = countries;
+    }
+
+    public void setSpelbordViewController(SpelbordViewController spelbordViewController) {
+        this.spelbordViewController = spelbordViewController;
     }
 
     public void setButtons(Button[] buttons) {
@@ -468,11 +481,19 @@ public class SpelbordController {
                     if (firebaseArmies == 1) {
                         arrayCountryData.get(count).put("playerID", State.TurnID);
                         //TODO verander kleur op map
-                        spelbordViewController.initialize();
-                        setCountries(spelbordViewController.getCountriesArray());
-                        setCountryColorStartGame();
+                        Platform.runLater(() -> {
+                            try {
+                                setCountryColorStartGame();
+                            } catch (ExecutionException | InterruptedException | IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        });
+                        System.out.println("gelukt!!");
+//                        System.out.println("Countries: " + countries);
                     } else {
                         arrayCountryData.get(count).put("army", firebaseArmies - 1);
+                        docRef.update("countries", arrayCountryData);
                     }
                 }
                 count++;
@@ -703,22 +724,18 @@ public class SpelbordController {
 //                    System.out.println("PLAYER ID IS: " + armyAndCountryID.get("playerID"));
 
                     String countryID = (String) armyAndCountryID.get("countryID");
+                    Long playerID = (Long) armyAndCountryID.get("playerID");
 
 //                    System.out.println("COUNTRY ID IS" + countryID);
                     System.out.println("In de countries zitten " + countries);
 
-                    for (ImageView country : countries) {
+                    for (ImageView country : spelbordViewController.getCountriesArray()) {
 //                        System.out.println("COUNTRY (IMAGE) ID IS" + country.getId());
 
                         if (country.getId().equals(countryID)) {
 
-//                            System.out.println("gevonden");
-                            Long id = (Long) armyAndCountryID.get("playerID");
-//                            System.out.println(id.intValue());
-                            double color = getPlayerColor(id.intValue());
-////
-//                            System.out.println("PLAYER COLOR IS: " + color);
 
+                            double color = getPlayerColor(playerID.intValue());
                             setColorCountry(country, color);
                         }
                     }

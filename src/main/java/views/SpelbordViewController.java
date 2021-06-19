@@ -167,6 +167,13 @@ public class SpelbordViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        spelbordController.setSpelbordViewController(this);
 
+        countries = new ImageView[]{NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
+                AFRICA5, AFRICA6, EU1, EU2, EU3, EU4, EU5, EU6, EU7, SA1, SA2, SA3, SA4, OCE1, OCE2, OCE3, OCE4, ASIA1, ASIA2, ASIA3, ASIA4, ASIA5, ASIA6, ASIA7, ASIA8, ASIA9, ASIA10, ASIA11, ASIA12};
+
+        buttons = new Button[]{cNA1, cNA2, cNA3, cNA4, cNA5, cNA6, cNA7, cNA8, cNA9, cNA10, cAFRICA1, cAFRICA2, cAFRICA3, cAFRICA4,
+                cAFRICA5, cAFRICA6, cEU1, cEU2, cEU3, cEU4, cEU5, cEU6, cEU7, cSA1, cSA2, cSA3, cSA4, cOCE1, cOCE2, cOCE3, cOCE4,
+                cASIA1, cASIA2, cASIA3, cASIA4, cASIA5, cASIA6, cASIA7, cASIA8, cASIA9, cASIA10, cASIA11, cASIA12};
     }
 }
