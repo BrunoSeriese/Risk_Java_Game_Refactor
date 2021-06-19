@@ -34,8 +34,6 @@ public class SpelbordViewController implements Initializable {
     @FXML
     public ImageView cardIcon;
     @FXML
-    public ImageView diceIcon;
-    @FXML
     public ImageView playerIcon;
     @FXML
     public ImageView NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
@@ -73,10 +71,6 @@ public class SpelbordViewController implements Initializable {
         spelbordController.showCards();
     }
 
-    public void rollDice() {
-        spelbordController.rollDice();
-    }
-
     public void endTurn() throws ExecutionException, InterruptedException {
         spelbordController.endTurn();
     }
@@ -110,7 +104,6 @@ public class SpelbordViewController implements Initializable {
     public void hideHUD() {
         System.out.println("NOG NIET WEG");
         cardIcon.setVisible(false);
-        diceIcon.setVisible(false);
         playerIcon.setVisible(false);
         endTurnIcon.setVisible(false);
         for (Button button : getButtonsArray()) {
@@ -122,7 +115,6 @@ public class SpelbordViewController implements Initializable {
     public void showHUD() {
         System.out.println("NOG NIET WEG");
         cardIcon.setVisible(true);
-        diceIcon.setVisible(true);
         playerIcon.setVisible(true);
         endTurnIcon.setVisible(true);
         for (Button button : getButtonsArray()) {

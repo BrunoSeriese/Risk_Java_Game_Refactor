@@ -615,14 +615,6 @@ public class SpelbordController {
         System.out.println("showcard");
     }
 
-    public void showPlayers() {
-        System.out.println("showplayer");
-    }
-
-    public void rollDice() {
-        System.out.println("rolldice");
-    }
-
     public void endTurn() throws ExecutionException, InterruptedException {
         nextTurnIDFirebase();
     }

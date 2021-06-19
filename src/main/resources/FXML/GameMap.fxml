@@ -22,14 +22,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="diceIcon" fitHeight="97.0" fitWidth="100.0" layoutX="14.0" layoutY="505.0" onMouseClicked="#rollDice">
-         <image>
-            <Image url="@../images/dice_icon.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <ImageView fx:id="endTurnIcon" fitHeight="97.0" fitWidth="201.0" layoutX="750.0" layoutY="622.0" onMouseClicked="#endTurn">
          <image>
             <Image url="@../images/button_end_turn.png" />
