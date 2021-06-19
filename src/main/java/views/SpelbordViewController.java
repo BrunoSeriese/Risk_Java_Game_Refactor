@@ -113,7 +113,7 @@ public class SpelbordViewController implements Initializable {
         diceIcon.setVisible(false);
         playerIcon.setVisible(false);
         endTurnIcon.setVisible(false);
-        for (Button button : buttons) {
+        for (Button button : getButtonsArray()) {
             button.setVisible(false);
         }
         System.out.println("IS WEG WOOOOO");
@@ -125,7 +125,7 @@ public class SpelbordViewController implements Initializable {
         diceIcon.setVisible(true);
         playerIcon.setVisible(true);
         endTurnIcon.setVisible(true);
-        for (Button button : buttons) {
+        for (Button button : getButtonsArray()) {
             button.setVisible(true);
         }
         System.out.println("IS WEG WOOOOO");

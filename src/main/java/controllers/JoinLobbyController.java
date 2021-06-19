@@ -7,12 +7,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.PlayerModel;
 
 import java.io.IOException;
 
 public class JoinLobbyController {
+
 
     private Stage stage;
     private Scene scene;
@@ -23,7 +25,7 @@ public class JoinLobbyController {
 
     @FXML
     TextField codeField;
-
+    public Text invalidCode;
 
 
     public JoinLobbyController(){
@@ -31,7 +33,7 @@ public class JoinLobbyController {
         playerModel = playerModel.getPlayerModelInstance();
     }
 
-    public void switchToInsertLobbycode(ActionEvent event) throws IOException{
+    public void switchToInsertLobbycode(ActionEvent event) throws IOException, InterruptedException {
         System.out.println("Ingevulde lobbycode is: " + codeField.getText());
 
         if (loginController.validateLobby(codeField.getText())) {
@@ -46,7 +48,7 @@ public class JoinLobbyController {
             }
         } else {
             System.out.println("lobbycode is ongeldig, probeer het nog eens");
-
+            invalidCode.setVisible(true);
         }
     }
 

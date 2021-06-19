@@ -45,5 +45,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Text fx:id="invalidCode" fill="RED" layoutX="192.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID CODE !" textAlignment="CENTER" visible="false">
+         <font>
+            <Font name="Rockwell" size="21.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

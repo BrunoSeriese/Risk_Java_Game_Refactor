@@ -87,13 +87,14 @@ public class SpelbordController {
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null) {
 
-                int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
+                int firebaseTurnID = Integer.parseInt(documentSnapshot.getData().get("gamestateTurnID").toString());
                 gameModel.setTurnID(firebaseTurnID);
 
                 try {
                     startMainLoop();
 //                    armiesListener();
 //                    countryListener();
+                    spelbordViewController.HUD();
                 } catch (ExecutionException | InterruptedException executionException) {
                     executionException.printStackTrace();
                 }
