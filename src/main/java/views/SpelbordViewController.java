@@ -73,11 +73,6 @@ public class SpelbordViewController implements Initializable {
         spelbordController.showCards();
     }
 
-    public void showPlayers() {
-        spelbordController.showPlayers();
-        hideHUD();
-    }
-
     public void rollDice() {
         spelbordController.rollDice();
     }
