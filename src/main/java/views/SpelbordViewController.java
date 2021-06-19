@@ -17,6 +17,7 @@ import models.SpelbordModel;
 import observers.SpelbordObservable;
 import observers.SpelbordObserver;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -60,7 +61,7 @@ public class SpelbordViewController implements Initializable {
 //    }
 
 
-    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
         spelbordController.getButtonID(event);
     }
 

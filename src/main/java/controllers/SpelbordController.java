@@ -16,6 +16,7 @@ import models.DiceModel;
 import models.GameModel;
 import models.SpelbordModel;
 import observers.SpelbordObserver;
+import views.SpelbordViewController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
 
+    static SpelbordViewController spelbordViewController = getSpelbordViewControllerInstance();
     static GameModel gameModel;
     static SpelbordModel spelbordModel;
     private SpelbordModel map;
@@ -60,6 +62,14 @@ public class SpelbordController {
             System.out.println("nieuwe instantie van GameModel is aangemaakt");
         }
         return gameModel;
+    }
+
+    public static SpelbordViewController getSpelbordViewControllerInstance() {
+        if (spelbordViewController == null) {
+            spelbordViewController = new SpelbordViewController();
+            System.out.println("nieuwe instantie van SpelbordController is aangemaakt");
+        }
+        return spelbordViewController;
     }
 
     EventHandler<MouseEvent> eventHandler = e -> System.out.println("ER is geklikt");
@@ -442,7 +452,7 @@ public class SpelbordController {
         });
     }
 
-    public void removeArmiesFromPlayer(String country) throws ExecutionException, InterruptedException {
+    public void removeArmiesFromPlayer(String country) throws ExecutionException, InterruptedException, IOException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -458,6 +468,9 @@ public class SpelbordController {
                     if (firebaseArmies == 1) {
                         arrayCountryData.get(count).put("playerID", State.TurnID);
                         //TODO verander kleur op map
+                        spelbordViewController.initialize();
+                        setCountries(spelbordViewController.getCountriesArray());
+                        setCountryColorStartGame();
                     } else {
                         arrayCountryData.get(count).put("army", firebaseArmies - 1);
                     }
@@ -543,7 +556,7 @@ public class SpelbordController {
         return false;
     }
 
-    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
 
         getArmyAndCountryFromFirebase();
         Button buttonid = (Button) event.getSource();
@@ -557,7 +570,8 @@ public class SpelbordController {
             if (gameModel.getPhaseID() == 1) {
                 if (checkOwnPlayerCountry(buttonIdCode)) {
                     int oldArmies = getArmyFirebase(buttonIdCode);
-                    setArmyFirebase(buttonIdCode, oldArmies + 4);
+                    //TODO NIET VERGETEN TE VERANDEREN NAAR 4
+                    setArmyFirebase(buttonIdCode, oldArmies + 10);
                     buttonid.setText(String.valueOf(oldArmies + 4));
                     gameModel.updatePhaseID();
                 }
@@ -597,15 +611,12 @@ public class SpelbordController {
                                 if (dice1.get(0) > dice2.get(0)) {
                                     System.out.println("defender loses an army");
                                     removeArmiesFromPlayer(gameModel.getSelectedCountries().get(1));
-                                    dice1.clear();
-                                    dice2.clear();
                                 } else {
                                     System.out.println("attacker loses an army");
                                     removeArmiesFromPlayer(gameModel.getSelectedCountries().get(0));
-                                    dice1.clear();
-                                    dice2.clear();
                                 }
-
+                                dice1.clear();
+                                dice2.clear();
 //                                if (dice1.get(1) > dice2.get(1)) {
 //                                    System.out.println("defender loses an army");
 //                                } else {
@@ -694,6 +705,7 @@ public class SpelbordController {
                     String countryID = (String) armyAndCountryID.get("countryID");
 
 //                    System.out.println("COUNTRY ID IS" + countryID);
+                    System.out.println("In de countries zitten " + countries);
 
                     for (ImageView country : countries) {
 //                        System.out.println("COUNTRY (IMAGE) ID IS" + country.getId());
