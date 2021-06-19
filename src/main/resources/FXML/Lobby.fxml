@@ -28,7 +28,7 @@
       </ImageView>
       <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="50.0" layoutY="140.0">
          <image>
-            <Image url="@../images/playerIcon.png" />
+            <Image url="@../images/playerIconRed.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="97.0" fitWidth="398.0" layoutX="90.0" layoutY="190.0">
@@ -38,17 +38,17 @@
       </ImageView>
       <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="50.0" layoutY="220.0">
          <image>
-            <Image url="@../images/playerIcon.png" />
+            <Image url="@../images/playerIconGreen.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="50.0" layoutY="300.0">
          <image>
-            <Image url="@../images/playerIcon.png" />
+            <Image url="@../images/playerIconBlue.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="50.0" layoutY="380.0">
          <image>
-            <Image url="@../images/playerIcon.png" />
+            <Image url="@../images/playerIconOrange.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="97.0" fitWidth="398.0" layoutX="90.0" layoutY="270.0">

@@ -29,13 +29,13 @@ public class SpelbordViewController implements Initializable {
     ArrayList<ImageView> imageViewArray = new ArrayList<>();
 
     @FXML
-    public static ImageView endTurnIcon;
+    public ImageView endTurnIcon;
     @FXML
-    public static ImageView cardIcon;
+    public ImageView cardIcon;
     @FXML
-    public static ImageView diceIcon;
+    public ImageView diceIcon;
     @FXML
-    public static ImageView playerIcon;
+    public ImageView playerIcon;
     @FXML
     public ImageView NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
             AFRICA5, AFRICA6, EU1, EU2, EU3, EU4, EU5, EU6, EU7, SA1, SA2, SA3, SA4, OCE1, OCE2, OCE3, OCE4, ASIA1, ASIA2, ASIA3, ASIA4, ASIA5, ASIA6, ASIA7, ASIA8, ASIA9, ASIA10, ASIA11, ASIA12;
@@ -48,7 +48,6 @@ public class SpelbordViewController implements Initializable {
             cASIA1, cASIA2, cASIA3, cASIA4, cASIA5, cASIA6, cASIA7, cASIA8, cASIA9, cASIA10, cASIA11, cASIA12;
 
     public Button[] buttons;
-
 
 
     SpelbordController spelbordController = new SpelbordController();
@@ -75,6 +74,7 @@ public class SpelbordViewController implements Initializable {
 
     public void showPlayers() {
         spelbordController.showPlayers();
+        hideHUD();
     }
 
     public void rollDice() {
@@ -85,9 +85,9 @@ public class SpelbordViewController implements Initializable {
         spelbordController.endTurn();
     }
 
-    public void setColorCountry(ImageView imageLand, double playerColor) {
-        spelbordController.setColorCountry(imageLand, playerColor);
-    }
+//    public void setColorCountry(ImageView imageLand, double playerColor) {
+//        spelbordController.setColorCountry(imageLand, playerColor);
+//    }
 
 //    public void setCountryColorStartGame() throws ExecutionException, InterruptedException {
 //        spelbordController.setCountryColorStartGame();
@@ -99,53 +99,6 @@ public class SpelbordViewController implements Initializable {
         spelbordController.setArmies(button, armies);
     }
 
-    public ArrayList<Button> addButtonArray() {
-        buttonsArray.add(cNA1);
-        buttonsArray.add(cNA2);
-        buttonsArray.add(cNA3);
-        buttonsArray.add(cNA4);
-        buttonsArray.add(cNA5);
-        buttonsArray.add(cNA6);
-        buttonsArray.add(cNA7);
-        buttonsArray.add(cNA8);
-        buttonsArray.add(cNA9);
-        buttonsArray.add(cNA10);
-        buttonsArray.add(cAFRICA1);
-        buttonsArray.add(cAFRICA2);
-        buttonsArray.add(cAFRICA3);
-        buttonsArray.add(cAFRICA4);
-        buttonsArray.add(cAFRICA5);
-        buttonsArray.add(cAFRICA6);
-        buttonsArray.add(cEU1);
-        buttonsArray.add(cEU2);
-        buttonsArray.add(cEU3);
-        buttonsArray.add(cEU4);
-        buttonsArray.add(cEU5);
-        buttonsArray.add(cEU6);
-        buttonsArray.add(cEU7);
-        buttonsArray.add(cSA1);
-        buttonsArray.add(cSA2);
-        buttonsArray.add(cSA3);
-        buttonsArray.add(cSA4);
-        buttonsArray.add(cOCE1);
-        buttonsArray.add(cOCE2);
-        buttonsArray.add(cOCE3);
-        buttonsArray.add(cOCE4);
-        buttonsArray.add(cASIA1);
-        buttonsArray.add(cASIA2);
-        buttonsArray.add(cASIA3);
-        buttonsArray.add(cASIA4);
-        buttonsArray.add(cASIA5);
-        buttonsArray.add(cASIA6);
-        buttonsArray.add(cASIA7);
-        buttonsArray.add(cASIA8);
-        buttonsArray.add(cASIA9);
-        buttonsArray.add(cASIA10);
-        buttonsArray.add(cASIA11);
-        buttonsArray.add(cASIA12);
-        return buttonsArray;
-    }
-
     public void initialize() {
         countries = new ImageView[]{NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
                 AFRICA5, AFRICA6, EU1, EU2, EU3, EU4, EU5, EU6, EU7, SA1, SA2, SA3, SA4, OCE1, OCE2, OCE3, OCE4, ASIA1, ASIA2, ASIA3, ASIA4, ASIA5, ASIA6, ASIA7, ASIA8, ASIA9, ASIA10, ASIA11, ASIA12};
@@ -155,7 +108,7 @@ public class SpelbordViewController implements Initializable {
                 cASIA1, cASIA2, cASIA3, cASIA4, cASIA5, cASIA6, cASIA7, cASIA8, cASIA9, cASIA10, cASIA11, cASIA12};
     }
 
-    public ImageView[] getCountriesArray(){
+    public ImageView[] getCountriesArray() {
         return countries;
     }
 
@@ -165,29 +118,43 @@ public class SpelbordViewController implements Initializable {
 
 
     //TODO FIX HUD
-//    public void hideHUD() {
-//        cardIcon.setVisible(false);
-//        diceIcon.setVisible(false);
-//        playerIcon.setVisible(false);
-//    }
-//
-//    public void showHUD() {
-//        cardIcon.setVisible(true);
-//        diceIcon.setVisible(true);
-//        playerIcon.setVisible(true);
-//    }
-//
-//    public void HUD() throws ExecutionException, InterruptedException {
-//        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
-//        ApiFuture<DocumentSnapshot> future = docRef.get();
-//        DocumentSnapshot document = future.get();
-//
-//        if (State.TurnID == Integer.parseInt(document.get("gamestateTurnID").toString())) {
-//            showHUD();
-//        } else {
-//            hideHUD();
-//        }
-//    }
+
+
+    public void hideHUD() {
+        System.out.println("NOG NIET WEG");
+        cardIcon.setVisible(false);
+        diceIcon.setVisible(false);
+        playerIcon.setVisible(false);
+        endTurnIcon.setVisible(false);
+        for (Button button : buttons) {
+            button.setVisible(false);
+        }
+        System.out.println("IS WEG WOOOOO");
+    }
+
+    public void showHUD() {
+        System.out.println("NOG NIET WEG");
+        cardIcon.setVisible(true);
+        diceIcon.setVisible(true);
+        playerIcon.setVisible(true);
+        endTurnIcon.setVisible(true);
+        for (Button button : buttons) {
+            button.setVisible(true);
+        }
+        System.out.println("IS WEG WOOOOO");
+    }
+
+    public void HUD() throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+        if (State.TurnID == Integer.parseInt(document.get("gamestateTurnID").toString())) {
+            showHUD();
+        } else {
+            hideHUD();
+        }
+    }
 
 
     public void garrison() {
