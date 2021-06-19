@@ -20,6 +20,7 @@ import views.SpelbordViewController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -77,61 +78,15 @@ public class SpelbordController {
         return gameModel;
     }
 
-    public static SpelbordViewController getSpelbordViewControllerInstance() {
-        if (spelbordViewController == null) {
-            spelbordViewController = new SpelbordViewController();
-            System.out.println("nieuwe instantie van SpelbordController is aangemaakt");
-        }
-        return spelbordViewController;
-    }
 
     EventHandler<MouseEvent> eventHandler = e -> System.out.println("ER is geklikt");
 
-//    public void armiessistener() {
-//        DSettableApiFuture<List<DocumentChange>> future = SettableApiFuture.create();
-
-
-//            if (documentSnapshot != null) {
-//
-//
-//                ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) documentSnapshot.get("countries");
-//
-////                int count = 0;
-//
-//                ArrayList arraySelectedCountries = gameModel.getSelectedCountries();
-//                System.out.println("dit is selected countries:   " + arraySelectedCountries);
-//
-//                for (HashMap armyAndCountryID : arrayCountryData) {
-//                    System.out.println("De armies is : " + armyAndCountryID.get("army") + " van land " + armyAndCountryID.get("countryID"));
-//
-////                    if (armyAndCountryID.containsValue(arraySelectedCountries.get(0))) {
-////                        System.out.println("dit is selected countries:   " + arraySelectedCountries);
-////                        arrayCountryData.get(count).get("neighbor");
-////                        ArrayList x = (ArrayList) arrayCountryData.get(count).get("neighbor");
-////
-////                        if (x.contains(arraySelectedCountries.get(1))) {
-////                            System.out.println("dit is selected countries:   " + arraySelectedCountries);
-////                            System.out.println("Je mag aanvallen");
-////                        } else {
-////                            System.out.println("nee helaas");
-////                            gameModel.clearSelectedCountries();
-////                        }
-////                    }
-////                    count += 1;
-//                }
-//                System.out.println("werkt" + arraySelectedCountries);
-//
-//            }
-//            }
-//        });
-//    }
 
     public void attachlistener() {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null) {
-//                System.out.println(documentSnapshot.getData().get("gamestateTurnID"));
-//                System.out.println(State.TurnID);
+
                 int firebaseTurnID = Integer.valueOf(documentSnapshot.getData().get("gamestateTurnID").toString());
                 gameModel.setTurnID(firebaseTurnID);
 
@@ -223,16 +178,13 @@ public class SpelbordController {
 
                 }
 
-                if (player1Size == arrayCountryData.size()){
+                if (player1Size == arrayCountryData.size()) {
                     System.out.println("player 1 wins!");
-                }
-                else if (player2Size == arrayCountryData.size()){
+                } else if (player2Size == arrayCountryData.size()) {
                     System.out.println("player 2 wins!");
-                }
-                else if (player3Size == arrayCountryData.size()){
+                } else if (player3Size == arrayCountryData.size()) {
                     System.out.println("player 3 wins!");
-                }
-                else if (player4Size == arrayCountryData.size()){
+                } else if (player4Size == arrayCountryData.size()) {
                     System.out.println("player 4 wins!");
                 }
 
@@ -452,7 +404,6 @@ public class SpelbordController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             documentSnapshot.getData().get("countries");
-//            System.out.println("IK BESTAAAAAAAAAAAAAAAA");
             for (Button button : buttons) {
                 Platform.runLater(() -> {
                     try {
@@ -480,6 +431,8 @@ public class SpelbordController {
                     int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
                     if (firebaseArmies == 1) {
                         arrayCountryData.get(count).put("playerID", State.TurnID);
+                        docRef.update("countries", arrayCountryData);
+                        Thread.sleep(50);
                         //TODO verander kleur op map
                         Platform.runLater(() -> {
                             try {
@@ -498,7 +451,7 @@ public class SpelbordController {
                 }
                 count++;
             }
-            docRef.update("countries", arrayCountryData);
+
         }
     }
 
@@ -535,7 +488,6 @@ public class SpelbordController {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
-            //Pak alle dingen in de countries field in firebase
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
                     int firebasePlayerID = Integer.valueOf(armyAndCountryID.get("playerID").toString());
@@ -560,7 +512,6 @@ public class SpelbordController {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
-            //Pak alle dingen in de countries field in firebase
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
                     int firebasePlayerID = Integer.valueOf(armyAndCountryID.get("playerID").toString());
@@ -638,11 +589,6 @@ public class SpelbordController {
                                 }
                                 dice1.clear();
                                 dice2.clear();
-//                                if (dice1.get(1) > dice2.get(1)) {
-//                                    System.out.println("defender loses an army");
-//                                } else {
-//                                    System.out.println("attacker loses an army");
-//                                }
 
                                 gameModel.clearSelectedCountries();
                             }
@@ -714,7 +660,6 @@ public class SpelbordController {
         DocumentSnapshot document = future.get();
 
         if (document.exists()) {
-            System.out.println("Ding bestaat");
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 //            System.out.println("test1" + arrayCountryData);
@@ -727,7 +672,7 @@ public class SpelbordController {
                     Long playerID = (Long) armyAndCountryID.get("playerID");
 
 //                    System.out.println("COUNTRY ID IS" + countryID);
-                    System.out.println("In de countries zitten " + countries);
+//                    System.out.println("In de countries zitten " + Arrays.toString(getCountries()));
 
                     for (ImageView country : spelbordViewController.getCountriesArray()) {
 //                        System.out.println("COUNTRY (IMAGE) ID IS" + country.getId());

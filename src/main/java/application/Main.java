@@ -17,12 +17,12 @@ public class Main extends Application {
         State.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
         primaryStage.setTitle("Risk");
-        primaryStage.getIcons().add(new Image( "images/risklogo.png"));
+        primaryStage.getIcons().add(new Image("images/risklogo.png"));
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();
 
-    //TODO VERY IMPORTANT! TO DOO DOO REMOVE ALL GETINSTANCES  AND REPLACE BY X x = NEW X();
+        //TODO VERY IMPORTANT! TO DOO DOO REMOVE ALL GETINSTANCES  AND REPLACE BY X x = NEW X();
 
 //        BasicConfigurator.configure();
 //        remove comment van State.TurnID en State.TurnID om GameModel te testen
@@ -63,8 +63,6 @@ public class Main extends Application {
 
 //        spelbordController.setArmyFirebase("NA6", 345);
 //        spelbordController.getArmyFirebase(1);
-
-
 
 
         //dit was voor de turn id ophalen uit firestore, momenteel gehardcode, moeten we veranderen

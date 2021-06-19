@@ -83,17 +83,12 @@ public class LobbyController {
                         Platform.runLater(() -> State.stage.setScene(scene));
                         SpelbordController spelbordController = new SpelbordController();
                         spelbordController.setArmyAndCountryInFirebase();
-
                         Thread.sleep(50);
-
                         spelbordController.setSpelbordViewController(spelbordViewController);
                         spelbordController.setCountries(spelbordViewController.getCountriesArray());
                         spelbordController.setButtons(spelbordViewController.getButtonsArray());
                         Thread.sleep(50);
                         spelbordController.setCountryColorStartGame();
-                        System.out.println("AFTERRR METHODDD");
-//
-
                         System.out.println("De scene is uitgevoerd");
                     }
                 }
