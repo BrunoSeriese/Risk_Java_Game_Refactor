@@ -64,7 +64,7 @@ public class SpelbordController {
 
     EventHandler<MouseEvent> eventHandler = e -> System.out.println("ER is geklikt");
 
-//    public void armiesListener() {
+//    public void armiessistener() {
 //        DSettableApiFuture<List<DocumentChange>> future = SettableApiFuture.create();
 
 
@@ -173,11 +173,46 @@ public class SpelbordController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
+
+        int player1Size = 0;
+        int player2Size = 0;
+        int player3Size = 0;
+        int player4Size = 0;
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
+
             for (HashMap armyAndCountryID : arrayCountryData) {
-                System.out.println(armyAndCountryID);
+                System.out.println(armyAndCountryID.get("playerID"));
+                String currentID = String.valueOf(armyAndCountryID.get("playerID"));
+
+                if (currentID.equals("1")) {
+                    player1Size += 1;
+
+                } else if (currentID.equals("2")) {
+                    player2Size += 1;
+
+                } else if (currentID.equals("3")) {
+                    player3Size += 1;
+
+                } else if (currentID.equals("4")) {
+                    player4Size += 1;
+
+                }
+
+                if (player1Size == arrayCountryData.size()){
+                    System.out.println("player 1 wins!");
+                }
+                else if (player2Size == arrayCountryData.size()){
+                    System.out.println("player 2 wins!");
+                }
+                else if (player3Size == arrayCountryData.size()){
+                    System.out.println("player 3 wins!");
+                }
+                else if (player4Size == arrayCountryData.size()){
+                    System.out.println("player 4 wins!");
+                }
+
             }
         } else {
             System.out.println("No document found!");
@@ -521,6 +556,8 @@ public class SpelbordController {
     }
 
     public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
+
+        getArmyAndCountryFromFirebase();
         Button buttonid = (Button) event.getSource();
         System.out.println(event.getSource() + "dit is de source");
         System.out.println(buttonid.getId().split("c")[1]);
