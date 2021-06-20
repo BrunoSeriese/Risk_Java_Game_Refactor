@@ -73,8 +73,12 @@ public class SpelbordViewController implements Initializable {
 
     public void fortifyButton(){
         System.out.println("fortify");
+        spelbordController.fortifyButton();
     }
 
+    public void showFortifyIcon(){
+        fortifyIcon.setVisible(true);
+    }
 
     public void showCardInventory() {
         cardInventory.setVisible(true);

@@ -308,7 +308,11 @@ public class SpelbordController {
                         System.out.println("Je mag aanvallen");
                         return true;
                     } else {
-                        System.out.println("Je mag alleen landen aanvallen dat naast je zit");
+                        if (gameModel.getPhaseID() == 2) {
+                            System.out.println("Je mag alleen landen aanvallen dat naast je zit");
+                        } else if (gameModel.getPhaseID() == 3) {
+                            System.out.println("Je mag je eerste gekozen land niet fortifyen");
+                        }
                         gameModel.clearSelectedCountries();
                         return false;
                     }
@@ -419,6 +423,48 @@ public class SpelbordController {
         });
     }
 
+    public void addSoldiersToOwnCountry(String country) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+
+            int count = 0;
+            //Pak alle dingen in de countries field in firebase
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                if (armyAndCountryID.containsValue(country)) {
+                    int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
+                    arrayCountryData.get(count).put("army", (firebaseArmies + 2));
+                    docRef.update("countries", arrayCountryData);
+                }
+                count++;
+            }
+        }
+    }
+
+
+    public void removeSoldiersFromOwnCountry(String country) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+
+            int count = 0;
+            //Pak alle dingen in de countries field in firebase
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                if (armyAndCountryID.containsValue(country)) {
+                    int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
+                    System.out.println("De firebase - 2 is : " + (firebaseArmies - 2));
+                    arrayCountryData.get(count).put("army", (firebaseArmies - 2));
+                    docRef.update("countries", arrayCountryData);
+                }
+                count++;
+            }
+        }
+    }
+
     public void removeArmiesFromPlayer(String country) throws ExecutionException, InterruptedException, IOException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
@@ -458,7 +504,7 @@ public class SpelbordController {
         }
     }
 
-    public boolean checkArmiesOnCountry(String country) throws ExecutionException, InterruptedException {
+    public boolean checkArmiesOnCountry(String country, int number) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -470,7 +516,7 @@ public class SpelbordController {
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
                     int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
-                    if (firebaseArmies >= 2) {
+                    if (firebaseArmies >= number) {
                         System.out.println("Je hebt genoeg armies om aan te vallen");
                         return true;
                     } else {
@@ -551,12 +597,13 @@ public class SpelbordController {
                     gameModel.updatePhaseID();
                 }
             } else if (gameModel.getPhaseID() == 2) {
+                spelbordViewController.showFortifyIcon();
                 System.out.println("now you cant update armies, only attack scrub");
                 if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
                     gameModel.clearSelectedCountries();
                     System.out.println("check if exists");
                     if (checkOwnPlayerCountry(buttonIdCode)) {
-                        if (checkArmiesOnCountry(buttonIdCode)) {
+                        if (checkArmiesOnCountry(buttonIdCode, 2)) {
                             gameModel.clearSelectedCountries(buttonIdCode);
                         }
                     }
@@ -599,6 +646,30 @@ public class SpelbordController {
                     }
                 }
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
+            } else if (gameModel.getPhaseID() == 3) {
+                System.out.println("HET IS PHASE 3");
+                if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
+                    gameModel.clearSelectedCountries();
+                    System.out.println("check if exists");
+                    if (checkOwnPlayerCountry(buttonIdCode)) {
+                        if (checkArmiesOnCountry(buttonIdCode, 3)) {
+                            gameModel.clearSelectedCountries(buttonIdCode);
+                        }
+                    }
+                } else if (gameModel.getSelectedCountries().size() == 1) {
+                    if (checkOwnPlayerCountry(buttonIdCode)) {
+                        gameModel.clearSelectedCountries(buttonIdCode);
+                        if (gameModel.getSelectedCountries().get(0) == gameModel.getSelectedCountries().get(1)) {
+                            System.out.println("Je kan niet op je geklikte land zetten");
+                            gameModel.clearSelectedCountries();
+                        } else if (getNeighborsFirebase()) {
+                            removeSoldiersFromOwnCountry(gameModel.getSelectedCountries().get(0));
+                            Thread.sleep(50);
+                            addSoldiersToOwnCountry(gameModel.getSelectedCountries().get(1));
+                            gameModel.clearSelectedCountries();
+                        }
+                    }
+                }
             }
         } else {
             System.out.println("Je bent niet aan de beurt");
@@ -667,6 +738,13 @@ public class SpelbordController {
                 }
             }
         }
+    }
+
+    public void fortifyButton() {
+        System.out.println(gameModel.getPhaseID());
+        gameModel.updatePhaseID();
+        System.out.println("NU is het " + gameModel.getPhaseID());
+    }
 
 
 //        for (ImageView country : countries) {
@@ -714,7 +792,6 @@ public class SpelbordController {
 //            }
 //        }
 //    }
-    }
 }
 
 
