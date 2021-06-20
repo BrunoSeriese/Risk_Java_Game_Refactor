@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class PlayerModel {
 
@@ -12,7 +13,7 @@ public class PlayerModel {
     private boolean canInterract;
     static PlayerModel playerModel;
     private double playerColor;
-
+    private ArrayList<Integer> playerCards;
 
     public static PlayerModel getPlayerModelInstance() {
         if (playerModel == null) {

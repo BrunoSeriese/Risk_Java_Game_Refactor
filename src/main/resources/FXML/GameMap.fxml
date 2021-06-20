@@ -637,7 +637,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-   <ImageView fx:id="fortifyIcon" fitHeight="90.0" fitWidth="104.0" layoutX="408.0" layoutY="617.0" onMouseClicked="#fortifyButton">
+   <ImageView fx:id="fortifyIcon" fitHeight="90.0" fitWidth="104.0" layoutX="408.0" layoutY="617.0" onMouseClicked="#fortifyButton" visible="false">
       <image>
          <Image url="@../images/surrender_icon.png" />
       </image>
