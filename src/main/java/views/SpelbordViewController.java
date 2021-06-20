@@ -114,6 +114,10 @@ public void showFortifyIcon(){
         fortifyIcon.setVisible(true);
 }
 
+    public void hideFortifyIcon(){
+        fortifyIcon.setVisible(false);
+    }
+
 
 
     public void hideHUD() {

@@ -96,6 +96,7 @@ public class SpelbordController {
                     setCountryColorStartGame();
 //                    armiesListener();
 //                    countryListener();
+
                     spelbordViewController.HUD();
                 } catch (ExecutionException | InterruptedException | IOException executionException) {
                     executionException.printStackTrace();
@@ -592,9 +593,9 @@ public class SpelbordController {
             if (gameModel.getPhaseID() == 1) {
                 if (checkOwnPlayerCountry(buttonIdCode)) {
                     int oldArmies = getArmyFirebase(buttonIdCode);
-                    //TODO NIET VERGETEN TE VERANDEREN NAAR 4
+                    //TODO NIET VERGETEN BEIDEN TE VERANDEREN NAAR 4
                     setArmyFirebase(buttonIdCode, oldArmies + 10);
-                    buttonid.setText(String.valueOf(oldArmies + 4));
+                    buttonid.setText(String.valueOf(oldArmies + 10));
                     gameModel.updatePhaseID();
                 }
             } else if (gameModel.getPhaseID() == 2) {
@@ -648,6 +649,7 @@ public class SpelbordController {
                 }
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
             } else if (gameModel.getPhaseID() == 3) {
+//                spelbordViewController.hideFortifyIcon();
                 System.out.println("HET IS PHASE 3");
                 if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
                     gameModel.clearSelectedCountries();
@@ -745,6 +747,7 @@ public class SpelbordController {
     public void fortifyButton() {
         System.out.println(gameModel.getPhaseID());
         gameModel.updatePhaseID();
+        spelbordViewController.hideFortifyIcon();
         System.out.println("NU is het " + gameModel.getPhaseID());
     }
 
