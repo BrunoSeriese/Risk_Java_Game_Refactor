@@ -27,20 +27,19 @@ import java.util.concurrent.ExecutionException;
 public class SpelbordViewController implements Initializable {
 
 
-
     ArrayList<Button> buttonsArray = new ArrayList<>();
     ArrayList<ImageView> imageViewArray = new ArrayList<>();
 
     @FXML
     public ImageView exchangeIcon;
-    @FXML
     public AnchorPane cardInventory;
-    @FXML
     public ImageView endTurnIcon;
-    @FXML
     public ImageView cardIcon;
-    @FXML
     public ImageView fortifyIcon;
+    public ImageView deployPhase;
+    public ImageView attackPhase;
+    public ImageView fortifyPhase;
+
     @FXML
     public ImageView NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
             AFRICA5, AFRICA6, EU1, EU2, EU3, EU4, EU5, EU6, EU7, SA1, SA2, SA3, SA4, OCE1, OCE2, OCE3, OCE4, ASIA1, ASIA2, ASIA3, ASIA4, ASIA5, ASIA6, ASIA7, ASIA8, ASIA9, ASIA10, ASIA11, ASIA12;
@@ -69,7 +68,7 @@ public class SpelbordViewController implements Initializable {
         spelbordController.getButtonID(event);
     }
 
-    public void fortifyButton(){
+    public void fortifyButton() {
         System.out.println("fortify");
         spelbordController.fortifyButton();
     }
@@ -110,12 +109,35 @@ public class SpelbordViewController implements Initializable {
 
 
     //TODO FIX HUD
-public void showFortifyIcon(){
+    public void showFortifyIcon() {
         fortifyIcon.setVisible(true);
-}
+    }
 
-    public void hideFortifyIcon(){
+    public void hideFortifyIcon() {
         fortifyIcon.setVisible(false);
+    }
+
+
+    public void showDeployPhase() {
+        deployPhase.setVisible(true);
+    }
+    public void hideDeployPhase() {
+        deployPhase.setVisible(false);
+    }
+
+    public void showAttackPhase() {
+        attackPhase.setVisible(true);
+    }
+    public void hideAttackPhase() {
+        attackPhase.setVisible(false);
+    }
+
+
+    public void showFortifyPhase() {
+        fortifyPhase.setVisible(true);
+    }
+    public void hideFortifyPhase() {
+        fortifyPhase.setVisible(false);
     }
 
 
@@ -125,6 +147,9 @@ public void showFortifyIcon(){
         cardIcon.setVisible(false);
         endTurnIcon.setVisible(false);
         fortifyIcon.setVisible(false);
+        deployPhase.setVisible(false);
+        attackPhase.setVisible(false);
+        fortifyPhase.setVisible(false);
 //        for (Button button : getButtonsArray()) {
 //            button.setVisible(false);
 //        }
@@ -135,6 +160,7 @@ public void showFortifyIcon(){
         System.out.println("NOG NIET WEG");
         cardIcon.setVisible(true);
         endTurnIcon.setVisible(true);
+        deployPhase.setVisible(true);
         for (Button button : getButtonsArray()) {
             button.setVisible(true);
         }

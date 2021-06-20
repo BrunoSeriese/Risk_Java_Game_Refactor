@@ -92,6 +92,13 @@ public class SpelbordController {
 
 
                 try {
+                    Platform.runLater(() -> {
+                        try {
+                            getArmyAndCountryFromFirebase();
+                        } catch (ExecutionException | InterruptedException executionException) {
+                            executionException.printStackTrace();
+                        }
+                    });
                     startMainLoop();
                     setCountryColorStartGame();
 //                    armiesListener();
@@ -131,6 +138,7 @@ public class SpelbordController {
 //        phaseID.update(1);
         attachlistener();
         countryListener();
+
     }
 
     public void setArmyAndCountryInFirebase() throws ExecutionException, InterruptedException {
@@ -191,6 +199,7 @@ public class SpelbordController {
                 } else if (player4Size == arrayCountryData.size()) {
                     System.out.println("player 4 wins!");
                 }
+
 
             }
         } else {
@@ -581,7 +590,7 @@ public class SpelbordController {
 
     public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
 
-        getArmyAndCountryFromFirebase();
+
         Button buttonid = (Button) event.getSource();
         System.out.println(event.getSource() + "dit is de source");
         System.out.println(buttonid.getId().split("c")[1]);
@@ -592,14 +601,19 @@ public class SpelbordController {
         if (comparePlayerIDtoTurnIDFirebase()) {
             if (gameModel.getPhaseID() == 1) {
                 if (checkOwnPlayerCountry(buttonIdCode)) {
+                    spelbordViewController.showDeployPhase();
                     int oldArmies = getArmyFirebase(buttonIdCode);
                     //TODO NIET VERGETEN BEIDEN TE VERANDEREN NAAR 4
                     setArmyFirebase(buttonIdCode, oldArmies + 10);
                     buttonid.setText(String.valueOf(oldArmies + 10));
                     gameModel.updatePhaseID();
+                    Platform.runLater(() -> {
+                        spelbordViewController.hideDeployPhase();
+                        spelbordViewController.showAttackPhase();
+                    });
                 }
             } else if (gameModel.getPhaseID() == 2) {
-                spelbordViewController.showFortifyIcon();
+
                 System.out.println("now you cant update armies, only attack scrub");
                 if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
                     gameModel.clearSelectedCountries();
@@ -643,6 +657,7 @@ public class SpelbordController {
                                 dice2.clear();
 
                                 gameModel.clearSelectedCountries();
+                                Platform.runLater(() -> spelbordViewController.showFortifyIcon());
                             }
                         }
                     }
@@ -674,8 +689,7 @@ public class SpelbordController {
                     }
                 }
             }
-        }
-        else {
+        } else {
             System.out.println("Je bent niet aan de beurt");
         }
     }
@@ -747,7 +761,11 @@ public class SpelbordController {
     public void fortifyButton() {
         System.out.println(gameModel.getPhaseID());
         gameModel.updatePhaseID();
-        spelbordViewController.hideFortifyIcon();
+        Platform.runLater(() -> {
+            spelbordViewController.hideFortifyIcon();
+            spelbordViewController.hideAttackPhase();
+            spelbordViewController.showFortifyPhase();
+                    });
         System.out.println("NU is het " + gameModel.getPhaseID());
     }
 
