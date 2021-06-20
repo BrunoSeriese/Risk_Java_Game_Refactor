@@ -74,10 +74,6 @@ public class SpelbordViewController implements Initializable {
         spelbordController.fortifyButton();
     }
 
-    public void showFortifyIcon(){
-        fortifyIcon.setVisible(true);
-    }
-
     public void showCardInventory() {
         cardInventory.setVisible(true);
     }

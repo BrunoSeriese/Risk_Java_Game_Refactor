@@ -21,6 +21,8 @@ public class GameModel implements GameObservable {
     private int turnID;
     private boolean gameOver;
     private PlayerModel players;
+
+
     private int phaseID;
     private ArrayList<String> selectedCountries;
     private SpelbordViewController viewer;
@@ -76,6 +78,10 @@ public class GameModel implements GameObservable {
 
     public int getPhaseID() {
         return this.phaseID;
+    }
+
+    public void setPhaseID(int phaseID) {
+        this.phaseID = phaseID;
     }
 
     public void updatePhaseID() {

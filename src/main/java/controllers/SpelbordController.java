@@ -350,6 +350,7 @@ public class SpelbordController {
             } else {
                 ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", toUpdate + 1);
             }
+            gameModel.setPhaseID(1);
         }
     }
 
@@ -671,7 +672,8 @@ public class SpelbordController {
                     }
                 }
             }
-        } else {
+        }
+        else {
             System.out.println("Je bent niet aan de beurt");
         }
     }
