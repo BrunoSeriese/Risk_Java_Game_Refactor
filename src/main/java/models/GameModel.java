@@ -23,7 +23,6 @@ public class GameModel implements GameObservable {
     private PlayerModel players;
     private int phaseID;
     private ArrayList<String> selectedCountries;
-
     private SpelbordViewController viewer;
     //    SpelbordController spelbordController = new SpelbordController();
     private List<GameObserver> observers = new ArrayList<GameObserver>();

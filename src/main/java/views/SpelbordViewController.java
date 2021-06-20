@@ -40,8 +40,6 @@ public class SpelbordViewController implements Initializable {
     @FXML
     public ImageView cardIcon;
     @FXML
-    public ImageView playerIcon;
-    @FXML
     public ImageView fortifyIcon;
     @FXML
     public ImageView NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
@@ -112,23 +110,26 @@ public class SpelbordViewController implements Initializable {
 
 
     //TODO FIX HUD
+public void showFortifyIcon(){
+        fortifyIcon.setVisible(true);
+}
+
 
 
     public void hideHUD() {
         System.out.println("NOG NIET WEG");
         cardIcon.setVisible(false);
-        playerIcon.setVisible(false);
         endTurnIcon.setVisible(false);
-        for (Button button : getButtonsArray()) {
-            button.setVisible(false);
-        }
+        fortifyIcon.setVisible(false);
+//        for (Button button : getButtonsArray()) {
+//            button.setVisible(false);
+//        }
         System.out.println("IS WEG WOOOOO");
     }
 
     public void showHUD() {
         System.out.println("NOG NIET WEG");
         cardIcon.setVisible(true);
-        playerIcon.setVisible(true);
         endTurnIcon.setVisible(true);
         for (Button button : getButtonsArray()) {
             button.setVisible(true);

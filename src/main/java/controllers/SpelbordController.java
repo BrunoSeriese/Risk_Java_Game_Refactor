@@ -551,6 +551,7 @@ public class SpelbordController {
                     gameModel.updatePhaseID();
                 }
             } else if (gameModel.getPhaseID() == 2) {
+                spelbordViewController.showFortifyIcon();
                 System.out.println("now you cant update armies, only attack scrub");
                 if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
                     gameModel.clearSelectedCountries();
