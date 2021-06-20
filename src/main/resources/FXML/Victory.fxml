@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.VictoryViewController">
+   <children>
+      <ImageView>
+         <image>
+            <Image url="@../images/bg.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="593.0" layoutX="-31.0" layoutY="-33.0">
+         <image>
+            <Image url="@../images/note.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="101.0" fitWidth="207.0" layoutX="163.0" layoutY="515.0" onMouseClicked="#backToMenu">
+         <image>
+            <Image url="@../images/mainmenu_button.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="144.0" fitWidth="467.0" layoutX="14.0" layoutY="138.0">
+         <image>
+            <Image url="@../images/namelabel_transparent.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="83.0" fitWidth="200.0" layoutX="270.0" layoutY="117.0" nodeOrientation="RIGHT_TO_LEFT">
+         <image>
+            <Image url="@../images/cannon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="147.0" fitWidth="200.0" layoutX="203.0" layoutY="390.0" nodeOrientation="RIGHT_TO_LEFT">
+         <image>
+            <Image url="@../images/horse.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="88.0" layoutX="75.0" layoutY="437.0">
+         <image>
+            <Image url="@../images/soldier.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="90.0" fitWidth="76.0" layoutX="75.0" layoutY="282.0">
+         <image>
+            <Image url="@../images/trophy.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="90.0" fitWidth="76.0" layoutX="381.0" layoutY="282.0">
+         <image>
+            <Image url="@../images/trophy.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="83.0" fitWidth="200.0" layoutX="63.0" layoutY="117.0">
+         <image>
+            <Image url="@../images/cannon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="88.0" layoutX="370.0" layoutY="437.0" nodeOrientation="RIGHT_TO_LEFT">
+         <image>
+            <Image url="@../images/soldier.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="playerNameWinner" alignment="CENTER" layoutX="40.0" layoutY="193.0" prefHeight="63.0" prefWidth="447.0" text="RED" textAlignment="CENTER">
+         <font>
+            <Font name="Rockwell Bold" size="39.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="164.0" layoutY="282.0" prefHeight="90.0" prefWidth="213.0" text="WINS!" textAlignment="CENTER">
+         <font>
+            <Font name="Rockwell Bold" size="60.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
