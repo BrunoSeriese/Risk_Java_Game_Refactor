@@ -90,12 +90,14 @@ public class SpelbordController {
                 int firebaseTurnID = Integer.parseInt(documentSnapshot.getData().get("gamestateTurnID").toString());
                 gameModel.setTurnID(firebaseTurnID);
 
+
                 try {
                     startMainLoop();
+                    setCountryColorStartGame();
 //                    armiesListener();
 //                    countryListener();
                     spelbordViewController.HUD();
-                } catch (ExecutionException | InterruptedException executionException) {
+                } catch (ExecutionException | InterruptedException | IOException executionException) {
                     executionException.printStackTrace();
                 }
             }
@@ -651,19 +653,13 @@ public class SpelbordController {
 //                System.out.println("test2" + armyAndCountryID);
                 if (armyAndCountryID.containsKey("playerID")) {
 //                    System.out.println("PLAYER ID IS: " + armyAndCountryID.get("playerID"));
-
                     String countryID = (String) armyAndCountryID.get("countryID");
                     Long playerID = (Long) armyAndCountryID.get("playerID");
-
 //                    System.out.println("COUNTRY ID IS" + countryID);
 //                    System.out.println("In de countries zitten " + Arrays.toString(getCountries()));
-
                     for (ImageView country : spelbordViewController.getCountriesArray()) {
 //                        System.out.println("COUNTRY (IMAGE) ID IS" + country.getId());
-
                         if (country.getId().equals(countryID)) {
-
-
                             double color = getPlayerColor(playerID.intValue());
                             setColorCountry(country, color);
                         }

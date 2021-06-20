@@ -91,6 +91,7 @@ public class LobbyController {
                         spelbordController.setSpelbordViewController(spelbordViewController);
                         spelbordController.setCountries(spelbordViewController.getCountriesArray());
                         spelbordController.setButtons(spelbordViewController.getButtonsArray());
+                        Thread.sleep(50);
                         spelbordController.setCountryColorStartGame();
                         System.out.println("De scene is uitgevoerd");
                     }

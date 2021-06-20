@@ -27,6 +27,7 @@ import java.util.concurrent.ExecutionException;
 public class SpelbordViewController implements Initializable {
 
 
+
     ArrayList<Button> buttonsArray = new ArrayList<>();
     ArrayList<ImageView> imageViewArray = new ArrayList<>();
 
@@ -40,6 +41,8 @@ public class SpelbordViewController implements Initializable {
     public ImageView cardIcon;
     @FXML
     public ImageView playerIcon;
+    @FXML
+    public ImageView fortifyIcon;
     @FXML
     public ImageView NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
             AFRICA5, AFRICA6, EU1, EU2, EU3, EU4, EU5, EU6, EU7, SA1, SA2, SA3, SA4, OCE1, OCE2, OCE3, OCE4, ASIA1, ASIA2, ASIA3, ASIA4, ASIA5, ASIA6, ASIA7, ASIA8, ASIA9, ASIA10, ASIA11, ASIA12;
@@ -68,6 +71,9 @@ public class SpelbordViewController implements Initializable {
         spelbordController.getButtonID(event);
     }
 
+    public void fortifyButton(){
+        System.out.println("fortify");
+    }
 
 
     public void showCardInventory() {
