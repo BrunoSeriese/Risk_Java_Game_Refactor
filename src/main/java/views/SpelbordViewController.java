@@ -11,8 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import models.GameModel;
 import models.SpelbordModel;
 import observers.SpelbordObservable;
@@ -39,6 +41,10 @@ public class SpelbordViewController implements Initializable {
     public ImageView deployPhase;
     public ImageView attackPhase;
     public ImageView fortifyPhase;
+    public GridPane cardGrid;
+//    Image SOLDIER = new Image("images/soldier_card.png");
+//    Image HORSE = new Image("images/horse_card");
+//    Image CANNON = new Image("images/cannon_card.png");
 
     @FXML
     public ImageView NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
@@ -63,6 +69,10 @@ public class SpelbordViewController implements Initializable {
 //        spelbordController.registerObserver(this);
 //    }
 
+
+//    public void addCardToInventory(){
+//        cardGrid.getChildren().add(new ImageView(SOLDIER));
+//    }
 
     public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
         spelbordController.getButtonID(event);
@@ -109,6 +119,14 @@ public class SpelbordViewController implements Initializable {
 
 
     //TODO FIX HUD
+    public void showCardIcon() {
+        cardIcon.setVisible(true);
+    }
+
+    public void hideCardIcon() {
+        cardIcon.setVisible(false);
+    }
+
     public void showFortifyIcon() {
         fortifyIcon.setVisible(true);
     }
@@ -116,7 +134,6 @@ public class SpelbordViewController implements Initializable {
     public void hideFortifyIcon() {
         fortifyIcon.setVisible(false);
     }
-
 
     public void showDeployPhase() {
         deployPhase.setVisible(true);
@@ -132,15 +149,12 @@ public class SpelbordViewController implements Initializable {
         attackPhase.setVisible(false);
     }
 
-
     public void showFortifyPhase() {
         fortifyPhase.setVisible(true);
     }
     public void hideFortifyPhase() {
         fortifyPhase.setVisible(false);
     }
-
-
 
     public void hideHUD() {
         System.out.println("NOG NIET WEG");
@@ -150,15 +164,12 @@ public class SpelbordViewController implements Initializable {
         deployPhase.setVisible(false);
         attackPhase.setVisible(false);
         fortifyPhase.setVisible(false);
-//        for (Button button : getButtonsArray()) {
-//            button.setVisible(false);
-//        }
         System.out.println("IS WEG WOOOOO");
     }
 
     public void showHUD() {
         System.out.println("NOG NIET WEG");
-        cardIcon.setVisible(true);
+//        cardIcon.setVisible(true);
         endTurnIcon.setVisible(true);
         deployPhase.setVisible(true);
         for (Button button : getButtonsArray()) {

@@ -99,6 +99,12 @@ public class SpelbordController {
                             executionException.printStackTrace();
                         }
                     });
+
+                    if (gameModel.getPhaseID() == 1 && comparePlayerIDtoTurnIDFirebase()) {
+                        spelbordViewController.showCardIcon();
+                    } else {
+                        spelbordViewController.hideCardIcon();
+                    }
                     startMainLoop();
                     setCountryColorStartGame();
 //                    armiesListener();
@@ -610,6 +616,7 @@ public class SpelbordController {
                     Platform.runLater(() -> {
                         spelbordViewController.hideDeployPhase();
                         spelbordViewController.showAttackPhase();
+                        spelbordViewController.hideCardIcon();
                     });
                 }
             } else if (gameModel.getPhaseID() == 2) {
@@ -765,7 +772,7 @@ public class SpelbordController {
             spelbordViewController.hideFortifyIcon();
             spelbordViewController.hideAttackPhase();
             spelbordViewController.showFortifyPhase();
-                    });
+        });
         System.out.println("NU is het " + gameModel.getPhaseID());
     }
 

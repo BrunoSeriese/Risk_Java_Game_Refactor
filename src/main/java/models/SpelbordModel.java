@@ -153,16 +153,6 @@ public class SpelbordModel implements SpelbordObservable {
         System.out.println("de players zijn " + players);
     }
 
-    public void setCards(){
-        cards.put(1, "SOLDIER");
-        cards.put(2, "HORSE");
-        cards.put(3, "CANNON");
-    }
-
-    public Map<Integer, String> getCards(){
-        return cards;
-    }
-
 
     @Override
     public void register(SpelbordObserver observer) {
