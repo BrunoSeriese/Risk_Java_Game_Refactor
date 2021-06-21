@@ -73,7 +73,10 @@ public class LobbyController {
 
             try {
                 if (checkGameIsRunning()) {
+                    System.out.println("2");
                     if (checkIfInGame()) {
+                        System.out.println("3");
+                        System.out.println("De game is running");
 
                         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("FXML/GameMap.fxml"));
                         root = loader.load();
@@ -90,6 +93,7 @@ public class LobbyController {
                         spelbordController.setButtons(spelbordViewController.getButtonsArray());
                         Thread.sleep(50);
                         spelbordController.setCountryColorStartGame();
+                        System.out.println("De scene is uitgevoerd");
                     }
                 }
 
@@ -107,11 +111,20 @@ public class LobbyController {
         lobbymodel = getLobbyModelInstance();
         attachlistener();
         attachlistener2();
+//        SpelbordController spelbordController = new SpelbordController();
+
+//        System.out.println("run method");
+//        LobbyView LobbyModel = new LobbyView();
+//        LobbyModel.getFirebaseUsernames("110720");
+
+
+        /////
     }
 
     public static LobbyModel getLobbyModelInstance() {
         if (lobbymodel == null) {
             lobbymodel = new LobbyModel();
+            System.out.println("nieuwe instantie van LobbyModel is aangemaakt");
         }
         return lobbymodel;
     }
@@ -133,6 +146,7 @@ public class LobbyController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null) {
+                System.out.println("pakt hij deze?");
 
                 Platform.runLater(() -> {
                     try {
