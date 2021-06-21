@@ -17,11 +17,13 @@ public class LoginController {
     public LoginController getLoginControllerInstance() {
         if (loginController == null) {
             loginController = new LoginController();
+            System.out.println("nieuwe instantie van Logincontroller is aangemaakt");
         }
         return loginController;
     }
 
     public void testMessage(String username) {
+        System.out.println("de username is: " + username);
     }
 
     public String createLobbyCode() {
@@ -29,6 +31,7 @@ public class LoginController {
         int max = 999999;
 
         int lobbycode = (int) Math.floor(Math.random() * (max - min + 1) + min);
+        System.out.println(lobbycode);
 
         String lobbyCodeString = Integer.toString(lobbycode);
         return lobbyCodeString;
@@ -37,6 +40,8 @@ public class LoginController {
     public void createLobby(String username, String lobbycode) throws ExecutionException, InterruptedException {
         PlayerModel playerModel1 = new PlayerModel(username, 1, 0.0);
         State.TurnID = 1;
+        System.out.println("playermodel instantie is gemaakt");
+        System.out.println("jouw kleur  " + playerModel1.getPlayerColor());
 
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
 
@@ -55,20 +60,24 @@ public class LoginController {
 
         ApiFuture<WriteResult> result = docRef.set(data);
 
+        System.out.println("Update time : " + result.get().getUpdateTime());
     }
 
     public void checkCreate(String username) {
         try {
             if (username.equals("")) {
+                System.out.println("Username is leeg");
             } else {
                 String lobbycode = createLobbyCode();
                 createLobby(username, lobbycode);
                 State.lobbycode = lobbycode;
 
+                System.out.println("De state lobbycode is " + State.lobbycode);
             }
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("de username is: " + username);
     }
 
 
@@ -78,14 +87,19 @@ public class LoginController {
         DocumentSnapshot document = future.get();
 
         if (document.exists()) {
+            System.out.println("Document data: " + document.getData());
             List<String> arrayValue = (List<String>) document.get("players");
+            System.out.println(arrayValue.size());
 
             if (arrayValue.size() < 4) {
+                System.out.println("er zitten in array: " + arrayValue.size());
                 return true;
             } else {
+                System.out.println("De lobby is vol");
                 return false;
             }
         } else {
+            System.out.println("Lobby not found");
             return false;
         }
     }
@@ -98,8 +112,10 @@ public class LoginController {
         List<String> arrayValue = (List<String>) document.get("players");
         PlayerModel playerModel2 = new PlayerModel(username, arrayValue.size() + 1);
         playerModel2.setPlayerColor(assignColorToPlayer(arrayValue.size() + 1));
+        System.out.println("dit is wahed color    " + playerModel2.getPlayerColor());
         playerModel2.setTurnID(arrayValue.size() + 1);
         State.TurnID = arrayValue.size() + 1;
+        System.out.println("De stateturnid is: " + State.TurnID);
 
         return playerModel2;
     }
@@ -131,6 +147,7 @@ public class LoginController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
+        System.out.println(document.get("players"));
 
 //        Map<String, Object> playerData = new HashMap<>();
 //        playerData.put("isHost", false);
@@ -140,10 +157,12 @@ public class LoginController {
         PlayerModel playerModel2 = generateInstance(username, lobbycode);
 
         ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerModel2));
+        System.out.println("Update time : " + arrayUnion.get().getUpdateTime());
     }
 
     public boolean checkJoin(String username, String code) {
         if (username.equals("")) {
+            System.out.println("Username is leeg");
             return false;
         } else {
             try {
@@ -154,6 +173,7 @@ public class LoginController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
+                System.out.println("Lobby not found");
                 return false;
             }
         }
@@ -177,6 +197,7 @@ public class LoginController {
             for (int i = 0; i < charArray.length; i++) {
                 char ch = charArray[i];
                 if (ch >= 'a' && ch <= 'z') {
+                    System.out.println("Ingevulde lobbycode bevat letters");
                     return false;
                 }
             }
@@ -189,6 +210,7 @@ public class LoginController {
         ApiFuture<WriteResult> future = docRef.update("gameIsRunning", true);
 
         WriteResult result = future.get();
+        System.out.println("Write result: " + result);
     }
 
     public boolean enoughPlayers() throws ExecutionException, InterruptedException {
@@ -202,6 +224,7 @@ public class LoginController {
         if (arrayValue.size() >= 1) {
             return true;
         } else {
+            System.out.println("Er zijn niet genoeg mensen in de lobby");
             return false;
         }
     }
@@ -215,6 +238,7 @@ public class LoginController {
 
         if (document.exists()) {
             ArrayList<PlayerModel> arrayValue = (ArrayList<PlayerModel>) document.get("players");
+//            System.out.println(arrayValue);
             spelbordModel.setPlayers(arrayValue);
         }
     }
