@@ -24,7 +24,6 @@ public class PreLobbyController {
     TextField usernameField;
 
     public PreLobbyController(){
-        System.out.println("I am prelobby alive");
         playerModel = playerModel.getPlayerModelInstance();
     }
 
@@ -40,7 +39,6 @@ public class PreLobbyController {
     public void switchToCreatedLobby(ActionEvent event) throws IOException {
         playerModel.setUsername(usernameField.getText());
         if (loginController.emptyUsername(usernameField.getText())) {
-            System.out.println("Username is leeg");
         } else {
             loginController.testMessage(usernameField.getText());
             loginController.checkCreate(usernameField.getText());
@@ -55,11 +53,8 @@ public class PreLobbyController {
     public void switchToJoinedLobby(ActionEvent event) throws IOException {
         playerModel.setUsername(usernameField.getText());
         if (loginController.emptyUsername(usernameField.getText())) {
-            System.out.println("Username is leeg");
         } else {
-            System.out.println("ik ben gejoined");
             playerModel.setUsername(usernameField.getText());
-            System.out.println(playerModel.getUsername());
 
             loginController.testMessage(usernameField.getText());
             root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/JoinLobby.fxml"));

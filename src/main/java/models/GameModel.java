@@ -30,15 +30,6 @@ public class GameModel implements GameObservable {
     private List<GameObserver> observers = new ArrayList<GameObserver>();
     static GameModel gameModel;
 
-//    public GameModel getGameModelInstance() {
-//        if (gameModel == null) {
-//            gameModel = new GameModel(1);
-//            System.out.println("nieuwe instantie van GameModel is aangemaakt");
-//        }
-//        return gameModel;
-//    }
-
-
     public GameModel(int TurnID) {
         this.turnID = 1;
         this.gameOver = false;
