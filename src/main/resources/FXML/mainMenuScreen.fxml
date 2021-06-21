@@ -47,7 +47,7 @@
             <Shadow />
          </effect>
       </Button>
-      <Button fx:id="quitGame" alignment="CENTER" layoutX="125.0" layoutY="416.0" mnemonicParsing="false"  opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Quit" textAlignment="CENTER">
+      <Button fx:id="quitGame" alignment="CENTER" layoutX="125.0" layoutY="416.0" mnemonicParsing="false"  opacity="0.01" prefHeight="104.0" prefWidth="249.0" text="Quit" textAlignment="CENTER" onAction="#quitProgram">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
