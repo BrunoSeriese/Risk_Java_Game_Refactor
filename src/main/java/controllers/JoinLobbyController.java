@@ -29,15 +29,12 @@ public class JoinLobbyController {
 
 
     public JoinLobbyController(){
-        System.out.println("I am joinlobby alive");
         playerModel = playerModel.getPlayerModelInstance();
     }
 
     public void switchToInsertLobbycode(ActionEvent event) throws IOException, InterruptedException {
-        System.out.println("Ingevulde lobbycode is: " + codeField.getText());
 
         if (loginController.validateLobby(codeField.getText())) {
-            System.out.println("de usernamefield is: " + playerModel.getUsername());
 
             if (loginController.checkJoin(playerModel.getUsername(), codeField.getText())){
                 root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/Lobby.fxml"));
@@ -47,7 +44,6 @@ public class JoinLobbyController {
                 stage.show();
             }
         } else {
-            System.out.println("lobbycode is ongeldig, probeer het nog eens");
             invalidCode.setVisible(true);
         }
     }
