@@ -1,9 +1,9 @@
 package models;
 
-import application.Main;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import controllers.LoginController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class LobbyModel {
 
     public ArrayList<String> getFirebaseUsernames(String lobbyCode) throws ExecutionException, InterruptedException {
 
-        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(lobbyCode).document("players");
+        DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(lobbyCode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 

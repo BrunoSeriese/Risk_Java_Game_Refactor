@@ -52,7 +52,7 @@ public class LobbyController {
     }
 
     public boolean checkGameIsRunning() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
+        DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
@@ -62,7 +62,7 @@ public class LobbyController {
     }
 
     public void attachlistener() {
-        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
+        DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
 
             try {
@@ -126,7 +126,7 @@ public class LobbyController {
     }
 
     public void attachlistener2() {
-        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
+        DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null) {
 

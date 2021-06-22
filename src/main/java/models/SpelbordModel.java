@@ -37,10 +37,6 @@ public class SpelbordModel implements SpelbordObservable {
     }
 
 
-    public void updateArmies(int playerIndex, int newArmies) {
-
-    }
-
     public void turnInProgress(ArrayList<PlayerModel> players, GameModel hostedGame) {
 
         for (PlayerModel player : players) {
@@ -97,11 +93,6 @@ public class SpelbordModel implements SpelbordObservable {
     }
 
     public ArrayList<CountryModel> getCountries() {
-        ArrayList<CountryModel> countryID = new ArrayList<>();
-
-        System.out.println(countryID);
-        System.out.println(countries);
-
         return this.countries;
     }
 

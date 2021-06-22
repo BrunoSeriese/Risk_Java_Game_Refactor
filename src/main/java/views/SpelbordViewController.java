@@ -1,6 +1,5 @@
 package views;
 
-import application.Main;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -15,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import models.GameModel;
 import models.LobbyModel;
-import models.SpelbordModel;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -147,7 +145,7 @@ public class SpelbordViewController implements Initializable {
     }
 
     public void HUD() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
+        DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
