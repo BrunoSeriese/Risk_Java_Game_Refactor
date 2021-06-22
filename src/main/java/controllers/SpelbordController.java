@@ -95,7 +95,7 @@ public class SpelbordController {
                     Platform.runLater(() -> {
                         try {
                             getArmyAndCountryFromFirebase();
-                        } catch (ExecutionException | InterruptedException executionException) {
+                        } catch (ExecutionException | InterruptedException | IOException executionException) {
                             executionException.printStackTrace();
                         }
                     });
@@ -165,7 +165,7 @@ public class SpelbordController {
         }
     }
 
-    public void getArmyAndCountryFromFirebase() throws ExecutionException, InterruptedException {
+    public void getArmyAndCountryFromFirebase() throws ExecutionException, InterruptedException, IOException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -197,13 +197,17 @@ public class SpelbordController {
                 }
 
                 if (player1Size == arrayCountryData.size()) {
-                    System.out.println("player 1 wins!");
+                    VictoryController victoryController = new VictoryController();
+                    victoryController.switchToVictoryScreen("RED");
                 } else if (player2Size == arrayCountryData.size()) {
-                    System.out.println("player 2 wins!");
+                    VictoryController victoryController = new VictoryController();
+                    victoryController.switchToVictoryScreen("GREEN");
                 } else if (player3Size == arrayCountryData.size()) {
-                    System.out.println("player 3 wins!");
+                    VictoryController victoryController = new VictoryController();
+                    victoryController.switchToVictoryScreen("BLUE");
                 } else if (player4Size == arrayCountryData.size()) {
-                    System.out.println("player 4 wins!");
+                    VictoryController victoryController = new VictoryController();
+                    victoryController.switchToVictoryScreen("ORANGE");
                 }
 
 
