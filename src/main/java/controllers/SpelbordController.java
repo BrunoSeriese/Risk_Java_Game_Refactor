@@ -94,6 +94,7 @@ public class SpelbordController {
                 try {
                     Platform.runLater(() -> {
                         try {
+                            Thread.sleep(50);
                             getArmyAndCountryFromFirebase();
                         } catch (ExecutionException | InterruptedException | IOException executionException) {
                             executionException.printStackTrace();
