@@ -1,22 +1,14 @@
 package models;
 
-import application.State;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.*;
-import controllers.SpelbordController;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import observers.GameObservable;
 import observers.GameObserver;
-import observers.SpelbordObserver;
 import views.SpelbordViewController;
 
-import java.util.*;
-import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameModel implements GameObservable {
 
-    // spelbord model moet niet map zijn maar bijv private SpelbordModel map = firebase.get(currentMap)
     private SpelbordModel map;
     private int turnID;
     private boolean gameOver;
@@ -26,17 +18,9 @@ public class GameModel implements GameObservable {
     private int phaseID;
     private ArrayList<String> selectedCountries;
     private SpelbordViewController viewer;
-    //    SpelbordController spelbordController = new SpelbordController();
     private List<GameObserver> observers = new ArrayList<GameObserver>();
     static GameModel gameModel;
 
-//    public GameModel getGameModelInstance() {
-//        if (gameModel == null) {
-//            gameModel = new GameModel(1);
-//            System.out.println("nieuwe instantie van GameModel is aangemaakt");
-//        }
-//        return gameModel;
-//    }
 
 
     public GameModel(int TurnID) {
@@ -47,7 +31,6 @@ public class GameModel implements GameObservable {
     }
 
     public GameModel() {
-//        spelbordController.attachlistener();
     }
 
     public void clearSelectedCountries(String countryID){

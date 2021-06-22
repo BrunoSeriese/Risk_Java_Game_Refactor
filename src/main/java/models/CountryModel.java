@@ -1,13 +1,6 @@
 package models;
 
-import application.State;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 public class CountryModel {
 
@@ -15,16 +8,6 @@ public class CountryModel {
     private String countryID;
     private int army;
     private ArrayList<String> neighbor;
-//    private String countryName;
-
-//    private Map<String, String> CountriesAndId = new HashMap<>();
-
-
-
-//    public CountryModel(String countryID,String countryName){
-//        this.countryID = countryID;
-//        this.countryName = countryName;
-//    }
 
     public CountryModel(String countryID, ArrayList<String> neighborData){
         this.countryID = countryID;
@@ -54,9 +37,6 @@ public class CountryModel {
         return this.countryID;
     }
 
-//    public String getCountryName(){
-//        return this.countryName;
-//    }
     public void setPlayerID(int playerID){
         this.playerID = playerID;
     }

@@ -18,7 +18,7 @@ public class LobbyModel {
 
 
     public ArrayList<String> getFirebaseUsernames(String lobbyCode) throws ExecutionException, InterruptedException {
-        //get benodigde stuff van firestore
+
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(lobbyCode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -26,25 +26,19 @@ public class LobbyModel {
         ArrayList<String> mijnUsernamesList = new ArrayList<>();
         if (document.exists()) {
 
-            ArrayList<HashMap> arrayPlayerData = (ArrayList<HashMap>) document.get("players"); //zet alle data van 'players' in array wat hashmaps bevatten
+            ArrayList<HashMap> arrayPlayerData = (ArrayList<HashMap>) document.get("players");
 
+            assert arrayPlayerData != null;
             for (HashMap playerData : arrayPlayerData) {
-                System.out.println("playerdata player" + playerData);  //loopt door de arrays van firestore zodat je ze apart kan zien van elke player
+                System.out.println("playerdata player" + playerData);
                 mijnUsernamesList.add((String) playerData.get("username"));
-                System.out.println(mijnUsernamesList);
 
 
             }
-        } else {
-            System.out.println("niks");
         }
 
 
         return mijnUsernamesList;
     }
-//
-//
-//
-
 
 }
