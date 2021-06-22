@@ -19,10 +19,7 @@ import observers.SpelbordObserver;
 import views.SpelbordViewController;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
@@ -39,8 +36,6 @@ public class SpelbordController {
     private DiceModel dice = new DiceModel();
     private ImageView[] countries;
     private Button[] buttons;
-    //    gameModel = loginController.getGameModelInstance();
-//    LoginController loginController = new LoginController();
 
     public ImageView[] getCountries() {
         System.out.println("Countries worden opgevraagd");
@@ -65,7 +60,6 @@ public class SpelbordController {
     public static GameModel getGameModelInstance() {
         if (gameModel == null) {
             gameModel = new GameModel(1);
-            System.out.println("nieuwe instantie van GameModel is aangemaakt");
         }
         return gameModel;
     }
@@ -122,11 +116,6 @@ public class SpelbordController {
     public SpelbordController() {
         gameModel = getGameModelInstance();
         spelbordModel = SpelbordModel.getSpelbordModelInstance();
-
-        //todo verder uitwerken
-//        SpelbordObserver phaseID = null;
-//        spelbordModel.register(phaseID);
-//        phaseID.update(1);
         attachlistener();
         countryListener();
 
@@ -211,12 +200,12 @@ public class SpelbordController {
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
             int count = 0;
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue(ButtonID)) {
                     String currentArmies = arrayCountryData.get(count).get("army").toString();
-                    int firstArmy = Integer.parseInt(currentArmies);
-                    return firstArmy;
+                    return Integer.parseInt(currentArmies);
                 }
                 count += 1;
             }
@@ -258,6 +247,7 @@ public class SpelbordController {
 
             ArrayList<String> arraySelectedCountries = gameModel.getSelectedCountries();
 
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue(arraySelectedCountries.get(0))) {
@@ -290,7 +280,7 @@ public class SpelbordController {
 
             ApiFuture<DocumentSnapshot> future = docRef.get();
             DocumentSnapshot document = future.get();
-            String stringID = document.get("gamestateTurnID").toString();
+            String stringID = Objects.requireNonNull(document.get("gamestateTurnID")).toString();
             toUpdate = Integer.parseInt(stringID.toString());
             if (stringID.equals("4")) {
                 ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", 1);
@@ -307,20 +297,10 @@ public class SpelbordController {
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        if (State.TurnID == Integer.parseInt(document.get("gamestateTurnID").toString())) {
-            System.out.println("Jij bent aan de beurt " + State.TurnID);
-            return true;
-        } else {
-            return false;
-        }
+        return State.TurnID == Integer.parseInt(Objects.requireNonNull(document.get("gamestateTurnID")).toString());
 
     }
 
-
-    //Todo zorg ervoor dat via de map de 2 countryID's worden meegegeven
-    public void attackPlayer(String countryCodeAttacker, String countryCodeDefender) {
-
-    }
 
     public void setArmies(Button button, int armies) {
         button.setText(String.valueOf(armies));
@@ -330,7 +310,8 @@ public class SpelbordController {
     public void countryListener() {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
-            documentSnapshot.getData().get("countries");
+            assert documentSnapshot != null;
+            Objects.requireNonNull(documentSnapshot.getData()).get("countries");
             for (Button button : buttons) {
                 Platform.runLater(() -> {
                     try {
@@ -351,10 +332,10 @@ public class SpelbordController {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
             int count = 0;
-            //Pak alle dingen in de countries field in firebase
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
-                    int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
+                    int firebaseArmies = Integer.parseInt(armyAndCountryID.get("army").toString());
                     arrayCountryData.get(count).put("army", (firebaseArmies + 2));
                     docRef.update("countries", arrayCountryData);
                 }
@@ -372,7 +353,7 @@ public class SpelbordController {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
             int count = 0;
-            //Pak alle dingen in de countries field in firebase
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
                     int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
@@ -385,7 +366,7 @@ public class SpelbordController {
         }
     }
 
-    public void removeArmiesFromPlayer(String country) throws ExecutionException, InterruptedException, IOException {
+    public void removeArmiesFromPlayer(String country) throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -394,25 +375,21 @@ public class SpelbordController {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
             int count = 0;
-            //Pak alle dingen in de countries field in firebase
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
-                    int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
+                    int firebaseArmies = Integer.parseInt(armyAndCountryID.get("army").toString());
                     if (firebaseArmies == 1) {
                         arrayCountryData.get(count).put("playerID", State.TurnID);
                         docRef.update("countries", arrayCountryData);
                         Thread.sleep(50);
-                        //TODO verander kleur op map
                         Platform.runLater(() -> {
                             try {
                                 setCountryColorStartGame();
                             } catch (ExecutionException | InterruptedException | IOException e) {
                                 e.printStackTrace();
                             }
-
                         });
-                        System.out.println("gelukt!!");
-//                        System.out.println("Countries: " + countries);
                     } else {
                         arrayCountryData.get(count).put("army", firebaseArmies - 1);
                         docRef.update("countries", arrayCountryData);
@@ -432,17 +409,11 @@ public class SpelbordController {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
-            //Pak alle dingen in de countries field in firebase
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
                     int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
-                    if (firebaseArmies >= number) {
-                        System.out.println("Je hebt genoeg armies om aan te vallen");
-                        return true;
-                    } else {
-                        System.out.println("Je hebt niet genoeg armies om aan te vallen");
-                        return false;
-                    }
+                    return firebaseArmies >= number;
                 }
             }
         }
@@ -457,16 +428,11 @@ public class SpelbordController {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
                     int firebasePlayerID = Integer.valueOf(armyAndCountryID.get("playerID").toString());
-                    if (firebasePlayerID == State.TurnID) {
-                        System.out.println("Het is je eigen land");
-                        return true;
-                    } else {
-                        System.out.println("Dit is niet je land");
-                        return false;
-                    }
+                    return firebasePlayerID == State.TurnID;
                 }
             }
         }
@@ -481,16 +447,11 @@ public class SpelbordController {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
-                    int firebasePlayerID = Integer.valueOf(armyAndCountryID.get("playerID").toString());
-                    if (firebasePlayerID == State.TurnID) {
-                        System.out.println("Het is je eigen land");
-                        return false;
-                    } else {
-                        System.out.println("Je mag hem aanvallen");
-                        return true;
-                    }
+                    int firebasePlayerID = Integer.parseInt(armyAndCountryID.get("playerID").toString());
+                    return firebasePlayerID != State.TurnID;
                 }
             }
         }
@@ -506,13 +467,12 @@ public class SpelbordController {
         String buttonIdCode = buttonid.getId().split("c")[1];
 
 
-        // if observerItem phaseID == 1 clicking on a country will add armies
+
         if (comparePlayerIDtoTurnIDFirebase()) {
             if (gameModel.getPhaseID() == 1) {
                 if (checkOwnPlayerCountry(buttonIdCode)) {
                     spelbordViewController.showDeployPhase();
                     int oldArmies = getArmyFirebase(buttonIdCode);
-                    //TODO NIET VERGETEN BEIDEN TE VERANDEREN NAAR 4
                     setArmyFirebase(buttonIdCode, oldArmies + 10);
                     buttonid.setText(String.valueOf(oldArmies + 10));
                     gameModel.updatePhaseID();
@@ -523,25 +483,20 @@ public class SpelbordController {
                     });
                 }
             } else if (gameModel.getPhaseID() == 2) {
-
-                System.out.println("now you cant update armies, only attack scrub");
                 if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
                     gameModel.clearSelectedCountries();
-                    System.out.println("check if exists");
                     if (checkOwnPlayerCountry(buttonIdCode)) {
                         if (checkArmiesOnCountry(buttonIdCode, 2)) {
                             gameModel.clearSelectedCountries(buttonIdCode);
                         }
                     }
                 } else if (gameModel.getSelectedCountries().size() == 1) {
-                    // Checken van eigen land of enemy land
                     ArrayList<String> arraySelectedCountries = gameModel.getSelectedCountries();
-                    //TODO deze functie (checkEnemyPlayerCountry)kan in principe in de getNeighborsFirebase() functie
                     if (checkEnemyPlayerCountry(buttonIdCode)) {
                         gameModel.clearSelectedCountries(buttonIdCode);
                         if (getNeighborsFirebase()) {
 
-                            //todo check if both players have at least 2 armies
+
                             int attackersArmy = getArmyFirebase(gameModel.getSelectedCountries().get(0));
                             int defendersArmy = getArmyFirebase(gameModel.getSelectedCountries().get(1));
 
@@ -549,18 +504,9 @@ public class SpelbordController {
                                 ArrayList<Integer> dice1 = dice.roll(1);
                                 ArrayList<Integer> dice2 = dice.roll(1);
 
-                                for (int num : dice1) {
-                                    System.out.println("Aanvallende dobbelsteen is " + num);
-                                }
-                                for (int num : dice2) {
-                                    System.out.println("Verdedigende dobbelsteen is " + num);
-                                }
-
                                 if (dice1.get(0) > dice2.get(0)) {
-                                    System.out.println("defender loses an army");
                                     removeArmiesFromPlayer(gameModel.getSelectedCountries().get(1));
                                 } else {
-                                    System.out.println("attacker loses an army");
                                     removeArmiesFromPlayer(gameModel.getSelectedCountries().get(0));
                                 }
                                 dice1.clear();
@@ -574,11 +520,8 @@ public class SpelbordController {
                 }
                 System.out.println("In de selectedcountries zitten : " + gameModel.getSelectedCountries());
             } else if (gameModel.getPhaseID() == 3) {
-//                spelbordViewController.hideFortifyIcon();
-                System.out.println("HET IS PHASE 3");
                 if (gameModel.getSelectedCountries() == null || gameModel.getSelectedCountries().size() < 1) {
                     gameModel.clearSelectedCountries();
-                    System.out.println("check if exists");
                     if (checkOwnPlayerCountry(buttonIdCode)) {
                         if (checkArmiesOnCountry(buttonIdCode, 3)) {
                             gameModel.clearSelectedCountries(buttonIdCode);
@@ -588,7 +531,6 @@ public class SpelbordController {
                     if (checkOwnPlayerCountry(buttonIdCode)) {
                         gameModel.clearSelectedCountries(buttonIdCode);
                         if (gameModel.getSelectedCountries().get(0) == gameModel.getSelectedCountries().get(1)) {
-                            System.out.println("Je kan niet op je geklikte land zetten");
                             gameModel.clearSelectedCountries();
                         } else if (getNeighborsFirebase()) {
                             removeSoldiersFromOwnCountry(gameModel.getSelectedCountries().get(0));
@@ -599,20 +541,12 @@ public class SpelbordController {
                     }
                 }
             }
-        } else {
-            System.out.println("Je bent niet aan de beurt");
         }
     }
 
 
-    // if observerItem phaseID == 2 clicking on a country will try to stage an attack
-
     public void endTurn() throws ExecutionException, InterruptedException {
         nextTurnIDFirebase();
-    }
-
-    public void registerObserver(SpelbordObserver sbv) {
-        spelbordModel.register(sbv);
     }
 
     public void setColorCountry(ImageView imageLand, double playerColor) {
@@ -670,7 +604,6 @@ public class SpelbordController {
             spelbordViewController.hideAttackPhase();
             spelbordViewController.showFortifyPhase();
         });
-        System.out.println("NU is het " + gameModel.getPhaseID());
     }
 }
 
