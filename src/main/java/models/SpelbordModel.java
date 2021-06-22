@@ -22,6 +22,7 @@ public class SpelbordModel implements SpelbordObservable {
     public static SpelbordModel getSpelbordModelInstance() {
         if (spelbordModel == null) {
             spelbordModel = new SpelbordModel();
+            System.out.println("nieuwe instantie van SpelbordModel is aangemaakt");
         }
         return spelbordModel;
     }
@@ -100,11 +101,13 @@ public class SpelbordModel implements SpelbordObservable {
                     count = 1;
                 }
                 newCountry.setPlayerID(count);
+//                System.out.println("de getter van player is: " + newCountry.getPlayerID()); //uncomment als je beter wilt begrijpen
                 countriesAndID.add(newCountry);
                 count++;
             }
             myReader.close();
         } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
             e.printStackTrace();
         }
         Collections.shuffle(countriesAndID);
@@ -119,6 +122,15 @@ public class SpelbordModel implements SpelbordObservable {
 
     public ArrayList<CountryModel> getCountries() {
         ArrayList<CountryModel> countryID = new ArrayList<>();
+//        countryID
+//        for (int i = 0; i<countries.size(); i++){
+////            System.out.println(countries.get(i).getCountryID() + " " +countries.get(i).getCountryName());
+//            System.out.println(countries.get(i).getCountryID());
+////            String x = countries.get(i).getCountryID();
+////            countryID.add(x);
+//        }
+        System.out.println(countryID);
+        System.out.println(countries);
 
         return this.countries;
     }
@@ -138,6 +150,7 @@ public class SpelbordModel implements SpelbordObservable {
         // dus this.players = playersFromFirebase
 
         this.players = playersFromFirebase;
+        System.out.println("de players zijn " + players);
     }
 
 

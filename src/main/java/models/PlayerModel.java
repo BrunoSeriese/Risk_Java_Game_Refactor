@@ -18,6 +18,7 @@ public class PlayerModel {
     public static PlayerModel getPlayerModelInstance() {
         if (playerModel == null) {
             playerModel = new PlayerModel();
+            System.out.println("nieuwe instantie van PlayerModel is aangemaakt");
         }
         return playerModel;
     }
@@ -89,6 +90,12 @@ public class PlayerModel {
     public void attack() {
         //Todo hier moet een mouselistener zijn die het land opvangt waar je op klikt en kijkt of het overeenkomt met jouw ID
 
+//       if (clickedCountry.playerid == player.turnID){
+//          if (secondClickedCountry.playerID != player.turnID){
+//              System.out.println("je kan dit land aanvallen");
+//            }else{ System.out.println("je kan niet jezelf aanvallen");}
+//          } else { System.out.println("je kan niet aanvallen vanuit een land van een vijand!");
+//       }
     }
 
     public void setCountries(ArrayList<CountryModel> countries) {
