@@ -22,7 +22,6 @@ public class SpelbordModel implements SpelbordObservable {
     public static SpelbordModel getSpelbordModelInstance() {
         if (spelbordModel == null) {
             spelbordModel = new SpelbordModel();
-            System.out.println("nieuwe instantie van SpelbordModel is aangemaakt");
         }
         return spelbordModel;
     }
@@ -33,32 +32,12 @@ public class SpelbordModel implements SpelbordObservable {
     public SpelbordModel(ArrayList<PlayerModel> players, ArrayList<CountryModel> countries) {
         this.players = players;
         this.countries = countries;
-        // geef de spelers een random unique ID in de firebase naast hun naam!. daarna laad ze hier in door over de
-        //firebase connectie te loopen
 
-        for (int i = 0; i < players.size(); i++) {
-//            this.players.set(i,(NameFromFirebase,IDfromFirebase,) = PlayersFromFirebaseConnection[i]
-        }
-
-        // countries zijn dus alle landen met hun eigen ID en ID van de speler die het bezit
-        // + legers die er op staan
-        this.countries = countries;
-
-        for (int i = 0; i < countries.size(); i++) {
-        }
 
     }
 
 
     public void updateArmies(int playerIndex, int newArmies) {
-        //update to firebase here
-
-        // this updates the amount of armies a certain player has on a certain land
-        CountryModel chosenCountry = countries.get(playerIndex);
-
-        chosenCountry.setArmy(newArmies);
-
-        // give this updated army on the country to firebase
 
     }
 
@@ -68,21 +47,20 @@ public class SpelbordModel implements SpelbordObservable {
 
             if (players.get(i).getTurnID() == hostedGame.getTurnID()) {
 
-                // now you have the player who has a turn
+
                 currentPlayer = players.get(i);
 
                 currentPlayer.buildPhase();
                 currentPlayer.attackPhase();
                 currentPlayer.endPhase();
 
-//                hostedGame.spelbordController.nextTurn();
+
             }
         }
 
     }
 
     public void CountriesAndIdMap() {
-        //EUROPE
         ArrayList<CountryModel> countriesAndID = new ArrayList<CountryModel>();
         int count = 1;
         try {
@@ -96,18 +74,16 @@ public class SpelbordModel implements SpelbordObservable {
                 ArrayList<String> neighborData = new ArrayList<>(Arrays.asList(neighbors.split(",")));
 
                 CountryModel newCountry = new CountryModel(countryCode, neighborData);
-                //Count mag maximaal tot 4
+
                 if (count == 5) {
                     count = 1;
                 }
                 newCountry.setPlayerID(count);
-//                System.out.println("de getter van player is: " + newCountry.getPlayerID()); //uncomment als je beter wilt begrijpen
                 countriesAndID.add(newCountry);
                 count++;
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
         Collections.shuffle(countriesAndID);
@@ -122,13 +98,7 @@ public class SpelbordModel implements SpelbordObservable {
 
     public ArrayList<CountryModel> getCountries() {
         ArrayList<CountryModel> countryID = new ArrayList<>();
-//        countryID
-//        for (int i = 0; i<countries.size(); i++){
-////            System.out.println(countries.get(i).getCountryID() + " " +countries.get(i).getCountryName());
-//            System.out.println(countries.get(i).getCountryID());
-////            String x = countries.get(i).getCountryID();
-////            countryID.add(x);
-//        }
+
         System.out.println(countryID);
         System.out.println(countries);
 
@@ -138,19 +108,10 @@ public class SpelbordModel implements SpelbordObservable {
     public void setCountries(Map<String, String> countriesWithID) {
 
         ArrayList<CountryModel> newCountryList = new ArrayList<CountryModel>();
-        // elke keer loopen en dan newCountryList.add een country met zijn id in een Country Object
-
-
     }
 
     public void setPlayers(ArrayList<PlayerModel> playersFromFirebase) {
-        //maak hier een arrayList<PlayerModel> die gemaakt wordt vanuit alle 4 spelers uit firebase
-        // ArrayList<PlayerModel> playersFromFirebase = new ArrayList<PlayerModel>
-        // loop over de informatie van alle spelers en voeg ze toe als player object
-        // dus this.players = playersFromFirebase
-
         this.players = playersFromFirebase;
-        System.out.println("de players zijn " + players);
     }
 
 

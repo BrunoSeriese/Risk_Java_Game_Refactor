@@ -23,6 +23,7 @@ import observers.SpelbordObserver;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
@@ -42,9 +43,7 @@ public class SpelbordViewController implements Initializable {
     public ImageView attackPhase;
     public ImageView fortifyPhase;
     public GridPane cardGrid;
-//    Image SOLDIER = new Image("images/soldier_card.png");
-//    Image HORSE = new Image("images/horse_card");
-//    Image CANNON = new Image("images/cannon_card.png");
+
 
     @FXML
     public ImageView NA1, NA2, NA3, NA4, NA5, NA6, NA7, NA8, NA9, NA10, AFRICA1, AFRICA2, AFRICA3, AFRICA4,
@@ -65,21 +64,12 @@ public class SpelbordViewController implements Initializable {
     GameModel gameModel;
     LoginController loginController = new LoginController();
 
-//    public SpelbordViewController() {
-//        spelbordController.registerObserver(this);
-//    }
-
-
-//    public void addCardToInventory(){
-//        cardGrid.getChildren().add(new ImageView(SOLDIER));
-//    }
 
     public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
         spelbordController.getButtonID(event);
     }
 
     public void fortifyButton() {
-        System.out.println("fortify");
         spelbordController.fortifyButton();
     }
 
@@ -95,17 +85,8 @@ public class SpelbordViewController implements Initializable {
         spelbordController.endTurn();
     }
 
-//    public void setColorCountry(ImageView imageLand, double playerColor) {
-//        spelbordController.setColorCountry(imageLand, playerColor);
-//    }
-
-//    public void setCountryColorStartGame() throws ExecutionException, InterruptedException {
-//        spelbordController.setCountryColorStartGame();
-//    }
 
     public void setArmies(Button button, int armies) {
-//        button = "c" + button;
-//        button = (Button) button;
         spelbordController.setArmies(button, armies);
     }
 
@@ -157,25 +138,20 @@ public class SpelbordViewController implements Initializable {
     }
 
     public void hideHUD() {
-        System.out.println("NOG NIET WEG");
         cardIcon.setVisible(false);
         endTurnIcon.setVisible(false);
         fortifyIcon.setVisible(false);
         deployPhase.setVisible(false);
         attackPhase.setVisible(false);
         fortifyPhase.setVisible(false);
-        System.out.println("IS WEG WOOOOO");
     }
 
     public void showHUD() {
-        System.out.println("NOG NIET WEG");
-//        cardIcon.setVisible(true);
         endTurnIcon.setVisible(true);
         deployPhase.setVisible(true);
         for (Button button : getButtonsArray()) {
             button.setVisible(true);
         }
-        System.out.println("IS WEG WOOOOO");
     }
 
     public void HUD() throws ExecutionException, InterruptedException {
@@ -183,7 +159,7 @@ public class SpelbordViewController implements Initializable {
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        if (State.TurnID == Integer.parseInt(document.get("gamestateTurnID").toString())) {
+        if (State.TurnID == Integer.parseInt(Objects.requireNonNull(document.get("gamestateTurnID")).toString())) {
             showHUD();
         } else {
             hideHUD();
@@ -192,16 +168,8 @@ public class SpelbordViewController implements Initializable {
 
 
     public void garrison() {
-        //Todo catch mouseEvent
-        // catch clickedCountry
-        // Check if country has the same playerID as the player
-
     }
 
-//    @Override
-//    public void update(SpelbordObservable sb) {
-//
-//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

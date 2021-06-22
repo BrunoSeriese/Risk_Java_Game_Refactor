@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class VictoryViewController {
     @FXML
@@ -23,7 +24,7 @@ public class VictoryViewController {
     }
 
     public void backToMenu(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml"));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("FXML/mainMenuScreen.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
