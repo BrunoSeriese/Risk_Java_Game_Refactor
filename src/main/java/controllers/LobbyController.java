@@ -102,7 +102,7 @@ public class LobbyController {
     public LobbyController() {
         lobbymodel = getLobbyModelInstance();
         attachlistener();
-//        attachlistener2();
+        attachlistener2();
     }
 
     public static LobbyModel getLobbyModelInstance() {
