@@ -86,16 +86,19 @@ public class LoginController {
         return playerModel2;
     }
 
-    private double assignColorToPlayer(int i) {
+    public double assignColorToPlayer(int i) {
         switch (i) {
+            case 0:
+                return GameModel.RED;
             case 1:
                 return GameModel.BLUE;
             case 2:
                 return GameModel.GREEN;
             case 3:
                 return GameModel.ORANGE;
+            default:
+                throw new UnsupportedOperationException("fout");
         }
-        return 0;
     }
 
 
