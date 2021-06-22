@@ -16,7 +16,7 @@ public class SpelbordModel implements SpelbordObservable {
     private Map<String, String> countriesWithID = new HashMap<>();
     private List<SpelbordObserver> observers = new ArrayList<>();
     static SpelbordModel spelbordModel;
-    private Map<Integer, String> cards = new HashMap<Integer, String>();
+    private Map<Integer, String> cards = new HashMap<>();
 
 
     public static SpelbordModel getSpelbordModelInstance() {
@@ -43,12 +43,12 @@ public class SpelbordModel implements SpelbordObservable {
 
     public void turnInProgress(ArrayList<PlayerModel> players, GameModel hostedGame) {
 
-        for (int i = 0; i < players.size(); i++) {
+        for (PlayerModel player : players) {
 
-            if (players.get(i).getTurnID() == hostedGame.getTurnID()) {
+            if (player.getTurnID() == hostedGame.getTurnID()) {
 
 
-                currentPlayer = players.get(i);
+                currentPlayer = player;
 
                 currentPlayer.buildPhase();
                 currentPlayer.attackPhase();
@@ -61,7 +61,7 @@ public class SpelbordModel implements SpelbordObservable {
     }
 
     public void CountriesAndIdMap() {
-        ArrayList<CountryModel> countriesAndID = new ArrayList<CountryModel>();
+        ArrayList<CountryModel> countriesAndID = new ArrayList<>();
         int count = 1;
         try {
             File myObj = new File("src/main/resources/text/countries.txt");
@@ -107,7 +107,7 @@ public class SpelbordModel implements SpelbordObservable {
 
     public void setCountries(Map<String, String> countriesWithID) {
 
-        ArrayList<CountryModel> newCountryList = new ArrayList<CountryModel>();
+        ArrayList<CountryModel> newCountryList = new ArrayList<>();
     }
 
     public void setPlayers(ArrayList<PlayerModel> playersFromFirebase) {

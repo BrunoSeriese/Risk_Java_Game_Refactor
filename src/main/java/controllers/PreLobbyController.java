@@ -31,7 +31,7 @@ public class PreLobbyController {
     public void switchToCreatedLobby(ActionEvent event) throws IOException {
         playerModel.setUsername(usernameField.getText());
 
-        loginController.testMessage(usernameField.getText());
+
         loginController.checkCreate(usernameField.getText());
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("FXML/Lobby.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -45,9 +45,8 @@ public class PreLobbyController {
         playerModel.setUsername(usernameField.getText());
 
         playerModel.setUsername(usernameField.getText());
-        System.out.println(playerModel.getUsername());
 
-        loginController.testMessage(usernameField.getText());
+
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("FXML/JoinLobby.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

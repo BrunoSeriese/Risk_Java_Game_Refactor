@@ -1,6 +1,6 @@
 package controllers;
 
-import application.State;
+import application.Main;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -52,7 +52,7 @@ public class LobbyController {
     }
 
     public boolean checkGameIsRunning() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
@@ -62,7 +62,7 @@ public class LobbyController {
     }
 
     public void attachlistener() {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
 
             try {
@@ -76,7 +76,7 @@ public class LobbyController {
 
                         SpelbordViewController spelbordViewController = loader.getController();
 
-                        Platform.runLater(() -> State.stage.setScene(scene));
+                        Platform.runLater(() -> Main.stage.setScene(scene));
                         SpelbordController spelbordController = new SpelbordController();
                         spelbordController.setArmyAndCountryInFirebase();
                         Thread.sleep(50);
@@ -126,14 +126,14 @@ public class LobbyController {
     }
 
     public void attachlistener2() {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null) {
 
 
                 Platform.runLater(() -> {
                     try {
-                        ArrayList<String> userNames = lobbymodel.getFirebaseUsernames(State.lobbycode);
+                        ArrayList<String> userNames = lobbymodel.getFirebaseUsernames(LobbyModel.lobbycode);
                         username1.setText(userNames.get(0));
                         if (userNames.size() >= 2) {
                             username2.setText(userNames.get(1));
@@ -159,7 +159,7 @@ public class LobbyController {
 
     @FXML
     public void initialize() {
-        lobbyCode.setText(State.lobbycode);
+        lobbyCode.setText(LobbyModel.lobbycode);
     }
 
 }

@@ -1,6 +1,6 @@
 package views;
 
-import application.State;
+import application.Main;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -10,17 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import models.GameModel;
+import models.LobbyModel;
 import models.SpelbordModel;
-import observers.SpelbordObservable;
-import observers.SpelbordObserver;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -60,12 +56,9 @@ public class SpelbordViewController implements Initializable {
 
 
     SpelbordController spelbordController = new SpelbordController();
-    static SpelbordModel spelbordModel;
-    GameModel gameModel;
-    LoginController loginController = new LoginController();
 
 
-    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
+    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
         spelbordController.getButtonID(event);
     }
 
@@ -99,7 +92,6 @@ public class SpelbordViewController implements Initializable {
     }
 
 
-    //TODO FIX HUD
     public void showCardIcon() {
         cardIcon.setVisible(true);
     }
@@ -155,19 +147,15 @@ public class SpelbordViewController implements Initializable {
     }
 
     public void HUD() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        if (State.TurnID == Integer.parseInt(Objects.requireNonNull(document.get("gamestateTurnID")).toString())) {
+        if (GameModel.TurnID == Integer.parseInt(Objects.requireNonNull(document.get("gamestateTurnID")).toString())) {
             showHUD();
         } else {
             hideHUD();
         }
-    }
-
-
-    public void garrison() {
     }
 
 

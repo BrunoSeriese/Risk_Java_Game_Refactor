@@ -1,7 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class PlayerModel {
 
@@ -18,7 +17,6 @@ public class PlayerModel {
     public static PlayerModel getPlayerModelInstance() {
         if (playerModel == null) {
             playerModel = new PlayerModel();
-            System.out.println("nieuwe instantie van PlayerModel is aangemaakt");
         }
         return playerModel;
     }

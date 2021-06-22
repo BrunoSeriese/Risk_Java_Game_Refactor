@@ -9,6 +9,11 @@ import java.util.List;
 
 public class GameModel implements GameObservable {
 
+    public static int TurnID;
+    public static double RED = 0.0;
+    public static double BLUE = -0.85;
+    public static double GREEN = 0.70;
+    public static double ORANGE = 0.20;
     private SpelbordModel map;
     private int turnID;
     private boolean gameOver;
@@ -18,7 +23,7 @@ public class GameModel implements GameObservable {
     private int phaseID;
     private ArrayList<String> selectedCountries;
     private SpelbordViewController viewer;
-    private List<GameObserver> observers = new ArrayList<GameObserver>();
+    private List<GameObserver> observers = new ArrayList<>();
     static GameModel gameModel;
 
 
@@ -27,7 +32,7 @@ public class GameModel implements GameObservable {
         this.turnID = 1;
         this.gameOver = false;
         this.phaseID = 1;
-        this.selectedCountries = new ArrayList<String>();
+        this.selectedCountries = new ArrayList<>();
     }
 
     public GameModel() {
@@ -36,6 +41,7 @@ public class GameModel implements GameObservable {
     public void clearSelectedCountries(String countryID){
 
         if (this.selectedCountries == null || this.selectedCountries.size() < 2  ){
+            assert this.selectedCountries != null;
             this.selectedCountries.add(countryID);
         } else if (this.selectedCountries.size() == 2){
             this.selectedCountries.remove(0);

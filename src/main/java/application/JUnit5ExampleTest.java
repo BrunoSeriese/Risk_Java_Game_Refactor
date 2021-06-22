@@ -1,25 +1,16 @@
 package application;
 
-import com.google.firebase.database.ThrowOnExtraProperties;
-//import configuration.Database;
 import controllers.LoginController;
-import controllers.SpelbordController;
-import models.DiceModel;
 import models.GameModel;
 import org.junit.jupiter.api.Test;
-import views.RulesViewController;
-//import sun.rmi.runtime.Log;
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.LoggingPermission;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+//import configuration.Database;
+//import sun.rmi.runtime.Log;
 
 class JUnit5ExampleTest {
 
@@ -48,19 +39,19 @@ class JUnit5ExampleTest {
     @Test
     public void Should_Return_Username_Is_Empty(){
         LoginController loginController = new LoginController();
-        assertEquals( false,loginController.checkJoin("", "123456"));
+        assertFalse(loginController.checkJoin("", "123456"));
     }
 
     @Test
     public void Should_Return_False_After_Empty_String(){
         LoginController loginController = new LoginController();
-        assertEquals( false,loginController.validateLobby(""));
+        assertFalse(loginController.validateLobby(""));
     }
 
     @Test
     public void empty() throws ExecutionException, InterruptedException {
         LoginController loginController = new LoginController();
-        assertEquals( false,loginController.enoughPlayers());
+        assertFalse(loginController.enoughPlayers());
     }
 
 //    @Test

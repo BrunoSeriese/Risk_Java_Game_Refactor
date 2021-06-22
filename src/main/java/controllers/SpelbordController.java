@@ -1,6 +1,6 @@
 package controllers;
 
-import application.State;
+import application.Main;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -14,8 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.DiceModel;
 import models.GameModel;
+import models.LobbyModel;
 import models.SpelbordModel;
-import observers.SpelbordObserver;
 import views.SpelbordViewController;
 
 import java.io.IOException;
@@ -38,14 +38,10 @@ public class SpelbordController {
     private Button[] buttons;
 
     public ImageView[] getCountries() {
-        System.out.println("Countries worden opgevraagd");
-        System.out.println(Arrays.toString(this.countries));
-
         return this.countries;
     }
 
     public void setCountries(ImageView[] countries) {
-        System.out.println("Countries worden aangepast");
         this.countries = countries;
     }
 
@@ -69,7 +65,7 @@ public class SpelbordController {
 
 
     public void attachlistener() {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null) {
 
@@ -80,8 +76,9 @@ public class SpelbordController {
                 try {
                     Platform.runLater(() -> {
                         try {
-                            Thread.sleep(100);
+                            Thread.sleep(200);
                             getArmyAndCountryFromFirebase();
+                            Thread.sleep(200);
                         } catch (ExecutionException | InterruptedException | IOException executionException) {
                             executionException.printStackTrace();
                         }
@@ -105,7 +102,7 @@ public class SpelbordController {
 
     public void startMainLoop() throws ExecutionException, InterruptedException {
         if (comparePlayerIDtoTurnIDFirebase()) {
-            State.stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+            Main.stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
             canEnd = true;
 
         } else {
@@ -122,7 +119,7 @@ public class SpelbordController {
     }
 
     public void setArmyAndCountryInFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         assert document.get("countries") != null;
@@ -137,7 +134,7 @@ public class SpelbordController {
     }
 
     public void getArmyAndCountryFromFirebase() throws ExecutionException, InterruptedException, IOException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
@@ -148,7 +145,6 @@ public class SpelbordController {
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
-            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 String currentID = String.valueOf(armyAndCountryID.get("playerID"));
@@ -193,7 +189,7 @@ public class SpelbordController {
 
 
     public int getArmyFirebase(String ButtonID) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
@@ -215,13 +211,14 @@ public class SpelbordController {
     }
 
     public void setArmyFirebase(String ButtonID, int newArmies) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
             int count = 0;
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue(ButtonID)) {
@@ -236,7 +233,7 @@ public class SpelbordController {
 
 
     public boolean getNeighborsFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -276,12 +273,12 @@ public class SpelbordController {
         if (canEnd) {
             int toUpdate;
 
-            DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+            DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
 
             ApiFuture<DocumentSnapshot> future = docRef.get();
             DocumentSnapshot document = future.get();
             String stringID = Objects.requireNonNull(document.get("gamestateTurnID")).toString();
-            toUpdate = Integer.parseInt(stringID.toString());
+            toUpdate = Integer.parseInt(stringID);
             if (stringID.equals("4")) {
                 ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", 1);
             } else {
@@ -293,11 +290,11 @@ public class SpelbordController {
 
 
     public boolean comparePlayerIDtoTurnIDFirebase() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        return State.TurnID == Integer.parseInt(Objects.requireNonNull(document.get("gamestateTurnID")).toString());
+        return GameModel.TurnID == Integer.parseInt(Objects.requireNonNull(document.get("gamestateTurnID")).toString());
 
     }
 
@@ -308,7 +305,7 @@ public class SpelbordController {
 
 
     public void countryListener() {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             assert documentSnapshot != null;
             Objects.requireNonNull(documentSnapshot.getData()).get("countries");
@@ -325,7 +322,7 @@ public class SpelbordController {
     }
 
     public void addSoldiersToOwnCountry(String country) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -346,7 +343,7 @@ public class SpelbordController {
 
 
     public void removeSoldiersFromOwnCountry(String country) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -356,7 +353,7 @@ public class SpelbordController {
             assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
-                    int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
+                    int firebaseArmies = Integer.parseInt(armyAndCountryID.get("army").toString());
                     System.out.println("De firebase - 2 is : " + (firebaseArmies - 2));
                     arrayCountryData.get(count).put("army", (firebaseArmies - 2));
                     docRef.update("countries", arrayCountryData);
@@ -367,7 +364,7 @@ public class SpelbordController {
     }
 
     public void removeArmiesFromPlayer(String country) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -380,7 +377,7 @@ public class SpelbordController {
                 if (armyAndCountryID.containsValue(country)) {
                     int firebaseArmies = Integer.parseInt(armyAndCountryID.get("army").toString());
                     if (firebaseArmies == 1) {
-                        arrayCountryData.get(count).put("playerID", State.TurnID);
+                        arrayCountryData.get(count).put("playerID", GameModel.TurnID);
                         docRef.update("countries", arrayCountryData);
                         Thread.sleep(50);
                         Platform.runLater(() -> {
@@ -402,7 +399,7 @@ public class SpelbordController {
     }
 
     public boolean checkArmiesOnCountry(String country, int number) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -412,7 +409,7 @@ public class SpelbordController {
             assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
-                    int firebaseArmies = Integer.valueOf(armyAndCountryID.get("army").toString());
+                    int firebaseArmies = Integer.parseInt(armyAndCountryID.get("army").toString());
                     return firebaseArmies >= number;
                 }
             }
@@ -421,26 +418,7 @@ public class SpelbordController {
     }
 
     public boolean checkOwnPlayerCountry(String country) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-        DocumentSnapshot document = future.get();
-        if (document.exists()) {
-
-            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-
-            assert arrayCountryData != null;
-            for (HashMap armyAndCountryID : arrayCountryData) {
-                if (armyAndCountryID.containsValue(country)) {
-                    int firebasePlayerID = Integer.valueOf(armyAndCountryID.get("playerID").toString());
-                    return firebasePlayerID == State.TurnID;
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean checkEnemyPlayerCountry(String country) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {
@@ -451,14 +429,33 @@ public class SpelbordController {
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsValue(country)) {
                     int firebasePlayerID = Integer.parseInt(armyAndCountryID.get("playerID").toString());
-                    return firebasePlayerID != State.TurnID;
+                    return firebasePlayerID == GameModel.TurnID;
                 }
             }
         }
         return false;
     }
 
-    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
+    public boolean checkEnemyPlayerCountry(String country) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+
+            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+
+            assert arrayCountryData != null;
+            for (HashMap armyAndCountryID : arrayCountryData) {
+                if (armyAndCountryID.containsValue(country)) {
+                    int firebasePlayerID = Integer.parseInt(armyAndCountryID.get("playerID").toString());
+                    return firebasePlayerID != GameModel.TurnID;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void getButtonID(ActionEvent event) throws ExecutionException, InterruptedException {
 
 
         Button buttonid = (Button) event.getSource();
@@ -530,7 +527,7 @@ public class SpelbordController {
                 } else if (gameModel.getSelectedCountries().size() == 1) {
                     if (checkOwnPlayerCountry(buttonIdCode)) {
                         gameModel.clearSelectedCountries(buttonIdCode);
-                        if (gameModel.getSelectedCountries().get(0) == gameModel.getSelectedCountries().get(1)) {
+                        if (gameModel.getSelectedCountries().get(0).equals(gameModel.getSelectedCountries().get(1))) {
                             gameModel.clearSelectedCountries();
                         } else if (getNeighborsFirebase()) {
                             removeSoldiersFromOwnCountry(gameModel.getSelectedCountries().get(0));
@@ -561,26 +558,27 @@ public class SpelbordController {
     private double getPlayerColor(int id) {
         switch (id) {
             case 1:
-                return State.RED;
+                return GameModel.RED;
             case 2:
-                return State.GREEN;
+                return GameModel.GREEN;
             case 3:
-                return State.BLUE;
+                return GameModel.BLUE;
             case 4:
-                return State.ORANGE;
+                return GameModel.ORANGE;
         }
 
-        return State.RED;
+        return GameModel.RED;
     }
 
     public void setCountryColorStartGame() throws ExecutionException, InterruptedException, IOException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
+        DocumentReference docRef = Main.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
         if (document.exists()) {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
                 if (armyAndCountryID.containsKey("playerID")) {
                     String countryID = (String) armyAndCountryID.get("countryID");
