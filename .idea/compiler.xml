@@ -10,6 +10,7 @@
         <module name="hellofx" />
         <module name="RiskGameJava" />
         <module name="Risk_Java_Game" />
+        <module name="Groep13" />
       </profile>
     </annotationProcessing>
   </component>

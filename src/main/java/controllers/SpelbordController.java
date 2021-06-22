@@ -27,7 +27,7 @@ import java.util.concurrent.ExecutionException;
 
 public class SpelbordController {
 
-    //    static SpelbordViewController spelbordViewController = getSpelbordViewControllerInstance();
+
     private SpelbordViewController spelbordViewController;
     static GameModel gameModel;
     static SpelbordModel spelbordModel;
@@ -62,14 +62,6 @@ public class SpelbordController {
         this.buttons = buttons;
     }
 
-    public static SpelbordController getSpelbordControllerInstance() {
-        if (spelbordController == null) {
-            spelbordController = new SpelbordController();
-            System.out.println("nieuwe instantie van SpelbordController is aangemaakt");
-        }
-        return spelbordController;
-    }
-
     public static GameModel getGameModelInstance() {
         if (gameModel == null) {
             gameModel = new GameModel(1);
@@ -94,7 +86,7 @@ public class SpelbordController {
                 try {
                     Platform.runLater(() -> {
                         try {
-                            Thread.sleep(50);
+                            Thread.sleep(100);
                             getArmyAndCountryFromFirebase();
                         } catch (ExecutionException | InterruptedException | IOException executionException) {
                             executionException.printStackTrace();
@@ -108,8 +100,6 @@ public class SpelbordController {
                     }
                     startMainLoop();
                     setCountryColorStartGame();
-//                    armiesListener();
-//                    countryListener();
 
                     spelbordViewController.HUD();
                 } catch (ExecutionException | InterruptedException | IOException executionException) {
@@ -123,21 +113,15 @@ public class SpelbordController {
         if (comparePlayerIDtoTurnIDFirebase()) {
             State.stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
             canEnd = true;
-            //TODO hier komt de zetten en aanvallen van de game. Als laatst nextTurn()
-
-            //ToDo zorg ervoor dat hier een mouse event listeren
-
-            //functie viewer.garrison(current playerID)
 
         } else {
-            System.out.println("Je bent niet aan de beurt, TurnID " + gameModel.getTurnID() + " is aan de beurt");
             canEnd = false;
         }
     }
 
     public SpelbordController() {
         gameModel = getGameModelInstance();
-        spelbordModel = spelbordModel.getSpelbordModelInstance();
+        spelbordModel = SpelbordModel.getSpelbordModelInstance();
 
         //todo verder uitwerken
 //        SpelbordObserver phaseID = null;
@@ -152,18 +136,15 @@ public class SpelbordController {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
-        if (document.get("countries") != null) {
-            System.out.println("this shit is already made");
-        } else {
-            spelbordModel.CountriesAndIdMap();
-            Map<String, Object> data = new HashMap<>();
-            data.put("countries", spelbordModel.getCountries());
+        assert document.get("countries") != null;
 
-//            CountryModel countryModel = new CountryModel("NA1");
-            ApiFuture<WriteResult> result = docRef.update(data);
+        spelbordModel.CountriesAndIdMap();
+        Map<String, Object> data = new HashMap<>();
+        data.put("countries", spelbordModel.getCountries());
 
-            System.out.println("Data naar firebase: " + result);
-        }
+        ApiFuture<WriteResult> result = docRef.update(data);
+
+
     }
 
     public void getArmyAndCountryFromFirebase() throws ExecutionException, InterruptedException, IOException {
@@ -178,23 +159,28 @@ public class SpelbordController {
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
 
-
+            assert arrayCountryData != null;
             for (HashMap armyAndCountryID : arrayCountryData) {
-//                System.out.println(armyAndCountryID.get("playerID"));
+
                 String currentID = String.valueOf(armyAndCountryID.get("playerID"));
 
-                if (currentID.equals("1")) {
-                    player1Size += 1;
+                switch (currentID) {
+                    case "1":
+                        player1Size += 1;
 
-                } else if (currentID.equals("2")) {
-                    player2Size += 1;
+                        break;
+                    case "2":
+                        player2Size += 1;
 
-                } else if (currentID.equals("3")) {
-                    player3Size += 1;
+                        break;
+                    case "3":
+                        player3Size += 1;
 
-                } else if (currentID.equals("4")) {
-                    player4Size += 1;
+                        break;
+                    case "4":
+                        player4Size += 1;
 
+                        break;
                 }
 
                 if (player1Size == arrayCountryData.size()) {
@@ -213,8 +199,6 @@ public class SpelbordController {
 
 
             }
-        } else {
-            System.out.println("No document found!");
         }
     }
 
@@ -226,23 +210,17 @@ public class SpelbordController {
 
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//            System.out.println("dit is arraycountrydata:    " + arrayCountryData);
             int count = 0;
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue(ButtonID)) {
-//                        System.out.println(armyAndCountryID);
-//                    System.out.println(arrayCountryData.get(count).get("army"));
                     String currentArmies = arrayCountryData.get(count).get("army").toString();
                     int firstArmy = Integer.parseInt(currentArmies);
-//                    System.out.println(firstArmy);
                     return firstArmy;
                 }
                 count += 1;
             }
 
-        } else {
-            System.out.println("No document found!");
         }
         return 0;
     }
@@ -254,55 +232,21 @@ public class SpelbordController {
 
         if (document.exists()) {
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//            System.out.println(arrayCountryData);
-
             int count = 0;
-
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue(ButtonID)) {
-//                        System.out.println(armyAndCountryID);
                     System.out.println(arrayCountryData.get(count).put("army", newArmies));
-//                    System.out.println(arrayCountryData);
-//                    System.out.println(count);
                     break;
                 }
                 count += 1;
             }
             docRef.update("countries", arrayCountryData);
-        } else {
-            System.out.println("No document found!");
         }
     }
 
 
-    //if the player turnID matches the gamestate turnID. then he can start his turn
-    public void getPlayersFirebaseTurnID() throws ExecutionException, InterruptedException {
-
-        //get benodigde stuff van firestore
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-        DocumentSnapshot document = future.get();
-
-        //if lobbycode/collection van players bestaat ->
-        if (document.exists()) {
-
-            ArrayList<HashMap> arrayPlayerData = (ArrayList<HashMap>) document.get("players"); //zet alle data van 'players' in array wat hashmaps bevatten
-
-            for (HashMap playerData : arrayPlayerData) {
-                System.out.println(playerData);  //loopt door de arrays van firestore zodat je ze apart kan zien van elke player
-
-                Map.Entry<String, Long> entry = (Map.Entry<String, Long>) playerData.entrySet().iterator().next(); //elke
-                String turnIdKey = entry.getKey(); //pakt de key van elke 1e Key-Value combo
-                Long turnIdValue = entry.getValue(); //pakt de bijbehorende value van die 1e key
-                System.out.println(turnIdKey + " = " + turnIdValue); //print beide key en value
-            }
-        } else {
-            System.out.println("No document found!");
-        }
-    }
-
-    public boolean getNeighborsFirebase() throws ExecutionException, InterruptedException { //TODO BRUNO parameters geven van de buttonID fzo? als je klikt
+    public boolean getNeighborsFirebase() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
@@ -312,39 +256,28 @@ public class SpelbordController {
 
             int count = 0;
 
-            ArrayList arraySelectedCountries = gameModel.getSelectedCountries();
-            System.out.println("dit is selected countries:   " + arraySelectedCountries);
+            ArrayList<String> arraySelectedCountries = gameModel.getSelectedCountries();
 
             for (HashMap armyAndCountryID : arrayCountryData) {
 
                 if (armyAndCountryID.containsValue(arraySelectedCountries.get(0))) {
-                    System.out.println("dit is selected countries:   " + arraySelectedCountries);
 
                     arrayCountryData.get(count).get("neighbor");
                     ArrayList x = (ArrayList) arrayCountryData.get(count).get("neighbor");
 
                     if (x.contains(arraySelectedCountries.get(1))) {
-                        System.out.println("dit is selected countries:   " + arraySelectedCountries);
-
-                        System.out.println("Je mag aanvallen");
                         return true;
                     } else {
-                        if (gameModel.getPhaseID() == 2) {
-                            System.out.println("Je mag alleen landen aanvallen dat naast je zit");
-                        } else if (gameModel.getPhaseID() == 3) {
-                            System.out.println("Je mag je eerste gekozen land niet fortifyen");
-                        }
                         gameModel.clearSelectedCountries();
                         return false;
                     }
                 }
                 count += 1;
             }
-            System.out.println("werkt" + arraySelectedCountries);
-        } else {
-            System.out.println("No document found!");
 
         }
+
+
         return false;
     }
 
@@ -352,20 +285,13 @@ public class SpelbordController {
 
         if (canEnd) {
             int toUpdate;
-            //get benodigde stuff van firestore
+
             DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
 
-            // haal de info van doc players op
             ApiFuture<DocumentSnapshot> future = docRef.get();
             DocumentSnapshot document = future.get();
-
-            // haal de info van gamestateTurnID op
-            Object stringID = document.get("gamestateTurnID").toString();
-
-            // maak toUpdate een int die gelijk staat aan de turnID uit firebase
+            String stringID = document.get("gamestateTurnID").toString();
             toUpdate = Integer.parseInt(stringID.toString());
-
-            // als de stringID gelijk is aan 4 dan wordt de value naar 1 gezet. anders wordt toUpdate + 1 gebruikt
             if (stringID.equals("4")) {
                 ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", 1);
             } else {
@@ -376,37 +302,18 @@ public class SpelbordController {
     }
 
 
-//    TODO zorg ervoor dat de lokale playerID wordt aangesproken hier als playerLocalID, maybe met final String?
-
     public boolean comparePlayerIDtoTurnIDFirebase() throws ExecutionException, InterruptedException {
         DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
 
-        if (State.TurnID == Integer.valueOf(document.get("gamestateTurnID").toString())) {
+        if (State.TurnID == Integer.parseInt(document.get("gamestateTurnID").toString())) {
             System.out.println("Jij bent aan de beurt " + State.TurnID);
             return true;
         } else {
-            System.out.println("nah fam, not your turn");
             return false;
         }
 
-    }
-
-    public void nextTurn() {
-        if (gameModel.isGameOver()) {
-            //end game. this should be called by an observer?
-        } else if (gameModel.getTurnID() < 4) {
-            gameModel.setTurnID(gameModel.getTurnID() + 1);
-            // roept de volgende turn aan
-            //nextTurnIDFirebase(lobbycode);
-            map.turnInProgress(map.getPlayers(), new GameModel(gameModel.getTurnID()));
-        } else if (gameModel.getTurnID() == 4) {
-            gameModel.setTurnID(1);
-            // roept de volgende turn aan
-            //nextTurnIDFirebase(lobbycode);
-            map.turnInProgress(map.getPlayers(), new GameModel(gameModel.getTurnID()));
-        }
     }
 
 
@@ -417,15 +324,6 @@ public class SpelbordController {
 
     public void setArmies(Button button, int armies) {
         button.setText(String.valueOf(armies));
-    }
-
-    public void incrementActionsTaken() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players");
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-        DocumentSnapshot document = future.get();
-
-
-        docRef.update("actionsTaken", Integer.valueOf(document.getData().get("actionsTaken").toString()) + 1);
     }
 
 
@@ -749,17 +647,11 @@ public class SpelbordController {
         if (document.exists()) {
 
             ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//            System.out.println("test1" + arrayCountryData);
             for (HashMap armyAndCountryID : arrayCountryData) {
-//                System.out.println("test2" + armyAndCountryID);
                 if (armyAndCountryID.containsKey("playerID")) {
-//                    System.out.println("PLAYER ID IS: " + armyAndCountryID.get("playerID"));
                     String countryID = (String) armyAndCountryID.get("countryID");
                     Long playerID = (Long) armyAndCountryID.get("playerID");
-//                    System.out.println("COUNTRY ID IS" + countryID);
-//                    System.out.println("In de countries zitten " + Arrays.toString(getCountries()));
                     for (ImageView country : spelbordViewController.getCountriesArray()) {
-//                        System.out.println("COUNTRY (IMAGE) ID IS" + country.getId());
                         if (country.getId().equals(countryID)) {
                             double color = getPlayerColor(playerID.intValue());
                             setColorCountry(country, color);
@@ -780,162 +672,6 @@ public class SpelbordController {
         });
         System.out.println("NU is het " + gameModel.getPhaseID());
     }
-
-
-//        for (ImageView country : countries) {
-//            if (country.getId().equals("NA1")) {
-//                setColorCountry(country, getPlayerColor((int) document.get("playerID")));
-//                System.out.println("GELUKT");
-//            }
-//        }
-
-//        DocumentSnapshot test = State.database.getFirestoreDatabase().collection(State.lobbycode).document("players").get().get();
-//        SpelbordViewController spelbordViewController = new SpelbordViewController();
-//        System.out.println("array "+ spelbordViewController.addImageViewArray());
-
-
-//        if (document.exists()) {
-//
-//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//
-//            for (HashMap armyAndCountryID : arrayCountryData) {
-//                System.out.println("kleurentest: " + armyAndCountryID); //gets alle nodige info
-//
-////                if (armyAndCountryID.containsKey("countryID")) {
-////                    System.out.println(armyAndCountryID.get("countryID"));//prints country id
-////                }
-//                if (armyAndCountryID.containsKey("playerID")) {
-//                    System.out.println(armyAndCountryID.get("playerID")); //prints player id
-//
-//                    if ((Long) armyAndCountryID.get("playerID") == 1) {
-//                        armyAndCountryID.get("countryID");
-//                        setColorCountry((ImageView) armyAndCountryID.get("countryID") , State.RED); //TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
-//                    }
-//                    else if ((Long) armyAndCountryID.get("playerID") == 2) {
-//                        armyAndCountryID.get("countryID");
-//                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.BLUE);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
-//                    }
-//                    else if ((Long) armyAndCountryID.get("playerID") == 3) {
-//                        armyAndCountryID.get("countryID");
-//                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.GREEN);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
-//                    }
-//                    else if ((Long) armyAndCountryID.get("playerID") == 4) {
-//                        armyAndCountryID.get("countryID");
-//                        setColorCountry((ImageView) armyAndCountryID.get("countryID"), State.ORANGE);//TODO fix dat ik armyAndCountryID.get("countryID") kan casten naar ImageView zodat deze method werkt
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
-
-
-//    //TODO NIET AAN DEZE 4 METHODS KOMEN
-//
-
-
-//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//            System.out.println("dit is arraycountrydata: " + arrayCountryData);
-//
-//            arrayCountryData.
-//                    HashMap newData = new HashMap();
-//            newData.put("army", 4);
-//
-//            ArrayList<HashMap> testArray = new ArrayList<>();
-//            testArray.add(newData);
-////            long newValue = (long) oldValue.put("army", 4);
-//
-//
-//            System.out.println("test new value: " + newValue);
-//            docRef.update("countries", newValue);
-
-
-//
-//    public void setArmyFirebase(int arrayNumber, int newArmies) throws ExecutionException, InterruptedException {
-//        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
-//        ApiFuture<DocumentSnapshot> future = docRef.get();
-//        DocumentSnapshot document = future.get();
-//
-//        if (document.exists()) {
-//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//            System.out.println("dit is arraycountrydata: " + arrayCountryData);
-//
-////            ArrayList<HashMap> data = new ArrayList<HashMap>();
-////            data.add(0, ;
-//
-//            Map<String, Integer> dataMap = new HashMap<>();
-//            dataMap.put("army", newArmies);
-////
-////            ArrayList<String> countries = new ArrayList<>();
-////            countries.add(arrayNumber, "test");
-//
-//
-//            docRef.update("countries", dataMap);
-//        }
-//        else {
-//            System.out.println("No document found!");
-//        }
-//    }
-//
-//
-//
-//    public void setPlayerIDtoCountry() throws ExecutionException, InterruptedException {
-//        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
-//        ApiFuture<DocumentSnapshot> future = docRef.get();
-//        DocumentSnapshot document = future.get();
-//        if (document.exists()) {
-//
-//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
-//            for (HashMap armyAndCountryID : arrayCountryData) {
-//                System.out.println(armyAndCountryID);
-//
-//            }
-//        } else {
-//            System.out.println("No document found!");
-//        }
-//    }
-//
-//    public void getPlayerIDtoCountry() throws ExecutionException, InterruptedException {
-//        DocumentReference docRef = State.database.getFirestoreDatabase().collection("791967").document("players");
-//        ApiFuture<DocumentSnapshot> future = docRef.get();
-//        DocumentSnapshot document = future.get();
-//        if (document.exists()) {
-//
-//            ArrayList<HashMap> arrayCountryData = (ArrayList<HashMap>) document.get("countries");
-//            System.out.println("dit is arraycountrydata:    "+arrayCountryData);
-//            for (HashMap armyAndCountryID : arrayCountryData) {
-//                System.out.println(armyAndCountryID);
-//
-//            }
-//        } else {
-//            System.out.println("No document found!");
-//        }
-//    }
-//    //TODO NIET AANKOMEN IS MINE ^^^^^^^^
-
-
-//    IK WEET BTW NIET OF DIT IN DE CONTROLLER MOET OF IN DE MODEL!!!
-
-
-//maak aantal spelers gelijk aan hoeveel mensen in lobby, dus 4 nieuwe spelers.
-// de usernames kan je met .getUserName fzo pakken, kijk ff in de rest van de classes van jansen.
-
-// de code kiest een random kleur en assigned die tot de speler OFFFFFF we kunnen 4 standaard kleuren kiezen bijvoorbeeld, rood blauw groen oranje.
-
-
-//als het spel is gestart heeft elke player een kleur en speler attributes, zoals regions cards etc...
-//ik maak nog een knopje met END TURN, dan als je erop klikt dat de beurt dan overgaat naar de volgende,
-
-
-// deze knop staat in de map Images en die mag alleen visible worden als degene heeft aangevallen/reinforced. maar dat komt later wel
-
-
-//if player has all regions, set hasWon = true, stop de turn loop >>> go to results screen
-
-
-//als een speler die 3 cards heeft dan schakelt de canExchageCards naar = true en dan verschijnt er een knopje die we nog moeten maken en die hele interface nog met, 'Trade in' bijvoorbeeld
-//dan verschijnt er een scherm met het aantal troepen dat diegene krijgt en dan klikt ie op "OK" en dan ontvangt hij de troepen en gaan die kaarten weg.
-
 
 
