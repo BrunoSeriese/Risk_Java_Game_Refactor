@@ -134,6 +134,8 @@ public class SpelbordController {
     }
 
     public void getArmyAndCountryFromFirebase() throws ExecutionException, InterruptedException, IOException {
+
+
         DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();

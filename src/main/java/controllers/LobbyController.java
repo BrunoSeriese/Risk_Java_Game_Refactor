@@ -4,6 +4,7 @@ import application.Main;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import configuration.Database;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import models.LobbyModel;
 import views.SpelbordViewController;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -28,6 +30,7 @@ public class LobbyController {
     private Scene scene;
     private Parent root;
     boolean isInGame = false;
+
 
     LoginController loginController = new LoginController();
 
@@ -52,11 +55,7 @@ public class LobbyController {
     }
 
     public boolean checkGameIsRunning() throws ExecutionException, InterruptedException {
-        DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-        DocumentSnapshot document = future.get();
-
-
+        DocumentSnapshot document = loginController.database.getFirebaseDocument("players");
         return (boolean) Objects.requireNonNull(document.getData()).get("gameIsRunning");
 
     }
