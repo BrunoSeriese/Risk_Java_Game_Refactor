@@ -79,8 +79,15 @@ public class SpelbordController {
                             Thread.sleep(200);
                             getArmyAndCountryFromFirebase();
                             Thread.sleep(200);
-                        } catch (ExecutionException | InterruptedException | IOException executionException) {
-                            executionException.printStackTrace();
+                        }catch (ExecutionException executionException){
+                                executionException.printStackTrace();
+                        }
+
+                        catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        } catch(InterruptedException interruptedException){
+                            interruptedException.printStackTrace();
+
                         }
                     });
 
