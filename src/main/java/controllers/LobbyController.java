@@ -32,6 +32,7 @@ public class LobbyController {
     boolean isInGame = false;
 
 
+
     LoginController loginController = new LoginController();
 
     @FXML
