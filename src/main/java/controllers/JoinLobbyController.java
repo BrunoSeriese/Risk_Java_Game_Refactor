@@ -24,6 +24,7 @@ public class JoinLobbyController {
     @FXML
     TextField codeField;
     public Text invalidCode;
+    ContentController contentController = new ContentController();
 
 
     public JoinLobbyController() {
@@ -38,11 +39,7 @@ public class JoinLobbyController {
 
 
             if (loginController.checkJoin(playerModel.getUsername(), codeField.getText())) {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("FXML/Lobby.fxml")));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                contentController.changeScene("FXML/Lobby.fxml", event);
             }
         } else {
             invalidCode.setVisible(true);

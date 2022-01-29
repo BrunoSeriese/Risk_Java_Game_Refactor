@@ -19,6 +19,7 @@ public class PreLobbyController {
     private Scene scene;
     private Parent root;
     LoginController loginController = new LoginController();
+    ContentController contentController = new ContentController();
     PlayerModel playerModel;
 
     @FXML
@@ -27,31 +28,18 @@ public class PreLobbyController {
     public PreLobbyController() {
         playerModel = PlayerModel.getPlayerModelInstance();
     }
-
     public void switchToCreatedLobby(ActionEvent event) throws IOException {
         playerModel.setUsername(usernameField.getText());
 
 
         loginController.checkCreate(usernameField.getText());
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("FXML/Lobby.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+       contentController.changeScene("FXML/Lobby.fxml",event);
 
     }
-
     public void switchToJoinedLobby(ActionEvent event) throws IOException {
         playerModel.setUsername(usernameField.getText());
-
         playerModel.setUsername(usernameField.getText());
-
-
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("FXML/JoinLobby.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        contentController.changeScene("FXML/JoinLobby.fxml",event);
 
     }
 }
