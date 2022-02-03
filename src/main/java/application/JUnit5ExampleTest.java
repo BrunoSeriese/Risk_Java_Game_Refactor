@@ -4,10 +4,8 @@ import controllers.LoginController;
 import models.DiceModel;
 import models.GameModel;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,7 +41,7 @@ class JUnit5ExampleTest {
     @Test
     public void Should_Return_Username_Is_Empty(){
         LoginController loginController = new LoginController();
-        assertEquals( false,loginController.checkJoin("", "123456"));
+        assertEquals( false,loginController.isPlayerInLobby("", "123456"));
     }
 
     @Test

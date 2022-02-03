@@ -63,7 +63,9 @@ public class SpelbordController {
 
     EventHandler<MouseEvent> eventHandler = e -> System.out.println("ER is geklikt");
 
-
+    public boolean canEndTurn(){
+        return this.canEnd;
+    }
     public void attachlistener() {
         DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
         docRef.addSnapshotListener((documentSnapshot, e) -> {
@@ -277,21 +279,26 @@ public class SpelbordController {
         return false;
     }
 
+
+    public DocumentReference getDocument(String docName){
+        return LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document(docName);
+
+    }
+    public String getCurrentTurn() throws ExecutionException, InterruptedException {
+        DocumentReference myDoc = this.getDocument("players");
+        ApiFuture<DocumentSnapshot> future = myDoc.get();
+        DocumentSnapshot document = future.get();
+        return Objects.requireNonNull(document.get("gamestateTurnID")).toString();
+    }
+
     public void nextTurnIDFirebase() throws ExecutionException, InterruptedException {
-
-        if (canEnd) {
-            int toUpdate;
-
-            DocumentReference docRef = LoginController.database.getFirestoreDatabase().collection(LobbyModel.lobbycode).document("players");
-
-            ApiFuture<DocumentSnapshot> future = docRef.get();
-            DocumentSnapshot document = future.get();
-            String stringID = Objects.requireNonNull(document.get("gamestateTurnID")).toString();
-            toUpdate = Integer.parseInt(stringID);
+        if (this.canEndTurn()) {
+            DocumentReference docRef = this.getDocument("players");
+           String stringID = this.getCurrentTurn();
             if (stringID.equals("4")) {
                 ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", 1);
             } else {
-                ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", toUpdate + 1);
+                ApiFuture<WriteResult> GamestateID = docRef.update("gamestateTurnID", Integer.parseInt(stringID) + 1);
             }
             gameModel.setPhaseID(1);
         }

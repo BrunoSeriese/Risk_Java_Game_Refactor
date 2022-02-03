@@ -115,7 +115,7 @@ public class LoginController {
         ApiFuture<WriteResult> arrayUnion = docRef.update("players", FieldValue.arrayUnion(playerModel2));
     }
 
-    public boolean checkJoin(String username, String code) {
+    public boolean isPlayerInLobby(String username, String code) {
         if (username.equals("")) {
             return false;
         } else {
